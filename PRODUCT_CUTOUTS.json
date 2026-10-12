@@ -1,0 +1,193 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "prompt": "Use case: background-extraction. Return an exact solid opaque product silhouette matte on a genuinely transparent background. Preserve original canvas, placement, perspective, scale and all product interiors. Remove only external backdrop/shadows and edge artifacts. Keep white packaging and existing masking panels opaque; no lettering-shaped holes. The matte is applied to original RGB pixels.",
+  "method": "Extract generated alpha with ImageMagick; normalize near-opaque interior alpha, resize to original canvas, erode contour by 1px. For already-transparent sources, intersect with existing alpha. Copy this alpha to original RGB and encode lossless WebP. All source photos retained. Masked Arsh syrup label used as source; unmasked label excluded from deployment.",
+  "assets": {
+    "assets/gallery/dard-capsule-front-display.webp": "assets/cutouts/dard-capsule-front-display.webp",
+    "assets/gallery/dard-capsule-front.webp": "assets/cutouts/dard-capsule-front.webp",
+    "assets/gallery/dard-capsule-composition-display.webp": "assets/cutouts/dard-capsule-composition-display.webp",
+    "assets/gallery/dard-capsule-composition.webp": "assets/cutouts/dard-capsule-composition.webp",
+    "assets/gallery/dard-capsule-side-display.webp": "assets/cutouts/dard-capsule-side-display.webp",
+    "assets/gallery/dard-capsule-side.webp": "assets/cutouts/dard-capsule-side.webp",
+    "assets/gallery/dard-oil-50-pack-display.webp": "assets/cutouts/dard-oil-50-pack-display.webp",
+    "assets/gallery/dard-oil-50-pack.webp": "assets/cutouts/dard-oil-50-pack.webp",
+    "assets/gallery/dard-oil-50-front-display.webp": "assets/cutouts/dard-oil-50-front-display.webp",
+    "assets/gallery/dard-oil-50-front.webp": "assets/cutouts/dard-oil-50-front.webp",
+    "assets/dard-haran-oil-50ml.png": "assets/cutouts/dard-haran-oil-50ml.webp",
+    "assets/gallery/dard-oil-100-pack-display.webp": "assets/cutouts/dard-oil-100-pack-display.webp",
+    "assets/gallery/dard-oil-100-pack.webp": "assets/cutouts/dard-oil-100-pack.webp",
+    "assets/gallery/dard-oil-100-front-display.webp": "assets/cutouts/dard-oil-100-front-display.webp",
+    "assets/gallery/dard-oil-100-front.webp": "assets/cutouts/dard-oil-100-front.webp",
+    "assets/gallery/dard-oil-100-panel-display.webp": "assets/cutouts/dard-oil-100-panel-display.webp",
+    "assets/gallery/dard-oil-100-panel.webp": "assets/cutouts/dard-oil-100-panel.webp",
+    "assets/gallery/kabi-front-display.webp": "assets/cutouts/kabi-front-display.webp",
+    "assets/gallery/kabi-front.webp": "assets/cutouts/kabi-front.webp",
+    "assets/gallery/kabi-composition-display.webp": "assets/cutouts/kabi-composition-display.webp",
+    "assets/gallery/kabi-composition.webp": "assets/cutouts/kabi-composition.webp",
+    "assets/gallery/kabi-side-display.webp": "assets/cutouts/kabi-side-display.webp",
+    "assets/gallery/kabi-side.webp": "assets/cutouts/kabi-side.webp",
+    "assets/gallery/madhumeh-value-front-display.webp": "assets/cutouts/madhumeh-value-front-display.webp",
+    "assets/gallery/madhumeh-value-front.webp": "assets/cutouts/madhumeh-value-front.webp",
+    "assets/gallery/madhumeh-value-composition-display.webp": "assets/cutouts/madhumeh-value-composition-display.webp",
+    "assets/gallery/madhumeh-value-composition.webp": "assets/cutouts/madhumeh-value-composition.webp",
+    "assets/gallery/madhumeh-premium-pack-display.webp": "assets/cutouts/madhumeh-premium-pack-display.webp",
+    "assets/gallery/madhumeh-premium-pack.webp": "assets/cutouts/madhumeh-premium-pack.webp",
+    "assets/gallery/madhumeh-premium-jar-display.webp": "assets/cutouts/madhumeh-premium-jar-display.webp",
+    "assets/gallery/madhumeh-premium-jar.webp": "assets/cutouts/madhumeh-premium-jar.webp",
+    "assets/gallery/madhumeh-premium-carton-display.webp": "assets/cutouts/madhumeh-premium-carton-display.webp",
+    "assets/gallery/madhumeh-premium-carton.webp": "assets/cutouts/madhumeh-premium-carton.webp",
+    "assets/gallery/madhumeh-premium-composition-display.webp": "assets/cutouts/madhumeh-premium-composition-display.webp",
+    "assets/gallery/madhumeh-premium-composition.webp": "assets/cutouts/madhumeh-premium-composition.webp",
+    "assets/gallery/madhumeh-premium-side-display.webp": "assets/cutouts/madhumeh-premium-side-display.webp",
+    "assets/gallery/madhumeh-premium-side.webp": "assets/cutouts/madhumeh-premium-side.webp",
+    "assets/clean/madhumeh-haran-premium.png": "assets/cutouts/madhumeh-haran-premium.webp",
+    "assets/gallery/hriday-pack-display.webp": "assets/cutouts/hriday-pack-display.webp",
+    "assets/gallery/hriday-pack.webp": "assets/cutouts/hriday-pack.webp",
+    "assets/gallery/hriday-jar-display.webp": "assets/cutouts/hriday-jar-display.webp",
+    "assets/gallery/hriday-jar.webp": "assets/cutouts/hriday-jar.webp",
+    "assets/gallery/hriday-composition-display.webp": "assets/cutouts/hriday-composition-display.webp",
+    "assets/gallery/hriday-composition.webp": "assets/cutouts/hriday-composition.webp",
+    "assets/gallery/hriday-side-display.webp": "assets/cutouts/hriday-side-display.webp",
+    "assets/gallery/hriday-side.webp": "assets/cutouts/hriday-side.webp",
+    "assets/gallery/arsh-syrup-front-display.webp": "assets/cutouts/arsh-syrup-front-display.webp",
+    "assets/gallery/arsh-syrup-front.webp": "assets/cutouts/arsh-syrup-front.webp",
+    "assets/gallery/arsh-syrup-label-clean-display.webp": "assets/cutouts/arsh-syrup-label-clean-display.webp",
+    "assets/gallery/arsh-syrup-label-clean.webp": "assets/cutouts/arsh-syrup-label-clean.webp",
+    "assets/gallery/arsh-syrup-photo-clean-display.webp": "assets/cutouts/arsh-syrup-photo-clean-display.webp",
+    "assets/gallery/arsh-syrup-photo-clean.webp": "assets/cutouts/arsh-syrup-photo-clean.webp",
+    "assets/gallery/arsh-capsules-front-display.webp": "assets/cutouts/arsh-capsules-front-display.webp",
+    "assets/gallery/arsh-capsules-front.webp": "assets/cutouts/arsh-capsules-front.webp",
+    "assets/gallery/arsh-capsules-carton-display.webp": "assets/cutouts/arsh-capsules-carton-display.webp",
+    "assets/gallery/arsh-capsules-carton.webp": "assets/cutouts/arsh-capsules-carton.webp",
+    "assets/gallery/arsh-capsules-composition-display.webp": "assets/cutouts/arsh-capsules-composition-display.webp",
+    "assets/gallery/arsh-capsules-composition.webp": "assets/cutouts/arsh-capsules-composition.webp",
+    "assets/gallery/arsh-capsules-side-display.webp": "assets/cutouts/arsh-capsules-side-display.webp",
+    "assets/gallery/arsh-capsules-side.webp": "assets/cutouts/arsh-capsules-side.webp"
+  },
+  "generatedMattes": [
+    {
+      "source": "assets/gallery/dard-capsule-front-display.webp",
+      "generatedFile": "exec-ef294435-b3c0-4771-872a-400318927c6f.png"
+    },
+    {
+      "source": "assets/gallery/dard-capsule-side-display.webp",
+      "generatedFile": "exec-37b2e376-b370-49a0-aa65-d8b2eafb194d.png"
+    },
+    {
+      "source": "assets/gallery/dard-oil-50-front-display.webp",
+      "generatedFile": "exec-a29515c4-a74d-4e2a-b054-fb47158634f6.png"
+    },
+    {
+      "source": "assets/dard-haran-oil-50ml.png",
+      "generatedFile": "exec-c8eaa2a6-f7d1-458a-bd39-e0a4e14c7630.png"
+    },
+    {
+      "source": "assets/gallery/dard-oil-100-front-display.webp",
+      "generatedFile": "exec-2ded27f9-d584-484c-ad24-0974d5ea2c5e.png"
+    },
+    {
+      "source": "assets/gallery/dard-capsule-composition-display.webp",
+      "generatedFile": "exec-b3844653-c2c3-491b-925c-37b8e4fb3046.png"
+    },
+    {
+      "source": "assets/gallery/dard-oil-100-pack-display.webp",
+      "generatedFile": "exec-c6e00e12-21d9-405a-b9f6-8ac16c232a76.png"
+    },
+    {
+      "source": "assets/gallery/dard-oil-100-panel-display.webp",
+      "generatedFile": "exec-efa2bce3-2112-4b46-93af-1bb3eafcea54.png"
+    },
+    {
+      "source": "assets/gallery/dard-oil-50-pack-display.webp",
+      "generatedFile": "exec-816b7b9c-2a73-4528-81bc-cd7c191267b8.png"
+    },
+    {
+      "source": "assets/gallery/kabi-front-display.webp",
+      "generatedFile": "exec-f1fffad6-25c7-4c48-bf0b-a93e2b391cf7.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-premium-jar-display.webp",
+      "generatedFile": "exec-0e0f5242-dae5-4987-a259-f2c71e3f7492.png"
+    },
+    {
+      "source": "assets/gallery/kabi-side-display.webp",
+      "generatedFile": "exec-dfa7c06e-f97f-41af-b1ae-8e24a8a12764.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-premium-carton-display.webp",
+      "generatedFile": "exec-ee4ac461-9dfc-447f-8e34-9a7bb082bd74.png"
+    },
+    {
+      "source": "assets/gallery/kabi-composition-display.webp",
+      "generatedFile": "exec-1102fca6-a28e-4eac-8aed-2206bebbff1a.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-value-front-display.webp",
+      "generatedFile": "exec-d14a1f66-9961-4d83-8417-b97a42a2647e.png"
+    },
+    {
+      "source": "assets/gallery/hriday-pack-display.webp",
+      "generatedFile": "exec-08cb3f81-1980-48b0-b2c5-07c9fa057b21.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-premium-composition-display.webp",
+      "generatedFile": "exec-1125b011-a289-4bf9-80ee-587a3fff034f.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-premium-side-display.webp",
+      "generatedFile": "exec-4abf004b-aa82-4253-a880-e1643934657c.png"
+    },
+    {
+      "source": "assets/gallery/hriday-jar-display.webp",
+      "generatedFile": "exec-b8d450c8-9aba-4f3a-98e8-ad71d1500864.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-value-composition-display.webp",
+      "generatedFile": "exec-32098880-f9eb-4462-89a1-d8d8eabdb94c.png"
+    },
+    {
+      "source": "assets/gallery/arsh-syrup-front-display.webp",
+      "generatedFile": "exec-9fd77450-e1c0-4274-8404-a4094f611987.png"
+    },
+    {
+      "source": "assets/gallery/madhumeh-premium-pack-display.webp",
+      "generatedFile": "exec-36b0ed25-a7a1-46e1-93d2-39dd4bba489d.png"
+    },
+    {
+      "source": "assets/gallery/hriday-composition-display.webp",
+      "generatedFile": "exec-0997b6da-c4ef-48ed-b503-2554f064595f.png"
+    },
+    {
+      "source": "assets/gallery/arsh-capsules-front-display.webp",
+      "generatedFile": "exec-0569011b-3790-423a-8a1c-13a46a4a88ea.png"
+    },
+    {
+      "source": "assets/gallery/hriday-side-display.webp",
+      "generatedFile": "exec-f080ff0e-42d1-4f3f-9604-bf35c5a72831.png"
+    },
+    {
+      "source": "assets/gallery/arsh-capsules-carton-display.webp",
+      "generatedFile": "exec-685ab083-dcf6-4106-bf80-63780d509828.png"
+    },
+    {
+      "source": "assets/gallery/arsh-capsules-composition-display.webp",
+      "generatedFile": "exec-49ef0ba6-19fc-4a6f-90e1-f1bbe2323fba.png"
+    },
+    {
+      "source": "assets/gallery/arsh-capsules-side-display.webp",
+      "generatedFile": "exec-da393b57-0c56-4e05-8fa5-d0a51a4e4182.png"
+    },
+    {
+      "source": "assets/clean/madhumeh-haran-premium.png",
+      "generatedFile": "exec-4accfefc-292d-4ecb-8f17-a6ce8b857399.png"
+    },
+    {
+      "source": "assets/gallery/arsh-syrup-label-clean-display.webp",
+      "generatedFile": "exec-8d5bf607-cadc-4fc1-9b3f-fb2a116fecc7.png"
+    },
+    {
+      "source": "assets/gallery/arsh-syrup-photo-clean-display.webp",
+      "generatedFile": "exec-587dec65-cd85-45aa-a07c-2ebc0bd440f8.png"
+    }
+  ]
+}

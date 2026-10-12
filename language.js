@@ -1,0 +1,158 @@
+// Local translations: no remote widget or data submission is required.
+(() => {
+  'use strict';
+  const supported = ['en', 'hi', 'mr', 'te', 'ta', 'bn', 'pa', 'gu'];
+  const labels = {en:'English',hi:'हिन्दी',mr:'मराठी',te:'తెలుగు',ta:'தமிழ்',bn:'বাংলা',pa:'ਪੰਜਾਬੀ',gu:'ગુજરાતી'};
+  const key = 'madhav-website-language';
+  const normalize = value => String(value).replace(/\s+/g, ' ').trim();
+  let remembered;
+  try { remembered = localStorage.getItem(key); } catch {}
+  const requested = new URLSearchParams(location.search).get('lang');
+  let language = supported.includes(requested) ? requested : supported.includes(remembered) ? remembered : 'en';
+  const texts = new WeakMap();
+  const attributes = new WeakMap();
+  const translatedAttributes = ['aria-label', 'alt', 'placeholder'];
+  let observer;
+  let scheduled = false;
+  const dictionaries = window.madhavTranslations || {};
+  const templates = {
+    hi:{find:n=>`${n} उत्पादों में उपलब्ध`,show:name=>`${name} दिखाएँ`,explore:name=>`${name} देखें`,photo:name=>`${name} की बड़ी तस्वीर देखें`,amazon:(name,pack)=>`Amazon पर ${name}, ${pack} देखें (नए टैब में खुलेगा)`},
+    mr:{find:n=>`${n} उत्पादनांमध्ये आढळते`,show:name=>`${name} दाखवा`,explore:name=>`${name} पाहा`,photo:name=>`${name}चा मोठा फोटो पाहा`,amazon:(name,pack)=>`Amazon वर ${name}, ${pack} पाहा (नवीन टॅबमध्ये उघडते)`},
+    te:{find:n=>`${n} తయారీలలో లభిస్తుంది`,show:name=>`${name} చూపించు`,explore:name=>`${name} చూడండి`,photo:name=>`${name} పెద్ద ఫోటో చూడండి`,amazon:(name,pack)=>`Amazonలో ${name}, ${pack} చూడండి (కొత్త ట్యాబ్‌లో తెరుచుకుంటుంది)`},
+    ta:{find:n=>`${n} தயாரிப்புகளில் உள்ளது`,show:name=>`${name} காட்டு`,explore:name=>`${name} பார்க்கவும்`,photo:name=>`${name} பெரிய படத்தைப் பார்க்கவும்`,amazon:(name,pack)=>`Amazon இல் ${name}, ${pack} பார்க்கவும் (புதிய தாவலில் திறக்கும்)`},
+    bn:{find:n=>`${n} প্রস্তুতিতে রয়েছে`,show:name=>`${name} দেখান`,explore:name=>`${name} দেখুন`,photo:name=>`${name}-এর বড় ছবি দেখুন`,amazon:(name,pack)=>`Amazon-এ ${name}, ${pack} দেখুন (নতুন ট্যাবে খুলবে)`},
+    pa:{find:n=>`${n} ਉਤਪਾਦਾਂ ਵਿੱਚ ਮਿਲਦਾ ਹੈ`,show:name=>`${name} ਦਿਖਾਓ`,explore:name=>`${name} ਵੇਖੋ`,photo:name=>`${name} ਦੀ ਵੱਡੀ ਤਸਵੀਰ ਵੇਖੋ`,amazon:(name,pack)=>`Amazon 'ਤੇ ${name}, ${pack} ਵੇਖੋ (ਨਵੀਂ ਟੈਬ ਵਿੱਚ ਖੁੱਲ੍ਹੇਗਾ)`},
+    gu:{find:n=>`${n} ઉત્પાદનોમાં મળે છે`,show:name=>`${name} બતાવો`,explore:name=>`${name} જુઓ`,photo:name=>`${name}નો મોટો ફોટો જુઓ`,amazon:(name,pack)=>`Amazon પર ${name}, ${pack} જુઓ (નવી ટૅબમાં ખુલશે)`}
+  };
+
+  function translate(value, depth = 0) {
+    const raw = String(value);
+    const source = normalize(raw);
+    if (language === 'en' || !source || depth > 5) return raw;
+    const dictionary = dictionaries[language] || {};
+    let result = Object.hasOwn(dictionary, source) ? dictionary[source] : undefined;
+    const part = text => translate(text, depth + 1);
+    if (!result) {
+      const count = source.match(/^(\d+) (listed components|products?|ingredients?)$/);
+      const preparations = source.match(/^Find in (\d+) (preparations?)$/);
+      const amazon = source.match(/^(View|Search for) (.+), (.+) on Amazon \(opens in a new tab\)$/);
+      const prefix = source.match(/^(Show|Explore|View larger photo of) (.+)$/);
+      if (count) result = count[1] + ' ' + part(count[2]);
+      else if (preparations) result = templates[language].find(preparations[1]);
+      else if (amazon) result = templates[language].amazon(part(amazon[2]),part(amazon[3]));
+      else if (prefix) result = templates[language][prefix[1]==='Show'?'show':prefix[1]==='Explore'?'explore':'photo'](part(prefix[2]));
+      else if (source.startsWith('Composition photo: ')) result = part('Composition photo:') + ' ' + source.slice('Composition photo: '.length);
+      else if (/^representative (botanical|oil|mineral|blend|helper) illustration$/.test(source)) result = part('representative illustration');
+      else if (/ (?:—|·|\|) /.test(source)) result = source.split(/( (?:—|·|\|) )/).map((text, index) => index % 2 ? text : part(text)).join('');
+      else if (source.endsWith(' ↗') || source.endsWith(' →')) result = part(source.slice(0, -2)) + source.slice(-2);
+      else if (source.includes('; ')) result = source.split('; ').map(part).join('; ');
+      else if (source.includes(', ')) result = source.split(', ').map(part).join(', ');
+    }
+    if (!result || result === source) return raw;
+    return (raw.match(/^\s*/)?.[0] || '') + result + (raw.match(/\s*$/)?.[0] || '');
+  }
+
+  function translateText(node) {
+    const current = node.nodeValue;
+    let record = texts.get(node);
+    if (!record || current !== record.rendered) record = {source:current};
+    const rendered = translate(record.source);
+    record.rendered = rendered;
+    texts.set(node, record);
+    if (current !== rendered) node.nodeValue = rendered;
+  }
+
+  function translateAttribute(element, name) {
+    if (!element.hasAttribute(name)) return;
+    const current = element.getAttribute(name);
+    const records = attributes.get(element) || {};
+    let record = records[name];
+    if (!record || current !== record.rendered) record = {source:current};
+    const rendered = translate(record.source);
+    records[name] = {source:record.source, rendered};
+    attributes.set(element, records);
+    if (current !== rendered) element.setAttribute(name, rendered);
+  }
+
+  function excluded(element) {
+    return !element || Boolean(element.closest('script,style,noscript,[data-no-translate]'));
+  }
+
+  function translateRoot(root) {
+    if (!root) return;
+    if (root.nodeType === Node.TEXT_NODE) {
+      if (!excluded(root.parentElement)) translateText(root);
+      return;
+    }
+    if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
+    if (root.nodeType === Node.ELEMENT_NODE && excluded(root)) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      if (!excluded(walker.currentNode.parentElement)) translateText(walker.currentNode);
+    }
+    const elements = root.nodeType === Node.ELEMENT_NODE ? [root, ...root.querySelectorAll('[aria-label],[alt],[placeholder]')] : [...root.querySelectorAll('[aria-label],[alt],[placeholder]')];
+    elements.forEach(element => {
+      if (!excluded(element)) translatedAttributes.forEach(name => translateAttribute(element, name));
+    });
+    if (root === document || root === document.head) {
+      const description = document.querySelector('meta[name="description"]');
+      if (description) translateAttribute(description, 'content');
+    }
+  }
+
+  const observe = () => observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:translatedAttributes.concat('content')});
+  function apply() {
+    // Disconnect during our writes; later product/filter updates are still observed.
+    observer?.disconnect();
+    document.documentElement.lang = language;
+    translateRoot(document);
+    document.querySelectorAll('[data-language-select]').forEach(select => { select.value = language; });
+    observe();
+  }
+
+  function remember() {
+    try { localStorage.setItem(key, language); } catch {}
+  }
+
+  function setLanguage(next) {
+    if (!supported.includes(next)) return false;
+    language = next;
+    remember();
+    // Keep product/ingredient queries and hash when making this view shareable.
+    const url = new URL(location.href);
+    url.searchParams.set('lang', language);
+    try { history.replaceState(history.state, '', url); } catch {}
+    apply();
+    const status = document.getElementById('language-status');
+    if (status) status.textContent = translate('Language changed') + ': ' + labels[language];
+    document.dispatchEvent(new CustomEvent('madhav:languagechange', {detail:{language}}));
+    const main = document.querySelector('main');
+    if (main && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && typeof main.animate === 'function') {
+      main.animate([{opacity:.75},{opacity:1}], {duration:240, easing:'ease-out'});
+    }
+    return true;
+  }
+
+  window.MadhavI18n = {translate, setLanguage, apply, supported, get language(){return language;}};
+  document.querySelectorAll('[data-language-select]').forEach(select => select.addEventListener('change', () => setLanguage(select.value)));
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a[href]');
+    if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    const url = new URL(href, location.href);
+    if (url.origin === location.origin && /\/(?:index|product|ingredients)\.html$/.test(url.pathname)) {
+      url.searchParams.set('lang', language);
+      link.href = url.href;
+    }
+  }, true);
+  observer = new MutationObserver(() => {
+    if (scheduled) return;
+    scheduled = true;
+    queueMicrotask(() => {scheduled = false; apply();});
+  });
+  remember();
+  apply();
+  // Page scripts below build cards, tables and dialogs after this file is loaded.
+  document.addEventListener('DOMContentLoaded', apply, {once:true});
+})();
