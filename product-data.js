@@ -448,7 +448,7 @@ window.productCatalogue = {
   "kabi-haran": {
     "benefits": "Traditionally used for occasional constipation and digestive discomfort such as gas and acidity, as described on the pack. Follow the label directions and seek medical advice before prolonged use.",
     "amazonUrl": "https://amzn.in/d/0eE7lHxG",
-    "title": "Kabi Haran Granules",
+    "title": "Kabj Haran Granules",
     "category": "Digestive wellbeing",
     "pack": "100 g granules",
     "image": "assets/cutouts/kabi-front-display.webp",
@@ -579,7 +579,7 @@ window.productCatalogue = {
       }
     ],
     "precautions": "The supplied product label states: not recommended during pregnancy. Store in a cool, dry place. Keep out of reach of children.",
-    "displayTitle": "Kabi Haran Granules",
+    "displayTitle": "Kabj Haran Granules",
     "blurb": "A 100 g granule formulation for digestive wellbeing."
   },
   "madhumeh-value": {

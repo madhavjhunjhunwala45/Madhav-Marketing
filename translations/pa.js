@@ -294,7 +294,7 @@ window.madhavTranslations.pa = {
   "Brassica campestris · seed, as printed": "Brassica campestris · ਬੀਜ, ਲੇਬਲ ਅਨੁਸਾਰ",
   "Till oil": "ਤਿਲ ਦਾ ਤੇਲ (Till oil)",
   "Sesamum indicum · seed": "Sesamum indicum · ਬੀਜ",
-  "Kabi Haran Granules": "ਕਬੀ ਹਰਣ ਦਾਣੇ",
+  "Kabj Haran Granules": "ਕਬਜ਼ ਹਰਣ ਦਾਣੇ",
   "Digestive wellbeing": "ਪਾਚਨ ਦੀ ਤੰਦਰੁਸਤੀ",
   "100 g granules": "100 g ਦਾਣੇ",
   "A 100 g granule formulation for digestive wellbeing. Explore the product pack, composition and label directions below.": "ਪਾਚਨ ਦੀ ਤੰਦਰੁਸਤੀ ਲਈ 100 g ਦਾਣਿਆਂ ਦਾ ਫਾਰਮੂਲਾ। ਹੇਠਾਂ ਉਤਪਾਦ ਪੈਕ, ਸੰਘਟਨ ਅਤੇ ਲੇਬਲ ਦੀਆਂ ਹਦਾਇਤਾਂ ਜਾਣੋ।",

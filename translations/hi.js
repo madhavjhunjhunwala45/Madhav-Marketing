@@ -294,7 +294,7 @@ window.madhavTranslations.hi = {
   "Brassica campestris · seed, as printed": "Brassica campestris · बीज, जैसा मुद्रित है",
   "Till oil": "तिल तेल (Till oil)",
   "Sesamum indicum · seed": "Sesamum indicum · बीज",
-  "Kabi Haran Granules": "कबि हरण ग्रैन्यूल्स",
+  "Kabj Haran Granules": "कब्ज हरण ग्रैन्यूल्स",
   "Digestive wellbeing": "पाचन स्वास्थ्य",
   "100 g granules": "100 g दाने",
   "A 100 g granule formulation for digestive wellbeing. Explore the product pack, composition and label directions below.": "पाचन स्वास्थ्य के लिए 100 g दानेदार तैयारी। नीचे उत्पाद का पैक, संघटन और लेबल के निर्देश देखें।",
