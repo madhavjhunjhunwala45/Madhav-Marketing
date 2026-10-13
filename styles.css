@@ -134,3 +134,38 @@ html[lang="gu"]{--sans:"Noto Sans Gujarati","Shruti","Gujarati Sangam MN",system
 .spotlight-arrow{flex-shrink:0}
 .spotlight-category{text-transform:uppercase}
 @media(max-width:1150px){.spotlight-dots{display:grid;grid-template-columns:repeat(4,26px);gap:3px 5px;justify-items:center}}
+/* Amazon storefront button in the top bar */
+.announcement.amazon-announcement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 8px 16px;
+}
+
+.announcement.amazon-announcement a {
+  position: static;
+}
+
+.announcement.amazon-announcement .amazon-storefront-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--gold-light);
+  color: var(--deep);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  transition: background .2s ease;
+}
+
+.announcement.amazon-announcement .amazon-storefront-button span {
+  margin-left: 0;
+}
+
+.announcement.amazon-announcement .amazon-storefront-button:hover {
+  background: var(--paper);
+}
