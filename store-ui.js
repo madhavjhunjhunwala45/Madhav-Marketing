@@ -1,10 +1,10 @@
-import {storeConfig} from './store-config.mjs?v=20261017-page';
-import {storeText} from './store-i18n.mjs?v=20261017-page';
-import {CART_KEY,MAX_QUANTITY,amountInPaise,unitPrice,normalizeCart,quoteCart} from './store-core.mjs?v=20261017-page';
+import {storeConfig} from './store-config.mjs?v=20261017-mobile';
+import {storeText} from './store-i18n.mjs?v=20261017-mobile';
+import {CART_KEY,MAX_QUANTITY,amountInPaise,unitPrice,normalizeCart,parseCartStorage,quoteCart} from './store-core.mjs?v=20261017-mobile';
 
 const catalogue=window.productCatalogue;
 if(catalogue&&!document.getElementById('madhav-store')){
- const config={...storeConfig,products:storeConfig.products.filter(p=>catalogue[p.productId])};
+ const config={...storeConfig,products:storeConfig.products.filter(p=>Object.hasOwn(catalogue,p.productId)&&catalogue[p.productId])};
  const language=()=>window.MadhavI18n?.language||document.documentElement.lang||'en';
  const native=text=>window.MadhavI18n?.translate(text)||text;
  const t=key=>storeText[language()]?.[key]||storeText.en[key]||key;
@@ -19,7 +19,8 @@ if(catalogue&&!document.getElementById('madhav-store')){
  const productItems=id=>config.products.filter(p=>p.productId===id);
  const productURL=item=>`product.html?product=${encodeURIComponent(item.productId)}&lang=${encodeURIComponent(language())}`;
  let cart=[],storageAvailable=true,toastTimer;
- function readCart(){try{const value=normalizeCart(JSON.parse(localStorage.getItem(CART_KEY)||'[]'),config);storageAvailable=true;return value;}catch{storageAvailable=false;return cart;}}
+ let browseOpen=!(window.matchMedia?.('(max-width: 650px)')?.matches);
+ function readCart(){try{const value=parseCartStorage(localStorage.getItem(CART_KEY),config);storageAvailable=true;return value;}catch{storageAvailable=false;return cart;}}
  cart=readCart();
  const launcher=link('store-launcher','', 'cart.html');launcher.setAttribute('data-store-cart-link','');
  const icon=el('span','store-cart-symbol');icon.setAttribute('aria-hidden','true');const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.7');const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M3 3h2l2.4 12h11.2l2-8H6 M10 20h.01 M18 20h.01');path.setAttribute('stroke-linecap','round');svg.append(path);icon.append(svg);
@@ -56,7 +57,7 @@ if(catalogue&&!document.getElementById('madhav-store')){
   const checkout=translated('button','checkout','store-primary store-coming-soon-button');checkout.type='button';checkout.disabled=true;checkout.setAttribute('aria-describedby','cart-coming-soon');const note=translated('p','note','store-note');note.id='cart-coming-soon';summary.append(checkout,note);
   if(!storageAvailable)summary.append(translated('p','storageUnavailable','store-storage-warning'));
   layout.append(content,summary);page.append(layout);
-  const browse=el('section','cart-browse');browse.append(translated('h2','shop'));const grid=el('div','store-shop-grid');for(const item of config.products){const card=el('article','store-shop-card'),imageLink=link('','',productURL(item));imageLink.append(photo(item));const copy=el('div'),title=el('h3');title.append(link('',nameOf(item),productURL(item)));copy.append(title,el('p','store-pack',packOf(item)),priceNode(item));const button=translated('button','add','store-add');button.type='button';button.dataset.cartControl='add:'+item.sku;button.addEventListener('click',()=>{add(item.sku);Array.from(page.querySelectorAll('[data-cart-control]')).find(n=>n.dataset.cartControl===button.dataset.cartControl)?.focus({preventScroll:true});});copy.append(button);card.append(imageLink,copy);grid.append(card);}browse.append(grid);page.append(browse);
+  const browse=el('details','cart-browse');browse.open=browseOpen;browse.addEventListener('toggle',()=>{browseOpen=browse.open;});const browseSummary=el('summary');browseSummary.append(translated('h2','shop'));browse.append(browseSummary);const grid=el('div','store-shop-grid');for(const item of config.products){const card=el('article','store-shop-card'),imageLink=link('','',productURL(item));imageLink.append(photo(item));const copy=el('div'),title=el('h3');title.append(link('',nameOf(item),productURL(item)));copy.append(title,el('p','store-pack',packOf(item)),priceNode(item));const button=translated('button','add','store-add');button.type='button';button.dataset.cartControl='add:'+item.sku;button.addEventListener('click',()=>{add(item.sku);Array.from(page.querySelectorAll('[data-cart-control]')).find(n=>n.dataset.cartControl===button.dataset.cartControl)?.focus({preventScroll:true});});copy.append(button);card.append(imageLink,copy);grid.append(card);}browse.append(grid);page.append(browse);
  }
  function hookProductButtons(){
   document.querySelectorAll('.product-card').forEach(card=>{if(card.querySelector('[data-store-buy]'))return;const source=card.querySelector('a[href*="product="]');if(!source)return;const id=new URL(source.href,location.href).searchParams.get('product'),items=productItems(id);if(!items.length)return;
@@ -66,12 +67,19 @@ if(catalogue&&!document.getElementById('madhav-store')){
   if(actions&&items.length&&!actions.querySelector('.store-product-buy')){const button=el('button','store-product-buy');button.type='button';button.dataset.storeBuy=id;button.setAttribute('data-no-translate','');button.addEventListener('click',()=>{if(items.length===1){add(items[0].sku);return;}const all=Array.from(document.querySelectorAll('#format-options button')),index=all.findIndex(b=>b.getAttribute('aria-pressed')==='true'),selected=items.find(i=>i.formatIndex===index);if(selected)add(selected.sku);else announce('selectPack');});const price=el('p','store-purchase-price store-product-price');price.dataset.storePrice=id;price.dataset.storeDetail='true';price.setAttribute('data-no-translate','');actions.prepend(price,button);}
  }
  function refreshPrices(){document.querySelectorAll('[data-store-price]').forEach(node=>{let items=productItems(node.dataset.storePrice);if(node.dataset.storeDetail==='true'&&items.length>1){const index=Array.from(document.querySelectorAll('#format-options button')).findIndex(b=>b.getAttribute('aria-pressed')==='true');items=items.filter(item=>item.formatIndex===index);}const prices=items.map(unitPrice);node.textContent=prices.length&&prices.every(p=>p!=null)?(Math.min(...prices)===Math.max(...prices)?money(prices[0]):money(Math.min(...prices))+' – '+money(Math.max(...prices))):t('pricePending');});}
- function render(){const count=quoteCart(cart,config).count;badge.textContent=String(count);launcher.setAttribute('aria-label',t('cart')+' ('+count+')');document.querySelectorAll('[data-store-header-cart]').forEach(node=>{node.textContent=t('cart')+' ('+count+')';});renderPage();}
+ function render(){const focusedControl=document.activeElement?.dataset?.cartControl;const count=quoteCart(cart,config).count;badge.textContent=String(count);launcher.setAttribute('aria-label',t('cart')+' ('+count+')');document.querySelectorAll('[data-store-header-cart]').forEach(node=>{node.textContent=t('cart')+' ('+count+')';});renderPage();if(page&&focusedControl)Array.from(page.querySelectorAll('[data-cart-control]')).find(n=>n.dataset.cartControl===focusedControl&&!n.disabled)?.focus({preventScroll:true});}
  function refresh(){root.querySelectorAll('[data-store-text]').forEach(n=>n.textContent=t(n.dataset.storeText));document.querySelectorAll('[data-store-buy]').forEach(button=>{button.textContent=t(productItems(button.dataset.storeBuy).length>1&&!button.classList.contains('store-product-buy')?'choose':'add');});refreshPrices();render();if(page)document.title=t('cart')+' | Madhav Marketing';}
+ document.querySelectorAll('a.quick-call.quick-amazon').forEach(node=>node.remove());
  // Existing pages receive the transparent asset without overwriting your edited HTML.
  document.querySelectorAll('.brand-logo').forEach(img=>{const old=img.getAttribute('src');if(old?.includes('madhav-logo-transparent.png'))return;img.addEventListener('error',()=>{img.src=old;},{once:true});img.src='assets/madhav-logo-transparent.png';});
  const nav=document.querySelector('.site-nav')||document.querySelector('.detail-nav');if(nav&&!nav.querySelector('[data-store-header-cart]')){const cartLink=link('store-header-cart','','cart.html');cartLink.setAttribute('data-store-header-cart','');cartLink.setAttribute('data-no-translate','');if(page)cartLink.setAttribute('aria-current','page');nav.append(cartLink);}
- document.addEventListener('madhav:languagechange',refresh);
+ function labelComposition(){document.querySelectorAll('.composition-table').forEach(table=>{table.setAttribute('role','table');const headings=Array.from(table.querySelectorAll('thead th')).map(n=>n.textContent.trim());table.querySelectorAll('thead tr').forEach(row=>row.setAttribute('role','row'));table.querySelectorAll('thead th').forEach(cell=>cell.setAttribute('role','columnheader'));table.querySelectorAll('tbody tr').forEach(row=>{row.setAttribute('role','row');Array.from(row.children).forEach((cell,i)=>{cell.dataset.mobileLabel=headings[i]||'';cell.setAttribute('role',cell.tagName==='TH'?'rowheader':'cell');});});});}
+ const menu=document.querySelector('.menu-toggle');
+ function closeMobileMenu(returnFocus=false){const nav=document.getElementById('site-nav');if(!menu||!nav)return;menu.setAttribute('aria-expanded','false');nav.classList.remove('is-open');const label=menu.querySelector('.sr-only');if(label)label.textContent=native('Open navigation');if(returnFocus)menu.focus();}
+ document.getElementById('site-nav')?.addEventListener('click',event=>{if(event.target.closest('a'))closeMobileMenu();});
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu?.getAttribute('aria-expanded')==='true')closeMobileMenu(true);},true);
+ document.addEventListener('madhav:languagechange',()=>{refresh();labelComposition();});
+ labelComposition();
  window.addEventListener('storage',event=>{if(event.key===CART_KEY||event.key===null){cart=readCart();render();}});
  window.addEventListener('pageshow',()=>{cart=readCart();render();});
  hookProductButtons();document.getElementById('format-options')?.addEventListener('click',refreshPrices);refresh();

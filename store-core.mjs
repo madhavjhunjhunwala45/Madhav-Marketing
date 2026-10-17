@@ -1,5 +1,12 @@
 export const CART_KEY='madhav-cart-v1';
 export const MAX_QUANTITY=20;
+export const MAX_CART_ROWS=200;
+export const MAX_CART_LENGTH=20000;
+export function parseCartStorage(raw,config){
+  if(raw==null)return [];
+  if(typeof raw!=='string'||raw.length>MAX_CART_LENGTH)return [];
+  try{return normalizeCart(JSON.parse(raw),config);}catch{return [];}
+}
 export function amountInPaise(value){
   if(typeof value!=='number'||!Number.isFinite(value)||value<=0||value>1000000)return null;
   const p=Math.round(value*100);
@@ -14,8 +21,8 @@ export function unitPrice(item){
 export function normalizeCart(input,config){
   if(!Array.isArray(input))return [];
   const allowed=new Set(config.products.map(p=>p.sku)),merged=new Map();
-  for(const item of input){
-    if(!item||!allowed.has(item.sku)||!Number.isInteger(item.quantity)||item.quantity<1)continue;
+  for(const item of input.slice(0,MAX_CART_ROWS)){
+    if(!item||typeof item!=='object'||Array.isArray(item)||!Object.hasOwn(item,'sku')||!Object.hasOwn(item,'quantity')||typeof item.sku!=='string'||!allowed.has(item.sku)||!Number.isSafeInteger(item.quantity)||item.quantity<1)continue;
     merged.set(item.sku,Math.min(MAX_QUANTITY,(merged.get(item.sku)||0)+item.quantity));
   }
   return Array.from(merged,([sku,quantity])=>({sku,quantity}));

@@ -23,3 +23,109 @@ h1 em,h2 em{color:#526e46}
 .contact h2 em,.contact .eyebrow,.contact-details small{color:var(--gold-light)}
 .site-footer{background:#eee9dc;border-color:var(--line)}
 /* Original image colours and existing layouts/floating-button positions are preserved. */
+
+/* Remove only the floating Amazon shortcut. Product Amazon links stay available. */
+a.quick-call.quick-amazon{display:none!important}
+/* All mobile adjustments are scoped below this breakpoint. */
+@media(max-width:650px){
+ .wrap{width:calc(100% - 32px)}
+ .section{padding-block:44px}
+ .header-inner{display:grid;grid-template-columns:minmax(90px,1fr) minmax(86px,112px) 44px;gap:8px;min-height:68px;height:auto;padding-block:6px;align-items:center}
+ .header-inner>.brand{grid-column:1;grid-row:1;width:112px;height:50px;justify-content:flex-start}
+ .header-inner .brand-logo{width:112px;height:auto}
+ .header-inner>.language-control{grid-column:2;grid-row:1;order:initial;min-width:0;width:100%;margin:0;padding:2px 0;border:0}
+ .header-inner .language-symbol{display:none}
+ .header-inner .language-control select{width:100%;max-width:100%;min-width:0;min-height:44px;padding:8px 4px;font-size:16px}
+ .header-inner>.menu-toggle{grid-column:3;grid-row:1;width:44px;height:44px}
+ .site-nav{top:100%;padding:10px 16px 18px;max-height:calc(100dvh - 90px);overflow-y:auto;overscroll-behavior:contain}
+ .site-nav>a{min-height:44px;font-size:.9rem;padding:11px 7px}
+ .detail-nav{grid-column:1/-1;grid-row:2;flex-basis:auto!important;display:flex;flex-wrap:nowrap;justify-content:flex-start;gap:18px;max-width:100%;overflow-x:auto;padding:3px 0 2px!important;scrollbar-width:thin}
+ .detail-nav>a{flex:none;white-space:nowrap;min-height:40px;display:inline-flex;align-items:center;font-size:.78rem}
+ .product-page .header-inner,.ingredients-page .header-inner,.cart-page-header .header-inner{grid-template-columns:minmax(90px,1fr) minmax(86px,112px);gap:2px 10px}
+ .cart-page-header .detail-nav{gap:18px}
+ .hero{gap:24px;padding-block:27px 34px}
+ .hero h1{font-size:clamp(2.35rem,9vw,3.4rem);line-height:1.1}
+ html:not([lang="en"]) .hero h1{font-size:clamp(2rem,8vw,2.75rem)}
+ .hero-copy .eyebrow{margin-bottom:17px;letter-spacing:.09em}
+ .hero-intro{font-size:.94rem;line-height:1.75;margin-top:18px}
+ .hero-actions{display:flex;gap:12px;margin-top:23px;align-items:center}
+ .hero-actions .button{min-height:46px;padding:12px 15px;font-size:.8rem;gap:12px}
+ .hero-actions .text-link{font-size:.8rem;min-height:44px}
+ .hero-foot{margin-top:22px;padding-top:18px;font-size:.78rem}
+ .herbal-showcase{min-height:0;padding:24px 19px 18px;border-radius:48px 48px 14px 14px}
+ .spotlight-heading{font-size:.55rem;letter-spacing:.09em}
+ .spotlight-image-stage{height:250px;padding:12px 18px;margin-block:10px 4px}
+ .spotlight-info{gap:12px;align-items:flex-start;padding-block:16px;flex-wrap:wrap}
+ .spotlight-info h3{font-size:1.45rem;max-width:none}
+ .spotlight-category{font-size:.58rem}
+ .spotlight-link{font-size:.75rem;padding:10px 12px;min-height:42px}
+ .spotlight-controls{position:static;justify-content:center;gap:17px;margin:0;padding:10px 0 0}
+ .spotlight-arrow{width:44px;height:44px}
+ .spotlight-dots{gap:2px}.spotlight-dots button{width:22px;min-height:36px}
+ .showcase-branch{opacity:.45;width:75px;height:220px;top:75px}
+ .section-head{margin-bottom:24px}.section-head h2,h2{font-size:clamp(2rem,7.4vw,2.6rem)}
+ .section-head>p{font-size:.9rem;line-height:1.75;margin-top:15px}
+ .filters{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;max-width:100%;padding-bottom:9px;scrollbar-width:thin;overscroll-behavior-x:contain}
+ .filters button{flex:none;white-space:nowrap;min-height:42px;padding:9px 13px;font-size:.79rem}
+ .product-count{font-size:.72rem;padding-top:6px}
+ .product-grid{grid-template-columns:minmax(0,1fr);gap:30px}
+ .product-card-image{padding:18px 20px 40px;border-radius:12px}
+ .product-card-image img{height:210px}
+ .pack-chip{font-size:.65rem;left:12px;bottom:11px;padding:4px 8px}
+ .product-card-content{padding:17px 2px 0}
+ .product-type{font-size:.66rem;line-height:1.6;margin-bottom:8px}
+ .product-card h3{font-size:1.5rem;margin-bottom:10px}
+ .product-blurb{font-size:.89rem;line-height:1.75;margin-bottom:16px}
+ .product-card-actions{gap:12px;justify-content:space-between;padding-top:13px}
+ .product-card-actions .product-link{font-size:.8rem;min-height:44px}
+ .product-card-actions .amazon-link{font-size:.78rem;min-height:44px;padding:10px 12px}
+ .store-card-buy{width:100%;min-height:46px;margin-top:10px;font-size:.86rem}
+ .store-purchase-price{font-size:1rem;margin-top:14px}
+ .story-copy>p:not(.eyebrow),.approach-grid p,.formula-feature p:not(.eyebrow),.faq-list details p{font-size:.9rem;line-height:1.8}
+ .faq-list summary{font-size:.91rem;line-height:1.6;padding-block:18px}
+ .formula-feature{padding:25px 20px;gap:20px}
+ .contact h2{font-size:2.4rem}.contact p:not(.eyebrow){font-size:.9rem;line-height:1.75}
+ .contact-grid{gap:28px}.contact-details{padding-top:24px}.contact-phone{font-size:1.4rem;min-height:44px;overflow-wrap:anywhere}
+ .contact-email{font-size:.9rem;min-height:40px}.contact address{font-size:.9rem}
+ .contact .button{min-height:46px;font-size:.85rem}
+ .connect-copy h2{font-size:2.4rem}.connect-grid{gap:25px}.connect-form{padding:23px 18px;border-radius:12px}
+ .connect-fields{gap:16px}.connect-fields label{font-size:.88rem}.connect-fields input,.connect-fields select{font-size:16px;min-height:46px}
+ .connect-consent,.connect-privacy{font-size:.8rem;line-height:1.7}.connect-consent input{min-width:20px;min-height:20px}
+ .breadcrumb{font-size:.73rem;padding-block:18px;gap:8px}
+ .product-hero{gap:24px;padding-bottom:30px}.gallery-stage{height:clamp(275px,53vh,360px);padding:18px 20px 34px}
+ .gallery-thumbs{gap:9px;overflow-x:auto;padding-block:7px;max-width:100%}.gallery-thumb{flex:none;min-width:74px;min-height:62px}
+ .product-hero-copy h1{font-size:2.4rem}.product-hero-description,.product-benefits p{font-size:.91rem;line-height:1.8}
+ .product-shopping-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product-shopping-actions>.store-product-price{grid-column:1/-1;order:0;margin-bottom:5px;font-size:1.2rem}
+ .product-shopping-actions>.store-product-buy{grid-column:1/-1;order:1;min-height:46px;font-size:.88rem}
+ .product-shopping-actions>.button,.product-shopping-actions>#product-amazon{order:2;min-width:0;width:100%}
+ .product-shopping-actions .button,.product-shopping-actions .amazon-link{width:100%;min-height:46px;font-size:.75rem;line-height:1.55;padding:10px 9px;gap:6px;text-align:center;white-space:normal}
+ .product-extra-actions{gap:9px}.product-extra-actions .button{flex:1 1 130px;min-height:44px;font-size:.76rem;gap:8px;padding:10px}
+ .product-section-nav .wrap{gap:10px;justify-content:flex-start;overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
+ .product-section-nav a{flex:none;min-height:42px;font-size:.76rem;padding:8px 4px}
+ .composition-intro{gap:19px;margin-bottom:23px}.composition-intro h2{font-size:2.3rem}.composition-intro>div>p:not(.eyebrow){font-size:.86rem;line-height:1.75}
+ .composition-table-wrap{overflow:visible}.composition-table{display:block;min-width:0;width:100%;table-layout:auto}
+ .composition-table caption{display:block;width:100%;font-size:.78rem;line-height:1.7;padding-bottom:16px}
+ .composition-table thead{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+ .composition-table tbody{display:grid;gap:14px}
+ .composition-table tbody tr{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:13px;padding:17px;background:#fffdf8;border:1px solid var(--line);border-radius:12px}
+ .composition-table tbody th{grid-column:1/-1;width:auto!important;padding:0 0 12px!important;border:0;border-bottom:1px solid var(--line)}
+ .composition-table tbody td{display:block;width:auto!important;padding:0!important;border:0;font-size:.84rem;line-height:1.75;white-space:normal}
+ .composition-table tbody td::before{content:attr(data-mobile-label);display:block;margin-bottom:6px;color:var(--muted);font-size:.68rem;font-weight:650;line-height:1.5}
+ .composition-table tbody td:last-child{font-size:.82rem;text-align:right}
+ .composition-component{flex-direction:row;gap:13px;align-items:center}
+ .component-picture,.component-picture img{width:52px;flex:none}.component-picture img{height:52px}.component-name{font-size:.91rem;line-height:1.5}
+ .component-identity{font-size:.74rem;line-height:1.55}.component-evidence{font-size:.67rem;line-height:1.5}.ingredient-swipe-hint,.ingredient-photo-note{font-size:.78rem;line-height:1.7}
+ .ingredient-hero h1{font-size:2.6rem}.ingredient-card-body{padding:22px}.ingredient-card h2{font-size:1.9rem}.ingredient-description{font-size:.91rem;line-height:1.8}
+ .ingredient-search-row{gap:10px}.ingredient-search-row input,.ingredient-search-row select{font-size:16px;min-height:46px}
+ .ingredient-selected{display:block}.ingredient-selected .ingredient-picture,.ingredient-selected .ingredient-picture img{min-height:0;height:230px}.ingredient-selected .ingredient-card-body{padding:23px}
+ .related-grid{grid-template-columns:minmax(0,1fr);gap:26px}.related-grid .product-card:last-child{display:flex}
+ .quick-call:not(.quick-amazon){right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:46px;height:46px}
+ .back-top-button{right:19px;bottom:calc(75px + env(safe-area-inset-bottom))!important;width:40px;height:40px}
+ .store-launcher{left:16px;bottom:calc(16px + env(safe-area-inset-bottom));min-height:46px;padding:9px 12px;gap:7px}
+ .store-launcher>span:nth-child(2){display:none}
+ .store-toast{bottom:calc(80px + env(safe-area-inset-bottom));max-width:calc(100% - 32px)}
+ .site-footer{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+}
+@media(min-width:651px){.back-top-button{bottom:84px!important}}
+@media(max-width:360px){.header-inner{grid-template-columns:minmax(80px,1fr) 96px 44px;gap:6px}.header-inner>.brand{width:98px}.header-inner .brand-logo{width:98px}.product-page .header-inner,.ingredients-page .header-inner,.cart-page-header .header-inner{grid-template-columns:minmax(80px,1fr) 106px}.hero-actions .button{flex:1 1 100%;justify-content:center}.hero-actions{gap:8px}.spotlight-image-stage{height:225px}}
