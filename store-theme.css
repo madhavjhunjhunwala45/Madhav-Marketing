@@ -1,0 +1,25 @@
+/* Load after styles.css. Botanical green, warm ivory and restrained brass. */
+:root{--forest:#234b3b;--deep:#15372b;--paper:#fbf8f1;--cream:#f1eadc;--sage:#e8eee2;--gold:#947130;--gold-light:#ead6a5;--ink:#253b31;--muted:#5e6b61;--line:#d9dfd1;--red:#9a3e2e}
+body{background:var(--paper);color:var(--ink)}
+.site-header{background:rgba(251,248,241,.97);border-bottom-color:var(--line)}
+.site-nav>a:not(.nav-call){color:var(--muted)}
+h1 em,h2 em{color:#526e46}
+.eyebrow{color:#80632d}
+.hero-showcase,.herbal-showcase{background:linear-gradient(145deg,#edf1e6 0%,#f3ecdc 100%);border:1px solid #dce2d2;box-shadow:0 20px 55px -38px #234b3b40}
+.product-card-image,.gallery-stage{background:linear-gradient(145deg,#fffdf8 0%,#edf1e6 100%);border-color:#dce2d4}
+.product-card:hover .product-card-image{border-color:#adbea4;box-shadow:0 12px 30px -22px #234b3b45}
+.ingredient-card,.connect-form{background:#fffdf8;border-color:var(--line)}
+.ingredient-picture{background:#edf1e6}
+.button-primary,.nav-call,.quick-call{background:var(--forest);color:#fffdf8}
+.button-primary:hover,.nav-call:hover,.quick-call:hover{background:var(--deep);color:#fffdf8}
+.button-gold,.quick-call.quick-amazon{background:var(--gold-light);color:var(--deep);border-color:#c1a15f}
+.button-gold:hover,.quick-call.quick-amazon:hover{background:#dfc58b;color:var(--deep)}
+.button-outline{border-color:#9caf94;color:var(--forest)}
+.amazon-link{background:#f4ecd9;border-color:#d8c799;color:var(--deep)}
+.amazon-link:hover{background:#eadbb8;border-color:#b99c5d}
+.filters button[aria-pressed=true],.format-options button[aria-pressed=true]{background:var(--forest);color:#fffdf8}
+.range-note{background:var(--cream)}
+.contact{background:var(--deep)}
+.contact h2 em,.contact .eyebrow,.contact-details small{color:var(--gold-light)}
+.site-footer{background:#eee9dc;border-color:var(--line)}
+/* Original image colours and existing layouts/floating-button positions are preserved. */
