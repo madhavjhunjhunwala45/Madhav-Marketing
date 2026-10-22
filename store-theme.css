@@ -129,3 +129,65 @@ a.quick-call.quick-amazon{display:none!important}
 }
 @media(min-width:651px){.back-top-button{bottom:84px!important}}
 @media(max-width:360px){.header-inner{grid-template-columns:minmax(80px,1fr) 96px 44px;gap:6px}.header-inner>.brand{width:98px}.header-inner .brand-logo{width:98px}.product-page .header-inner,.ingredients-page .header-inner,.cart-page-header .header-inner{grid-template-columns:minmax(80px,1fr) 106px}.hero-actions .button{flex:1 1 100%;justify-content:center}.hero-actions{gap:8px}.spotlight-image-stage{height:225px}}
+/* Madhav botanical cursor — Golden leaf */
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --madhav-leaf-cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNNCAzQzE2IDMgMjkgMTAgMjYgMjBDMjMgMjkgMTAgMjcgNCAzWiIgZmlsbD0iI2RkYzQ3ZSIgc3Ryb2tlPSIjZmZmY2YyIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00IDNDMTYgMyAyOSAxMCAyNiAyMEMyMyAyOSAxMCAyNyA0IDNaIiBmaWxsPSIjZGRjNDdlIiBzdHJva2U9IiM5Yjc3M2IiIHN0cm9rZS13aWR0aD0iLjY1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTUgNEMxMCAxNCAxNyAyMyAyNyAyOU0xMCAxMkwxOSAxM00xNCAxOEwyMyAxOU0xMiAxNUwxMSAyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZlOWFjIiBzdHJva2Utd2lkdGg9Ii45IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=");
+    --madhav-leaf-hover: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNNCAzQzE2IDMgMjkgMTAgMjYgMjBDMjMgMjkgMTAgMjcgNCAzWiIgZmlsbD0iI2YxZGI5ZiIgc3Ryb2tlPSIjZmZmY2YyIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00IDNDMTYgMyAyOSAxMCAyNiAyMEMyMyAyOSAxMCAyNyA0IDNaIiBmaWxsPSIjZjFkYjlmIiBzdHJva2U9IiM5Yjc3M2IiIHN0cm9rZS13aWR0aD0iLjY1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTUgNEMxMCAxNCAxNyAyMyAyNyAyOU0xMCAxMkwxOSAxM00xNCAxOEwyMyAxOU0xMiAxNUwxMSAyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZlOWFjIiBzdHJva2Utd2lkdGg9Ii45IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48L3N2Zz4=");
+  }
+
+  html,
+  body {
+    cursor: var(--madhav-leaf-cursor) 4 3, auto;
+  }
+
+  html body :is(
+    a, button, summary, label[for], [role="button"],
+    input[type="button"], input[type="submit"],
+    input[type="reset"], input[type="checkbox"],
+    input[type="radio"]
+  ) {
+    cursor: var(--madhav-leaf-hover) 4 3, pointer;
+  }
+
+  html body :is(
+    textarea, [contenteditable=""], [contenteditable="true"],
+    input:not([type]), input[type="text"], input[type="email"],
+    input[type="tel"], input[type="search"], input[type="url"],
+    input[type="password"], input[type="number"]
+  ) {
+    cursor: text;
+  }
+
+  html body :is(
+    select, input[type="file"],
+    input[type="color"], input[type="range"]
+  ) {
+    cursor: auto;
+  }
+
+  html body :is(
+    .spotlight-image-stage, .ingredient-swipe-target
+  )[class] {
+    cursor: grab;
+  }
+
+  html body :is(
+    .swipe-is-dragging, .ingredient-is-swiping
+  )[class] {
+    cursor: grabbing;
+  }
+
+  html body button:is(
+    .gallery-enlarge, .ingredient-photo-button
+  ) {
+    cursor: zoom-in;
+  }
+
+  html body :is(
+    button:disabled, input:disabled, select:disabled,
+    textarea:disabled, [aria-disabled="true"]
+  ) {
+    cursor: not-allowed;
+  }
+}
