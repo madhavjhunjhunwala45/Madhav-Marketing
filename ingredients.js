@@ -3,11 +3,15 @@ const ingredientSearch = document.getElementById('ingredient-search');
 const ingredientCount = document.getElementById('ingredient-count');
 const ingredientEntries = Object.entries(window.ingredientGuide).filter(([,item])=>!item.guideHidden);
 // Index all language names as well as the unchanged scientific and pack names.
-const ingredientSearchIndex = new Map(ingredientEntries.map(([id,item])=>{
-  const names=[item.title,item.latin,...Object.keys(window.ingredientAliases).filter(name=>window.ingredientAliases[name]===id)];
-  const translated=Object.values(window.madhavTranslations||{}).flatMap(dictionary=>names.map(name=>dictionary[name]||''));
-  return [id,[...names,...translated].join(' ').normalize('NFKC').toLocaleLowerCase()];
-}));
+let ingredientSearchIndex;
+function rebuildIngredientSearchIndex(){
+  ingredientSearchIndex = new Map(ingredientEntries.map(([id,item])=>{
+    const names=[item.title,item.latin,...Object.keys(window.ingredientAliases).filter(name=>window.ingredientAliases[name]===id)];
+    const translated=Object.values(window.madhavTranslations||{}).flatMap(dictionary=>names.map(name=>dictionary[name]||''));
+    return [id,[...names,...translated].join(' ').normalize('NFKC').toLocaleLowerCase()];
+  }));
+}
+rebuildIngredientSearchIndex();
 const selectedIngredient = new URLSearchParams(location.search).get('ingredient');
 let exactIngredient=selectedIngredient&&window.ingredientGuide[selectedIngredient]&&!window.ingredientGuide[selectedIngredient].guideHidden?selectedIngredient:null;
 let ingredientFilter = 'featured';
@@ -46,8 +50,10 @@ function clearIngredientSelection(){
   const url=new URL(location.href);url.searchParams.delete('ingredient');url.hash='';history.replaceState(null,'',url.href);
 }
 document.querySelectorAll('[data-ingredient-filter]').forEach(button=>button.addEventListener('click',()=>{clearIngredientSelection();ingredientFilter=button.dataset.ingredientFilter;document.querySelectorAll('[data-ingredient-filter]').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));changeGrid(ingredientGrid,filterIngredients);}));
-ingredientSearch.addEventListener('input',()=>{clearIngredientSelection();changeGrid(ingredientGrid,filterIngredients);});
+let ingredientSearchFrame=0;
+ingredientSearch.addEventListener('input',()=>{clearIngredientSelection();cancelAnimationFrame(ingredientSearchFrame);ingredientSearchFrame=requestAnimationFrame(filterIngredients);});
+document.addEventListener('madhav:languagechange',()=>{rebuildIngredientSearchIndex();filterIngredients();});
 document.getElementById('ingredient-reset').addEventListener('click',()=>{ingredientSearch.value='';exactIngredient=null;ingredientFilter='featured';document.querySelectorAll('[data-ingredient-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.ingredientFilter==='featured')));history.replaceState(null,'','ingredients.html?lang='+window.MadhavI18n.language);changeGrid(ingredientGrid,filterIngredients);ingredientSearch.focus();});
 if(selectedIngredient&&window.ingredientGuide[selectedIngredient]&&!window.ingredientGuide[selectedIngredient].guideHidden){ingredientSearch.value=window.ingredientGuide[selectedIngredient].title;ingredientFilter='all';document.querySelectorAll('[data-ingredient-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.ingredientFilter==='all')));}
 filterIngredients();
-if(exactIngredient&&location.hash==='#ingredient-'+exactIngredient)requestAnimationFrame(()=>document.getElementById('ingredient-'+exactIngredient)?.scrollIntoView({behavior:reducedMotion.matches?'auto':'smooth',block:'start'}));
+if(exactIngredient&&location.hash==='#ingredient-'+exactIngredient)requestAnimationFrame(()=>document.getElementById('ingredient-'+exactIngredient)?.scrollIntoView({behavior:'instant',block:'start'}));

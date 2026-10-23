@@ -83,7 +83,5 @@ if(catalogue&&!document.getElementById('madhav-store')){
  window.addEventListener('storage',event=>{if(event.key===CART_KEY||event.key===null){cart=readCart();render();}});
  window.addEventListener('pageshow',()=>{cart=readCart();render();});
  hookProductButtons();document.getElementById('format-options')?.addEventListener('click',refreshPrices);refresh();
- // Animate already-visible content only: failed/unsupported animation never hides content.
- const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)');
- if(!reduced?.matches&&'IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){if(!reduced?.matches)entry.target.animate?.([{opacity:.65,translate:'0 10px'},{opacity:1,translate:'0 0'}],{duration:420,easing:'cubic-bezier(.2,.7,.2,1)'});observer.unobserve(entry.target);}}},{threshold:.12});document.querySelectorAll('.section-head,.hero-copy,.connect-copy').forEach(node=>observer.observe(node));}
+
 }

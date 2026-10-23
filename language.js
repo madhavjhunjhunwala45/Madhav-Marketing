@@ -8,13 +8,32 @@
   let remembered;
   try { remembered = localStorage.getItem(key); } catch {}
   const requested = new URLSearchParams(location.search).get('lang');
-  let language = supported.includes(requested) ? requested : supported.includes(remembered) ? remembered : 'en';
+  const initialLanguage = supported.includes(requested) ? requested : supported.includes(remembered) ? remembered : 'en';
+  let language = 'en', renderedLanguage = 'en', languageRequest = 0;
   const texts = new WeakMap();
   const attributes = new WeakMap();
   const translatedAttributes = ['aria-label', 'alt', 'placeholder'];
   let observer;
-  let scheduled = false;
-  const dictionaries = window.madhavTranslations || {};
+  let scheduledFrame = 0;
+  const pendingRoots = new Set(), loads = new Map();
+  const dictionaries = window.madhavTranslations ||= {};
+  const languageBase = document.currentScript?.src || new URL('language.js', location.href).href;
+  function loadLanguage(code) {
+    if (code === 'en' || dictionaries[code]) return Promise.resolve();
+    if (loads.has(code)) return loads.get(code);
+    const pending = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = new URL('translations/' + code + '.js?v=20261023-performance', languageBase).href;
+      script.async = true;
+      script.setAttribute('data-no-translate', '');
+      script.onload = () => dictionaries[code] ? resolve() : reject(new Error('Translation unavailable'));
+      script.onerror = () => {script.remove(); reject(new Error('Translation could not load'));};
+      document.head.append(script);
+    });
+    loads.set(code, pending);
+    pending.catch(() => loads.delete(code));
+    return pending;
+  }
   const templates = {
     hi:{find:n=>`${n} उत्पादों में उपलब्ध`,show:name=>`${name} दिखाएँ`,explore:name=>`${name} देखें`,photo:name=>`${name} की बड़ी तस्वीर देखें`,amazon:(name,pack)=>`Amazon पर ${name}, ${pack} देखें (नए टैब में खुलेगा)`},
     mr:{find:n=>`${n} उत्पादनांमध्ये आढळते`,show:name=>`${name} दाखवा`,explore:name=>`${name} पाहा`,photo:name=>`${name}चा मोठा फोटो पाहा`,amazon:(name,pack)=>`Amazon वर ${name}, ${pack} पाहा (नवीन टॅबमध्ये उघडते)`},
@@ -100,12 +119,17 @@
     }
   }
 
-  const observe = () => observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:translatedAttributes.concat('content')});
+  const observe = () => {
+    // English is the source content; it needs no mutation translation work.
+    if (language !== 'en') observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:translatedAttributes.concat('content')});
+  };
   function apply() {
     // Disconnect during our writes; later product/filter updates are still observed.
     observer?.disconnect();
+    cancelAnimationFrame(scheduledFrame); scheduledFrame = 0; pendingRoots.clear();
     document.documentElement.lang = language;
-    translateRoot(document);
+    if (language !== 'en' || renderedLanguage !== 'en') translateRoot(document);
+    renderedLanguage = language;
     document.querySelectorAll('[data-language-select]').forEach(select => { select.value = language; });
     observe();
   }
@@ -114,8 +138,19 @@
     try { localStorage.setItem(key, language); } catch {}
   }
 
-  function setLanguage(next) {
+  async function setLanguage(next, {initial = false} = {}) {
     if (!supported.includes(next)) return false;
+    const current = ++languageRequest;
+    const selects = document.querySelectorAll('[data-language-select]');
+    selects.forEach(select => {select.value = next; select.setAttribute('aria-busy', 'true');});
+    try {await loadLanguage(next);} catch {
+      if (current !== languageRequest) return false;
+      selects.forEach(select => {select.value = language; select.removeAttribute('aria-busy');});
+      const status = document.getElementById('language-status');
+      if (status) status.textContent = 'This language could not load. Please try again.';
+      return false;
+    }
+    if (current !== languageRequest) return false;
     language = next;
     remember();
     // Keep product/ingredient queries and hash when making this view shareable.
@@ -123,13 +158,10 @@
     url.searchParams.set('lang', language);
     try { history.replaceState(history.state, '', url); } catch {}
     apply();
+    selects.forEach(select => select.removeAttribute('aria-busy'));
     const status = document.getElementById('language-status');
-    if (status) status.textContent = translate('Language changed') + ': ' + labels[language];
+    if (status && !initial) status.textContent = translate('Language changed') + ': ' + labels[language];
     document.dispatchEvent(new CustomEvent('madhav:languagechange', {detail:{language}}));
-    const main = document.querySelector('main');
-    if (main && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && typeof main.animate === 'function') {
-      main.animate([{opacity:.75},{opacity:1}], {duration:240, easing:'ease-out'});
-    }
     return true;
   }
 
@@ -146,13 +178,27 @@
       link.href = url.href;
     }
   }, true);
-  observer = new MutationObserver(() => {
-    if (scheduled) return;
-    scheduled = true;
-    queueMicrotask(() => {scheduled = false; apply();});
+  observer = new MutationObserver(records => {
+    if (language === 'en') return;
+    for (const record of records) {
+      if (record.type === 'childList') record.addedNodes.forEach(node => pendingRoots.add(node));
+      else pendingRoots.add(record.target);
+    }
+    if (scheduledFrame || !pendingRoots.size) return;
+    scheduledFrame = requestAnimationFrame(() => {
+      scheduledFrame = 0; observer.disconnect();
+      const roots = [...pendingRoots]; pendingRoots.clear();
+      for (const node of roots) {
+        if (!node.isConnected || roots.some(other => other !== node && other.contains?.(node))) continue;
+        translateRoot(node);
+        if (node.matches?.('meta[name="description"]')) translateAttribute(node, 'content');
+      }
+      observe();
+    });
   });
-  remember();
+  if (initialLanguage === 'en') remember();
   apply();
+  if (initialLanguage !== 'en') setLanguage(initialLanguage, {initial:true});
   // Page scripts below build cards, tables and dialogs after this file is loaded.
   document.addEventListener('DOMContentLoaded', apply, {once:true});
 })();

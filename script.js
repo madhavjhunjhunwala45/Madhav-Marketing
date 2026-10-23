@@ -5,7 +5,7 @@ const motionEasing = 'cubic-bezier(.22,.68,0,1)';
 function softReveal(element, distance = 8, delay = 0) {
   if (reducedMotion.matches || typeof element.animate !== 'function') return;
   element.getAnimations?.().forEach(animation => animation.cancel());
-  return element.animate([{opacity:.35,transform:'translateY('+distance+'px)'},{opacity:1,transform:'translateY(0)'}],{duration:520,delay,easing:motionEasing});
+  return element.animate([{opacity:.35,transform:'translateY('+distance+'px)'},{opacity:1,transform:'translateY(0)'}],{duration:300,delay,easing:motionEasing});
 }
 // Measure before and after filtering so surviving cards move gently into place.
 function changeGrid(container, update) {
@@ -16,17 +16,18 @@ function changeGrid(container, update) {
     if (!card.hidden) before.set(card,card.getBoundingClientRect());
   });
   update(); let order = 0;
-  Array.from(container.children).forEach(card => {
-    if (card.hidden) return;
-    const now=card.getBoundingClientRect();
-    if (now.bottom < 0 || now.top > window.innerHeight) return;
+  // Finish geometry reads before starting any animations, avoiding repeated layouts.
+  const after = Array.from(container.children).filter(card => !card.hidden)
+    .map(card => ({card, now:card.getBoundingClientRect()}));
+  for (const {card,now} of after) {
+    if (now.bottom < 0 || now.top > window.innerHeight) continue;
     const old=before.get(card);
     if (old) {
       const x=old.left-now.left,y=old.top-now.top;
-      if (Math.abs(y)>window.innerHeight) softReveal(card,8);
-      else if (x || y) card.animate([{transform:'translate('+x+'px,'+y+'px)'},{transform:'translate(0,0)'}],{duration:480,easing:motionEasing});
-    } else softReveal(card,10,Math.min(order++ * 35,140));
-  });
+      if (Math.abs(y)>window.innerHeight) softReveal(card,5);
+      else if (x || y) card.animate([{transform:'translate('+x+'px,'+y+'px)'},{transform:'translate(0,0)'}],{duration:280,easing:motionEasing});
+    } else softReveal(card,5,Math.min(order++ * 20,60));
+  }
 }
 // Respect a motion preference changed while the page is already open.
 reducedMotion.addEventListener('change',event=>{
