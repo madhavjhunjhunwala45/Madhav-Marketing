@@ -32,16 +32,25 @@ function makeIngredientCard(id,item) {
   const profile=document.createElement('a');profile.className='ingredient-profile-link';profile.href='ingredients.html?ingredient='+encodeURIComponent(id)+'#ingredient-'+id;profile.textContent='View ingredient profile ↗';body.append(profile);
   body.append(ingredientSources(item));card.append(body);window.MadhavIngredientSwipe?.(card,id);return card;
 }
-ingredientEntries.forEach(([id,item])=>ingredientGrid.append(makeIngredientCard(id,item)));
+// Build only the current results. Reuse cards when a search/filter is revisited.
+const ingredientCards=new Map();
 function filterIngredients() {
-  const query=ingredientSearch.value.trim().normalize('NFKC').toLocaleLowerCase();let count=0;
-  ingredientGrid.querySelectorAll('.ingredient-card').forEach(card=>{
-    const item=window.ingredientGuide[card.dataset.id];
-    const matchesQuery=ingredientSearchIndex.get(card.dataset.id).includes(query);
+  const query=ingredientSearch.value.trim().normalize('NFKC').toLocaleLowerCase();
+  const results=ingredientEntries.filter(([id,item])=>{
+    if(exactIngredient)return id===exactIngredient;
+    const matchesQuery=ingredientSearchIndex.get(id).includes(query);
     const matchesGroup=ingredientFilter==='all'||(ingredientFilter==='featured'?(query||item.featured):item.group===ingredientFilter);
-    card.classList.toggle('ingredient-selected',exactIngredient===card.dataset.id);
-    card.hidden=exactIngredient?card.dataset.id!==exactIngredient:!(matchesQuery&&matchesGroup);if(!card.hidden)count++;
+    return matchesQuery&&matchesGroup;
   });
+  const fragment=document.createDocumentFragment();
+  for(const [id,item] of results){
+    let card=ingredientCards.get(id);
+    if(!card){card=makeIngredientCard(id,item);ingredientCards.set(id,card);}
+    card.classList.toggle('ingredient-selected',exactIngredient===id);
+    fragment.append(card);
+  }
+  ingredientGrid.replaceChildren(fragment);
+  const count=results.length;
   ingredientCount.textContent=count+(count===1?' ingredient':' ingredients');
   document.getElementById('ingredient-empty').hidden=count!==0;
 }
@@ -50,8 +59,7 @@ function clearIngredientSelection(){
   const url=new URL(location.href);url.searchParams.delete('ingredient');url.hash='';history.replaceState(null,'',url.href);
 }
 document.querySelectorAll('[data-ingredient-filter]').forEach(button=>button.addEventListener('click',()=>{clearIngredientSelection();ingredientFilter=button.dataset.ingredientFilter;document.querySelectorAll('[data-ingredient-filter]').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));changeGrid(ingredientGrid,filterIngredients);}));
-let ingredientSearchFrame=0;
-ingredientSearch.addEventListener('input',()=>{clearIngredientSelection();cancelAnimationFrame(ingredientSearchFrame);ingredientSearchFrame=requestAnimationFrame(filterIngredients);});
+ingredientSearch.addEventListener('input',()=>{clearIngredientSelection();filterIngredients();});
 document.addEventListener('madhav:languagechange',()=>{rebuildIngredientSearchIndex();filterIngredients();});
 document.getElementById('ingredient-reset').addEventListener('click',()=>{ingredientSearch.value='';exactIngredient=null;ingredientFilter='featured';document.querySelectorAll('[data-ingredient-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.ingredientFilter==='featured')));history.replaceState(null,'','ingredients.html?lang='+window.MadhavI18n.language);changeGrid(ingredientGrid,filterIngredients);ingredientSearch.focus();});
 if(selectedIngredient&&window.ingredientGuide[selectedIngredient]&&!window.ingredientGuide[selectedIngredient].guideHidden){ingredientSearch.value=window.ingredientGuide[selectedIngredient].title;ingredientFilter='all';document.querySelectorAll('[data-ingredient-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.ingredientFilter==='all')));}

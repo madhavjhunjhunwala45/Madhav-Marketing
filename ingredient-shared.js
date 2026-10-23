@@ -7,12 +7,16 @@ function ingredientPicture(item, compact = false) {
   const photo = compact ? (item.compositionPhoto || item.photo) : item.photo;
   if(photo?.fit === 'contain') figure.classList.add('ingredient-picture-contain');
   if(photo?.position) image.style.objectPosition = photo.position;
-  let hasRevealed = false;
-  const revealPhoto = () => {
-    if(hasRevealed) return; hasRevealed=true;
-    if(!compact && !reducedMotion.matches && typeof image.animate === 'function') image.animate([{opacity:.25},{opacity:1}],{duration:480,easing:motionEasing});
-  };
-  image.addEventListener('load',revealPhoto);
+  // Match the frame to specimens that need the whole photo, without stretching or a padded inset.
+  const dimensions=photo?.sourceDimensions;
+  const ratio=dimensions?.width/dimensions?.height;
+  const needsNaturalFrame=photo?.fit==='contain'||item.latin==='Ocimum tenuiflorum';
+  if(!compact&&needsNaturalFrame&&Number.isFinite(ratio)&&ratio>=.85&&ratio<=2.1){
+    figure.classList.add('ingredient-picture-natural');
+    figure.style.setProperty('--ingredient-photo-aspect',String(dimensions.width)+' / '+String(dimensions.height));
+    image.width=dimensions.width;image.height=dimensions.height;
+  }
+
   image.src = photo?.remoteThumbnailUrl || photo?.remoteUrl || 'assets/ingredients/' + illustration + '.svg';
   image.alt = photo ? item.title + ' — ' + photo.caption : item.title + ' — representative ' + illustration + ' illustration';
   caption.textContent = photo ? photo.caption : 'Representative illustration';
@@ -46,13 +50,11 @@ function openIngredientPhoto(item,photo) {
   }
   const view=ingredientPhotoViewer;const request=++photoViewerRequest;
   view.title.textContent=item.title;view.caption.textContent=photo.caption;view.credit.textContent=photo.author+' · '+photo.license;view.source.href=photo.sourceUrl;view.image.alt=item.title+' — '+photo.caption;view.image.hidden=false;view.status.hidden=true;
-  const preview=photo.remoteThumbnailUrl||photo.remoteUrl;const full=photo.remoteUrl||preview;
+  const preview=photo.remoteThumbnailUrl||photo.remoteUrl;
   view.image.src=preview;
-  // Keep the preview visible while a larger source file loads. A stale request cannot replace a later selection.
-  if(full!==preview){const large=new Image();large.onload=()=>{if(request===photoViewerRequest&&view.dialog.open){view.image.hidden=false;view.status.hidden=true;view.image.src=full;}};large.src=full;}
+  // Keep the credited preview. Do not automatically fetch a multi-megabyte original on mobile.
   view.image.onerror=()=>{if(request===photoViewerRequest){view.image.hidden=true;view.status.textContent='This photo cannot load right now. Open the Wikimedia source to view it.';view.status.hidden=false;}};
   if(!view.dialog.open)view.dialog.showModal();
-  if(!reducedMotion.matches&&typeof view.dialog.animate==='function')view.dialog.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:300,easing:motionEasing});
 }
 function ingredientFor(name) {
   const id = window.ingredientAliases[name];

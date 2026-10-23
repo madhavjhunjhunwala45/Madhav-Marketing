@@ -2,33 +2,9 @@ const catalogue = window.productCatalogue;
 const groupNames = {pain: 'Joint & muscle care', digestion: 'Digestive wellbeing', metabolic: 'Metabolic wellness', heart: 'Heart care', piles: 'Piles & fissure care'};
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const motionEasing = 'cubic-bezier(.22,.68,0,1)';
-function softReveal(element, distance = 8, delay = 0) {
-  if (reducedMotion.matches || typeof element.animate !== 'function') return;
-  element.getAnimations?.().forEach(animation => animation.cancel());
-  return element.animate([{opacity:.35,transform:'translateY('+distance+'px)'},{opacity:1,transform:'translateY(0)'}],{duration:300,delay,easing:motionEasing});
-}
-// Measure before and after filtering so surviving cards move gently into place.
-function changeGrid(container, update) {
-  if (reducedMotion.matches || typeof container.animate !== 'function') {update();return;}
-  const before = new Map();
-  Array.from(container.children).forEach(card => {
-    card.getAnimations?.().forEach(animation => animation.cancel());
-    if (!card.hidden) before.set(card,card.getBoundingClientRect());
-  });
-  update(); let order = 0;
-  // Finish geometry reads before starting any animations, avoiding repeated layouts.
-  const after = Array.from(container.children).filter(card => !card.hidden)
-    .map(card => ({card, now:card.getBoundingClientRect()}));
-  for (const {card,now} of after) {
-    if (now.bottom < 0 || now.top > window.innerHeight) continue;
-    const old=before.get(card);
-    if (old) {
-      const x=old.left-now.left,y=old.top-now.top;
-      if (Math.abs(y)>window.innerHeight) softReveal(card,5);
-      else if (x || y) card.animate([{transform:'translate('+x+'px,'+y+'px)'},{transform:'translate(0,0)'}],{duration:280,easing:motionEasing});
-    } else softReveal(card,5,Math.min(order++ * 20,60));
-  }
-}
+// Compatibility helpers: update content immediately without layout measurement or reveal effects.
+function softReveal() {}
+function changeGrid(container, update) {update();}
 // Respect a motion preference changed while the page is already open.
 reducedMotion.addEventListener('change',event=>{
   if(event.matches) document.getAnimations?.().forEach(animation=>animation.cancel());
