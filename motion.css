@@ -3,13 +3,29 @@
 html{scrollbar-gutter:stable;scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)}
 html.madhav-modal-open{overflow:hidden}
 *,*::before,*::after{animation:none!important;transition:none!important}
-/* Keep feedback brief and local to the control being used. */
-:is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.product-card h3 a,.ingredient-profile-link,.text-link,.site-nav a,.detail-nav a){transition:color 140ms ease,background-color 140ms ease,border-color 140ms ease!important}
-.connect-fields input,.connect-fields select{transition:border-color 140ms ease,box-shadow 140ms ease!important}
-/* Override older theme hover movement without altering the horizontal swipe transforms. */
-:is(.button,.gallery-thumb,.gallery-enlarge,.spotlight-link,.spotlight-arrow,.ingredient-photo-expand,.product-card-image img,.ingredient-picture img):hover,
-.product-card:hover .product-card-image img,.ingredient-card:hover .ingredient-picture img{transform:none!important;translate:none!important;scale:none!important}
-:is(.product-card,.ingredient-card,.store-shop-card,.button,.store-add,.store-card-buy,.store-product-buy,.store-primary):hover{translate:none!important;scale:none!important}
+/* Local feedback only: no scroll listeners, reveal observers or perpetual effects. */
+:is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.gallery-enlarge,.store-launcher,.store-toast-close,.cart-quantity button,.store-remove){transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease,translate 160ms ease,scale 120ms ease!important;transform:none!important;translate:0 0;scale:1}
+:is(.product-card-image,.ingredient-card,.store-shop-card){transition:border-color 180ms ease,box-shadow 180ms ease!important}
+:is(.product-card h3 a,.ingredient-profile-link,.text-link,.site-nav a,.detail-nav a,.store-text-link,.store-toast-link){transition:color 160ms ease,text-decoration-color 160ms ease!important}
+.connect-fields input,.connect-fields select{transition:border-color 160ms ease,box-shadow 160ms ease!important}
+.button>span,.nav-call>span{transform:none!important;transition:translate 160ms ease!important}
+.product-card-image img{transform:scale(1)!important;transition:transform 220ms ease-out!important}
+.ingredient-picture img,.ingredient-photo-expand{transform:none!important;translate:none!important;scale:none!important}
+:is(.product-card,.ingredient-card,.store-shop-card){translate:none!important;scale:none!important}
+:is(.product-card-image,.ingredient-card,.store-shop-card):focus-within{border-color:#a5b596;box-shadow:0 5px 18px -14px #193d3360}
+:is(.button,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-arrow,.gallery-thumb,.gallery-enlarge,.store-toast-close,.cart-quantity button):focus-visible{outline:2px solid var(--gold,#af8b49);outline-offset:4px}
+@media(hover:hover) and (pointer:fine){
+ :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.spotlight-arrow,.gallery-enlarge):not(:disabled):hover{translate:0 -1px;scale:1}
+ :is(.product-card-image,.ingredient-card,.store-shop-card):hover{border-color:#a5b596;box-shadow:0 5px 18px -14px #193d3360}
+ .product-card:hover .product-card-image img{transform:scale(1.018)!important}
+ .button:not(:disabled):hover>span,.nav-call:hover>span{translate:1px -1px}
+}
+:is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.gallery-enlarge,.store-toast-close,.cart-quantity button):not(:disabled):active{translate:0 0!important;scale:.985!important}
+/* The timeline is animated by the same clock that dismisses the toast. */
+.store-toast{padding-bottom:20px;overflow:hidden;isolation:isolate}
+.store-toast-timeline{position:absolute;left:0;right:0;bottom:0;height:3px;background:#ffffff26;pointer-events:none}
+.store-toast-progress{height:100%;width:100%;background:var(--gold-light,#e1c986);transform-origin:left center;transform:scaleX(1)}
+@media(max-width:550px){.store-toast{padding-bottom:18px}}
 .site-header::after{display:none!important}
 .site-header{background:var(--paper,#f8f6ee)}
 .image-dialog::backdrop,.ingredient-photo-dialog::backdrop{backdrop-filter:none!important}
@@ -26,5 +42,8 @@ html.madhav-modal-open{overflow:hidden}
 .component-picture img{object-fit:contain!important;object-position:center!important}
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto!important}
- :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.product-card h3 a,.ingredient-profile-link,.text-link,.site-nav a,.detail-nav a),.connect-fields input,.connect-fields select{transition:none!important}
+ /* Match the interactive selectors' specificity, including hover/active states. */
+ :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.gallery-enlarge,.store-launcher,.store-toast-close,.cart-quantity button,.store-remove,.product-card-image,.ingredient-card,.store-shop-card,.product-card-image img,.product-card h3 a,.ingredient-profile-link,.text-link,.site-nav a,.detail-nav a,.store-text-link,.store-toast-link,.connect-fields input,.connect-fields select,.button>span,.nav-call>span){transition:none!important}
+ :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.gallery-enlarge,.store-toast-close,.cart-quantity button):not(:disabled):is(:hover,:active),.button:not(:disabled):hover>span,.nav-call:hover>span{translate:none!important;scale:none!important}
+ .product-card:hover .product-card-image img{transform:none!important}
 }

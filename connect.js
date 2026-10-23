@@ -1,4 +1,4 @@
-import {validateContact,consentText,consentVersion,createRequestId} from './contact-validation.mjs?v=20261024-edgefill';
+import {validateContact,consentText,consentVersion,createRequestId} from './contact-validation.mjs?v=20261024-micro';
 import {siteSettings} from './site-settings.js';
 const form=document.getElementById('connect-form');
 if(form){
