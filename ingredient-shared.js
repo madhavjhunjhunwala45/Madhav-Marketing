@@ -1,12 +1,26 @@
+// Use a landscape peppercorn photograph instead of the single-specimen macro.
+// Resolve the photo and its credit together; ingredient identity/text stay unchanged.
+const ingredientPhotoReplacements = {
+  'Pimienta negra (Piper nigrum), 2020-06-12, DD 20-40 FS.jpg': {
+    species:'Piper nigrum',fileTitle:'Market Aix-en-Provence 20100828 Black pepper.jpg',
+    author:'Georges Seguin (Okki)',license:'CC BY-SA 3.0',
+    licenseUrl:'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl:'https://commons.wikimedia.org/wiki/File:Market_Aix-en-Provence_20100828_Black_pepper.jpg',
+    remoteUrl:'https://upload.wikimedia.org/wikipedia/commons/e/ec/Market_Aix-en-Provence_20100828_Black_pepper.jpg',
+    remoteThumbnailUrl:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Market_Aix-en-Provence_20100828_Black_pepper.jpg/960px-Market_Aix-en-Provence_20100828_Black_pepper.jpg',
+    caption:'Black peppercorns',changes:'Card preview cropped to a 19:10 frame; linked source remains unmodified.'
+  }
+};
+function ingredientDisplayPhoto(photo){return ingredientPhotoReplacements[photo?.fileTitle]||photo;}
 // One image and identity model is shared by the guide and every composition table.
 function ingredientPicture(item, compact = false) {
   const figure = document.createElement('figure'); figure.className = compact ? 'component-picture' : 'ingredient-picture';
-  const image = document.createElement('img'); image.draggable=false;image.loading = 'lazy'; image.decoding = 'async'; image.referrerPolicy = 'no-referrer'; image.width = compact ? 72 : 500; image.height = compact ? 72 : 375;
+  const image = document.createElement('img'); image.draggable=false;image.loading = 'lazy'; image.decoding = 'async'; image.referrerPolicy = 'no-referrer'; image.width = compact ? 72 : 760; image.height = compact ? 72 : 400;
   const caption = document.createElement('figcaption');
   const illustration = item.illustration || 'botanical';
-  const photo = compact ? (item.compositionPhoto || item.photo) : item.photo;
+  const photo = ingredientDisplayPhoto(compact ? (item.compositionPhoto || item.photo) : item.photo);
   if(photo?.fit === 'contain') figure.classList.add('ingredient-picture-contain');
-  if(compact&&photo?.position) image.style.objectPosition = photo.position;
+  if(photo?.position) image.style.objectPosition = photo.position;
   image.src = photo?.remoteThumbnailUrl || photo?.remoteUrl || 'assets/ingredients/' + illustration + '.svg';
   image.alt = photo ? item.title + ' — ' + photo.caption : item.title + ' — representative ' + illustration + ' illustration';
   caption.textContent = photo ? photo.caption : 'Representative illustration';
@@ -27,6 +41,7 @@ function ingredientPicture(item, compact = false) {
 let ingredientPhotoViewer;
 let photoViewerRequest = 0;
 function openIngredientPhoto(item,photo) {
+  photo=ingredientDisplayPhoto(photo);
   if(!ingredientPhotoViewer){
     const dialog=document.createElement('dialog');dialog.className='ingredient-photo-dialog';dialog.setAttribute('aria-labelledby','ingredient-photo-heading');
     const top=document.createElement('div');top.className='ingredient-photo-dialog-top';const title=document.createElement('h2');title.id='ingredient-photo-heading';const close=document.createElement('button');close.type='button';close.className='dialog-close';close.textContent='Close ×';close.setAttribute('aria-label','Close ingredient photo');close.addEventListener('click',()=>dialog.close());top.append(title,close);
@@ -54,6 +69,7 @@ function ingredientSources(item) {
   const details = document.createElement('details'); details.className = 'ingredient-sources';
   const summary = document.createElement('summary');summary.textContent='Sources & photo credit';details.append(summary);
   (item.sources || []).forEach(source => { const link=document.createElement('a');link.href=source.url;link.textContent=source.title+' ↗';link.target='_blank';link.rel='noopener noreferrer';details.append(link);});
-  [item.photo,item.compositionPhoto].filter(Boolean).forEach((photo,index)=>{const credit=document.createElement('p');credit.textContent=(index?'Composition photo: ':'')+photo.author+' · '+photo.license;const link=document.createElement('a');link.href=photo.sourceUrl;link.textContent='View photo source ↗';link.target='_blank';link.rel='noopener noreferrer';const license=document.createElement('a');license.href=photo.licenseUrl;license.textContent='Reuse licence ↗';license.target='_blank';license.rel='noopener noreferrer';details.append(credit,link,license);});
+  [item.photo,item.compositionPhoto].filter(Boolean).map(ingredientDisplayPhoto).forEach((photo,index)=>{const credit=document.createElement('p');credit.textContent=(index?'Composition photo: ':'')+photo.author+' · '+photo.license;const link=document.createElement('a');link.href=photo.sourceUrl;link.textContent='View photo source ↗';link.target='_blank';link.rel='noopener noreferrer';const license=document.createElement('a');license.href=photo.licenseUrl;license.textContent='Reuse licence ↗';license.target='_blank';license.rel='noopener noreferrer';details.append(credit,link,license);});
+  if(item.photo){const note=document.createElement('p');note.textContent='Guide photo previews are cropped to fit. Original photographs retain the linked licence.';details.append(note);}
   return details;
 }

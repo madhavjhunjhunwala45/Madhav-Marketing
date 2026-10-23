@@ -33,7 +33,7 @@
     if(destroyed)return;destroyed=true;modalObserver?.disconnect();headerObserver?.disconnect();
     entranceAnimation?.cancel();cleanup.forEach(fn=>fn());root.classList.remove('madhav-motion-ready','madhav-modal-open');root.style.removeProperty('--madhav-scroll-offset');
   }
-  window.MadhavMotion={version:'20261023-consistent',scrollTo,destroy,get state(){return {wheel:'native',lenis:false,reveals:false,reducedMotion:reduce.matches,modalOpen:modalOpen()};}};
+  window.MadhavMotion={version:'20261024-edgefill',scrollTo,destroy,get state(){return {wheel:'native',lenis:false,reveals:false,reducedMotion:reduce.matches,modalOpen:modalOpen()};}};
   function boot(){
     if(destroyed)return;root.classList.add('madhav-motion-ready');updateHeader();syncModal();entrance();
     if(!entered&&document.readyState!=='complete')listen(document,'DOMContentLoaded',entrance,{once:true});
