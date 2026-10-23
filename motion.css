@@ -1,0 +1,38 @@
+/* Local Lenis base styles are loaded first. Your current theme and cursor stay in place. */
+@import url("./vendor/lenis.css?v=1.3.26");
+:root{--madhav-motion-ease:cubic-bezier(.2,.75,.2,1)}
+html.madhav-motion-ready{scroll-padding-top:var(--madhav-scroll-offset,100px);scrollbar-gutter:stable}
+html.madhav-lenis-active,html.madhav-lenis-active body{scroll-behavior:auto!important}
+html.madhav-modal-open{overflow:hidden}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:madhav-page-out 180ms ease-out both}
+::view-transition-new(root){animation:madhav-page-in 320ms var(--madhav-motion-ease) both}
+@keyframes madhav-page-out{to{opacity:0}}
+@keyframes madhav-page-in{from{opacity:0}to{opacity:1}}
+/* Transition colour and surface changes; gesture transforms remain owned by the swipe code. */
+:is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link){transition:background-color 220ms ease,color 220ms ease,border-color 220ms ease,box-shadow 280ms ease,translate 280ms var(--madhav-motion-ease),scale 160ms ease}
+:is(.product-card-image,.ingredient-card,.store-shop-card){transition:border-color 250ms ease,box-shadow 300ms ease}
+:is(.format-options button,.filters button,.gallery-thumb,.spotlight-arrow){transition:background-color 220ms ease,border-color 220ms ease,color 220ms ease,box-shadow 250ms ease,scale 160ms ease}
+.product-card-image img,.ingredient-picture img{transition:transform 550ms var(--madhav-motion-ease)}
+/* A quiet underline gives product titles and text links a clear hover response. */
+:is(.product-card h3 a,.cart-product-info h3 a,.store-shop-card h3 a){background-image:linear-gradient(var(--gold,#947130),var(--gold,#947130));background-size:0% 1px;background-position:0 100%;background-repeat:no-repeat;box-decoration-break:clone;transition:color 220ms ease,background-size 320ms var(--madhav-motion-ease)}
+.product-link span,.text-link span{transition:translate 250ms var(--madhav-motion-ease)}
+@media(hover:hover) and (pointer:fine){
+ :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link):not(:disabled):not([aria-disabled=true]):hover{translate:0 -2px;transform:none;box-shadow:0 7px 18px #15372b16}
+ .product-card:hover .product-card-image{border-color:#b4c2a8;box-shadow:0 12px 28px -16px #15372b38}
+ .product-card:hover .product-card-image img{transform:scale(1.025)}
+ .ingredient-card:hover,.store-shop-card:hover{border-color:#b4c2a8;box-shadow:0 8px 24px -15px #15372b30}
+ :is(.product-card h3 a,.cart-product-info h3 a,.store-shop-card h3 a):hover{color:var(--forest,#234b3b);background-size:100% 1px}
+ :is(.product-link,.text-link):hover span{translate:3px 0}
+ :is(.filters button,.format-options button,.gallery-thumb):not(:disabled):hover{box-shadow:0 3px 10px #15372b13}
+}
+:is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.spotlight-arrow):not(:disabled):not([aria-disabled=true]):active{scale:.975;translate:0 0}
+/* Keep focused controls visible while the user is interacting by keyboard. */
+:is(.product-card h3 a,.cart-product-info h3 a,.store-shop-card h3 a):focus-visible{background-size:100% 1px}
+@media(prefers-reduced-motion:reduce){
+ @view-transition{navigation:none}
+ ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+ html{scroll-behavior:auto!important}
+ :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.product-card-image,.ingredient-card,.store-shop-card,.format-options button,.filters button,.gallery-thumb,.spotlight-arrow,.product-card-image img,.ingredient-picture img,.product-card h3 a,.cart-product-info h3 a,.store-shop-card h3 a,.product-link span,.text-link span){transition:none!important;scale:none;translate:none}
+ .product-card:hover .product-card-image img{transform:none}
+}
