@@ -1,22 +1,12 @@
 // One image and identity model is shared by the guide and every composition table.
 function ingredientPicture(item, compact = false) {
   const figure = document.createElement('figure'); figure.className = compact ? 'component-picture' : 'ingredient-picture';
-  const image = document.createElement('img'); image.draggable=false;image.loading = 'lazy'; image.decoding = 'async'; image.referrerPolicy = 'no-referrer'; image.width = compact ? 72 : 500; image.height = compact ? 72 : 340;
+  const image = document.createElement('img'); image.draggable=false;image.loading = 'lazy'; image.decoding = 'async'; image.referrerPolicy = 'no-referrer'; image.width = compact ? 72 : 500; image.height = compact ? 72 : 375;
   const caption = document.createElement('figcaption');
   const illustration = item.illustration || 'botanical';
   const photo = compact ? (item.compositionPhoto || item.photo) : item.photo;
   if(photo?.fit === 'contain') figure.classList.add('ingredient-picture-contain');
-  if(photo?.position) image.style.objectPosition = photo.position;
-  // Match the frame to specimens that need the whole photo, without stretching or a padded inset.
-  const dimensions=photo?.sourceDimensions;
-  const ratio=dimensions?.width/dimensions?.height;
-  const needsNaturalFrame=photo?.fit==='contain'||item.latin==='Ocimum tenuiflorum';
-  if(!compact&&needsNaturalFrame&&Number.isFinite(ratio)&&ratio>=.85&&ratio<=2.1){
-    figure.classList.add('ingredient-picture-natural');
-    figure.style.setProperty('--ingredient-photo-aspect',String(dimensions.width)+' / '+String(dimensions.height));
-    image.width=dimensions.width;image.height=dimensions.height;
-  }
-
+  if(compact&&photo?.position) image.style.objectPosition = photo.position;
   image.src = photo?.remoteThumbnailUrl || photo?.remoteUrl || 'assets/ingredients/' + illustration + '.svg';
   image.alt = photo ? item.title + ' — ' + photo.caption : item.title + ' — representative ' + illustration + ' illustration';
   caption.textContent = photo ? photo.caption : 'Representative illustration';
@@ -29,9 +19,9 @@ function ingredientPicture(item, compact = false) {
     caption.textContent = 'Illustration · photo unavailable'; figure.classList.add('photo-unavailable');
   });
   if(photo){
-    const button=document.createElement('button');button.type='button';button.className='ingredient-photo-button';button.setAttribute('aria-label','View larger photo of '+item.title);button.setAttribute('aria-haspopup','dialog');
+    const button=document.createElement('button');button.type='button';button.className='ingredient-photo-button ingredient-image-frame';button.setAttribute('aria-label','View larger photo of '+item.title);button.setAttribute('aria-haspopup','dialog');
     const icon=document.createElement('span');icon.className='ingredient-photo-expand';icon.textContent='⤢';icon.setAttribute('aria-hidden','true');button.append(image,icon);button.addEventListener('click',()=>openIngredientPhoto(item,photo));figure.append(button,caption);
-  }else figure.append(image,caption);
+  }else{const frame=document.createElement('div');frame.className='ingredient-photo-static ingredient-image-frame';frame.append(image);figure.append(frame,caption);}
   return figure;
 }
 let ingredientPhotoViewer;
@@ -42,7 +32,7 @@ function openIngredientPhoto(item,photo) {
     const top=document.createElement('div');top.className='ingredient-photo-dialog-top';const title=document.createElement('h2');title.id='ingredient-photo-heading';const close=document.createElement('button');close.type='button';close.className='dialog-close';close.textContent='Close ×';close.setAttribute('aria-label','Close ingredient photo');close.addEventListener('click',()=>dialog.close());top.append(title,close);
     const stage=document.createElement('div');stage.className='ingredient-photo-dialog-stage';const image=document.createElement('img');image.referrerPolicy='no-referrer';image.decoding='async';stage.append(image);
     const caption=document.createElement('p');caption.className='ingredient-photo-dialog-caption';const credit=document.createElement('p');credit.className='ingredient-photo-dialog-credit';
-    const source=document.createElement('a');source.className='text-link';source.textContent='View Wikimedia source ↗';source.target='_blank';source.rel='noopener';
+    const source=document.createElement('a');source.className='text-link';source.textContent='View Wikimedia source ↗';source.target='_blank';source.rel='noopener noreferrer';
     const status=document.createElement('p');status.className='ingredient-photo-status';status.setAttribute('role','status');status.hidden=true;
     dialog.append(top,stage,caption,credit,source,status);document.body.append(dialog);dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
     dialog.addEventListener('close',()=>{photoViewerRequest++;});
@@ -63,7 +53,7 @@ function ingredientFor(name) {
 function ingredientSources(item) {
   const details = document.createElement('details'); details.className = 'ingredient-sources';
   const summary = document.createElement('summary');summary.textContent='Sources & photo credit';details.append(summary);
-  (item.sources || []).forEach(source => { const link=document.createElement('a');link.href=source.url;link.textContent=source.title+' ↗';link.target='_blank';link.rel='noopener';details.append(link);});
-  [item.photo,item.compositionPhoto].filter(Boolean).forEach((photo,index)=>{const credit=document.createElement('p');credit.textContent=(index?'Composition photo: ':'')+photo.author+' · '+photo.license;const link=document.createElement('a');link.href=photo.sourceUrl;link.textContent='View photo source ↗';link.target='_blank';link.rel='noopener';const license=document.createElement('a');license.href=photo.licenseUrl;license.textContent='Reuse licence ↗';license.target='_blank';license.rel='noopener';details.append(credit,link,license);});
+  (item.sources || []).forEach(source => { const link=document.createElement('a');link.href=source.url;link.textContent=source.title+' ↗';link.target='_blank';link.rel='noopener noreferrer';details.append(link);});
+  [item.photo,item.compositionPhoto].filter(Boolean).forEach((photo,index)=>{const credit=document.createElement('p');credit.textContent=(index?'Composition photo: ':'')+photo.author+' · '+photo.license;const link=document.createElement('a');link.href=photo.sourceUrl;link.textContent='View photo source ↗';link.target='_blank';link.rel='noopener noreferrer';const license=document.createElement('a');license.href=photo.licenseUrl;license.textContent='Reuse licence ↗';license.target='_blank';license.rel='noopener noreferrer';details.append(credit,link,license);});
   return details;
 }

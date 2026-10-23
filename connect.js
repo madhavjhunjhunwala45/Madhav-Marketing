@@ -1,12 +1,12 @@
-import {validateContact,consentText,consentVersion} from './contact-validation.mjs';
+import {validateContact,consentText,consentVersion,createRequestId} from './contact-validation.mjs?v=20261023-consistent';
 import {siteSettings} from './site-settings.js';
 const form=document.getElementById('connect-form');
 if(form){
   const status=document.getElementById('connect-status'),button=form.querySelector('button[type="submit"]');
   const messages={name:'Please enter your name (2–80 characters).',contact:'Please give an email address or phone number.',email:'Please enter a valid email address.',phone:'Please enter a valid phone number (7–15 digits).',city:'Please enter a city name of up to 100 characters.',interest:'Please choose an interest.',failed:'Your enquiry could not be saved. Please try again or contact us by email.'};
-  let pending=false,requestId=crypto.randomUUID();
+  let pending=false,requestId=createRequestId();
   const say=message=>{status.textContent=message;window.MadhavI18n?.apply();};
-  form.addEventListener('input',()=>{if(!pending)requestId=crypto.randomUUID();});
+  form.addEventListener('input',()=>{if(!pending)requestId=createRequestId();});
   form.addEventListener('submit',async event=>{
     event.preventDefault();if(pending)return;
     const fields=new FormData(form);
@@ -28,10 +28,10 @@ if(form){
       const payload={name:d.name,...(d.email?{email:d.email}:{}),...(d.phone?{phone:d.phone}:{}),city:d.city,interest:d.interest,marketing_consent:d.marketingConsent?'Yes':'No',consent_text:d.marketingConsent?consentText:'',consent_version:d.marketingConsent?consentVersion:'',language:window.MadhavI18n?.language||'en',request_id:requestId,_subject:'Madhav Marketing enquiry'};
       const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),15000);
       let response;
-      try{response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});}finally{clearTimeout(timer);}
+      try{response=await fetch(endpoint,{method:'POST',credentials:'omit',referrerPolicy:'no-referrer',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload),signal:controller.signal});}finally{clearTimeout(timer);}
       const result=await response.json();
       if(!response.ok || result.ok===false || result.errors?.length)throw new Error('failed');
-      form.reset();requestId=crypto.randomUUID();say('Thank you! Your enquiry has been saved. Our team can now get in touch.');
+      form.reset();requestId=createRequestId();say('Thank you! Your enquiry has been saved. Our team can now get in touch.');
     }catch{say(messages.failed);}
     finally{pending=false;button.disabled=false;form.querySelectorAll('input,select').forEach(field=>field.disabled=false);form.removeAttribute('aria-busy');}
   });

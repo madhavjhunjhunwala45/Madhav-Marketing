@@ -1,4 +1,4 @@
-/* Calm interface: native scrolling, no entrance/reveal/loop animations. */
+/* Calm interface: native scrolling, short control feedback, no reveal or loop animations. */
 @view-transition{navigation:none}
 html{scrollbar-gutter:stable;scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)}
 html.madhav-modal-open{overflow:hidden}
@@ -11,10 +11,14 @@ html.madhav-modal-open{overflow:hidden}
 .product-card:hover .product-card-image img,.ingredient-card:hover .ingredient-picture img{transform:none!important;translate:none!important;scale:none!important}
 :is(.product-card,.ingredient-card,.store-shop-card,.button,.store-add,.store-card-buy,.store-product-buy,.store-primary):hover{translate:none!important;scale:none!important}
 .site-header::after{display:none!important}
-/* Selected whole-specimen photos get a frame matching their recorded image ratio. */
-.ingredient-card .ingredient-picture-natural{width:100%;height:auto!important;min-height:0!important;max-height:none!important;align-self:start;background:#eef1e8;overflow:hidden}
-.ingredient-card .ingredient-picture-natural .ingredient-photo-button{width:100%;height:auto!important;aspect-ratio:var(--ingredient-photo-aspect);display:block}
-.ingredient-card .ingredient-picture-natural img{display:block;width:100%;height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:var(--ingredient-photo-aspect);object-fit:contain!important;padding:0!important;transform:none!important}
+.site-header{background:var(--paper,#f8f6ee)}
+.image-dialog::backdrop,.ingredient-photo-dialog::backdrop{backdrop-filter:none!important}
+/* One shared 4:3 photo viewport. Contain shows the whole image without stretching. */
+.ingredient-card .ingredient-picture{display:block;width:100%;height:auto!important;min-height:0!important;max-height:none!important;align-self:start;background:#f0f2e9;overflow:hidden}
+.ingredient-card .ingredient-picture .ingredient-image-frame{position:relative;display:block;width:100%;height:auto!important;min-height:0!important;aspect-ratio:4/3;overflow:hidden;background:#f0f2e9}
+.ingredient-card .ingredient-picture .ingredient-image-frame img{position:absolute;inset:0;display:block;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;padding:12px!important;transform:none!important}
+.ingredient-card .ingredient-picture figcaption{position:static;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;width:100%;max-width:none;height:44px;margin:0;padding:7px 12px;overflow:hidden;border:0;border-radius:0;background:#f0f2e9;color:#52634e;font-size:.65rem;line-height:1.4}
+.component-picture img{object-fit:contain!important;object-position:center!important}
 @media(prefers-reduced-motion:reduce){
  html{scroll-behavior:auto!important}
  :is(.button,.nav-call,.amazon-link,.store-card-buy,.store-product-buy,.store-add,.store-primary,.spotlight-link,.filters button,.format-options button,.gallery-thumb,.spotlight-arrow,.product-card h3 a,.ingredient-profile-link,.text-link,.site-nav a,.detail-nav a),.connect-fields input,.connect-fields select{transition:none!important}
