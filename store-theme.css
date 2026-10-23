@@ -129,17 +129,15 @@ a.quick-call.quick-amazon{display:none!important}
 }
 @media(min-width:651px){.back-top-button{bottom:84px!important}}
 @media(max-width:360px){.header-inner{grid-template-columns:minmax(80px,1fr) 96px 44px;gap:6px}.header-inner>.brand{width:98px}.header-inner .brand-logo{width:98px}.product-page .header-inner,.ingredients-page .header-inner,.cart-page-header .header-inner{grid-template-columns:minmax(80px,1fr) 106px}.hero-actions .button{flex:1 1 100%;justify-content:center}.hero-actions{gap:8px}.spotlight-image-stage{height:225px}}
-/* Madhav botanical cursor — Mortar & pestle */
+/* Madhav botanical cursor — outlined leaf, tilted 28 degrees */
 @media (hover: hover) and (pointer: fine) {
   :root {
-    --madhav-leaf-cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMjIgM0MyMyAxIDI3IDIgMjYgNUwxOCAxOUwxNCAxN1oiIGZpbGw9IiNjNGE1NjkiIHN0cm9rZT0iIzk0NzUzZiIgc3Ryb2tlLXdpZHRoPSIwLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00IDE0SDI4QzI3IDIzIDIzIDI4IDE2IDI4QzkgMjggNSAyMyA0IDE0WiIgZmlsbD0iIzUyNzg0YSIgc3Ryb2tlPSIjMzQ1YjNkIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxlbGxpcHNlIGN4PSIxNiIgY3k9IjE0IiByeD0iMTIiIHJ5PSIzLjUiIGZpbGw9IiM5ZWI0N2IiIHN0cm9rZT0iIzM0NWIzZCIgc3Ryb2tlLXdpZHRoPSIwLjkiLz48cGF0aCBkPSJNNyAxOEM5IDIzIDExIDI1IDE1IDI1IiBmaWxsPSJub25lIiBzdHJva2U9IiNjZmRiYWIiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+");
-
-    --madhav-leaf-hover: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNMjIgM0MyMyAxIDI3IDIgMjYgNUwxOCAxOUwxNCAxN1oiIGZpbGw9IiNjYWFlNzgiIHN0cm9rZT0iIzk0NzUzZiIgc3Ryb2tlLXdpZHRoPSIwLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik00IDE0SDI4QzI3IDIzIDIzIDI4IDE2IDI4QzkgMjggNSAyMyA0IDE0WiIgZmlsbD0iIzYzODY1YyIgc3Ryb2tlPSIjMzQ1YjNkIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxlbGxpcHNlIGN4PSIxNiIgY3k9IjE0IiByeD0iMTIiIHJ5PSIzLjUiIGZpbGw9IiNhOGJjODgiIHN0cm9rZT0iIzM0NWIzZCIgc3Ryb2tlLXdpZHRoPSIwLjkiLz48cGF0aCBkPSJNNyAxOEM5IDIzIDExIDI1IDE1IDI1IiBmaWxsPSJub25lIiBzdHJva2U9IiNjZmRiYWIiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+");
+    --madhav-leaf-cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjNDM0MzQzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02Ljk2IDE4LjgxTDYuMTkgMTcuMDVMNS43MCAxNS4xM0w1LjIxIDExLjA0TDUuMTUgOC45MEw1LjUyIDQuMzVMNi4wMCAyLjAwTDYuNDUgMS44MkwxMC4xOSAzLjUwTDEyLjYxIDQuOTNMMTQuMzIgNi4yMEwxNy40NSA4Ljg5TDE4Ljc3IDEwLjM2TDIwLjAxIDEyLjQyTDIwLjU2IDEzLjc1TDIwLjg3IDE1LjIyTDIwLjc4IDE3LjQ0TDIwLjA0IDE5LjQ2TDE4LjMxIDIyLjAyTDE5LjY0IDI1LjY2TDE5LjUzIDI2LjQyTDE3LjM4IDI2Ljg2TDE3LjAzIDI2LjUwTDE2LjU1IDIzLjg5TDE2LjI1IDIzLjExTDEzLjQ5IDIzLjIzTDEwLjkzIDIyLjY4TDkuNDcgMjEuODJMOC4yOSAyMC44MlpNOC43MSAxNy44OEw3Ljk3IDE2LjEwTDcuNjQgMTQuNjRMNy4yMSAxMC41Mkw3LjI0IDYuNzBMNy40NiA0Ljk1TDcuNTAgNC44MUw3Ljk1IDQuNjVMMTEuNDYgNi42M0wxNC42MCA4Ljk3TDE1Ljk3IDEwLjIyTDE3LjI5IDExLjY5TDE4LjA1IDEyLjkxTDE4LjYyIDE0LjI0TDE4Ljg5IDE1LjczTDE4LjgwIDE2Ljg2TDE4LjQ0IDE4LjIzTDE3Ljg4IDE5LjIzTDE3LjQ5IDE5LjUyTDE3LjEzIDE5LjM4TDE0Ljc2IDE1LjIxTDEyLjgxIDEyLjQ0TDExLjMzIDExLjAxTDEyLjc1IDEzLjU2TDE0LjczIDE3Ljk0TDE1LjUyIDIwLjI0TDE1LjUzIDIwLjk1TDE1LjEwIDIxLjE1TDEzLjYwIDIxLjI2TDExLjY2IDIwLjgyTDEwLjU2IDIwLjE2TDkuODAgMTkuNDdaIi8+PC9zdmc+");
   }
 
   html,
   body {
-    cursor: var(--madhav-leaf-cursor) 24 2, auto;
+    cursor: var(--madhav-leaf-cursor) 6 2, auto;
   }
 
   html body :is(
@@ -148,7 +146,7 @@ a.quick-call.quick-amazon{display:none!important}
     input[type="reset"], input[type="checkbox"],
     input[type="radio"]
   ) {
-    cursor: var(--madhav-leaf-hover) 24 2, pointer;
+    cursor: var(--madhav-leaf-cursor) 6 2, pointer;
   }
 
   html body :is(
