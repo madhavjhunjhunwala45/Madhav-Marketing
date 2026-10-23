@@ -112,7 +112,7 @@ if (spotlight) {
     button.setAttribute('aria-label','Show '+item.title);button.setAttribute('aria-pressed',String(index===0));
     button.addEventListener('click',()=>showSpotlight(index));dots.append(button);
   });
-  let selected = 0;
+  let selected = 0, spotlightHasShown = false;
   function showSpotlight(index) {
     selected = (index + featured.length) % featured.length;
     const item = featured[selected];
@@ -122,6 +122,8 @@ if (spotlight) {
     document.getElementById('spotlight-number').textContent=String(selected+1).padStart(2,'0')+' / '+String(featured.length).padStart(2,'0');
     const link=document.getElementById('spotlight-link');link.href='product.html?product='+item.id;link.setAttribute('aria-label','Explore '+item.title);
     document.querySelectorAll('[data-spotlight]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.spotlight)===selected)));
+    if(spotlightHasShown&&!reducedMotion.matches){for(const id of ['spotlight-title','spotlight-category'])softReveal(document.getElementById(id),7);}
+    spotlightHasShown=true;
   }
   document.getElementById('spotlight-prev').addEventListener('click',()=>showSpotlight(selected-1));
   document.getElementById('spotlight-next').addEventListener('click',()=>showSpotlight(selected+1));
@@ -137,15 +139,4 @@ if (backTop) {
   backTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:reducedMotion.matches?'instant':'smooth'});});
   updateBackTop();
 }
-// Reveal sections once. The page never depends on animation for visibility.
-if (!reducedMotion.matches && 'IntersectionObserver' in window) {
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        observer.unobserve(entry.target);
-        if(entry.boundingClientRect.top>120) softReveal(entry.target,12);
-      }
-    });
-  },{threshold:.08});
-  document.querySelectorAll('.section-head,.story-grid,.botanical-strip,.approach-grid,.contact-grid').forEach(element=>observer.observe(element));
-}
+// Section entrances and scroll reveals are managed centrally by motion.js.
