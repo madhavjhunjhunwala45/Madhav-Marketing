@@ -1,6 +1,6 @@
 /**
- * MADHAV MARKETING - CALM EDITORIAL POLISH ENGINE (smooth-polish.js)
- * Smooth inertia scroll, delayed scroll-reveals, and seamless page transitions.
+ * MADHAV MARKETING - ULTRA-LIGHT 60FPS POLISH (smooth-polish.js)
+ * Zero scroll-hijacking, automatic pill-button detection, and clean reveals.
  */
 (function () {
   "use strict";
@@ -8,124 +8,65 @@
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.addEventListener("DOMContentLoaded", () => {
-    initPageTransitions();
-    initScrollReveal();
-    if (!prefersReducedMotion) {
-      loadLenisSmoothScroll();
-    }
-  });
-
-  // Restore visibility if navigating back via browser Back/Forward cache
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
-      document.body.classList.remove("mm-page-exiting");
-    }
+    protectPillButtonsFromUnderline();
+    initSmoothAnchorScroll();
+    initLightScrollReveal();
   });
 
   /* --------------------------------------------------------------------------
-   * 1. INERTIA SMOOTH SCROLLING (Lenis)
+   * 1. AUTO-DETECT PILL BUTTONS ("Talk to us") & REMOVE UNDERLINES
    * -------------------------------------------------------------------------- */
-  function loadLenisSmoothScroll() {
-    const script = document.createElement("script");
-    script.src = "https://unpkg.com/lenis@1.1.20/dist/lenis.min.js";
-    script.async = true;
-    script.onload = () => {
-      if (typeof Lenis === "undefined") return;
+  function protectPillButtonsFromUnderline() {
+    document.querySelectorAll("header a, nav a").forEach((link) => {
+      const style = window.getComputedStyle(link);
+      const hasBackground =
+        style.backgroundColor &&
+        style.backgroundColor !== "rgba(0, 0, 0, 0)" &&
+        style.backgroundColor !== "transparent";
+      const hasBorder = parseFloat(style.borderTopWidth) > 0;
+      const isRounded = parseFloat(style.borderTopLeftRadius) > 8;
 
-      const lenis = new Lenis({
-        duration: 1.25, // Slightly slower, more luxurious scroll settle
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        wheelMultiplier: 0.9,
-        touchMultiplier: 1.4,
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+      // If the nav link is styled like a pill or button, never underline it
+      if (hasBackground || hasBorder || isRounded) {
+        link.classList.add("mm-no-underline");
       }
-      requestAnimationFrame(raf);
-
-      // Smooth anchor scrolling (#range, #ingredients, #story, etc.)
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          const targetId = this.getAttribute("href");
-          if (targetId && targetId.length > 1) {
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-              e.preventDefault();
-              lenis.scrollTo(targetEl, { offset: -70, duration: 1.35 });
-            }
-          }
-        });
-      });
-    };
-    document.head.appendChild(script);
+    });
   }
 
   /* --------------------------------------------------------------------------
-   * 2. SMOOTH MULTI-PAGE NAVIGATION TRANSITIONS
+   * 2. NATIVE SMOOTH ANCHOR SCROLLING (With Sticky Header Offset)
    * -------------------------------------------------------------------------- */
-  function initPageTransitions() {
-    document.querySelectorAll("a[href]").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const href = link.getAttribute("href");
-        if (!href) return;
+  function initSmoothAnchorScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href");
+        if (!targetId || targetId === "#") return;
 
-        if (
-          href.startsWith("#") ||
-          href.startsWith("mailto:") ||
-          href.startsWith("tel:") ||
-          href.startsWith("javascript:") ||
-          link.target === "_blank" ||
-          link.hasAttribute("download") ||
-          e.metaKey ||
-          e.ctrlKey ||
-          e.shiftKey ||
-          e.altKey
-        ) {
-          return;
-        }
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
-        try {
-          const targetUrl = new URL(link.href, window.location.origin);
-          if (targetUrl.origin !== window.location.origin) return;
-          if (
-            targetUrl.pathname === window.location.pathname &&
-            targetUrl.search === window.location.search &&
-            targetUrl.hash
-          ) {
-            return;
-          }
-
-          if (!document.startViewTransition && !prefersReducedMotion) {
-            e.preventDefault();
-            document.body.classList.add("mm-page-exiting");
-            setTimeout(() => {
-              window.location.href = targetUrl.href;
-            }, 320);
-          }
-        } catch (err) {
-          // Proceed with default navigation
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+          });
         }
       });
     });
   }
 
   /* --------------------------------------------------------------------------
-   * 3. SUBTLE DELAYED SCROLL REVEALS
+   * 3. NON-OVERLAPPING, GPU-FRIENDLY SCROLL REVEAL
    * -------------------------------------------------------------------------- */
-  function initScrollReveal() {
+  function initLightScrollReveal() {
     if (prefersReducedMotion) return;
 
-    // Only animate major structural blocks, not individual cart rows or floating widgets
-    const selectors = [
-      "main > section",
-      "section > div",
-      "article",
-    ];
+    // Only target individual product cards and top-level sections that aren't already in view
+    const candidates = document.querySelectorAll("article, main > section");
 
-    const elements = document.querySelectorAll(selectors.join(", "));
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -136,30 +77,29 @@
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -30px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -20px 0px",
       }
     );
 
-    elements.forEach((el) => {
-      // Never animate fixed floating pills ("Your cart", "Customer care") or headers
-      const style = getComputedStyle(el);
-      if (
-        el.closest("nav, header, footer") ||
-        style.position === "fixed" ||
-        style.position === "sticky"
-      ) {
+    candidates.forEach((el) => {
+      // Never hide elements already visible above the fold on initial page load
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        return;
+      }
+
+      // Prevent nested animations (if an article is inside a section, don't animate both)
+      if (el.tagName === "SECTION" && el.querySelector("article")) {
         return;
       }
 
       el.classList.add("mm-reveal");
 
-      // Gentle 90ms cascade across 4-column product grids
-      const parent = el.parentElement;
-      if (parent && parent.children.length > 1) {
-        const index = Array.from(parent.children).indexOf(el);
-        const staggerMs = (index % 4) * 90;
-        el.style.setProperty("--mm-stagger", `${staggerMs}ms`);
+      if (el.tagName === "ARTICLE" && el.parentElement) {
+        const siblings = Array.from(el.parentElement.children);
+        const index = siblings.indexOf(el);
+        el.style.setProperty("--mm-stagger", `${(index % 4) * 50}ms`);
       }
 
       observer.observe(el);
