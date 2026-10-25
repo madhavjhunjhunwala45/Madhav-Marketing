@@ -1,6 +1,6 @@
 /**
- * MADHAV MARKETING - NON-DESTRUCTIVE UI POLISH ENGINE (smooth-polish.js)
- * Drop-in script: Inertia scrolling, page transitions, scroll reveals & 3D hover tilt
+ * MADHAV MARKETING - CALM EDITORIAL POLISH ENGINE (smooth-polish.js)
+ * Smooth inertia scroll, delayed scroll-reveals, and seamless page transitions.
  */
 (function () {
   "use strict";
@@ -8,16 +8,14 @@
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.addEventListener("DOMContentLoaded", () => {
-    initScrollProgressBar();
     initPageTransitions();
     initScrollReveal();
-    initCutout3DTilt();
     if (!prefersReducedMotion) {
       loadLenisSmoothScroll();
     }
   });
 
-  // Restore page visibility if user navigates back via browser Back/Forward cache
+  // Restore visibility if navigating back via browser Back/Forward cache
   window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
       document.body.classList.remove("mm-page-exiting");
@@ -25,7 +23,7 @@
   });
 
   /* --------------------------------------------------------------------------
-   * 1. INERTIA SMOOTH SCROLLING (Auto-loads Lenis via CDN)
+   * 1. INERTIA SMOOTH SCROLLING (Lenis)
    * -------------------------------------------------------------------------- */
   function loadLenisSmoothScroll() {
     const script = document.createElement("script");
@@ -35,11 +33,11 @@
       if (typeof Lenis === "undefined") return;
 
       const lenis = new Lenis({
-        duration: 1.15,
+        duration: 1.25, // Slightly slower, more luxurious scroll settle
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        wheelMultiplier: 0.95,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1.4,
       });
 
       function raf(time) {
@@ -48,7 +46,7 @@
       }
       requestAnimationFrame(raf);
 
-      // Smooth anchor scrolling (#benefits, #ingredients, #products, etc.)
+      // Smooth anchor scrolling (#range, #ingredients, #story, etc.)
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const targetId = this.getAttribute("href");
@@ -56,7 +54,7 @@
             const targetEl = document.querySelector(targetId);
             if (targetEl) {
               e.preventDefault();
-              lenis.scrollTo(targetEl, { offset: -80 });
+              lenis.scrollTo(targetEl, { offset: -70, duration: 1.35 });
             }
           }
         });
@@ -74,7 +72,6 @@
         const href = link.getAttribute("href");
         if (!href) return;
 
-        // Ignore anchor links, external links, new tabs, mailto, tel, whatsapp, or downloads
         if (
           href.startsWith("#") ||
           href.startsWith("mailto:") ||
@@ -101,36 +98,31 @@
             return;
           }
 
-          // If browser doesn't support native View Transitions API, use CSS exit fade
           if (!document.startViewTransition && !prefersReducedMotion) {
             e.preventDefault();
             document.body.classList.add("mm-page-exiting");
             setTimeout(() => {
               window.location.href = targetUrl.href;
-            }, 280);
+            }, 320);
           }
         } catch (err) {
-          // Proceed with default navigation if URL parsing fails
+          // Proceed with default navigation
         }
       });
     });
   }
 
   /* --------------------------------------------------------------------------
-   * 3. AUTO-DETECT SCROLL REVEAL WITH STAGGERING
+   * 3. SUBTLE DELAYED SCROLL REVEALS
    * -------------------------------------------------------------------------- */
   function initScrollReveal() {
     if (prefersReducedMotion) return;
 
+    // Only animate major structural blocks, not individual cart rows or floating widgets
     const selectors = [
-      "section > *",
+      "main > section",
+      "section > div",
       "article",
-      ".card",
-      "[class*='card']",
-      "[class*='product']",
-      "[class*='benefit']",
-      "[class*='ingredient']",
-      "img[src*='cutouts']",
     ];
 
     const elements = document.querySelectorAll(selectors.join(", "));
@@ -144,67 +136,33 @@
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.1,
+        rootMargin: "0px 0px -30px 0px",
       }
     );
 
     elements.forEach((el) => {
-      // Skip fixed/sticky headers or navbars
-      if (el.closest("nav, header") || getComputedStyle(el).position === "fixed") return;
+      // Never animate fixed floating pills ("Your cart", "Customer care") or headers
+      const style = getComputedStyle(el);
+      if (
+        el.closest("nav, header, footer") ||
+        style.position === "fixed" ||
+        style.position === "sticky"
+      ) {
+        return;
+      }
 
       el.classList.add("mm-reveal");
 
-      // Calculate sibling stagger delay for grid items (cards, products, benefits)
+      // Gentle 90ms cascade across 4-column product grids
       const parent = el.parentElement;
       if (parent && parent.children.length > 1) {
         const index = Array.from(parent.children).indexOf(el);
-        const staggerMs = (index % 4) * 85;
+        const staggerMs = (index % 4) * 90;
         el.style.setProperty("--mm-stagger", `${staggerMs}ms`);
       }
 
       observer.observe(el);
     });
-  }
-
-  /* --------------------------------------------------------------------------
-   * 4. SUBTLE 3D HOVER TILT ON PRODUCT CUTOUTS
-   * -------------------------------------------------------------------------- */
-  function initCutout3DTilt() {
-    if (prefersReducedMotion || window.innerWidth < 768) return;
-
-    const cutouts = document.querySelectorAll('img[src*="cutouts"], .product-cutout');
-    cutouts.forEach((img) => {
-      img.addEventListener("mousemove", (e) => {
-        const rect = img.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        img.style.transform = `perspective(600px) translateY(-6px) scale(1.04) rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
-      });
-
-      img.addEventListener("mouseleave", () => {
-        img.style.transform = "";
-      });
-    });
-  }
-
-  /* --------------------------------------------------------------------------
-   * 5. TOP SCROLL PROGRESS INDICATOR
-   * -------------------------------------------------------------------------- */
-  function initScrollProgressBar() {
-    const bar = document.createElement("div");
-    bar.className = "mm-scroll-progress";
-    document.body.appendChild(bar);
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
-      },
-      { passive: true }
-    );
   }
 })();
