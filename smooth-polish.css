@@ -1,177 +1,87 @@
 /* ==========================================================================
-   MADHAV MARKETING - EDITORIAL & CALM UI POLISH (smooth-polish.css)
-   No popping cards, no harsh shadows. Subtle delays & fluid transitions.
+   MADHAV MARKETING - ULTRA-LIGHT 60FPS POLISH (smooth-polish.css)
+   Native GPU transitions, no scroll-hijack lag, no pill underlines.
    ========================================================================== */
 
 :root {
-  /* Ultra-smooth, slow-decelerating editorial curve */
-  --mm-ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
-  --mm-ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
-  /* Subtle intentional delay so passing mouse movement doesn't trigger twitches */
-  --mm-hover-delay: 65ms;
+  --mm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Crisp 30ms delay: feels intentional without feeling sluggish */
+  --mm-delay: 30ms;
 }
 
-/* 1. Cross-Page View Transitions (Smooth fade with subtle pause) */
+/* 1. Native Cross-Page View Transitions (Fast & lightweight) */
 @view-transition {
   navigation: auto;
 }
 
 ::view-transition-old(root) {
-  animation: mmPageOut 0.38s var(--mm-ease-soft) forwards;
+  animation: mmFadeOut 0.18s ease-out forwards;
 }
 
 ::view-transition-new(root) {
-  animation: mmPageIn 0.68s var(--mm-ease-calm) 0.06s forwards;
+  animation: mmFadeIn 0.32s var(--mm-ease) forwards;
 }
 
-@keyframes mmPageOut {
+@keyframes mmFadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
 }
 
-@keyframes mmPageIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes mmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* 2. Global Smoothing & Page Entry/Exit Fallback */
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  animation: mmPageIn 0.75s var(--mm-ease-calm);
 }
 
-body.mm-page-exiting {
-  opacity: 0 !important;
-  transition: opacity 0.35s var(--mm-ease-soft) !important;
-  pointer-events: none;
-}
-
-/* 3. Remove Odd Pop-ups on Grid Cards, Cart Items & Ingredient Links */
+/* 2. Kill All Odd Card Pop-ups & Shadows */
 .card,
 [class*="card"],
 [class*="product"],
 [class*="benefit"],
 [class*="ingredient"],
-[class*="feature"],
 [class*="item"],
 article {
-  /* Keep cards flat in their grid — no jumping or floating box shadows */
   transform: none !important;
   box-shadow: none !important;
-  transition:
-    background-color 0.55s var(--mm-ease-calm) var(--mm-hover-delay),
-    border-color 0.55s var(--mm-ease-calm) var(--mm-hover-delay),
-    opacity 0.55s var(--mm-ease-calm) var(--mm-hover-delay);
 }
 
-/* 4. Gentle, Grounded Image Scale Inside Product Boxes (No 3D Pop-Out) */
-img[src*="cutouts"],
-.product-cutout,
-.cutout-img,
-article img,
-[class*="product"] img {
-  transition:
-    transform 0.75s var(--mm-ease-calm) var(--mm-hover-delay),
-    filter 0.75s var(--mm-ease-calm) var(--mm-hover-delay);
-  will-change: transform;
+/* 3. Fix "Talk to us" Pill & Remove Unwanted Underlines */
+a[href^="tel:"],
+a[href^="mailto:"],
+a[href*="whatsapp"],
+header a[class*="talk"],
+header a[class*="cta"],
+header a[class*="contact"],
+nav a[href^="tel:"] {
+  text-decoration: none !important;
 }
 
-/* When hovering a product column, only the bottle/pack gently breathes */
-article:hover img,
-[class*="product"]:hover img,
-img[src*="cutouts"]:hover {
-  transform: scale(1.028);
-  filter: none;
+a[href^="tel:"]::after,
+a[href^="mailto:"]::after,
+a[href*="whatsapp"]::after,
+header a[class*="talk"]::after,
+header a[class*="cta"]::after,
+nav a[href^="tel:"]::after,
+.mm-no-underline::after {
+  display: none !important;
+  content: none !important;
 }
 
-/* 5. Refined Scroll-Reveal Animations (Subtle & Delayed) */
-.mm-reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.9s var(--mm-ease-calm),
-    transform 0.9s var(--mm-ease-calm);
-  transition-delay: calc(var(--mm-stagger, 0ms) + 80ms);
-  will-change: opacity, transform;
-}
-
-.mm-reveal.mm-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 6. Buttons, Pills & CTAs ("Add to cart", "Talk to us", "View on Amazon") */
-button,
-.btn,
-[class*="btn"],
-[class*="button"],
-input[type="submit"],
-a[href*="amazon"] {
-  transition:
-    background-color 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
-    color 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
-    border-color 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
-    transform 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
-    box-shadow 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
-    filter 0.45s var(--mm-ease-calm) var(--mm-hover-delay);
-}
-
-button:hover,
-.btn:hover,
-[class*="btn"]:hover,
-[class*="button"]:hover,
-input[type="submit"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(24, 58, 42, 0.1);
-  filter: brightness(1.05);
-}
-
-button:active,
-.btn:active,
-[class*="btn"]:active,
-[class*="button"]:active,
-input[type="submit"]:active {
-  transform: translateY(0) scale(0.985);
-  transition-duration: 0.1s;
-  transition-delay: 0ms;
-}
-
-/* 7. Diagonal Arrow Links ("Explore product ↗", "Haridra ↗", "Our customer-care ↗") */
-a {
-  transition:
-    color 0.4s var(--mm-ease-calm) var(--mm-hover-delay),
-    opacity 0.4s var(--mm-ease-calm) var(--mm-hover-delay),
-    background-color 0.4s var(--mm-ease-calm) var(--mm-hover-delay);
-}
-
-/* Smoothly glide arrow icons if wrapped in a span/svg */
-a svg,
-a span[class*="arrow"],
-a .arrow {
-  display: inline-block;
-  transition: transform 0.45s var(--mm-ease-calm) var(--mm-hover-delay);
-}
-
-a:hover svg,
-a:hover span[class*="arrow"],
-a:hover .arrow {
-  transform: translate(2px, -2px);
-}
-
-/* 8. Navigation Links (Soft Delayed Underline) */
-header nav a:not(.btn):not([class*="btn"]),
-.navbar a:not(.btn):not([class*="btn"]) {
+/* 4. Plain Text Nav Links Only (Clean, Fast Hover Underline) */
+header nav a:not([href^="tel:"]):not([class*="btn"]):not([class*="cta"]):not(.mm-no-underline) {
   position: relative;
+  text-decoration: none;
 }
 
-header nav a:not(.btn):not([class*="btn"])::after,
-.navbar a:not(.btn):not([class*="btn"])::after {
+header nav a:not([href^="tel:"]):not([class*="btn"]):not([class*="cta"]):not(.mm-no-underline)::after {
   content: "";
   position: absolute;
   left: 0;
@@ -181,21 +91,93 @@ header nav a:not(.btn):not([class*="btn"])::after,
   background-color: currentColor;
   transform: scaleX(0);
   transform-origin: right center;
-  transition: transform 0.5s var(--mm-ease-calm) var(--mm-hover-delay);
-  opacity: 0.65;
+  transition: transform 0.3s var(--mm-ease) var(--mm-delay);
+  opacity: 0.6;
 }
 
-header nav a:not(.btn):not([class*="btn"]):hover::after,
-.navbar a:not(.btn):not([class*="btn"]):hover::after {
+header nav a:not([href^="tel:"]):not([class*="btn"]):not([class*="cta"]):not(.mm-no-underline):hover::after {
   transform: scaleX(1);
   transform-origin: left center;
 }
 
-/* 9. Accessibility: Respect Reduced Motion */
+/* 5. Product Bottle Hover (GPU Transform Only — No Heavy Filters) */
+img[src*="cutouts"],
+.product-cutout,
+article img {
+  transition: transform 0.45s var(--mm-ease) var(--mm-delay);
+  backface-visibility: hidden;
+}
+
+article:hover img,
+img[src*="cutouts"]:hover {
+  transform: scale(1.025);
+}
+
+/* 6. Consistent Button & Pill Hovers ("Talk to us", "Add to cart", etc.) */
+button,
+.btn,
+[class*="btn"],
+[class*="button"],
+input[type="submit"],
+header a[href^="tel:"] {
+  transition:
+    transform 0.28s var(--mm-ease) var(--mm-delay),
+    opacity 0.28s var(--mm-ease) var(--mm-delay),
+    background-color 0.28s var(--mm-ease) var(--mm-delay),
+    border-color 0.28s var(--mm-ease) var(--mm-delay);
+}
+
+button:hover,
+.btn:hover,
+[class*="btn"]:hover,
+[class*="button"]:hover,
+header a[href^="tel:"]:hover {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+
+button:active,
+.btn:active,
+[class*="btn"]:active,
+[class*="button"]:active,
+header a[href^="tel:"]:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.08s;
+  transition-delay: 0ms;
+}
+
+/* 7. Diagonal Arrow Glide ("Explore product ↗", "Jamun ↗", "Talk to us ↗") */
+a svg,
+a span[class*="arrow"],
+a .arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--mm-ease) var(--mm-delay);
+}
+
+a:hover svg,
+a:hover span[class*="arrow"],
+a:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+/* 8. Lightweight Scroll Reveal (Top-level blocks only) */
+.mm-reveal {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 0.55s var(--mm-ease),
+    transform 0.55s var(--mm-ease);
+  transition-delay: var(--mm-stagger, 0ms);
+}
+
+.mm-reveal.mm-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
