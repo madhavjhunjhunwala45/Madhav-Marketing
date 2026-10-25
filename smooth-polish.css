@@ -1,38 +1,40 @@
 /* ==========================================================================
-   MADHAV MARKETING - NON-DESTRUCTIVE UI POLISH (smooth-polish.css)
-   Adds smooth scrolling, page transitions, hover physics & micro-interactions
+   MADHAV MARKETING - EDITORIAL & CALM UI POLISH (smooth-polish.css)
+   No popping cards, no harsh shadows. Subtle delays & fluid transitions.
    ========================================================================== */
 
 :root {
-  --mm-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --mm-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Ultra-smooth, slow-decelerating editorial curve */
+  --mm-ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
   --mm-ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  /* Subtle intentional delay so passing mouse movement doesn't trigger twitches */
+  --mm-hover-delay: 65ms;
 }
 
-/* 1. Native Cross-Page View Transitions (Chrome, Edge, Safari 18+) */
+/* 1. Cross-Page View Transitions (Smooth fade with subtle pause) */
 @view-transition {
   navigation: auto;
 }
 
 ::view-transition-old(root) {
-  animation: mmFadeOut 0.32s var(--mm-ease-soft) forwards;
+  animation: mmPageOut 0.38s var(--mm-ease-soft) forwards;
 }
 
 ::view-transition-new(root) {
-  animation: mmFadeIn 0.55s var(--mm-ease-out-expo) forwards;
+  animation: mmPageIn 0.68s var(--mm-ease-calm) 0.06s forwards;
 }
 
-@keyframes mmFadeOut {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-8px) scale(0.995); }
+@keyframes mmPageOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
-@keyframes mmFadeIn {
-  from { opacity: 0; transform: translateY(12px) scale(0.995); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes mmPageIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. Global Smoothing & Fallback Page Entry/Exit */
+/* 2. Global Smoothing & Page Entry/Exit Fallback */
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -41,125 +43,131 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  animation: mmFadeIn 0.65s var(--mm-ease-out-expo);
+  animation: mmPageIn 0.75s var(--mm-ease-calm);
 }
 
 body.mm-page-exiting {
   opacity: 0 !important;
-  transform: translateY(-8px) !important;
-  transition: opacity 0.3s ease-in, transform 0.3s ease-in !important;
+  transition: opacity 0.35s var(--mm-ease-soft) !important;
   pointer-events: none;
 }
 
-/* Top Scroll Progress Bar */
-.mm-scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #1f7a4c, #4caf50, #d4af37);
-  z-index: 99999;
-  pointer-events: none;
-  transition: width 0.1s linear;
-}
-
-/* 3. Scroll-Reveal Animations */
-.mm-reveal {
-  opacity: 0;
-  transform: translateY(28px) scale(0.985);
-  transition:
-    opacity 0.8s var(--mm-ease-out-expo),
-    transform 0.8s var(--mm-ease-out-expo);
-  transition-delay: var(--mm-stagger, 0ms);
-  will-change: opacity, transform;
-}
-
-.mm-reveal.mm-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* 4. Product Cutout Images (assets/cutouts/*.webp) Micro-Interactions */
-img[src*="cutouts"],
-.product-cutout,
-.cutout-img {
-  transition:
-    transform 0.6s var(--mm-ease-spring),
-    filter 0.6s var(--mm-ease-out-expo);
-  will-change: transform, filter;
-}
-
-img[src*="cutouts"]:hover,
-.product-cutout:hover,
-.cutout-img:hover {
-  transform: translateY(-8px) scale(1.04) rotate(0.8deg);
-  filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.16));
-}
-
-/* 5. Buttons & CTA Micro-Interactions (Lift + Glare Sweep + Click Press) */
-button,
-.btn,
-[class*="btn-"],
-[class*="button"],
-input[type="submit"],
-a[href*="contact"],
-a[href*="whatsapp"],
-a[href*="tel:"] {
-  transition:
-    transform 0.35s var(--mm-ease-spring),
-    box-shadow 0.35s var(--mm-ease-out-expo),
-    filter 0.25s ease;
-}
-
-button:hover,
-.btn:hover,
-[class*="btn-"]:hover,
-[class*="button"]:hover,
-input[type="submit"]:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.22);
-  filter: brightness(1.04);
-}
-
-button:active,
-.btn:active,
-[class*="btn-"]:active,
-[class*="button"]:active,
-input[type="submit"]:active {
-  transform: translateY(0) scale(0.96);
-  transition-duration: 0.1s;
-}
-
-/* 6. Card, Benefit, & Ingredient Box Hovers */
+/* 3. Remove Odd Pop-ups on Grid Cards, Cart Items & Ingredient Links */
 .card,
 [class*="card"],
 [class*="product"],
 [class*="benefit"],
 [class*="ingredient"],
 [class*="feature"],
+[class*="item"],
 article {
+  /* Keep cards flat in their grid — no jumping or floating box shadows */
+  transform: none !important;
+  box-shadow: none !important;
   transition:
-    transform 0.5s var(--mm-ease-out-expo),
-    box-shadow 0.5s var(--mm-ease-out-expo),
-    border-color 0.35s ease;
+    background-color 0.55s var(--mm-ease-calm) var(--mm-hover-delay),
+    border-color 0.55s var(--mm-ease-calm) var(--mm-hover-delay),
+    opacity 0.55s var(--mm-ease-calm) var(--mm-hover-delay);
 }
 
-.card:hover,
-[class*="card"]:hover,
-[class*="benefit"]:hover,
-[class*="ingredient"]:hover,
-[class*="feature"]:hover,
-article:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 38px -12px rgba(0, 0, 0, 0.12);
+/* 4. Gentle, Grounded Image Scale Inside Product Boxes (No 3D Pop-Out) */
+img[src*="cutouts"],
+.product-cutout,
+.cutout-img,
+article img,
+[class*="product"] img {
+  transition:
+    transform 0.75s var(--mm-ease-calm) var(--mm-hover-delay),
+    filter 0.75s var(--mm-ease-calm) var(--mm-hover-delay);
+  will-change: transform;
 }
 
-/* 7. Navigation Links Center-Out Hover Underline */
+/* When hovering a product column, only the bottle/pack gently breathes */
+article:hover img,
+[class*="product"]:hover img,
+img[src*="cutouts"]:hover {
+  transform: scale(1.028);
+  filter: none;
+}
+
+/* 5. Refined Scroll-Reveal Animations (Subtle & Delayed) */
+.mm-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.9s var(--mm-ease-calm),
+    transform 0.9s var(--mm-ease-calm);
+  transition-delay: calc(var(--mm-stagger, 0ms) + 80ms);
+  will-change: opacity, transform;
+}
+
+.mm-reveal.mm-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 6. Buttons, Pills & CTAs ("Add to cart", "Talk to us", "View on Amazon") */
+button,
+.btn,
+[class*="btn"],
+[class*="button"],
+input[type="submit"],
+a[href*="amazon"] {
+  transition:
+    background-color 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
+    color 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
+    border-color 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
+    transform 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
+    box-shadow 0.45s var(--mm-ease-calm) var(--mm-hover-delay),
+    filter 0.45s var(--mm-ease-calm) var(--mm-hover-delay);
+}
+
+button:hover,
+.btn:hover,
+[class*="btn"]:hover,
+[class*="button"]:hover,
+input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 58, 42, 0.1);
+  filter: brightness(1.05);
+}
+
+button:active,
+.btn:active,
+[class*="btn"]:active,
+[class*="button"]:active,
+input[type="submit"]:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: 0.1s;
+  transition-delay: 0ms;
+}
+
+/* 7. Diagonal Arrow Links ("Explore product ↗", "Haridra ↗", "Our customer-care ↗") */
+a {
+  transition:
+    color 0.4s var(--mm-ease-calm) var(--mm-hover-delay),
+    opacity 0.4s var(--mm-ease-calm) var(--mm-hover-delay),
+    background-color 0.4s var(--mm-ease-calm) var(--mm-hover-delay);
+}
+
+/* Smoothly glide arrow icons if wrapped in a span/svg */
+a svg,
+a span[class*="arrow"],
+a .arrow {
+  display: inline-block;
+  transition: transform 0.45s var(--mm-ease-calm) var(--mm-hover-delay);
+}
+
+a:hover svg,
+a:hover span[class*="arrow"],
+a:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+/* 8. Navigation Links (Soft Delayed Underline) */
 header nav a:not(.btn):not([class*="btn"]),
 .navbar a:not(.btn):not([class*="btn"]) {
   position: relative;
-  transition: opacity 0.25s ease, color 0.25s ease;
 }
 
 header nav a:not(.btn):not([class*="btn"])::after,
@@ -167,14 +175,14 @@ header nav a:not(.btn):not([class*="btn"])::after,
   content: "";
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -3px;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background-color: currentColor;
   transform: scaleX(0);
   transform-origin: right center;
-  transition: transform 0.38s var(--mm-ease-out-expo);
-  opacity: 0.85;
+  transition: transform 0.5s var(--mm-ease-calm) var(--mm-hover-delay);
+  opacity: 0.65;
 }
 
 header nav a:not(.btn):not([class*="btn"]):hover::after,
@@ -183,12 +191,13 @@ header nav a:not(.btn):not([class*="btn"]):hover::after,
   transform-origin: left center;
 }
 
-/* 8. Accessibility: Respect Reduced Motion */
+/* 9. Accessibility: Respect Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
   .mm-reveal {
