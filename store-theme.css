@@ -190,3 +190,32 @@ a.quick-call.quick-amazon{display:none!important}
     cursor: not-allowed;
   }
 }
+/* Golden leaf over green and sage areas */
+@media (hover: hover) and (pointer: fine) {
+  html body :where(
+    .story-section,
+    .story-art,
+    .botanical-interlude,
+    .herbal-showcase,
+    .ingredient-reading-note,
+    .ingredient-guide-notes,
+    .product-benefits,
+    .contact,
+    .button-primary,
+    .nav-call,
+    .quick-call,
+    .store-launcher,
+    .store-add,
+    .store-card-buy,
+    .store-product-buy,
+    .store-primary,
+    .filters button[aria-pressed="true"],
+    .format-options button[aria-pressed="true"],
+    .leaf-gold-zone
+  ) {
+    --madhav-leaf-cursor:
+      url("/assets/leaf-gold.svg?v=1");
+
+    cursor: var(--madhav-leaf-cursor) 6 2, auto;
+  }
+}
