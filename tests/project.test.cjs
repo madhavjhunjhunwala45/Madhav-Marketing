@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-const root=path.resolve(__dirname,'..'),c={window:{}};vm.createContext(c);
-for(const file of ['language-data.js',...['hi','mr','te','ta','bn','pa','gu'].map(l=>'translations/'+l+'.js'),'product-data.js','ingredient-data.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),c);
+const root=path.resolve(__dirname,'..'),c={window:{madhavTranslations:{}}};vm.createContext(c);
+for(const file of [...['hi','mr','te','ta','bn','pa','gu'].map(l=>'translations/'+l+'.js'),'product-data.js','ingredient-data.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),c);
 const products=c.window.productCatalogue;
 assert.equal(Object.keys(products).length,8);
 const assets=new Set();for(const p of Object.values(products)){
@@ -14,10 +14,8 @@ for(const [id,item] of Object.entries(c.window.ingredientGuide)){
  if(!item.guideHidden)for(const locale of Object.keys(d))for(const field of ['shortBenefit','paragraph','evidenceLabel'])assert(d[locale][item[field]],locale+' '+id+' '+field);
 }
 for(const file of ['index.html','product.html','ingredients.html']){
- const html=fs.readFileSync(path.join(root,file),'utf8');let previous=html.indexOf('src="language-data.js');
- for(const locale of ['hi','mr','te','ta','bn','pa','gu']){const position=html.indexOf('src="translations/'+locale+'.js');assert(position>previous,file+' language loading order');previous=position;}
- assert(html.indexOf('src="language.js')>previous);
+ const html=fs.readFileSync(path.join(root,file),'utf8');assert(html.includes('src="website.js'));assert(html.includes('src="shop.js'));assert.equal((html.match(/rel="stylesheet"/g)||[]).length,1);
  for(const m of html.matchAll(/(?:src|href)="([^"#]+)"/g)){const ref=m[1].split(/[?#]/)[0];if(!/^(https?:|mailto:|tel:|data:)/.test(ref))assert(fs.existsSync(path.join(root,ref)),file+' '+ref);}
 }
 const v=JSON.parse(fs.readFileSync(path.join(root,'vercel.json')));assert.equal(v.framework,null);assert.equal(v.buildCommand,'');assert.equal(v.outputDirectory,'.');assert(!fs.existsSync(path.join(root,'.openai')));assert(!fs.existsSync(path.join(root,'app/chatgpt-auth.ts')));
-console.log('Passed: all product and page assets, seven translation dictionaries and load order, ingredient coverage and standalone Vercel settings.');
+console.log('Passed: all product and page assets, seven translation dictionaries and lazy-loading paths, ingredient coverage and standalone Vercel settings.');

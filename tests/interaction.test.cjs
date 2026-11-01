@@ -1,0 +1,27 @@
+const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const context={window:{},document:{getElementById(){return null;}},siteSettings:{},storeConfig:{products:[]},setTimeout,clearTimeout,performance};
+vm.createContext(context);
+const code=fs.readFileSync(path.join(root,'shop.js'),'utf8').replace(/import\s*\{[^}]*\}\s*from\s*["'][^"']+["'];?/g,'');
+vm.runInContext(code+';this.testAPI={createToastTimer,normalizeCart,quoteCart,parseCartStorage,unitPrice};',context);
+const api=context.testAPI,config={products:[{sku:'oil',productId:'dard-oil',unitPrice:120}]};
+assert.equal(api.quoteCart([{sku:'oil',quantity:2}],config).subtotalPaise,24000);
+assert.equal(api.normalizeCart([{sku:'oil',quantity:99},{sku:'unknown',quantity:1}],config)[0].quantity,20);
+assert.equal(api.parseCartStorage('{bad',config).length,0);
+assert.equal(api.parseCartStorage(JSON.stringify([{sku:'oil',quantity:-2}]),config).length,0);
+let time=0,seq=0,tasks=new Map(),expired=0;
+const timer=api.createToastTimer({now:()=>time,schedule:(fn,ms)=>{tasks.set(++seq,{fn,at:time+ms});return seq;},cancel:id=>tasks.delete(id),onExpire:()=>expired++});
+function tick(ms){time+=ms;for(const [id,task]of [...tasks])if(task.at<=time){tasks.delete(id);task.fn();}}
+timer.start();tick(4999);assert.equal(expired,0);tick(1);assert.equal(expired,1);
+timer.start();tick(1000);timer.pause('hover');timer.pause('focus');tick(9000);assert.equal(expired,1);timer.resume('hover');tick(9000);assert.equal(expired,1);timer.resume('focus');tick(3999);assert.equal(expired,1);tick(1);assert.equal(expired,2);
+timer.start();tick(4000);timer.start();tick(4999);assert.equal(expired,2);tick(1);assert.equal(expired,3);timer.start();timer.dismiss();tick(6000);assert.equal(expired,3);
+const website=fs.readFileSync(path.join(root,'website.js'),'utf8');
+const start=website.indexOf('window.MadhavSwipe='),end=website.indexOf(';const catalogue=',start);
+assert(start>=0&&end>start);const swipeContext={window:{}};vm.createContext(swipeContext);vm.runInContext(website.slice(start,end+1),swipeContext);
+let previous=0,next=0;const handlers={},stage={classList:{add(){},remove(){}},addEventListener(type,fn){handlers[type]=fn;},setPointerCapture(){},clientWidth:500};
+swipeContext.window.MadhavSwipe(stage,()=>previous++,()=>next++);
+handlers.pointerdown({isPrimary:true,pointerType:'mouse',button:0,pointerId:1,clientX:100,clientY:20});handlers.pointermove({pointerId:1,clientX:30,clientY:20});handlers.pointerup({pointerId:1,clientX:30,clientY:20,timeStamp:1000});assert.equal(next,1);
+handlers.pointerdown({isPrimary:true,pointerType:'touch',pointerId:2,clientX:100,clientY:20});handlers.pointermove({pointerId:2,clientX:105,clientY:120});handlers.pointerup({pointerId:2,clientX:105,clientY:120,timeStamp:2000});assert.equal(next,1);
+for(const timeStamp of [3000,3010,3020,3030])handlers.wheel({deltaX:35,deltaY:0,deltaMode:0,timeStamp,preventDefault(){}});assert.equal(next,2);
+handlers.wheel({deltaX:-100,deltaY:0,deltaMode:0,timeStamp:4000,preventDefault(){}});assert.equal(previous,1);
+console.log('Passed: cart validation/prices, five-second timer/reset/pause/resume/dismiss, mouse swipe, touch vertical scrolling and one product per trackpad gesture.');

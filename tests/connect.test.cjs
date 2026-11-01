@@ -5,7 +5,7 @@ function setup(endpoint=''){
  let resets=0,calls=0,resolveFetch,body,url,focused,sequence=0;
  const form={addEventListener(n,f){handlers[n]=f;},querySelector(){return button;},querySelectorAll(){return controls;},elements:{namedItem(n){return{focus(){focused=n;}};}},setAttribute(){},removeAttribute(){},reset(){resets++;}};
  const c={document:{getElementById(id){return id==='connect-form'?form:status;}},window:{location:{href:''},MadhavI18n:{language:'gu',apply(){}}},siteSettings:settings,FormData:class{get(k){return values.get(k)||null;}},crypto:{randomUUID(){return 'request-'+(++sequence);}},AbortController,setTimeout,clearTimeout,encodeURIComponent,fetch:async(u,o)=>{calls++;url=u;body=JSON.parse(o.body);return new Promise(r=>resolveFetch=r);}};
- vm.createContext(c);vm.runInContext(fs.readFileSync(path.join(root,'contact-validation.mjs'),'utf8').replaceAll('export ',''),c);vm.runInContext(fs.readFileSync(path.join(root,'connect.js'),'utf8').replace(/^import .*;\n/gm,''),c);
+ vm.createContext(c);c.storeConfig={products:[]};vm.runInContext(fs.readFileSync(path.join(root,'shop.js'),'utf8').replace(/import\s*\{[^}]*\}\s*from\s*[\"'][^\"']+[\"'];?/g,''),c);
  return{c,values,handlers,button,status,controls,settings,get resets(){return resets;},get calls(){return calls;},get body(){return body;},get url(){return url;},get focused(){return focused;},respond(data,ok=true){resolveFetch({ok,json:async()=>data});}};
 }
 (async()=>{

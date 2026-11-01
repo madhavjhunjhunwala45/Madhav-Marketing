@@ -1,0 +1,77 @@
+MADHAV MARKETING — CLEANUP REPORT
+1 November 2026
+
+READY TO UPLOAD
+index.html is at the ZIP root. Extract the ZIP and replace the website/repository contents with these files. No build, installation, renaming or configuration edits are required. Your existing Vercel configuration and site-settings.js are retained. The live site has not been changed by this work.
+
+PRESERVED
+All eight products, nine retail packs, four pages, sections, forms, cart, galleries, ingredient profiles, gestures and eight languages remain. Product and ingredient data, seven translation dictionaries, prices and contact settings are byte-for-byte identical to the supplied files. Literal page wording and business links were compared. Fonts, colours and the layout style are retained. Only wrapping that previously overflowed a mobile screen was corrected. No framework or runtime library was added.
+
+FILES MERGED
+- Five existing stylesheets are now styles.css, preserving their declaration order.
+- Seven shared behavior scripts are now website.js.
+- Six cart/contact implementation modules are now shop.js.
+- Product data, ingredient data, translations, price configuration and contact settings remain separate for safe editing and on-demand loading. Page-specific product/ingredient rendering also remains separate so the homepage does not download ingredient data unnecessarily.
+
+FILES REMOVED
+Four unreferenced Lenis files were removed. Seventeen old implementation files were removed after their code/styles were consolidated and their references updated. Exact original files removed:
+- connect.js
+- contact-validation.mjs
+- ingredient-swipe.js
+- language-data.js
+- language.js
+- motion.css
+- motion.js
+- script.js
+- smooth-polish.css
+- smooth-polish.js
+- store-core.mjs
+- store-i18n.mjs
+- store-theme.css
+- store-ui.css
+- store-ui.js
+- swipe.js
+- toast-timer.mjs
+- vendor/LICENSE-LENIS.txt
+- vendor/SOURCE.json
+- vendor/lenis.css
+- vendor/lenis.mjs
+
+BUGS FIXED
+- Removed nonexistent favicon.svg references and duplicate favicon declarations; every page uses the existing PNG icon.
+- All pages share the complete cart styling. The cart SVG also has explicit 22 x 22 dimensions so it cannot expand across the page while styles load.
+- Cart product links now preserve the selected 50 ml / 100 ml pack.
+- Composition-table mobile labels are rebuilt when the selected pack changes.
+- Long translated words, including Tamil headings, wrap within mobile grids without changing wording, font sizes or colours.
+- Removed the duplicate anchor-scroll handler that used a fixed 80px header offset and prevented normal hash updates. Native scrolling uses the measured sticky-header height.
+- Removed conflicting page-transition declarations. Short entrance/hover feedback and reduced-motion support remain; no scroll-hijacking library or continuous animation loop is used.
+- Cursor/favicons use working relative paths, including under a hosting subfolder.
+
+LOADING IMPROVEMENTS
+- Product display pictures: 9,504,816 -> 3,872,858 bytes (59.3% smaller), at the same dimensions and with identical alpha masks. High-quality compression was checked on light and dark backgrounds (minimum measured PSNR 40.5 dB).
+- All 31 full-resolution product photos remain visually pixel-identical. Logo pixels remain identical. Full-size label images were kept for legibility.
+- The oversized favicon is now 128px: 1,261,943 -> 15,359 bytes.
+- All 69 ingredient source photos have local previews, plus 69 small composition thumbnails. The same subjects, captions, author/source/licence links and existing cropping are retained. No ingredient photos need to download from Wikimedia during normal browsing. Original source links are retained for attribution and full-source access.
+- Lazy image loading is retained, asynchronous decoding added where missing, footer logos are lazy-loaded, and the first hero photo has high loading priority.
+- CSS: 101,250 -> 97,375 bytes. Implementation JavaScript is safely compacted while keeping searchable names.
+- The ZIP includes ingredient images that previously lived only on Wikimedia, so archive size is not a measure of page speed. These local previews improve reliability and avoid downloading large original ingredient photos into small composition cells.
+
+VERIFICATION COMPLETED
+- 472 local references checked, including all page assets, internal fragments, CSS URLs, module imports, product galleries and local ingredient preview paths. No missing paths or duplicate HTML IDs found.
+- All local raster images decoded; local SVG XML checked.
+- All shipped JavaScript syntax checked.
+- Browser checks: home/product/ingredient/cart pages at 320, 375, 768 and 1366px widths. Original colours/fonts and main dimensions compared before/after.
+- All eight products rendered, including both oil pack sizes. All 91 visible ingredient cards rendered. The hidden legacy ingredient entry was retained unchanged.
+- All eight languages across all four pages checked at 320px: no horizontal page overflow or site JavaScript errors observed. Tamil pages also rechecked at 375px after the wrapping fix.
+- Menu, carousel buttons, search, photo enlargement/closing, add-to-cart, cart persistence/quantities and Coming soon checkout checked in the browser.
+- Automated checks passed for product/translation data, contact validation and simulated success/failure/retry handling, cart price/storage validation, mouse/touch/trackpad gesture logic, and the five-second notification timer with pause/resume/reset/dismiss behavior.
+- No real enquiries, orders or payments were submitted.
+
+SAFE CHOICES / RECORDS KEPT
+BENEFITS_NOTES.md, INGREDIENT_REVIEW.md, IMAGE_CREDITS.md and PRODUCT_CUTOUTS.json were kept as reference/provenance/licensing records. Some historical source paths in those records describe earlier image processing; they are not runtime requests. No product photo or full-size label was deleted. Dynamic CSS selectors were retained rather than guessing that hidden states were unused. Maintenance instructions and existing tests were updated to match the new file structure.
+
+PLEASE DOUBLE-CHECK AFTER DEPLOYMENT
+- Send one real enquiry and confirm receipt in your own Formspree dashboard/email. Its existing endpoint was preserved; only simulated submissions were tested here.
+- Check all eight Amazon product buttons and the storefront in your normal browser. Automated HEAD requests returned 404/503, and GET requests returned 503/timeouts, so their external destinations could not be independently confirmed. Your exact supplied links were preserved as requested; no replacement product/order links were invented.
+- Try your own iPhone/Android browser and physical touchpad once. Responsive and gesture checks here used Chrome and simulated gesture events, not every device/browser combination.
+- Checkout remains the existing Coming soon feature; no payment or delivery integration was enabled.
