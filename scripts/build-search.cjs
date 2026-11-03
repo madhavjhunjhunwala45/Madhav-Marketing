@@ -35,10 +35,11 @@ function render(template, query, kind, id, format) {
     document, window: { location: url, matchMedia: () => ({ matches: true, addEventListener() {} }) },
     location: url, URL, URLSearchParams, CustomEvent: document.defaultView.CustomEvent,
     requestAnimationFrame() {}, cancelAnimationFrame() {},
-    changeImage(image, source, alt) { image.src = source; image.alt = alt; },
+    changeImage(image, source, alt) { context.window.MadhavImages.apply(image, source, "gallery"); image.alt = alt; },
     console
   };
   vm.createContext(context);
+  vm.runInContext(read("responsive-images.js"), context);
   for (const name of ['product-data.js', 'ingredient-data.js']) vm.runInContext(read(name), context, { timeout: 3000 });
   vm.runInContext(helpers, context, { timeout: 3000 });
   vm.runInContext(read('ingredient-shared.js'), context, { timeout: 3000 });
@@ -53,7 +54,24 @@ function render(template, query, kind, id, format) {
   const ingredient = kind === 'ingredient' && ingredients[id];
   const meta = search.metadata({ kind, id, product, ingredient });
   search.apply(document, meta, products);
-  if (product) document.getElementById('product-image').setAttribute('fetchpriority', 'high');
+  for (const image of document.querySelectorAll('img[src]')) {
+    const source = image.getAttribute('src');
+    const role = image.id === 'spotlight-image' ? 'spotlight' : image.id === 'product-image' ? 'gallery' : image.classList.contains('brand-logo') ? 'logo' : 'card';
+    context.window.MadhavImages.apply(image, source, role);
+  }
+  const mainImage = kind === 'home' ? document.getElementById('spotlight-image') : product && document.getElementById('product-image');
+  if (mainImage) {
+    mainImage.setAttribute('fetchpriority', 'high');
+    mainImage.removeAttribute('loading');
+    const preload = document.createElement('link');
+    preload.setAttribute('rel', 'preload'); preload.setAttribute('as', 'image');
+    preload.setAttribute('href', mainImage.getAttribute('src'));
+    if (mainImage.getAttribute('srcset')) {
+      preload.setAttribute('imagesrcset', mainImage.getAttribute('srcset'));
+      preload.setAttribute('imagesizes', mainImage.getAttribute('sizes'));
+    }
+    preload.setAttribute('fetchpriority', 'high'); document.head.append(preload);
+  }
   return '<!doctype html>\n' + document.documentElement.outerHTML + '\n';
 }
 

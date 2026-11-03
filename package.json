@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-search.cjs && node scripts/check-search.cjs",
-    "test": "node scripts/check-search.cjs"
+    "build": "node scripts/build-images.cjs && node scripts/build-search.cjs && npm test",
+    "test": "node scripts/check-search.cjs && node tests/performance.test.cjs && node tests/project.test.cjs && node tests/interaction.test.cjs && node tests/connect.test.cjs && node tests/cart-enquiry.test.cjs && node tests/range-loading.test.cjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20.9.0"
   },
   "devDependencies": {
-    "linkedom": "0.18.15"
+    "linkedom": "0.18.15",
+    "sharp": "0.35.5"
   }
 }

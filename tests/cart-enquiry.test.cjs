@@ -63,16 +63,25 @@ async function main(){
   for(const lang of ['en','hi','mr','te','ta','bn','pa','gu'])for(const key of keys)assert(api.storeText[lang][key],lang+' '+key);
  });
 
- async function mount(cart,{language='en',clipboard='ok'}={}){
+ async function mount(cart,{language='en',clipboard='ok',deferCatalogue=false}={}){
   const {document}=parseHTML(fs.readFileSync(path.join(root,'cart.html'),'utf8'));document.documentElement.lang=language;
+  if(deferCatalogue)Object.defineProperty(document,'readyState',{value:'loading'});
   let stored=JSON.stringify(cart),copied=null;const events={};
   const ctx={document,storeConfig,siteSettings:{supportEmail:contacts.email},URL,URLSearchParams,location:new URL(contacts.website),Intl,performance,queueMicrotask,setTimeout(){return 1;},clearTimeout(){},
    localStorage:{getItem(){return stored;},setItem(key,value){stored=value;}},navigator:{clipboard:{async writeText(text){if(clipboard==='fail')throw Error('Permission denied');copied=text;}}},
-   window:{productCatalogue:catalogue,location:new URL(contacts.website),MadhavI18n:{language,translate:t=>t},matchMedia:()=>({matches:false,addEventListener(){}}),addEventListener(type,fn){(events[type]||=[]).push(fn);}}};
+   window:{productCatalogue:deferCatalogue?undefined:catalogue,location:new URL(contacts.website),MadhavI18n:{language,translate:t=>t},matchMedia:()=>({matches:false,addEventListener(){}}),addEventListener(type,fn){(events[type]||=[]).push(fn);}}};
   vm.createContext(ctx);try{vm.runInContext(source,ctx);}catch(error){throw new Error("Cart DOM setup: "+error.message);}
+  if(deferCatalogue){
+   assert.equal(document.getElementById('madhav-store'),null,'cart waits until the catalogue is loaded');
+   ctx.window.productCatalogue=catalogue;
+   document.dispatchEvent(new document.defaultView.Event('DOMContentLoaded'));
+   document.dispatchEvent(new document.defaultView.Event('DOMContentLoaded'));
+  }
   return {document,ctx,get stored(){return JSON.parse(stored);},get copied(){return copied;},events};
  }
- let view=await mount([]);
+ let view=await mount([{sku:'dard-oil-50',quantity:1}],{deferCatalogue:true});
+ check('cart initializes once when its module finishes before deferred product data',()=>{assert.equal(view.document.querySelectorAll('#madhav-store').length,1);assert.equal(view.document.querySelectorAll('a[data-cart-enquiry]').length,2);});
+ view=await mount([]);
  check('empty cart has two disabled actions and no message links',()=>{assert.equal(view.document.querySelectorAll('[data-cart-enquiry]:disabled').length,2);assert.equal(view.document.querySelectorAll('a[data-cart-enquiry]').length,0);});
  view=await mount([{sku:'dard-oil-50',quantity:1}]);
  check('cart checkout has both channels with the same message and no false success',()=>{
