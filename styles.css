@@ -139,10 +139,42 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
  .footer-links a{min-height:44px}
  .cart-page-footer>.wrap>p{grid-row:3}
 }
-/* Move only the footer address slightly right on desktop */
+/* Balanced desktop footer */
 @media (min-width: 1001px) {
+  .site-footer .footer-top,
+  .cart-page-footer > .wrap {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-areas:
+      "brand   address links"
+      "tagline address links";
+    column-gap: 48px;
+    row-gap: 8px;
+    align-items: center;
+  }
+
+  .site-footer .footer-top > .brand,
+  .cart-page-footer > .wrap > .brand {
+    grid-area: brand;
+    justify-self: start;
+  }
+
+  .site-footer .footer-top > p,
+  .cart-page-footer > .wrap > p {
+    grid-area: tagline;
+    margin: 0;
+    justify-self: start;
+  }
+
   .site-footer .footer-top > .footer-location,
   .cart-page-footer > .wrap > .footer-location {
+    grid-area: address;
     justify-self: center;
+    text-align: left;
+  }
+
+  .site-footer .footer-top > .footer-links,
+  .cart-page-footer > .wrap > .footer-links {
+    grid-area: links;
+    justify-self: end;
   }
 }
