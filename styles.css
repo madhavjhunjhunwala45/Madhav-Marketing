@@ -139,3 +139,10 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
  .footer-links a{min-height:44px}
  .cart-page-footer>.wrap>p{grid-row:3}
 }
+/* Move only the footer address slightly right on desktop */
+@media (min-width: 1001px) {
+  .site-footer .footer-top > .footer-location,
+  .cart-page-footer > .wrap > .footer-location {
+    justify-self: center;
+  }
+}
