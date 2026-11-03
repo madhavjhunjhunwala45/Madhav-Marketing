@@ -109,6 +109,8 @@ assert(!search.json({ text: '</script><script>alert(1)</script>' }).includes('<'
 const sitemap = fs.readFileSync(path.join(output, 'sitemap.xml'), 'utf8');
 const listed = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1].replace(/&amp;/g, '&'));
 assert.deepEqual(listed, manifest.sitemapUrls); assert.equal(new Set(listed).size, listed.length);
+assert.equal(listed.length, Object.keys(products).length + 2, 'simple sitemap contains only home, ingredient guide and products');
+assert(!listed.some(url => url.includes('ingredient=')), 'ingredient profiles stay on the site but outside the simplified sitemap');
 assert(!listed.some(url => /cart|vercel\.app|_search|format=/.test(url)));
 assert(fs.readFileSync(path.join(output, 'robots.txt'), 'utf8').includes('Sitemap: ' + search.origin + '/sitemap.xml'));
 const oldHost = config.redirects.find(rule => rule.has?.some(condition => condition.type === 'host'));

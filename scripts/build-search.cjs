@@ -86,7 +86,9 @@ for (const id of ingredientIds) {
   write(destination.slice(1), render('ingredients.html', 'ingredient=' + encodeURIComponent(id), 'ingredient', id));
   expected.push({ url: search.absolute('ingredients.html?ingredient=' + encodeURIComponent(id)), file: destination.slice(1), kind: 'ingredient', id });
 }
-const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.map(item => item.url)];
+// Keep one small sitemap: home, the ingredient guide and the product pages.
+// Individual ingredient profiles are still built and linked from the website.
+const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.filter(item => item.kind === 'product').map(item => item.url)];
 const escapeXML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc></url>').join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\nDisallow: /_search/\n\nSitemap: ' + search.origin + '/sitemap.xml\n');
@@ -104,4 +106,4 @@ const committed = JSON.parse(read('vercel.json'));
 if (JSON.stringify(committed.rewrites) !== JSON.stringify(rewrites) || JSON.stringify(committed.redirects) !== JSON.stringify(deployment.redirects)) {
   throw new Error('Vercel routes differ from scripts/build-search.cjs. Keep the supplied routing configuration.');
 }
-console.log('Built ' + sitemapUrls.length + ' canonical search URLs (' + Object.keys(products).length + ' products, ' + ingredientIds.length + ' ingredient profiles), including all existing pack/formula versions.');
+console.log('Built ' + (expected.length + 2) + ' searchable pages and one simplified sitemap with ' + sitemapUrls.length + ' URLs. All ' + ingredientIds.length + ' ingredient profiles and existing pack/formula versions remain available.');
