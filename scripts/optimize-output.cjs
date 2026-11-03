@@ -27,7 +27,10 @@ function homeRules(list) {
   return Array.from(list, rule => {
     if (rule.selectorText) {
       const selectors = splitSelectors(rule.selectorText).filter(selector => {
-        if (!otherPageComponent.test(selector)) return true;
+        // Keep runtime controls, language/state selectors and unfamiliar syntax.
+        // All other selectors must match somewhere on the complete homepage,
+        // including content below the fold, before they are sent to this page.
+        if (!otherPageComponent.test(selector) && (/\[|:(?:is|where|not|has)\(|\.(?:store-|madhav-|mm-|menu-|language-|ingredient-(?:swipe|is-swiping))/.test(selector) || !selector.includes('.'))) return true;
         const base = selector.replace(/::[\w-]+(?:\([^)]*\))?/g, '').replace(/:(?:hover|focus(?:-within|-visible)?|active|visited|checked|disabled|enabled|target)\b/g, '');
         try { return !!home.querySelector(base); } catch { return true; }
       });
@@ -61,7 +64,8 @@ function criticalRules(list, document) {
   }).join('');
 }
 const cssOptions = { loader: 'css', minifyWhitespace: true, minifySyntax: false, legalComments: 'none', charset: 'utf8' };
-const critical = esbuild.transformSync(criticalRules(rules, initialView), cssOptions).code;
+const startupTransitionGuard = 'html.madhav-styles-loading.madhav-styles-loading.madhav-styles-loading.madhav-styles-loading body *,html.madhav-styles-loading.madhav-styles-loading.madhav-styles-loading.madhav-styles-loading body *::before,html.madhav-styles-loading.madhav-styles-loading.madhav-styles-loading.madhav-styles-loading body *::after{transition:none!important}';
+const critical = esbuild.transformSync(criticalRules(rules, initialView) + startupTransitionGuard, cssOptions).code;
 const style = home.createElement('style'); style.id = 'madhav-initial-styles'; style.textContent = critical;
 const full = home.querySelector('link[rel="stylesheet"][href^="styles.css"]');
 if (!full) throw new Error('Homepage stylesheet is missing.');
@@ -77,11 +81,24 @@ fallback.append(fallbackLink); home.head.insertBefore(fallback, full.nextSibling
 for (const link of Array.from(home.querySelectorAll('link[rel="preload"],link[rel="modulepreload"]'))) home.head.insertBefore(link, style);
 fs.writeFileSync(homePath, '<!doctype html>\n' + home.documentElement.outerHTML + '\n');
 
+// One asynchronous module contains the cart and its public configuration.
+// This preserves immediate cart startup while removing its import waterfall
+// and its ability to hold up DOMContentLoaded on a slow connection.
+const bundledShop = esbuild.buildSync({ entryPoints: [path.join(output, 'shop.js')], bundle: true, write: false, format: 'esm', platform: 'browser', target: 'esnext', minifyWhitespace: true, minifySyntax: true, minifyIdentifiers: false, legalComments: 'none', charset: 'utf8' }).outputFiles[0].text;
+fs.writeFileSync(path.join(output, 'shop.js'), bundledShop);
+
 function walk(folder) {
   for (const entry of fs.readdirSync(folder, { withFileTypes: true })) {
     const file = path.join(folder, entry.name);
     if (entry.isDirectory()) { if (entry.name !== 'assets') walk(file); continue; }
-    if (/\.(?:js|mjs)$/.test(entry.name)) {
+    if (/\.html$/.test(entry.name)) {
+      const { document } = parseHTML(fs.readFileSync(file, 'utf8'));
+      for (const script of document.querySelectorAll('script[type="module"][src^="shop.js"]')) script.setAttribute('async', '');
+      for (const hint of document.querySelectorAll('link[rel="modulepreload"]')) {
+        if (['store-config.mjs', 'site-settings.js'].includes(hint.getAttribute('href'))) hint.remove();
+      }
+      fs.writeFileSync(file, '<!doctype html>\n' + document.documentElement.outerHTML + '\n');
+    } else if (/\.(?:js|mjs)$/.test(entry.name)) {
       const transformed = esbuild.transformSync(fs.readFileSync(file, 'utf8'), { loader: 'js', minifyWhitespace: true, minifySyntax: true, minifyIdentifiers: false, legalComments: 'none', charset: 'utf8', target: 'esnext' });
       fs.writeFileSync(file, transformed.code);
     } else if (/\.css$/.test(entry.name)) fs.writeFileSync(file, esbuild.transformSync(fs.readFileSync(file, 'utf8'), cssOptions).code);

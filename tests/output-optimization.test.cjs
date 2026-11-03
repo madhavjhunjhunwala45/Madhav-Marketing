@@ -6,7 +6,10 @@ const initial = home.getElementById('madhav-initial-styles'); assert(initial?.te
 const full = home.querySelector('link[data-madhav-full-styles]'); assert.equal(full.getAttribute('media'), 'print');
 assert(home.querySelector('noscript link[rel="stylesheet"]'), 'full styles work without JavaScript');
 const runtime = fs.readFileSync(path.join(output, 'website.js'), 'utf8'); assert(runtime.includes('data-madhav-full-styles'));
-for (const href of ['store-config.mjs', 'site-settings.js']) assert(home.querySelector('link[rel="modulepreload"][href="' + href + '"]'));
+assert(home.querySelector('script[type="module"][src^="shop.js"][async]'), 'cart module does not delay DOMContentLoaded');
+const builtShop = fs.readFileSync(path.join(output, 'shop.js'), 'utf8');
+assert(!/\bfrom\s*["']\.\/(?:store-config\.mjs|site-settings\.js)["']/.test(builtShop), 'cart configuration is bundled without a network import waterfall');
+for (const href of ['store-config.mjs', 'site-settings.js']) assert(!home.querySelector('link[rel="modulepreload"][href="' + href + '"]'), 'bundled modules are not downloaded again');
 assert(home.querySelector('.site-header .brand-logo').getAttribute('sizes').includes('112px'));
 
 function cursors(css) {

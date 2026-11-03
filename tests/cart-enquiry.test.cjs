@@ -8,7 +8,7 @@ async function main(){
  const data={window:{}};vm.createContext(data);vm.runInContext(fs.readFileSync(path.join(root,'product-data.js'),'utf8'),data);
  const catalogue=data.window.productCatalogue;
  const context={window:{},document:{getElementById(){return null;}},storeConfig,siteSettings:{},URL,setTimeout,clearTimeout,performance};vm.createContext(context);
- const source=stripImports(fs.readFileSync(path.join(root,'shop.js'),'utf8'));
+ const source=stripImports(fs.readFileSync(path.join(root,process.env.MADHAV_TEST_BUNDLE==='1'?'dist/shop.js':'shop.js'),'utf8'));
  vm.runInContext(source+';this.api={createCartEnquiry,quoteCart,storeText};',context);
  const api=context.api,contacts={email:'madhavmarketing999@gmail.com',website:'https://www.madhavmarketing.store/cart.html?private=ignored#cart'};
  let cases=0;const check=(name,fn)=>{fn();cases++;console.log('PASS '+name);};
