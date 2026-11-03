@@ -115,7 +115,7 @@ window.productCatalogue = {
   "dard-oil": {
     "benefits": "An external massage oil traditionally used for joint and muscle discomfort, including the back, neck and shoulders. Gently massage as directed on the pack; for external use only.",
     "amazonUrl": "https://amzn.in/d/0ceW3qHD",
-    "title": "Dard Haran Reliever Oil",
+    "title": "Dard Haran Oil",
     "category": "Pain care · External use only",
     "pack": "50 ml",
     "image": "assets/cutouts/dard-oil-50-pack-display.webp",
@@ -203,7 +203,7 @@ window.productCatalogue = {
       }
     ],
     "precautions": "Read the complete product label. Use under the guidance of a qualified physician. Keep out of reach of children.",
-    "displayTitle": "Dard Haran Reliever Oil",
+    "displayTitle": "Dard Haran Oil",
     "blurb": "External care, available in 50 ml and 100 ml packs.",
     "formats": [
       {

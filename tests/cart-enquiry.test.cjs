@@ -16,7 +16,7 @@ async function main(){
  check('full cart includes every SKU, correct pack, quantity and subtotal',()=>{
   const cart=storeConfig.products.map(p=>({sku:p.sku,quantity:2}));const result=api.createCartEnquiry(cart,storeConfig,catalogue,contacts);
   assert.equal(result.quote.lines.length,9);assert.equal(result.quote.subtotalPaise,502800);
-  assert(result.message.includes('Dard Haran Reliever Oil — 50 ml'));assert(result.message.includes('Dard Haran Reliever Oil — 100 ml'));
+  assert(result.message.includes('Dard Haran Oil — 50 ml'));assert(result.message.includes('Dard Haran Oil — 100 ml'));
   for(const item of storeConfig.products)assert(result.message.includes(catalogue[item.productId].title));
   assert.equal((result.message.match(/Quantity: 2/g)||[]).length,9);assert(result.message.includes('INR 5028.00'));
   assert(!result.message.includes('private=ignored'));assert(!result.message.includes('#cart'));

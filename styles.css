@@ -75,4 +75,67 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 
 /* Three-line postal formatting only; official address/SEO fields are unchanged. */
 .formatted-supply-address{display:block;white-space:pre-line}
-.formatted-supply-address::first-line{font-weight:600;color:var(--ink)}
+.formatted-supply-address::first-line{font-weight:600;color:inherit}
+
+/* Palette refinement: existing layout, typography, photographs and cursor are retained. */
+:root{
+ --forest:#214d3e;--deep:#14392d;--paper:#fbf9f3;--cream:#f2ebdc;
+ --sage:#e9efe4;--gold:#846326;--gold-light:#edd7a0;
+ --ink:#263c31;--muted:#54675a;--line:#d8dfd1;--red:#963f30;
+ --surface:#fffdf7;--surface-soft:#f1f4ea;
+ --on-dark:#fbf8ee;--on-dark-muted:#d1ddcf
+}
+.site-header{background:var(--paper);border-color:var(--line)}
+.site-footer,.cart-page-footer{background:var(--cream);border-color:var(--line)}
+.herbal-showcase{background:linear-gradient(145deg,var(--sage),var(--cream));border-color:var(--line)}
+.product-card-image,.gallery-stage{background:linear-gradient(145deg,var(--surface),var(--surface-soft));border-color:var(--line)}
+.ingredient-card,.connect-form,.cart-order-summary{background:var(--surface);border-color:var(--line)}
+.botanical-interlude{background:var(--sage);border-color:var(--line)}
+.botanical-strip-heading em,.botanical-latin{color:var(--muted)}
+.product-type,.formula-links small{color:var(--gold)}
+.formula-feature{background:var(--cream);border-color:var(--line)}
+.product-benefits{background:var(--sage);border-left-color:#93a787}
+.product-benefits h2{color:var(--forest)}
+.product-benefits p{color:var(--ink)}
+.connect-fields input,.connect-fields select{background:var(--surface);color:var(--ink);border-color:#a7b7a5}
+.contact{background:var(--deep);color:var(--on-dark)}
+.contact address,.contact .contact-phone,.contact .contact-email{color:var(--on-dark)}
+.contact p:not(.eyebrow){color:var(--on-dark-muted)}
+.contact .contact-caption{color:var(--on-dark-muted)!important}
+.contact h2 em,.contact .eyebrow,.contact-details small{color:var(--gold-light)}
+.contact-details,.contact-caption{border-color:#4d6c5b}
+.button-primary,.nav-call,.quick-call{background:var(--forest);color:var(--on-dark)}
+.button-primary:hover,.nav-call:hover,.quick-call:hover{background:var(--deep);color:var(--on-dark)}
+.button-gold{background:var(--gold-light);color:var(--deep);border-color:#b39455}
+.button-gold:hover{background:#e3c88e;color:var(--deep)}
+.amazon-link{background:var(--surface);color:#70551f;border-color:#cabb94}
+.amazon-link:hover{background:#f4ecd9;color:var(--deep);border-color:#ac8a48}
+.footer-location .formatted-supply-address::first-line{color:var(--ink)}
+::selection{background:#dde6d5;color:var(--deep)}
+
+.contact :is(a,button,input,select,textarea):focus-visible{outline-color:var(--gold-light)}
+
+/* Compact footer: keep the address in the main row, with room for fixed controls below. */
+.site-footer .footer-top,.cart-page-footer>.wrap{display:grid;grid-template-columns:148px minmax(210px,1fr) minmax(0,1fr) auto;align-items:center;gap:18px 24px}
+.site-footer .footer-top{padding-block:18px}
+.site-footer .brand-logo,.cart-page-footer .brand-logo{width:148px}
+.footer-top>.footer-location,.cart-page-footer>.wrap>.footer-location{padding:0;min-width:0;max-width:100%}
+.footer-links{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.footer-links a{display:inline-flex;align-items:center;min-height:28px;font-size:.75rem;white-space:nowrap}
+.site-footer .footer-bottom{padding-block:12px 16px;align-items:center}
+.site-footer,.cart-page-footer{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+.cart-page-footer{padding-top:18px}
+@media(max-width:1000px){
+ .site-footer .footer-top,.cart-page-footer>.wrap{grid-template-columns:148px minmax(0,1fr) auto;gap:12px 20px}
+ .site-footer .footer-top>p,.cart-page-footer>.wrap>p{grid-column:1/-1;margin:0}
+ .footer-links{grid-column:3;grid-row:1}
+}
+@media(max-width:650px){
+ .site-footer .footer-top,.cart-page-footer>.wrap{grid-template-columns:minmax(0,1fr) auto;gap:12px 16px}
+ .site-footer .footer-top{padding-block:16px}
+ .site-footer .brand-logo,.cart-page-footer .brand-logo{width:132px}
+ .footer-top>.footer-location,.cart-page-footer>.wrap>.footer-location{grid-column:1/-1;grid-row:2}
+ .footer-links{grid-column:2;grid-row:1;gap:0}
+ .footer-links a{min-height:44px}
+ .cart-page-footer>.wrap>p{grid-row:3}
+}
