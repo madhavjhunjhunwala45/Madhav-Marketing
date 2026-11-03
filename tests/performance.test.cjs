@@ -7,6 +7,10 @@ const api = context.window.MadhavImages;
 assert(Object.keys(api.entries).length >= 9);
 let references = 0;
 function check(document) {
+  for (const image of document.querySelectorAll(".product-card-image img")) {
+    assert.equal(image.getAttribute("loading"), "lazy", "server-rendered product cards defer offscreen image requests");
+    assert.equal(image.getAttribute("decoding"), "async");
+  }
   for (const image of document.querySelectorAll('img[srcset]')) {
     assert(image.getAttribute('sizes'));
     const widths = new Set();

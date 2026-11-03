@@ -8,12 +8,44 @@ const { document: cssDocument } = parseHTML('<html><head><style>' + read('styles
 const rules = cssDocument.querySelector('style').sheet.cssRules;
 const homePath = path.join(output, 'index.html');
 const { document: home } = parseHTML(fs.readFileSync(homePath, 'utf8'));
+// These components belong to the separate product, ingredient and cart pages.
+// Keep shared, stateful and unknown selectors; never prune based only on the first viewport.
+const otherPageComponent = /^\.(?:gallery-[\w-]+|composition-[\w-]+|component-[\w-]+|directions-[\w-]+|cart-[\w-]+|detail-nav|product-(?:page|hero[\w-]*|gallery|summary|blurb|benefits|section-nav|extra-actions|shopping-actions|help)|ingredients-page|ingredient-(?:card[\w-]*|guide-notes|reading-note|photo-[\w-]+|image-frame|selected|picture[\w-]*|profile-link|sources|products|search-[\w-]+|hero[\w-]*|grid|description|part-note|disclaimer|benefit|empty|group|latin|library|toolbar))(?=[\s.#[:>+~]|$)/;
+function splitSelectors(value) {
+  const parts = []; let start = 0, depth = 0, quote = '';
+  for (let i = 0; i < value.length; i++) {
+    const char = value[i];
+    if (quote) { if (char === quote && value[i - 1] !== '\\') quote = ''; continue; }
+    if (char === '"' || char === "'") quote = char;
+    else if (char === '(' || char === '[') depth++;
+    else if (char === ')' || char === ']') depth--;
+    else if (char === ',' && depth === 0) { parts.push(value.slice(start, i).trim()); start = i + 1; }
+  }
+  parts.push(value.slice(start).trim()); return parts;
+}
+function homeRules(list) {
+  return Array.from(list, rule => {
+    if (rule.selectorText) {
+      const selectors = splitSelectors(rule.selectorText).filter(selector => {
+        if (!otherPageComponent.test(selector)) return true;
+        const base = selector.replace(/::[\w-]+(?:\([^)]*\))?/g, '').replace(/:(?:hover|focus(?:-within|-visible)?|active|visited|checked|disabled|enabled|target)\b/g, '');
+        try { return !!home.querySelector(base); } catch { return true; }
+      });
+      return selectors.length ? selectors.join(',') + '{' + rule.style.cssText + '}' : '';
+    }
+    if (rule.cssRules && !/keyframes/i.test(rule.cssText.slice(0, rule.cssText.indexOf('{')))) {
+      const children = homeRules(rule.cssRules);
+      return children ? rule.cssText.slice(0, rule.cssText.indexOf('{') + 1) + children + '}' : '';
+    }
+    return rule.cssText;
+  }).join('');
+}
 const { document: initialView } = parseHTML(home.documentElement.outerHTML);
 for (const node of initialView.querySelectorAll('main > :not(#top),.site-footer')) node.remove();
 
 function initialRule(rule, document) {
   // Include interactive states and runtime-inserted controls as a conservative fallback.
-  if (/spotlight-|store-launcher|store-count|store-header-link|madhav-|mm-|menu-|site-nav|\[lang|:is\(|:where\(/.test(rule.selectorText)) return true;
+  if (/spotlight-|store-launcher|store-count|store-header-link|madhav-range|menu-|site-nav|\[lang/.test(rule.selectorText)) return true;
   const selector = rule.selectorText.replace(/::[\w-]+(?:\([^)]*\))?/g, '').replace(/:(?:hover|focus(?:-within|-visible)?|active|visited|checked|disabled|enabled|target)\b/g, '');
   try { return !!document.querySelector(selector); }
   catch { return true; } // Unknown selectors stay; do not guess that they are unused.
@@ -33,6 +65,9 @@ const critical = esbuild.transformSync(criticalRules(rules, initialView), cssOpt
 const style = home.createElement('style'); style.id = 'madhav-initial-styles'; style.textContent = critical;
 const full = home.querySelector('link[rel="stylesheet"][href^="styles.css"]');
 if (!full) throw new Error('Homepage stylesheet is missing.');
+const homeCss = esbuild.transformSync(homeRules(rules), cssOptions).code;
+fs.writeFileSync(path.join(output, 'home.css'), homeCss);
+full.setAttribute('href', full.getAttribute('href').replace(/^styles\.css/, 'home.css'));
 home.head.insertBefore(style, full);
 full.setAttribute('media', 'print'); full.setAttribute('data-madhav-full-styles', '');
 const fallback = home.createElement('noscript'), fallbackLink = home.createElement('link');
@@ -53,5 +88,5 @@ function walk(folder) {
   }
 }
 walk(output);
-fs.writeFileSync(path.join(root, '.performance-build.json'), JSON.stringify({ initialStylesBytes: Buffer.byteLength(critical), fullStylesBytes: fs.statSync(path.join(output, 'styles.css')).size }, null, 2));
+fs.writeFileSync(path.join(root, '.performance-build.json'), JSON.stringify({ initialStylesBytes: Buffer.byteLength(critical), homeStylesBytes: Buffer.byteLength(homeCss), fullStylesBytes: fs.statSync(path.join(output, 'styles.css')).size }, null, 2));
 console.log('Inlined conservative initial homepage styles; full stylesheet retained with a no-JavaScript fallback. Minified deployment CSS/JS.');

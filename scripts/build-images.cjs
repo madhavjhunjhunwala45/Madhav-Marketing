@@ -20,7 +20,7 @@ for (const product of Object.values(context.window.productCatalogue)) {
     const hash = crypto.createHash('sha256').update(input).update('responsive-v1-quality92').digest('hex').slice(0, 12);
     const stem = path.basename(source, path.extname(source));
     const variants = [];
-    for (const width of (logo ? [160, 224, 320, 480, 720] : [160, 320, 480, 640, 960]).filter(width => width <= metadata.width)) {
+    for (const width of (logo ? [112, 160, 224, 296, 320, 480, 720] : [160, 256, 320, 480, 560, 640, 960]).filter(width => width <= metadata.width)) {
       const target = 'assets/performance/' + stem + '-' + hash + '-' + width + '.webp';
       if (!fs.existsSync(path.join(root, target))) await sharp(input).resize({ width, withoutEnlargement: true }).webp(logo ? { lossless: true, effort: 6 } : { quality: 92, alphaQuality: 100, smartSubsample: true, effort: 6 }).toFile(path.join(root, target));
       variants.push(target + ' ' + width + 'w');
