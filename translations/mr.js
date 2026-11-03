@@ -861,5 +861,6 @@ window.madhavTranslations.mr = {
   "Ayurvedic products manufactured in Haridwar and supplied from Muzaffarpur, Bihar. Explore Madhav Marketing’s Dard Haran, Kabj Haran and Madhumeh Haran range.": "हरिद्वारमध्ये निर्मित आणि मुजफ्फरपूर, बिहार येथून पुरवली जाणारी आयुर्वेदिक उत्पादने. माधव मार्केटिंगची दर्द हरण, कब्ज हरण आणि मधुमेह हरण उत्पादन श्रेणी पाहा.",
   "STORE & SUPPLY ADDRESS": "स्टोअर व पुरवठ्याचा पत्ता",
   "Store & Supply Address:": "स्टोअर व पुरवठ्याचा पत्ता:",
-  "Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.": "जगदंबा एजन्सी, मोतीझील, मुजफ्फरपूर, बिहार – 842001, भारत."
+  "Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.": "जगदंबा एजन्सी, मोतीझील, मुजफ्फरपूर, बिहार – 842001, भारत.",
+  "Jagdamba Agency Motijheel, Muzaffarpur Bihar 842001, India": "जगदंबा एजन्सी\nमोतीझील, मुजफ्फरपूर\nबिहार 842001, भारत"
 };

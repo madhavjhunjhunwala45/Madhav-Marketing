@@ -11,7 +11,7 @@ assert(home.title.includes('Haridwar'));
 assert(home.querySelector('.hero-foot').textContent.includes('Manufactured in Haridwar.'));
 assert(home.querySelector('.hero-foot').textContent.includes('Supplied from Muzaffarpur, Bihar.'));
 assert.equal(home.querySelector('#business-locations').textContent, settings.organization.description);
-assert.equal(home.querySelector('#distribution-location address').textContent, 'Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.');
+assert.equal(home.querySelector('#distribution-location address').textContent, 'Jagdamba Agency\nMotijheel, Muzaffarpur\nBihar 842001, India');
 assert(home.querySelector('.contact-details').textContent.includes('Bhalla Road, Opp. Main Post Office'));
 for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) {
   const description = home.querySelector(selector).getAttribute('content'); assert.equal(description, settings.home.description);
@@ -28,16 +28,16 @@ for (const file of files) {
   const haridwar = org.address.find(item => item.addressLocality === 'Haridwar');
   assert.equal(supply.addressRegion, 'Bihar'); assert.equal(supply.name, 'Store and supply address');
   assert.equal(supply.streetAddress, 'Jagdamba Agency, Motijheel'); assert.equal(supply.postalCode, '842001');
-  assert.equal(document.querySelector('footer .footer-location span').textContent, 'Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.');
+  assert.equal(document.querySelector('footer .footer-location span').textContent, 'Jagdamba Agency\nMotijheel, Muzaffarpur\nBihar 842001, India');
   assert.equal(haridwar.streetAddress, 'Bhalla Road, Opp. Main Post Office'); assert.equal(haridwar.addressRegion, 'Uttarakhand');
   assert(!graph.some(item => item['@type'] === 'LocalBusiness'), 'keep the existing organization type and avoid inventing a separate store entity');
   const product = graph.find(item => item['@type'] === 'Product');
   if (product) { assert(!product.manufacturer, 'do not invent a manufacturer identity'); assert.equal(product.description, Object.values(data.window.productCatalogue).find(item => item.title === product.name).description); }
 }
-const keys = ['Manufactured in Haridwar.', 'Supplied from Muzaffarpur, Bihar.', settings.organization.description, 'HARIDWAR ADDRESS', 'STORE & SUPPLY ADDRESS', 'Store & Supply Address:', 'Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.', settings.home.description];
+const keys = ['Manufactured in Haridwar.', 'Supplied from Muzaffarpur, Bihar.', settings.organization.description, 'HARIDWAR ADDRESS', 'STORE & SUPPLY ADDRESS', 'Store & Supply Address:', 'Jagdamba Agency\nMotijheel, Muzaffarpur\nBihar 842001, India', settings.home.description];
 for (const lang of ['hi','mr','te','ta','bn','pa','gu']) {
   const dictionary = data.window.madhavTranslations[lang];
-  keys.forEach(key => assert(dictionary[key] && dictionary[key] !== key, lang + ': ' + key));
+  keys.forEach(key => { const normalized = key.replace(/\s+/g, ' ').trim(); assert(dictionary[normalized] && dictionary[normalized] !== key, lang + ': ' + key); });
   const meta = api.metadata({ kind: 'home', language: lang, translate: text => dictionary[text] || text });
   assert.equal(meta.description, dictionary[settings.home.description]);
 }

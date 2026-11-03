@@ -72,3 +72,7 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 .footer-location strong{color:var(--ink);font-weight:600}
 .cart-page-footer .footer-location{padding-block:16px 0}
 .cart-page-footer .footer-location p{font-size:inherit}
+
+/* Three-line postal formatting only; official address/SEO fields are unchanged. */
+.formatted-supply-address{display:block;white-space:pre-line}
+.formatted-supply-address::first-line{font-weight:600;color:var(--ink)}
