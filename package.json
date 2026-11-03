@@ -1,0 +1,15 @@
+{
+  "name": "madhav-marketing-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-search.cjs && node scripts/check-search.cjs",
+    "test": "node scripts/check-search.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.15"
+  }
+}

@@ -17,5 +17,5 @@ for(const file of ['index.html','product.html','ingredients.html']){
  const html=fs.readFileSync(path.join(root,file),'utf8');assert(html.includes('src="website.js'));assert(html.includes('src="shop.js'));assert.equal((html.match(/rel="stylesheet"/g)||[]).length,1);
  for(const m of html.matchAll(/(?:src|href)="([^"#]+)"/g)){const ref=m[1].split(/[?#]/)[0];if(!/^(https?:|mailto:|tel:|data:)/.test(ref))assert(fs.existsSync(path.join(root,ref)),file+' '+ref);}
 }
-const v=JSON.parse(fs.readFileSync(path.join(root,'vercel.json')));assert.equal(v.framework,null);assert.equal(v.buildCommand,'');assert.equal(v.outputDirectory,'.');assert(!fs.existsSync(path.join(root,'.openai')));assert(!fs.existsSync(path.join(root,'app/chatgpt-auth.ts')));
+const v=JSON.parse(fs.readFileSync(path.join(root,'vercel.json')));assert.equal(v.framework,null);assert.equal(v.buildCommand,'npm run build');assert.equal(v.installCommand,'npm ci --include=dev --ignore-scripts');assert.equal(v.outputDirectory,'dist');assert(!fs.existsSync(path.join(root,'.openai')));assert(!fs.existsSync(path.join(root,'app/chatgpt-auth.ts')));
 console.log('Passed: all product and page assets, seven translation dictionaries and lazy-loading paths, ingredient coverage and standalone Vercel settings.');
