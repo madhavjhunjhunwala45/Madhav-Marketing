@@ -853,5 +853,13 @@ window.madhavTranslations.ta = {
   "Traditionally valued in joint-care preparations; supplied label identifies Boswellia serrata.": "மூட்டுப் பராமரிப்புத் தயாரிப்புகளில் பாரம்பரியமாக மதிக்கப்படுகிறது; வழங்கப்பட்ட லேபிள் Boswellia serrata என அடையாளம் காட்டுகிறது.",
   "Drag or swipe to explore the range": "தயாரிப்புகளைக் காண இழுக்கவும் அல்லது ஸ்வைப் செய்யவும்",
   "Drag or swipe left or right on an ingredient to open its profile.": "ஒரு மூலப்பொருளின் விவரங்களைத் திறக்க அதன் மீது இடது அல்லது வலது பக்கம் இழுக்கவும் அல்லது ஸ்வைப் செய்யவும்.",
-  "Your email draft is ready. Send it from your email app to complete your enquiry.": "உங்கள் மின்னஞ்சல் வரைவு தயாராக உள்ளது. உங்கள் விசாரணையை நிறைவு செய்ய அதை உங்கள் மின்னஞ்சல் செயலியில் இருந்து அனுப்பவும்."
+  "Your email draft is ready. Send it from your email app to complete your enquiry.": "உங்கள் மின்னஞ்சல் வரைவு தயாராக உள்ளது. உங்கள் விசாரணையை நிறைவு செய்ய அதை உங்கள் மின்னஞ்சல் செயலியில் இருந்து அனுப்பவும்.",
+  "Manufactured in Haridwar.": "ஹரித்வாரில் தயாரிக்கப்படுகிறது.",
+  "Supplied from Muzaffarpur, Bihar.": "முசாபர்பூர், பீகாரிலிருந்து விநியோகம்.",
+  "Our products are manufactured in Haridwar, Uttarakhand. Our main supply and distribution operations are based in Muzaffarpur, Bihar.": "எங்கள் தயாரிப்புகள் ஹரித்வார், உத்தரகாண்டில் தயாரிக்கப்படுகின்றன. எங்கள் முக்கிய வழங்கல் மற்றும் விநியோகப் பணிகள் முசாபர்பூர், பீகாரிலிருந்து மேற்கொள்ளப்படுகின்றன.",
+  "HARIDWAR ADDRESS": "ஹரித்வார் முகவரி",
+  "Ayurvedic products manufactured in Haridwar and supplied from Muzaffarpur, Bihar. Explore Madhav Marketing’s Dard Haran, Kabj Haran and Madhumeh Haran range.": "ஹரித்வாரில் தயாரிக்கப்பட்டு, முசாபர்பூர், பீகாரிலிருந்து விநியோகிக்கப்படும் ஆயுர்வேதத் தயாரிப்புகள். மாதவ் மார்க்கெட்டிங்கின் தர்த் ஹரண், கப்ஜ் ஹரண் மற்றும் மதுமேஹ் ஹரண் தயாரிப்பு வரிசையைப் பாருங்கள்.",
+  "STORE & SUPPLY ADDRESS": "கடை மற்றும் வழங்கல் முகவரி",
+  "Store & Supply Address:": "கடை மற்றும் வழங்கல் முகவரி:",
+  "Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.": "ஜகதம்பா ஏஜென்சி, மோதிஜீல், முசாபர்பூர், பீகார் – 842001, இந்தியா."
 };

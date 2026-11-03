@@ -853,5 +853,13 @@ window.madhavTranslations.te = {
   "Traditionally valued in joint-care preparations; supplied label identifies Boswellia serrata.": "కీళ్ల సంరక్షణ తయారీలలో సంప్రదాయంగా విలువైనదిగా భావిస్తారు; సరఫరా చేసిన లేబుల్‌లో Boswellia serrata అని ఉంది.",
   "Drag or swipe to explore the range": "ఉత్పత్తులను చూడటానికి డ్రాగ్ లేదా స్వైప్ చేయండి",
   "Drag or swipe left or right on an ingredient to open its profile.": "పదార్థం వివరాలను తెరవడానికి దానిపై ఎడమ లేదా కుడి వైపుకు డ్రాగ్ లేదా స్వైప్ చేయండి.",
-  "Your email draft is ready. Send it from your email app to complete your enquiry.": "మీ ఇమెయిల్ డ్రాఫ్ట్ సిద్ధంగా ఉంది. మీ విచారణను పూర్తి చేయడానికి దాన్ని మీ ఇమెయిల్ యాప్ నుండి పంపండి."
+  "Your email draft is ready. Send it from your email app to complete your enquiry.": "మీ ఇమెయిల్ డ్రాఫ్ట్ సిద్ధంగా ఉంది. మీ విచారణను పూర్తి చేయడానికి దాన్ని మీ ఇమెయిల్ యాప్ నుండి పంపండి.",
+  "Manufactured in Haridwar.": "హరిద్వార్‌లో తయారీ.",
+  "Supplied from Muzaffarpur, Bihar.": "ముజఫ్ఫర్‌పూర్, బిహార్ నుంచి సరఫరా.",
+  "Our products are manufactured in Haridwar, Uttarakhand. Our main supply and distribution operations are based in Muzaffarpur, Bihar.": "మా ఉత్పత్తులు హరిద్వార్, ఉత్తరాఖండ్‌లో తయారవుతాయి. మా ప్రధాన సరఫరా మరియు పంపిణీ కార్యకలాపాలు ముజఫ్ఫర్‌పూర్, బిహార్ నుంచి నిర్వహించబడతాయి.",
+  "HARIDWAR ADDRESS": "హరిద్వార్ చిరునామా",
+  "Ayurvedic products manufactured in Haridwar and supplied from Muzaffarpur, Bihar. Explore Madhav Marketing’s Dard Haran, Kabj Haran and Madhumeh Haran range.": "హరిద్వార్‌లో తయారై, ముజఫ్ఫర్‌పూర్, బిహార్ నుంచి సరఫరా అయ్యే ఆయుర్వేద ఉత్పత్తులు. మాధవ్ మార్కెటింగ్ దర్ద్ హరణ్, కబ్జ్ హరణ్ మరియు మధుమేహ్ హరణ్ ఉత్పత్తుల శ్రేణిని చూడండి.",
+  "STORE & SUPPLY ADDRESS": "స్టోర్ మరియు సరఫరా చిరునామా",
+  "Store & Supply Address:": "స్టోర్ మరియు సరఫరా చిరునామా:",
+  "Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.": "జగదంబా ఏజెన్సీ, మోతీజీల్, ముజఫ్ఫర్‌పూర్, బిహార్ – 842001, భారతదేశం."
 };

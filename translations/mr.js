@@ -853,5 +853,13 @@ window.madhavTranslations.mr = {
   "Traditionally valued in joint-care preparations; supplied label identifies Boswellia serrata.": "सांध्यांच्या देखभालीच्या तयारीत पारंपरिक महत्त्व आहे; उपलब्ध लेबलवर Boswellia serrata ची ओळख दिली आहे.",
   "Drag or swipe to explore the range": "उत्पादने पाहण्यासाठी ड्रॅग किंवा स्वाइप करा",
   "Drag or swipe left or right on an ingredient to open its profile.": "घटकाची माहिती उघडण्यासाठी त्यावर डावीकडे किंवा उजवीकडे ड्रॅग किंवा स्वाइप करा.",
-  "Your email draft is ready. Send it from your email app to complete your enquiry.": "तुमचा ईमेल मसुदा तयार आहे. चौकशी पूर्ण करण्यासाठी तो तुमच्या ईमेल अॅपमधून पाठवा."
+  "Your email draft is ready. Send it from your email app to complete your enquiry.": "तुमचा ईमेल मसुदा तयार आहे. चौकशी पूर्ण करण्यासाठी तो तुमच्या ईमेल अॅपमधून पाठवा.",
+  "Manufactured in Haridwar.": "हरिद्वारमध्ये निर्मित.",
+  "Supplied from Muzaffarpur, Bihar.": "मुजफ्फरपूर, बिहार येथून पुरवठा.",
+  "Our products are manufactured in Haridwar, Uttarakhand. Our main supply and distribution operations are based in Muzaffarpur, Bihar.": "आमची उत्पादने हरिद्वार, उत्तराखंड येथे तयार केली जातात. आमच्या मुख्य पुरवठा आणि वितरणाचे काम मुजफ्फरपूर, बिहार येथून चालते.",
+  "HARIDWAR ADDRESS": "हरिद्वारचा पत्ता",
+  "Ayurvedic products manufactured in Haridwar and supplied from Muzaffarpur, Bihar. Explore Madhav Marketing’s Dard Haran, Kabj Haran and Madhumeh Haran range.": "हरिद्वारमध्ये निर्मित आणि मुजफ्फरपूर, बिहार येथून पुरवली जाणारी आयुर्वेदिक उत्पादने. माधव मार्केटिंगची दर्द हरण, कब्ज हरण आणि मधुमेह हरण उत्पादन श्रेणी पाहा.",
+  "STORE & SUPPLY ADDRESS": "स्टोअर व पुरवठ्याचा पत्ता",
+  "Store & Supply Address:": "स्टोअर व पुरवठ्याचा पत्ता:",
+  "Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.": "जगदंबा एजन्सी, मोतीझील, मुजफ्फरपूर, बिहार – 842001, भारत."
 };

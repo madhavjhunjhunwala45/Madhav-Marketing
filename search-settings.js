@@ -7,7 +7,7 @@ window.madhavSearchSettings = {
   businessName: 'Madhav Marketing',
   home: {
     title: 'Madhav Marketing | Ayurvedic Products from Haridwar',
-    description: 'Explore Madhav Marketing’s Ayurvedic range from Haridwar, including Dard Haran, Kabj Haran and Madhumeh Haran. View ingredients, packs and label directions.'
+    description: 'Ayurvedic products manufactured in Haridwar and supplied from Muzaffarpur, Bihar. Explore Madhav Marketing’s Dard Haran, Kabj Haran and Madhumeh Haran range.'
   },
   ingredients: {
     title: 'Ayurvedic Ingredient Guide | Madhav Marketing',
@@ -23,10 +23,26 @@ window.madhavSearchSettings = {
   organization: {
     telephone: '+919431655050',
     email: 'madhavmarketing999@gmail.com',
-    streetAddress: 'Bhalla Road, Opp. Main Post Office',
-    addressLocality: 'Haridwar',
-    addressRegion: 'Uttarakhand',
-    addressCountry: 'IN',
+    description: 'Our products are manufactured in Haridwar, Uttarakhand. Our main supply and distribution operations are based in Muzaffarpur, Bihar.',
+    // Store/supply address and PIN confirmed by the owner. Manufacturing remains in Haridwar.
+    // Keep the existing Haridwar contact address separate from distribution.
+    addresses: [
+      {
+        name: 'Store and supply address',
+        streetAddress: 'Jagdamba Agency, Motijheel',
+        addressLocality: 'Muzaffarpur',
+        addressRegion: 'Bihar',
+        postalCode: '842001',
+        addressCountry: 'IN'
+      },
+      {
+        name: 'Haridwar address',
+        streetAddress: 'Bhalla Road, Opp. Main Post Office',
+        addressLocality: 'Haridwar',
+        addressRegion: 'Uttarakhand',
+        addressCountry: 'IN'
+      }
+    ],
     logo: 'assets/madhav-logo-transparent.png',
     sameAs: [
       'https://www.instagram.com/madhavmarketing.ayur/',

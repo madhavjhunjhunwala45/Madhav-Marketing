@@ -48,12 +48,19 @@
 
   function structuredData(meta, catalogue = {}) {
     const orgId = origin + '/#organization', siteId = origin + '/#website';
+    const addresses = (Array.isArray(settings.organization.addresses) && settings.organization.addresses.length
+      ? settings.organization.addresses : [settings.organization]).map(address => {
+        const result = { '@type': 'PostalAddress' };
+        for (const key of ['name', 'streetAddress', 'addressLocality', 'addressRegion', 'postalCode', 'addressCountry']) {
+          if (typeof address[key] === 'string' && address[key].trim()) result[key] = address[key].trim();
+        }
+        return result;
+      });
     const organization = { '@type': 'Organization', '@id': orgId, name: settings.businessName, url: origin + '/',
       logo: absolute(settings.organization.logo), telephone: settings.organization.telephone,
       email: settings.organization.email, sameAs: settings.organization.sameAs,
-      address: { '@type': 'PostalAddress', streetAddress: settings.organization.streetAddress,
-        addressLocality: settings.organization.addressLocality, addressRegion: settings.organization.addressRegion,
-        addressCountry: settings.organization.addressCountry } };
+      description: settings.organization.description,
+      address: addresses.length === 1 ? addresses[0] : addresses };
     const website = { '@type': 'WebSite', '@id': siteId, name: settings.businessName, url: origin + '/', publisher: { '@id': orgId } };
     const page = { '@type': meta.kind === 'ingredients' ? 'CollectionPage' : 'WebPage', '@id': meta.canonical + '#webpage',
       url: meta.canonical, name: meta.title, description: meta.description, inLanguage: meta.language,

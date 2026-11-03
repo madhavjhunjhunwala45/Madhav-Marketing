@@ -65,3 +65,10 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 /* Contrast correction for small existing labels; background colours are unchanged. */
 .product-type,.formula-links small{color:#756037}
 .botanical-strip-heading em,.botanical-latin{color:#536344}
+
+/* Additional confirmed store/supply address; existing footer rows are unchanged. */
+.footer-location{padding-block:0 18px;color:var(--muted);font-size:.75rem;line-height:1.7;overflow-wrap:anywhere}
+.footer-location p{margin:0}
+.footer-location strong{color:var(--ink);font-weight:600}
+.cart-page-footer .footer-location{padding-block:16px 0}
+.cart-page-footer .footer-location p{font-size:inherit}
