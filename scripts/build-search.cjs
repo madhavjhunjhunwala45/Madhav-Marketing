@@ -44,7 +44,7 @@ function render(template, query, kind, id, format) {
   vm.runInContext(helpers, context, { timeout: 3000 });
   vm.runInContext(read('ingredient-shared.js'), context, { timeout: 3000 });
   if (kind === 'home') {
-    vm.runInContext('for (const [id, product] of Object.entries(catalogue)) document.getElementById("product-grid").append(makeProductCard(id, product));', context);
+    vm.runInContext('for (const [id, product] of Object.entries(catalogue)) document.getElementById("product-grid").append(makeProductCard(id, product)); document.getElementById("product-grid").dataset.madhavCatalogueStamp = catalogueSignature();', context);
   } else if (kind === 'product') {
     vm.runInContext(read('product-page.js'), context, { timeout: 3000 });
   } else if (kind === 'ingredients' || kind === 'ingredient') {
@@ -71,6 +71,11 @@ function render(template, query, kind, id, format) {
       preload.setAttribute('imagesizes', mainImage.getAttribute('sizes'));
     }
     preload.setAttribute('fetchpriority', 'high'); document.head.append(preload);
+  }
+  // Fetch the shop's two existing module dependencies alongside the parent script.
+  for (const href of ['store-config.mjs', 'site-settings.js']) {
+    const preload = document.createElement('link'); preload.setAttribute('rel', 'modulepreload');
+    preload.setAttribute('href', href); document.head.append(preload);
   }
   return '<!doctype html>\n' + document.documentElement.outerHTML + '\n';
 }

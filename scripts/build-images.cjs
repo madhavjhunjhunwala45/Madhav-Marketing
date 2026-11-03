@@ -20,7 +20,7 @@ for (const product of Object.values(context.window.productCatalogue)) {
     const hash = crypto.createHash('sha256').update(input).update('responsive-v1-quality92').digest('hex').slice(0, 12);
     const stem = path.basename(source, path.extname(source));
     const variants = [];
-    for (const width of (logo ? [160, 320, 480, 720] : [160, 320, 480, 640, 960]).filter(width => width <= metadata.width)) {
+    for (const width of (logo ? [160, 224, 320, 480, 720] : [160, 320, 480, 640, 960]).filter(width => width <= metadata.width)) {
       const target = 'assets/performance/' + stem + '-' + hash + '-' + width + '.webp';
       if (!fs.existsSync(path.join(root, target))) await sharp(input).resize({ width, withoutEnlargement: true }).webp(logo ? { lossless: true, effort: 6 } : { quality: 92, alphaQuality: 100, smartSubsample: true, effort: 6 }).toFile(path.join(root, target));
       variants.push(target + ' ' + width + 'w');
@@ -35,11 +35,12 @@ for (const product of Object.values(context.window.productCatalogue)) {
   // Put responsive candidates in source HTML too, so the preload scanner sees them immediately.
   for (const file of ['index.html', 'product.html', 'ingredients.html', 'cart.html']) {
     let html = read(file);
+    let logoIndex = 0;
     html = html.replace(/<img\b[^>]*>/g, tag => {
       const { document } = parseHTML('<html><body>' + tag + '</body></html>');
       const image = document.querySelector('img'), source = image.getAttribute('src');
       if (!entries[source]) return tag;
-      const role = image.id === 'spotlight-image' ? 'spotlight' : image.classList.contains('brand-logo') ? 'logo' : 'card';
+      const role = image.id === 'spotlight-image' ? 'spotlight' : image.classList.contains('brand-logo') ? (++logoIndex === 1 ? 'logo-header' : 'logo') : 'card';
       imageContext.window.MadhavImages.apply(image, source, role);
       return image.outerHTML;
     });

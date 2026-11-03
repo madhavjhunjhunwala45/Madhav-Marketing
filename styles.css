@@ -61,3 +61,7 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
  html body :is(.product-card,.ingredient-card,.store-shop-card):hover{translate:none!important}
  #spotlight-image{translate:none!important;transition:none!important}
 }
+
+/* Contrast correction for small existing labels; background colours are unchanged. */
+.product-type,.formula-links small{color:#756037}
+.botanical-strip-heading em,.botanical-latin{color:#536344}
