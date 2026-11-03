@@ -1,9 +1,9 @@
 // Public prices: INR per retail pack. Edit unitPrice to update the website.
 // Screenshot prices exclude Amazon coupons. Separate MRPs were not shown.
-// Checkout is a coming-soon placeholder; the cart submits no orders or payments.
+// Temporary checkout prepares a WhatsApp or email cart enquiry; no payments are collected.
 export const storeConfig = {
   currency: 'INR',
-  checkout: {status: 'coming-soon'},
+  checkout: {status: 'enquiry', whatsappNumber: '+919431655050'},
   delivery: {status: 'pending'},
   priceSource: 'Regular listing prices in supplied Amazon screenshots, 17 October 2026; excludes coupons.',
   products: [

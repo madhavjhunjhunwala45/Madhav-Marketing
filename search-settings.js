@@ -15,7 +15,7 @@ window.madhavSearchSettings = {
   },
   cart: {
     title: 'Your Cart | Madhav Marketing',
-    description: 'Review your selected Madhav Marketing products and pack sizes. Checkout is coming soon.'
+    description: 'Review your selected Madhav Marketing products and pack sizes. Send your cart by WhatsApp or email to enquire about availability and delivery.'
   },
   // Optional per-product overrides. The key must match product-data.js.
   // Without an override, the existing product name and description are used.

@@ -1,0 +1,17 @@
+/* Temporary cart checkout only. Existing theme and cursor rules are inherited. */
+.cart-enquiry-checkout{margin-top:1.25rem;min-width:0}
+.cart-enquiry-checkout h3{font:inherit;font-weight:600;margin:0 0 .8rem;color:inherit}
+.cart-enquiry-actions{display:grid;gap:.65rem}
+.cart-enquiry-actions .store-primary{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;min-height:48px;height:auto;padding:.9rem 1rem;text-align:center;white-space:normal;overflow-wrap:anywhere;text-decoration:none;line-height:1.45}
+.cart-enquiry-actions .cart-enquiry-email{background:transparent;color:var(--forest,#234b3b);border:1px solid currentColor}
+.cart-enquiry-actions button:disabled{opacity:.5;pointer-events:none}
+.cart-enquiry-copy{display:inline-block;margin:.35rem 0 .75rem;padding:.4rem 0;background:transparent;border:0;border-bottom:1px solid currentColor;color:inherit;font:inherit;font-size:.88rem}
+.cart-enquiry-preview{margin-top:.35rem;font-size:.88rem}
+.cart-enquiry-preview summary{padding:.45rem 0;overflow-wrap:anywhere}
+.cart-enquiry-message{display:block;width:100%;box-sizing:border-box;min-height:180px;max-height:380px;margin:.6rem 0 0;padding:.75rem;border:1px solid #bbc5b2;border-radius:4px;background:transparent;color:inherit;font:inherit;line-height:1.5;resize:vertical}
+.cart-enquiry-feedback:empty{display:none}
+.cart-enquiry-actions a:focus-visible,.cart-enquiry-copy:focus-visible,.cart-enquiry-preview summary:focus-visible,.cart-enquiry-message:focus-visible{outline:2px solid #8a6a2d;outline-offset:4px}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .cart-enquiry-actions a{transition:opacity 150ms ease}
+ .cart-enquiry-actions a:hover{opacity:.88}
+}
