@@ -216,3 +216,6 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
  html.mm-action-editing .store-launcher,html.mm-action-editing .back-top-button{visibility:hidden}
 }
 @media(prefers-reduced-motion:reduce){.mm-action-bar a,.mm-accordion-mark{transition:none!important}}
+
+/* mm- ingredient notes reuse native disclosures and existing type/colour tokens. */
+.mm-formula-note{margin-top:8px;font-size:.76rem}.mm-formula-note p,.mm-ingredient-product-note{margin-top:8px;overflow-wrap:anywhere}.mm-ingredient-product-note strong{font-weight:600}.mm-established{white-space:nowrap}

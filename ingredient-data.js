@@ -4,8 +4,8 @@ window.ingredientGuide = {
     "title": "Turmeric · Haldi",
     "latin": "Curcuma longa",
     "group": "familiar",
-    "shortBenefit": "Certain oral extracts may help knee pain and stiffness; evidence is preliminary.",
-    "paragraph": "Turmeric contains curcuminoids, including curcumin, which gives the rhizome its yellow colour. Preliminary human research suggests that certain oral turmeric or curcumin preparations may improve knee osteoarthritis pain and stiffness. Benefits remain uncertain and depend on the preparation studied.",
+    "shortBenefit": "Oral turmeric extracts studied for knee comfort and stiffness.",
+    "paragraph": "Turmeric contains curcuminoids, including curcumin, which gives the rhizome its yellow colour. Preliminary human research suggests that certain oral turmeric or curcumin preparations may improve knee osteoarthritis pain and stiffness.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -116,7 +116,7 @@ window.ingredientGuide = {
     "latin": "Ocimum tenuiflorum",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestive comfort.",
-    "paragraph": "Tulsi is an aromatic herb with traditional stomachic and digestive properties. Herbal preparations use it for digestive comfort and related stomach complaints. These are traditional uses recorded for the plant; they are not established clinical effects of every tulsi preparation.",
+    "paragraph": "Tulsi is an aromatic herb with traditional stomachic and digestive properties. Herbal preparations use it for digestive comfort and related stomach complaints.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -153,7 +153,7 @@ window.ingredientGuide = {
     "latin": "Phyllanthus emblica",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestion and general vitality.",
-    "paragraph": "Amla fruit has traditional digestive and carminative properties, meaning it is used to support digestion and ease gas. Ayurvedic practice also values it for general vitality; these are traditional uses rather than established clinical benefits.",
+    "paragraph": "Amla fruit has traditional digestive and carminative properties, meaning it is used to support digestion and ease gas.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -190,7 +190,7 @@ window.ingredientGuide = {
     "latin": "Azadirachta indica",
     "group": "familiar",
     "shortBenefit": "Traditionally used in external skin-care preparations.",
-    "paragraph": "Neem leaves have bitter properties and are traditionally used in external preparations for skin complaints. Leaf decoctions have a historical role in skin care, while the bark has traditional astringent uses. These traditional properties do not establish an oral treatment benefit.",
+    "paragraph": "Neem leaves have bitter properties and are traditionally used in external preparations for skin complaints. Leaf decoctions have a historical role in skin care, while the bark has traditional astringent uses.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -226,8 +226,8 @@ window.ingredientGuide = {
     "title": "Jamun · Indian blackberry",
     "latin": "Syzygium cumini",
     "group": "familiar",
-    "shortBenefit": "Traditionally used for digestive and astringent properties.",
-    "paragraph": "Jamun leaves, bark and seeds have traditional digestive uses. Different preparations are described as astringent or constipating, including use for loose stools. These traditional properties are specific to the plant part and preparation; they do not establish a glucose-lowering benefit.",
+    "shortBenefit": "Metabolic-wellness botanical with a digestive role.",
+    "paragraph": "Jamun is a key botanical in both Madhumeh Haran formulas. It is valued for its astringent and digestive properties and its place in Ayurvedic metabolic care, alongside Karela and the other listed botanicals. Leaves, bark, fruit and seeds have different properties; the pack identifies the preparation used.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -263,8 +263,8 @@ window.ingredientGuide = {
     "title": "Karela · Bitter gourd",
     "latin": "Momordica charantia",
     "group": "familiar",
-    "shortBenefit": "A bitter ingredient traditionally used for bowel regularity.",
-    "paragraph": "Karela has a pronounced bitter taste and is recorded in traditional medicine as a laxative ingredient. This traditional role relates to bowel regularity; reliable clinical benefits cannot be assumed for every juice, powder or extract.",
+    "shortBenefit": "Metabolic-wellness botanical with a digestive role.",
+    "paragraph": "Karela brings its distinctive bitter botanical character to both Madhumeh Haran formulas. It contributes to their Ayurvedic metabolic focus and also has a role in digestive and bowel-care preparations. Alongside Jamun, it forms part of the blends' botanical foundation.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -338,7 +338,7 @@ window.ingredientGuide = {
     "latin": "Cinnamomum verum / Cinnamomum cassia",
     "group": "familiar",
     "shortBenefit": "Provides a warm aroma and flavour.",
-    "paragraph": "Cinnamon is an aromatic bark spice that contributes warm flavour to foods and herbal preparations. Ceylon and cassia cinnamon are different species. Research has not clearly established a therapeutic benefit, including reliable blood-glucose control, for cinnamon supplements.",
+    "paragraph": "Cinnamon is an aromatic bark spice that contributes warm flavour to foods and herbal preparations. Ceylon and cassia cinnamon are different species.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -398,7 +398,7 @@ window.ingredientGuide = {
     "latin": "Cuminum cyminum",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestive comfort.",
-    "paragraph": "Cumin is an aromatic spice traditionally valued for digestive comfort. A small uncontrolled study of a specific cumin extract reported improvements in bloating and abdominal discomfort in adults with irritable bowel symptoms. These preliminary findings do not establish a reliable treatment effect.",
+    "paragraph": "Cumin is an aromatic spice traditionally valued for digestive comfort. A small uncontrolled study of a specific cumin extract reported improvements in bloating and abdominal discomfort in adults with irritable bowel symptoms.",
     "evidenceLabel": "Limited evidence",
     "sources": [
       {
@@ -435,7 +435,7 @@ window.ingredientGuide = {
     "latin": "Allium sativum",
     "group": "familiar",
     "shortBenefit": "Some supplements may modestly lower elevated cholesterol.",
-    "paragraph": "Garlic provides a pungent flavour, and some garlic supplements have been studied in people with elevated cholesterol. Research suggests a small reduction in total and LDL cholesterol. The observed benefit concerns the supplements studied and cannot be assumed for every garlic-containing preparation.",
+    "paragraph": "Garlic provides a pungent flavour, and some garlic supplements have been studied in people with elevated cholesterol. Research suggests a small reduction in total and LDL cholesterol.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -471,7 +471,7 @@ window.ingredientGuide = {
     "title": "Aloe vera · Ghritkumari",
     "latin": "Aloe vera",
     "group": "familiar",
-    "shortBenefit": "Topical inner-leaf gel may support burn healing.",
+    "shortBenefit": "Topical inner-leaf gel studied for burn healing.",
     "paragraph": "Aloe inner-leaf gel has been studied for skin applications. Human research suggests that topical gel may help burns heal and reduce related pain. These findings concern the gel; latex, whole-leaf preparations and unspecified extracts have different properties.",
     "evidenceLabel": "Human research",
     "sources": [
@@ -522,7 +522,7 @@ window.ingredientGuide = {
     "latin": "Mentha × piperita",
     "group": "familiar",
     "shortBenefit": "Certain oil capsules may ease irritable bowel symptoms.",
-    "paragraph": "Peppermint contains aromatic essential oil and is traditionally associated with digestive comfort. Limited human research suggests that enteric-coated peppermint oil capsules may ease irritable bowel symptoms in adults. This evidence concerns those capsules and does not establish the same benefit for leaves or external oils.",
+    "paragraph": "Peppermint is an aromatic botanical with naturally occurring menthol and a fresh mint scent. In Dard Haran Oil, it forms part of the aromatic massage blend, complementing the botanical extracts and carrier oils.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -596,7 +596,7 @@ window.ingredientGuide = {
     "latin": "Terminalia arjuna",
     "group": "rare",
     "shortBenefit": "Bark traditionally used in Ayurvedic heart-care preparations.",
-    "paragraph": "Arjuna bark is traditionally described as a cardiotonic ingredient and used in Ayurvedic preparations intended to support heart function. This is a traditional medicinal role; it does not establish prevention or treatment of cardiovascular disease.",
+    "paragraph": "Arjuna bark is traditionally described as a cardiotonic ingredient and used in Ayurvedic preparations intended to support heart function.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -669,8 +669,8 @@ window.ingredientGuide = {
     "title": "Bibhitaki · Baheda",
     "latin": "Terminalia bellirica",
     "group": "rare",
-    "shortBenefit": "Fruit traditionally used for throat discomfort.",
-    "paragraph": "Bibhitaki fruit has traditional laxative properties and is used in herbal preparations for throat discomfort and cough. These uses are recorded for the fruit and its preparations. They describe traditional practice rather than a demonstrated clinical benefit of every extract.",
+    "shortBenefit": "Traditionally used for digestion and bowel regularity.",
+    "paragraph": "Bibhitaki fruit has traditional laxative properties and is used in herbal preparations for throat discomfort and cough. These uses are recorded for the fruit and its preparations.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -707,7 +707,7 @@ window.ingredientGuide = {
     "latin": "Vitex negundo",
     "group": "rare",
     "shortBenefit": "Leaves traditionally used for joint discomfort.",
-    "paragraph": "Nirgundi leaves are traditionally described as pain-soothing and used in preparations for inflammatory joint complaints. Their use is associated with joint comfort, but clinical pain relief from every leaf extract or botanical oil has not been established.",
+    "paragraph": "Nirgundi leaves are traditionally described as pain-soothing and used in preparations for inflammatory joint complaints.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -761,7 +761,7 @@ window.ingredientGuide = {
     "latin": "Piper longum",
     "group": "rare",
     "shortBenefit": "Traditionally used in preparations for cough and cold.",
-    "paragraph": "Long pepper fruits and roots are traditionally used in preparations for cough and cold. The dried immature fruit is also a pungent spice. These uses concern specified plant parts and preparations; they do not establish a clinical effect for every extract.",
+    "paragraph": "Long pepper fruits and roots are traditionally used in preparations for cough and cold. The dried immature fruit is also a pungent spice.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -791,12 +791,16 @@ window.ingredientGuide = {
     "latin": "Berberis aristata",
     "group": "rare",
     "shortBenefit": "Traditionally used for diarrhoeal complaints.",
-    "paragraph": "Daruhaldi is a berberine-containing botanical traditionally used for diarrhoeal complaints. Its digestive role is based on traditional use; findings for isolated berberine should not be treated as proven benefits of the whole plant or its extracts.",
+    "paragraph": "Daruhaldi is a berberine-containing botanical traditionally used for diarrhoeal complaints.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
         "title": "Primary botanical study: Berberis aristata identification and traditional uses",
         "url": "https://pubmed.ncbi.nlm.nih.gov/24991073/"
+      },
+      {
+        "title": "NCCIH: diabetes and dietary supplements — berberine evidence",
+        "url": "https://www.nccih.nih.gov/health/diabetes-and-dietary-supplements-what-you-need-to-know"
       }
     ],
     "featured": true,
@@ -865,7 +869,7 @@ window.ingredientGuide = {
     "latin": "Asparagus racemosus",
     "group": "rare",
     "shortBenefit": "Root traditionally valued for rejuvenative and digestive uses.",
-    "paragraph": "Shatavari tuberous root is traditionally described as cooling, rejuvenative and carminative. Herbal preparations use the root for digestive comfort and general wellbeing. These are traditional properties; they do not establish a clinical benefit for every root powder or extract.",
+    "paragraph": "Shatavari tuberous root is traditionally described as cooling, rejuvenative and carminative. Herbal preparations use the root for digestive comfort and general wellbeing.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -894,7 +898,7 @@ window.ingredientGuide = {
     "latin": "Chlorophytum borivilianum",
     "group": "rare",
     "shortBenefit": "A small pilot study explored exercise performance.",
-    "paragraph": "Safed musli is a tuberous-root ingredient studied for exercise performance. A small placebo-controlled pilot trial reported improvements in some physical-performance measures with a specific preparation. The findings are preliminary and need confirmation in larger human studies.",
+    "paragraph": "Safed musli is a tuberous-root ingredient studied for exercise performance. A small placebo-controlled pilot trial reported improvements in some physical-performance measures with a specific preparation.",
     "evidenceLabel": "Limited evidence",
     "sources": [
       {
@@ -931,7 +935,7 @@ window.ingredientGuide = {
     "latin": "Embelia ribes",
     "group": "rare",
     "shortBenefit": "Traditionally used as an appetite and digestive ingredient.",
-    "paragraph": "Vidang fruit is traditionally described as an appetite-promoting, carminative and digestive ingredient. Its historical uses include digestive discomfort and intestinal-worm preparations. These are traditional-use descriptions; a verified clinical benefit cannot be assumed for every preparation containing the fruit.",
+    "paragraph": "Vidang fruit is traditionally described as an appetite-promoting, carminative and digestive ingredient. Its historical uses include digestive discomfort and intestinal-worm preparations.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -997,7 +1001,7 @@ window.ingredientGuide = {
     "latin": "Plumbago zeylanica",
     "group": "rare",
     "shortBenefit": "Root traditionally used for indigestion.",
-    "paragraph": "Chitrak root has traditional stomachic and astringent properties and is used in preparations for indigestion. Its digestive role is based on traditional medicinal records; a reliable clinical benefit from every root extract has not been established.",
+    "paragraph": "Chitrak root has traditional stomachic and astringent properties and is used in preparations for indigestion.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1026,7 +1030,7 @@ window.ingredientGuide = {
     "latin": "Holarrhena pubescens",
     "group": "rare",
     "shortBenefit": "Traditionally used for diarrhoeal complaints.",
-    "paragraph": "Kutaja bark and seeds have a longstanding traditional role in preparations for diarrhoea and dysentery. Government medicinal-plant records document these digestive uses. The description reflects historical practice and does not establish a reliable clinical effect for an individual extract or formula.",
+    "paragraph": "Kutaja bark and seeds have a longstanding traditional role in preparations for diarrhoea and dysentery. Government medicinal-plant records document these digestive uses.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1054,9 +1058,9 @@ window.ingredientGuide = {
     "title": "Suranjan",
     "latin": "Colchicum luteum",
     "group": "rare",
-    "shortBenefit": "Contains colchicine-related compounds; a product benefit is not established.",
-    "paragraph": "Suranjan, identified here as Colchicum luteum, contains colchicine and related alkaloids. It occurs in traditional medicinal preparations, but the plant material is not equivalent to a standardised colchicine medicine. A clinical benefit for the supplied Suranjan component has not been established.",
-    "evidenceLabel": "Benefit not established",
+    "shortBenefit": "A Colchicum component in the Dard Haran Capsule formula.",
+    "paragraph": "Suranjan, identified here as Colchicum luteum, contains colchicine and related alkaloids. It occurs in traditional medicinal preparations, but the plant material is not equivalent to a standardised colchicine medicine.",
+    "evidenceLabel": "Botanical component",
     "sources": [
       {
         "title": "CSIR-IIIM herbarium: Colchicum luteum",
@@ -1089,7 +1093,7 @@ window.ingredientGuide = {
     "latin": "Smilax china",
     "group": "rare",
     "shortBenefit": "Extracts have shown anti-inflammatory activity in animal research.",
-    "paragraph": "Chobchini is a Smilax ingredient whose extracts have shown anti-inflammatory activity in animal experiments. These findings describe experimental properties and possible research directions; they do not establish relief of inflammation or pain in people.",
+    "paragraph": "Chobchini is a Smilax ingredient whose extracts have shown anti-inflammatory activity in animal experiments.",
     "evidenceLabel": "Laboratory evidence",
     "sources": [
       {
@@ -1123,7 +1127,7 @@ window.ingredientGuide = {
     "latin": "Trachyspermum ammi",
     "group": "rare",
     "shortBenefit": "An aromatic spice traditionally used for digestive comfort.",
-    "paragraph": "Ajwain fruits have a strong, thyme-like aroma associated with their thymol-rich essential oil. They are traditionally valued as a carminative ingredient for digestive comfort and flatulence. The essential oil adds aroma to formulations; digestive uses of the fruits do not establish an external-oil benefit.",
+    "paragraph": "Ajwain fruits have a strong, thyme-like aroma associated with their thymol-rich essential oil. They are traditionally valued as a carminative ingredient for digestive comfort and flatulence.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1152,7 +1156,7 @@ window.ingredientGuide = {
     "latin": "Processed conch shell",
     "group": "mineral",
     "shortBenefit": "A processed conch-shell component in the formulation.",
-    "paragraph": "Shankh bhasma is a processed conch-shell preparation used as a mineral component in Ayurvedic formulas. It is different from untreated shell. No standalone therapeutic benefit is assigned to the supplied preparation because its composition and clinical effects have not been verified.",
+    "paragraph": "Shankh bhasma is a processed conch-shell preparation used as a mineral component in Ayurvedic formulas. It is different from untreated shell.",
     "evidenceLabel": "Classical preparation",
     "sources": [
       {
@@ -1181,9 +1185,9 @@ window.ingredientGuide = {
     "title": "Vishtundak Vati",
     "latin": "",
     "group": "helper",
-    "shortBenefit": "A named compound preparation; a specific benefit is not verified.",
-    "paragraph": "Vishtundak Vati is a named compound preparation rather than a single plant ingredient. Its properties depend on its constituent materials and processing; a specific benefit has not been verified for the preparation shown here.",
-    "evidenceLabel": "Benefit not established",
+    "shortBenefit": "A classical compound listed in Dard Haran Capsule.",
+    "paragraph": "Vishtundak Vati is a named compound preparation rather than a single plant ingredient.",
+    "evidenceLabel": "Classical compound",
     "sources": [],
     "featured": false,
     "illustration": "blend",
@@ -1194,7 +1198,7 @@ window.ingredientGuide = {
     "latin": "Boswellia serrata",
     "group": "rare",
     "shortBenefit": "Traditionally valued in joint-care preparations.",
-    "paragraph": "Boswellia resin has a traditional role in joint-care preparations. Small human studies of particular oral extracts suggest possible improvements in osteoarthritis pain and inflammation, but higher-quality research is needed. These findings do not establish the same benefit for every resin or finished preparation.",
+    "paragraph": "Boswellia resin has a traditional role in joint-care preparations. Small human studies of particular oral extracts suggest possible improvements in osteoarthritis pain and inflammation, but higher-quality research is needed.",
     "evidenceLabel": "Limited evidence",
     "sources": [
       {
@@ -1223,7 +1227,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "oil",
     "shortBenefit": "Provides an oil-blend component for external massage.",
-    "paragraph": "Mahanarayan Tail is a named multi-ingredient Ayurvedic oil preparation, rather than a single herb. In the supplied product it contributes an oil-blend component for external massage. A specific clinical benefit cannot be inferred from the blend name alone.",
+    "paragraph": "Mahanarayan Tail is a named multi-ingredient Ayurvedic oil preparation, rather than a single herb. In the supplied product it contributes an oil-blend component for external massage.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1240,7 +1244,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "oil",
     "shortBenefit": "An oil blend used as a component of external massage preparations.",
-    "paragraph": "Maha Vishgarbha Tail is an oil blend used as a component of external massage preparations. Its oily base helps spread the preparation over the skin; a specific clinical pain-relief benefit has not been verified here.",
+    "paragraph": "Maha Vishgarbha Tail is an oil blend used as a component of external massage preparations.",
     "evidenceLabel": "Formulation role",
     "sources": [],
     "featured": false,
@@ -1252,7 +1256,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "oil",
     "shortBenefit": "An oil-based classical component for external massage.",
-    "paragraph": "Mahamash Tail is an oil-based classical preparation used as a component of external massage formulas. Its oily consistency helps distribute the preparation during massage. A specific treatment benefit cannot be assigned from the compound name alone.",
+    "paragraph": "Mahamash Tail is an oil-based classical preparation used as a component of external massage formulas. Its oily consistency helps distribute the preparation during massage.",
     "evidenceLabel": "Formulation role",
     "sources": [],
     "featured": false,
@@ -1264,7 +1268,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "oil",
     "shortBenefit": "Provides a named oil-blend component for external massage.",
-    "paragraph": "Vishnu Tail is listed as an oil-blend component in the supplied external massage preparation. Its role is as part of the complete oil formula. The name alone does not establish its precise ingredients or a standalone therapeutic benefit.",
+    "paragraph": "Vishnu Tail is listed as an oil-blend component in the supplied external massage preparation. Its role is as part of the complete oil formula.",
     "evidenceLabel": "Formulation role",
     "sources": [],
     "featured": false,
@@ -1288,12 +1292,16 @@ window.ingredientGuide = {
     "latin": "Cinnamomum camphora",
     "group": "oil",
     "shortBenefit": "Provides a characteristic aroma in an external preparation.",
-    "paragraph": "Camphor is a volatile, crystalline aromatic substance with a distinctive scent. In an external preparation, it contributes that characteristic aroma. Its presence alone does not establish pain relief, because any such effect depends on concentration and the finished formulation.",
+    "paragraph": "Camphor is a volatile, crystalline aromatic substance with a distinctive scent. In an external preparation, it contributes that characteristic aroma.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
         "title": "ILO/WHO International Chemical Safety Card: Camphor",
         "url": "https://chemicalsafety.ilo.org/dyn/icsc/showcard.display?p_card_id=1021"
+      },
+      {
+        "title": "FDA: external counterirritant ingredient reference",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/omuf/monographs/OTC%20Monograph_M017-External%20Analgesic%20Drug%20Products%20for%20OTC%20Human%20Use%2005.02.2023.pdf"
       }
     ],
     "featured": false,
@@ -1318,7 +1326,7 @@ window.ingredientGuide = {
     "latin": "Brassica campestris, as labelled",
     "group": "oil",
     "shortBenefit": "Provides an oil base for spreading during massage.",
-    "paragraph": "Mustard seed oil contributes a fatty oil base to topical preparations, helping the mixture spread over the skin during massage. This describes its formulation role. It does not establish an independent pain-relieving or circulation-enhancing effect for the supplied oil.",
+    "paragraph": "Mustard seed oil contributes a fatty oil base to topical preparations, helping the mixture spread over the skin during massage.",
     "evidenceLabel": "Formulation role",
     "sources": [],
     "featured": false,
@@ -1363,11 +1371,11 @@ window.ingredientGuide = {
     "note": ""
   },
   "castor": {
-    "title": "Castor root · Erand mool",
+    "title": "Castor · Erand",
     "latin": "Ricinus communis",
     "group": "rare",
     "shortBenefit": "Root traditionally used for inflammatory discomfort.",
-    "paragraph": "Castor root is traditionally used in preparations for inflammatory discomfort. Castor seed oil is a different preparation and can serve as an oil base for external massage. Root uses and oil properties should remain separate; neither establishes the effect of a complete formula.",
+    "paragraph": "Castor root is traditionally used in preparations for inflammatory discomfort. Castor seed oil is a different preparation and can serve as an oil base for external massage.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1396,7 +1404,7 @@ window.ingredientGuide = {
     "latin": "Sida cordifolia",
     "group": "rare",
     "shortBenefit": "Root extracts have been studied for antioxidant properties in animals.",
-    "paragraph": "Bala root extracts have been studied for antioxidant and anti-inflammatory activity in animal experiments. These results describe experimental properties, rather than established benefits for people; reliable clinical relief of pain or weakness is not demonstrated by this research.",
+    "paragraph": "Bala root extracts have been studied for antioxidant and anti-inflammatory activity in animal experiments.",
     "evidenceLabel": "Laboratory evidence",
     "sources": [
       {
@@ -1430,7 +1438,7 @@ window.ingredientGuide = {
     "latin": "Curcuma amada",
     "group": "rare",
     "shortBenefit": "Rhizome traditionally used for digestive comfort.",
-    "paragraph": "Mango ginger rhizome is traditionally described as cooling, stomachic and carminative. These recorded properties explain its use in preparations for digestive comfort. The traditional role applies to the rhizome and does not establish the same clinical benefit as ordinary turmeric.",
+    "paragraph": "Mango ginger rhizome is traditionally described as cooling, stomachic and carminative. These recorded properties explain its use in preparations for digestive comfort.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1501,7 +1509,7 @@ window.ingredientGuide = {
     "latin": "Pinus roxburghii (syn. Pinus longifolia)",
     "group": "oil",
     "shortBenefit": "Provides a characteristic aromatic scent.",
-    "paragraph": "Pine oleoresin contains volatile aromatic constituents that contribute its characteristic scent. Resin-derived oil acts as an aromatic component in external preparations. This describes a formulation property; laboratory findings for particular oils do not establish pain relief or another clinical benefit in people.",
+    "paragraph": "Pine oleoresin contains volatile aromatic constituents that contribute its characteristic scent. Resin-derived oil acts as an aromatic component in external preparations.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1535,7 +1543,7 @@ window.ingredientGuide = {
     "latin": "Eucalyptus globulus",
     "group": "oil",
     "shortBenefit": "Specified topical preparations traditionally relieve localised muscle pain.",
-    "paragraph": "Eucalyptus oil is an aromatic essential oil used in specified topical herbal preparations for localised muscle pain. This is a traditional-use indication that depends on the formulation and route. It does not establish that every eucalyptus-containing oil has the same effect.",
+    "paragraph": "Eucalyptus oil is an aromatic essential oil used in specified topical herbal preparations for localised muscle pain. This is a traditional-use indication that depends on the formulation and route.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1565,7 +1573,7 @@ window.ingredientGuide = {
     "latin": "Gossypium herbaceum",
     "group": "oil",
     "shortBenefit": "Provides an oil base that helps a preparation spread during massage.",
-    "paragraph": "Cottonseed oil provides an oily carrier for other ingredients. It helps an external massage preparation spread over the skin and supplies lubrication during application; this is a formulation property rather than a separate medicinal benefit.",
+    "paragraph": "Cottonseed oil provides an oily carrier for other ingredients.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1595,7 +1603,7 @@ window.ingredientGuide = {
     "latin": "Olea europaea",
     "group": "oil",
     "shortBenefit": "Provides an oil base that helps a preparation spread during massage.",
-    "paragraph": "Olive oil is a fixed oil obtained from olive fruit. It acts as an oil vehicle and skin-conditioning ingredient in preparations, helping an external formula spread during massage. This formulation role does not establish a specific treatment outcome.",
+    "paragraph": "Olive oil is a fixed oil obtained from olive fruit. It acts as an oil vehicle and skin-conditioning ingredient in preparations, helping an external formula spread during massage.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1625,7 +1633,7 @@ window.ingredientGuide = {
     "latin": "Sesamum indicum",
     "group": "oil",
     "shortBenefit": "Provides an oil base and skin-conditioning ingredient.",
-    "paragraph": "Sesame seed oil acts as an oily carrier and skin-conditioning ingredient in topical preparations. It helps an oil mixture spread during massage and can reduce moisture loss from the skin. These are formulation properties rather than evidence of a pain-treatment benefit.",
+    "paragraph": "Sesame seed oil acts as an oily carrier and skin-conditioning ingredient in topical preparations. It helps an oil mixture spread during massage and can reduce moisture loss from the skin.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1684,7 +1692,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "mineral",
     "shortBenefit": "Adds a distinctive salty flavour and sulphurous aroma.",
-    "paragraph": "Black salt is a salty ingredient with a characteristic sulphurous flavour and aroma. It contributes taste to a preparation and is familiar in Indian seasoning. These sensory properties do not establish a specific digestive or other medical benefit.",
+    "paragraph": "Black salt is a salty ingredient with a characteristic sulphurous flavour and aroma. It contributes taste to a preparation and is familiar in Indian seasoning.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1714,7 +1722,7 @@ window.ingredientGuide = {
     "latin": "Operculina turpethum",
     "group": "rare",
     "shortBenefit": "Root traditionally used as a laxative and purgative.",
-    "paragraph": "Nishoth root is traditionally described as laxative, purgative and carminative. Herbal preparations use it to promote bowel evacuation in constipation. These are traditional uses of a potent root preparation, rather than proof of a clinical benefit for every powder or combination.",
+    "paragraph": "Nishoth root is traditionally described as laxative, purgative and carminative. Herbal preparations use it to promote bowel evacuation in constipation.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1760,7 +1768,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "mineral",
     "shortBenefit": "Provides a salty mineral component in the formula.",
-    "paragraph": "Rock salt consists mainly of the mineral halite, or sodium chloride. Its principal formulation role is to contribute a salty mineral component and flavour. These properties do not establish a special treatment benefit compared with other forms of salt.",
+    "paragraph": "Rock salt consists mainly of the mineral halite, or sodium chloride. Its principal formulation role is to contribute a salty mineral component and flavour.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1789,8 +1797,8 @@ window.ingredientGuide = {
     "title": "Indrayan",
     "latin": "Citrullus colocynthis",
     "group": "rare",
-    "shortBenefit": "Fruit has traditional purgative properties; clinical benefit is unverified.",
-    "paragraph": "Indrayan fruit has traditional purgative uses in medicinal preparations. The Institute of Mathematical Sciences records these uses for Citrullus colocynthis, but such records do not establish a clinical benefit for the supplied ingredient or its complete herbal formula.",
+    "shortBenefit": "Traditionally used as a purgative ingredient.",
+    "paragraph": "Indrayan fruit has traditional purgative uses in medicinal preparations.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1820,7 +1828,7 @@ window.ingredientGuide = {
     "latin": "Rosa centifolia",
     "group": "rare",
     "shortBenefit": "Flower preparations traditionally used for mild mouth, throat and skin inflammation.",
-    "paragraph": "Rose flower preparations are traditionally used to soothe mild inflammation of the mouth, throat and skin. European herbal medicine assessments include Rosa centifolia flower in these uses; the benefit classification rests on longstanding use rather than conclusive clinical trials.",
+    "paragraph": "Rose flower preparations are traditionally used to soothe mild inflammation of the mouth, throat and skin.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1857,7 +1865,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "mineral",
     "shortBenefit": "Provides a soluble mineral-salt component.",
-    "paragraph": "Nausadar is ammonium chloride, a water-soluble mineral salt. Its solution is mildly acidic, so it contributes different chemical properties from an alkaline salt. A medical benefit for the finished preparation cannot be inferred from this component alone.",
+    "paragraph": "Nausadar is ammonium chloride, a water-soluble mineral salt. Its solution is mildly acidic, so it contributes different chemical properties from an alkaline salt.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1874,7 +1882,7 @@ window.ingredientGuide = {
     "latin": "Glycyrrhiza glabra",
     "group": "familiar",
     "shortBenefit": "Sweet root traditionally used in preparations for cough.",
-    "paragraph": "Liquorice is a naturally sweet root used as a flavouring and in traditional preparations for cough. Research on specific gargles and topical products suggests possible benefits for some throat and mouth symptoms, but high-quality evidence is insufficient to establish broad therapeutic effects.",
+    "paragraph": "Liquorice is a naturally sweet root used as a flavouring and in traditional preparations for cough.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1928,7 +1936,7 @@ window.ingredientGuide = {
     "latin": "Purified mineral resin",
     "group": "rare",
     "shortBenefit": "Traditionally valued as a rejuvenating Rasayana ingredient.",
-    "paragraph": "Purified shilajit has a traditional Rasayana role in Ayurveda, where it is valued in rejuvenating preparations. Its properties depend on source material and purification. Small studies of particular preparations remain insufficient to establish a general benefit for every shilajit-containing product.",
+    "paragraph": "Purified shilajit has a traditional Rasayana role in Ayurveda, where it is valued in rejuvenating preparations. Its properties depend on source material and purification.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -1965,7 +1973,7 @@ window.ingredientGuide = {
     "latin": "Aegle marmelos",
     "group": "rare",
     "shortBenefit": "Fruit traditionally used for digestive comfort.",
-    "paragraph": "Bael fruit is traditionally described as digestive and astringent. Unripe and ripe fruit have different traditional bowel-related uses, while leaves and roots are separate medicinal materials. These properties depend on the part and preparation and do not establish a clinical benefit of every extract.",
+    "paragraph": "Bael fruit is traditionally described as digestive and astringent. Unripe and ripe fruit have different traditional bowel-related uses, while leaves and roots are separate medicinal materials.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2010,16 +2018,20 @@ window.ingredientGuide = {
     "note": "Ingredient identity is not confirmed."
   },
   "vasant-kusumakar": {
-    "title": "Basant kusumakar",
+    "title": "Vasant Kusumakar Ras",
     "latin": "",
     "group": "helper",
-    "shortBenefit": "A classical compound component rather than a single ingredient.",
-    "paragraph": "Basant kusumakar is a classical compound preparation rather than one botanical ingredient. Its properties depend on its complete composition and processing. A specific standalone benefit cannot be established from the name printed on a product panel alone.",
-    "evidenceLabel": "Classical preparation",
+    "shortBenefit": "Rasayana component for metabolic care and general vitality.",
+    "paragraph": "Vasant Kusumakar Ras is a classical Ayurvedic herbo-mineral Rasayana, traditionally associated with Madhumeha care and vitality. Rasayana is Ayurveda's rejuvenative approach to strength and wellbeing. Classical versions combine processed metal and mineral preparations with botanical processing liquids. In Madhumeh Haran Premium, it is a distinctive classical component alongside the botanical blend.",
+    "evidenceLabel": "Traditional use",
     "sources": [
       {
-        "title": "NCCIH: Ayurvedic medicine — evidence and safety",
-        "url": "https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth"
+        "title": "CCRAS / AIIA: chemical characterisation of Vasantakusumakara Rasa",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29269973/"
+      },
+      {
+        "title": "IMPPAT: Ayurvedic Formulary of India reference",
+        "url": "https://cb.imsc.res.in/imppat/afiformulationdetails/Vasantakusum%C4%81kara%20rasa"
       }
     ],
     "featured": false,
@@ -2031,7 +2043,7 @@ window.ingredientGuide = {
     "latin": "Commiphora wightii",
     "group": "rare",
     "shortBenefit": "Resin traditionally used in preparations for inflammatory discomfort.",
-    "paragraph": "Guggul is a plant resin with traditionally described bitter, pungent and astringent properties. Ayurvedic preparations use it for inflammatory and joint-related discomfort. These are traditional properties recorded for the resin, not established clinical effects of every processed guggul formula.",
+    "paragraph": "Guggul is a plant resin with traditionally described bitter, pungent and astringent properties. Ayurvedic preparations use it for inflammatory and joint-related discomfort.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2060,7 +2072,7 @@ window.ingredientGuide = {
     "latin": "Ficus religiosa",
     "group": "rare",
     "shortBenefit": "Fruit traditionally used for digestion and bowel regularity.",
-    "paragraph": "Pipal fruit is traditionally described as a laxative and digestive ingredient. Leaves are separately recorded as purgative, while bark has different traditional uses. These properties concern specific plant parts and are not established clinical benefits.",
+    "paragraph": "Pipal fruit is traditionally described as a laxative and digestive ingredient. Leaves are separately recorded as purgative, while bark has different traditional uses.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2089,7 +2101,7 @@ window.ingredientGuide = {
     "latin": "Processed agate",
     "group": "mineral",
     "shortBenefit": "A processed agate-based mineral component.",
-    "paragraph": "Akik bhasma or pishti refers to a processed agate-based mineral preparation. Agate is a form of chalcedony, a silica mineral. Its use as a formulation component does not establish a standalone medical benefit, and its processed form differs from raw stone.",
+    "paragraph": "Akik bhasma or pishti refers to a processed agate-based mineral preparation. Agate is a form of chalcedony, a silica mineral.",
     "evidenceLabel": "Classical preparation",
     "sources": [
       {
@@ -2123,7 +2135,7 @@ window.ingredientGuide = {
     "latin": "Processed mica",
     "group": "mineral",
     "shortBenefit": "A processed mica component in the formulation.",
-    "paragraph": "Abrak bhasma is a processed mica preparation used as a mineral component in Ayurvedic formulas. Its properties depend on the starting mineral and processing method. Material-characterisation studies do not establish a clinical benefit for the supplied bhasma or its complete formula.",
+    "paragraph": "Abrak bhasma is a processed mica preparation used as a mineral component in Ayurvedic formulas. Its properties depend on the starting mineral and processing method.",
     "evidenceLabel": "Classical preparation",
     "sources": [
       {
@@ -2153,7 +2165,7 @@ window.ingredientGuide = {
     "latin": "Amla, Haritaki and Bibhitaki",
     "group": "rare",
     "shortBenefit": "A three-fruit blend traditionally used for digestion and bowel regularity.",
-    "paragraph": "Triphala combines amla, haritaki and bibhitaki fruits. It is traditionally used in digestive preparations and for bowel regularity. This traditional benefit concerns the fruit blend; it should not be assigned to an ingredient described as stem.",
+    "paragraph": "Triphala combines amla, haritaki and bibhitaki fruits. It is traditionally used in digestive preparations and for bowel regularity.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2170,7 +2182,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "mineral",
     "shortBenefit": "Provides an alkaline mineral-salt component.",
-    "paragraph": "Sajjikshar is an alkaline salt preparation with carbonate or bicarbonate components. Its chemical composition varies with its source and processing. It contributes an alkaline component to a classical formula; these chemical properties do not by themselves establish a clinical benefit.",
+    "paragraph": "Sajjikshar is an alkaline salt preparation with carbonate or bicarbonate components. Its chemical composition varies with its source and processing.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -2186,9 +2198,9 @@ window.ingredientGuide = {
     "title": "Purified Bhilava · Shuddha Bhallataka",
     "latin": "Semecarpus anacardium, purified as labelled",
     "group": "rare",
-    "shortBenefit": "A purified marking-nut component; clinical benefit is unverified.",
-    "paragraph": "Bhilava is identified as purified Semecarpus anacardium, the marking-nut plant. The supplied ingredient is a processed botanical component, rather than raw fruit. The identity reference verifies the species but does not establish a standalone clinical benefit for this purified preparation.",
-    "evidenceLabel": "Benefit not established",
+    "shortBenefit": "A purified marking-nut component of the formula.",
+    "paragraph": "Bhilava is identified as purified Semecarpus anacardium, the marking-nut plant. The supplied ingredient is a processed botanical component, rather than raw fruit.",
+    "evidenceLabel": "Processed botanical",
     "sources": [
       {
         "title": "Botanical reference; does not establish the requested benefit",
@@ -2254,7 +2266,7 @@ window.ingredientGuide = {
     "latin": "Tephrosia purpurea",
     "group": "rare",
     "shortBenefit": "Specific extracts have shown preliminary antioxidant activity in animals.",
-    "paragraph": "Sharapunkha is a traditional botanical component identified as Tephrosia purpurea. Animal studies of particular extracts have explored antioxidant and metabolic effects. These preliminary findings describe the tested extract and do not establish a clinical benefit for people or a finished formula.",
+    "paragraph": "Sharapunkha is a traditional botanical component identified as Tephrosia purpurea. Animal studies of particular extracts have explored antioxidant and metabolic effects.",
     "evidenceLabel": "Preliminary research",
     "sources": [
       {
@@ -2288,7 +2300,7 @@ window.ingredientGuide = {
     "latin": "Piper nigrum",
     "group": "rare",
     "shortBenefit": "Provides pungency and aromatic flavour.",
-    "paragraph": "Black pepper contains piperine, the alkaloid responsible for its pungency, together with volatile aromatic oils. It contributes flavour to foods and herbal preparations. These compositional properties do not establish a digestive, weight-loss or disease-treatment benefit for every pepper-containing product.",
+    "paragraph": "Black pepper contains piperine, the alkaloid responsible for its pungency, together with volatile aromatic oils. It contributes flavour to foods and herbal preparations.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -2342,7 +2354,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "helper",
     "shortBenefit": "A bitter concentrated classical preparation; exact identity needs confirmation.",
-    "paragraph": "Rasanjan commonly refers to a bitter concentrated preparation made from Daruharidra. Published pharmaceutical studies describe concentration of its decoction, sometimes with milk. Its properties vary with the method used; the label name alone does not verify a specific clinical benefit.",
+    "paragraph": "Rasanjan commonly refers to a bitter concentrated preparation made from Daruharidra. Published pharmaceutical studies describe concentration of its decoction, sometimes with milk.",
     "evidenceLabel": "Classical preparation",
     "sources": [
       {
@@ -2363,7 +2375,7 @@ window.ingredientGuide = {
     "latin": "Amorphophallus paeoniifolius",
     "group": "rare",
     "shortBenefit": "Prepared corm traditionally used for digestive comfort.",
-    "paragraph": "Surana corm is traditionally described as carminative and used in preparations for digestive complaints. The supplied composition names a purified powder. These are preparation-specific traditional uses, not established clinical effects of every yam product or of untreated plant material.",
+    "paragraph": "Surana corm is traditionally described as carminative and used in preparations for digestive complaints. The supplied composition names a purified powder.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2404,7 +2416,7 @@ window.ingredientGuide = {
     "latin": "Coriandrum sativum",
     "group": "rare",
     "shortBenefit": "Adds a pleasant aroma and flavour; traditionally used for digestion.",
-    "paragraph": "Coriander fruits contain aromatic oil rich in linalool and contribute a warm, citrus-like flavour. They are also traditionally used as a digestive ingredient. These aromatic and traditional properties do not establish a reliable blood-glucose, cholesterol or other clinical treatment effect.",
+    "paragraph": "Coriander fruits contain aromatic oil rich in linalool and contribute a warm, citrus-like flavour. They are also traditionally used as a digestive ingredient.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2441,7 +2453,7 @@ window.ingredientGuide = {
     "latin": "Mesua ferrea",
     "group": "rare",
     "shortBenefit": "Flowers have traditional uses for cough; seed benefits differ.",
-    "paragraph": "Nagkesar flowers are traditionally used in preparations for cough and other complaints. Seed oil has separate traditional external uses for rheumatic discomfort. These uses are specific to flowers or seed oil and do not establish a benefit for the orally supplied seed component.",
+    "paragraph": "Nagkesar flowers are traditionally used in preparations for cough and other complaints. Seed oil has separate traditional external uses for rheumatic discomfort.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2470,7 +2482,7 @@ window.ingredientGuide = {
     "latin": "Ferula species",
     "group": "rare",
     "shortBenefit": "An aromatic resin that adds a strong, distinctive flavour.",
-    "paragraph": "Asafoetida is an aromatic gum-resin with a pungent smell and distinctive flavour. It contributes flavour to preparations and food; this property concerns the resin, and should not be assigned to an ingredient identified only as seed.",
+    "paragraph": "Asafoetida is an aromatic gum-resin with a pungent smell and distinctive flavour.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -2499,7 +2511,7 @@ window.ingredientGuide = {
     "latin": "Tinospora cordifolia",
     "group": "rare",
     "shortBenefit": "A starch-rich classical preparation from giloy stems.",
-    "paragraph": "Giloy satva is a starch-rich preparation obtained from Tinospora cordifolia stems. It has a traditional cooling role in Ayurveda. Analytical studies describe its starch and other constituents, but these properties do not establish a specific clinical treatment benefit.",
+    "paragraph": "Giloy satva is a starch-rich preparation obtained from Tinospora cordifolia stems. It has a traditional cooling role in Ayurveda.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2540,9 +2552,9 @@ window.ingredientGuide = {
     "title": "Arshkuthar rasa",
     "latin": "",
     "group": "helper",
-    "shortBenefit": "A named compound preparation; a specific benefit is not verified.",
-    "paragraph": "Arshkuthar rasa is a named compound preparation rather than a single plant ingredient. Its properties depend on its constituent materials and processing; a specific benefit has not been verified for the preparation shown here.",
-    "evidenceLabel": "Benefit not established",
+    "shortBenefit": "A named classical compound in the capsule formula.",
+    "paragraph": "Arshkuthar rasa is a named compound preparation rather than a single plant ingredient.",
+    "evidenceLabel": "Classical compound",
     "sources": [],
     "featured": false,
     "illustration": "blend",
@@ -2552,8 +2564,8 @@ window.ingredientGuide = {
     "title": "Mochras · Semal gum",
     "latin": "Bombax ceiba",
     "group": "rare",
-    "shortBenefit": "A plant-gum component with no verified specific clinical benefit here.",
-    "paragraph": "Mochras is a gum or resinous exudate associated with the semal tree, Bombax ceiba. It contributes a plant-gum component to traditional preparations. A specific medical benefit for this processed gum is not established by studies of the tree’s leaves, flowers or bark.",
+    "shortBenefit": "A plant-gum component in the capsule formula.",
+    "paragraph": "Mochras is a gum or resinous exudate associated with the semal tree, Bombax ceiba. It contributes a plant-gum component to traditional preparations.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -2587,7 +2599,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "mineral",
     "shortBenefit": "Provides a traditional alkaline ash-derived component.",
-    "paragraph": "Yavkshar is an alkaline preparation traditionally obtained from barley-plant ash. It contributes an ash-derived alkaline component to Ayurvedic formulations. This describes the type of ingredient and its formulation role; a standalone clinical benefit for the supplied preparation is not established.",
+    "paragraph": "Yavkshar is an alkaline preparation traditionally obtained from barley-plant ash. It contributes an ash-derived alkaline component to Ayurvedic formulations.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -2607,9 +2619,9 @@ window.ingredientGuide = {
     "title": "Bol Parpati",
     "latin": "",
     "group": "helper",
-    "shortBenefit": "A named compound preparation; a specific benefit is not verified.",
-    "paragraph": "Bol Parpati is a named compound preparation rather than a single plant ingredient. Its properties depend on its constituent materials and processing; a specific benefit has not been verified for the preparation shown here.",
-    "evidenceLabel": "Benefit not established",
+    "shortBenefit": "A named classical compound in the capsule formula.",
+    "paragraph": "Bol Parpati is a named compound preparation rather than a single plant ingredient.",
+    "evidenceLabel": "Classical compound",
     "sources": [],
     "featured": false,
     "illustration": "blend",
@@ -2856,4 +2868,96 @@ window.componentEvidence = {
   "Dhania": "Traditional use",
   "Giloy Satva": "Traditional use",
   "Mochras DE": "Formulation role"
+};
+
+/* Product-aware ingredient roles, with concise page-level evidence context. */
+Object.assign(window.componentBenefits,{
+  "Neem": "A traditional bitter botanical in the Madhumeh blends.",
+  "Aloe vera": "Aloe properties depend on whether gel, latex or an extract is used.",
+  "Ghritkumari": "Aloe properties depend on whether gel, latex or an extract is used.",
+  "Aloe ext.": "An aloe extract; a specific benefit depends on the extract used.",
+  "Nirgundi Tail": "A nirgundi oil component used in external massage preparations.",
+  "Castor oil": "Provides an oil base that helps an external preparation spread during massage.",
+  "Gandhpura Oil": "An aromatic wintergreen oil component; methyl salicylate has a topical counterirritant role.",
+  "Tarpin oil": "Provides a characteristic aromatic component in the external preparation.",
+  "Camphor": "Provides a characteristic aroma in an external preparation.",
+  "Karpura": "Provides a characteristic aroma in an external preparation.",
+  "Peppermint": "Provides an aromatic component in the external oil.",
+  "Eucalyptus oil": "Adds an aromatic essential-oil component to the external preparation.",
+  "Ajwain oil": "Adds an aromatic botanical oil component.",
+  "Clove oil": "Adds an aromatic essential-oil component to the external preparation.",
+  "Rasont": "A concentrated Berberis preparation traditionally used for digestive complaints.",
+  "Sanay": "A labelled senna component; check the pack for the plant part.",
+  "Bel patra": "Leaves traditionally valued for digestive properties.",
+  "Bel giri": "Fruit traditionally valued for digestive and astringent properties.",
+  "Bel ext.": "A bael-root extract component of Arshharan Capsules.",
+  "Pippalimool ext.": "A labelled long-pepper component of the digestive formula.",
+  "Surana Purified Powder": "Prepared corm traditionally valued for carminative and digestive uses.",
+  "Pipal patta": "Leaves traditionally described as purgative, supporting bowel evacuation.",
+  "Hingu Sudha Powder": "An aromatic component; the seed part needs confirmation before assigning resin properties.",
+  "Triphala ext.": "A classical Triphala component listed on this panel.",
+  "Nagkeshar": "A labelled Nagkesar seed component in the capsule blend.",
+  "Ashwagandha": "Some preparations may help with stress and sleep.",
+  "Methi dana": "Studied for blood glucose; evidence remains limited.",
+  "Methi": "Studied for blood glucose; evidence remains limited.",
+  "Jeera": "Traditionally used for digestive comfort.",
+  "Safed jeera": "Traditionally used for digestive comfort.",
+  "Harrar": "Traditionally used as a mild laxative and digestive aid.",
+  "Haritaki": "Traditionally used as a mild laxative and digestive aid.",
+  "Badi Haritaki ext.": "Traditionally used as a mild laxative and digestive aid.",
+  "Rasna": "Traditionally used in preparations for joint discomfort.",
+  "Brahmi": "Traditionally valued in preparations for memory.",
+  "Vidang": "Traditionally used as an appetite and digestive ingredient.",
+  "Kurchi": "Traditionally used for diarrhoeal complaints.",
+  "Ajwain": "An aromatic spice traditionally used for digestive comfort.",
+  "Yavani": "An aromatic spice traditionally used for digestive comfort.",
+  "Sudhguggal": "Traditionally valued in joint-care preparations; supplied label identifies Boswellia serrata.",
+  "Mahamash Tail": "An oil-based classical component for external massage.",
+  "Shree Gopal Tail": "An oil-based classical component for external massage.",
+  "Amma haldi": "Rhizome traditionally used for digestive comfort.",
+  "Olive Oil": "Provides an oil base that helps a preparation spread during massage.",
+  "Black salt": "Adds a distinctive salty flavour and sulphurous aroma.",
+  "Rock salt": "Provides a salty mineral component in the formula.",
+  "Nausadar": "Provides a soluble mineral-salt component.",
+  "Shuddh Shilajit": "Traditionally valued as a rejuvenating Rasayana ingredient.",
+  "Basant kusumakar": "A classical compound component rather than a single ingredient.",
+  "Vasant Kusumakar Ras": "A classical compound component rather than a single ingredient.",
+  "Akik Bhasma or Pishti": "A processed agate-based mineral component.",
+  "Sajjikshar": "Provides an alkaline mineral-salt component.",
+  "Sarapunkha": "Specific extracts have shown preliminary antioxidant activity in animals.",
+  "Rasanjan": "A concentrated classical component of the capsule blend.",
+  "Dhania": "Adds a pleasant aroma and flavour; traditionally used for digestion.",
+  "Giloy Satva": "A starch-rich classical preparation from giloy stems.",
+  "Mochras DE": "A plant-gum component in the capsule formula."
+});
+window.mmIngredientNoteCopy = {
+  "metabolicShort": "Metabolic-wellness botanical with a digestive role.",
+  "vasantShort": "Rasayana component for metabolic care and general vitality.",
+  "vasantParagraph": "Vasant Kusumakar Ras is a classical Ayurvedic herbo-mineral Rasayana, traditionally associated with Madhumeha care and vitality. Rasayana is Ayurveda's rejuvenative approach to strength and wellbeing. Classical versions combine processed metal and mineral preparations with botanical processing liquids. In Madhumeh Haran Premium, it is a distinctive classical component alongside the botanical blend.",
+  "metabolic": "A key botanical in the Madhumeh Haran blends, selected for the formula's metabolic-wellness focus and its place alongside the other listed ingredients.",
+  "fenugreek": "Methi is included in both Madhumeh Haran formulas and Hriday Rakshak Yog as an ingredient selected for metabolic wellbeing. Fenugreek has been studied for its role in blood-glucose metabolism.",
+  "oral": "Contributes the ingredient role highlighted above. The composition panel shows its identity and amount, helping you understand its place alongside the rest of the formula.",
+  "topical": "Part of the external massage blend in Dard Haran Oil. The botanicals and aromatic materials complement the carrier oils during application. Massage gently and follow the directions on your pack.",
+  "base": "Carrier oils give the preparation spread and glide, helping distribute the other components during gentle massage. Their oil-base and skin-conditioning roles make the formula practical to apply.",
+  "wintergreen": "Wintergreen oil supplies methyl salicylate, a counterirritant used in topical muscle-and-joint preparations. It contributes to the massage blend's characteristic sensory profile. Massage gently; avoid broken skin, eyes and additional heat.",
+  "eucalyptus": "An aromatic oil used in external muscle-care preparations. It complements Dard Haran Oil's botanicals and carrier oils with its characteristic fresh scent. Massage gently.",
+  "identity": "A named component on the supplied formulation panel. Refer to the current approved label or manufacturer for its exact identity and preparation; the guide preserves the printed name for transparency.",
+  "part": "Shown with the plant part or preparation printed on the supplied panel. Check the current pack when comparing versions: leaves, roots, fruits and extracts can have different roles in an Ayurvedic blend.",
+  "compound": "A processed classical component that forms part of the formula's Ayurvedic character. It is listed alongside the botanicals so customers can see the complete formulation. Follow the approved label and physician's directions.",
+  "support": "Formulation helpers contribute structure, carrying, flavour, preservation or stability, depending on the component. These practical roles help keep the preparation consistent and usable.",
+  "label": "Listed as part of the complete formulation. The ingredient description explains its identity and role, while the pack provides the preparation and amount used.",
+  "externalBenefit": "A botanical or aromatic component of the gentle-massage blend.",
+  "massage": "Massage gently.",
+  "established": "Est. 2019",
+  "bowelBenefit": "Traditionally used for digestion and bowel regularity.",
+  "camphorBenefit": "An aromatic counterirritant component for external muscle-care preparations.",
+  "mintBenefit": "An aromatic component that can provide a cooling sensation during massage.",
+  "liquoriceBenefit": "A sweet root component of the digestive formula.",
+  "berberis": "Daruhaldi contains berberine, a plant compound studied for glucose and lipid metabolism. It brings a bitter botanical and digestive component to the Madhumeh blends and Arshharan Syrup.",
+  "vasantRole": "This classical Rasayana distinguishes Madhumeh Haran Premium from the Value formula. Premium combines it with Jamun, Karela and the other listed botanicals, giving customers a clear formulation difference to compare.",
+  "closerLead": "A closer look",
+  "ingredientsTail": "at the ingredients.",
+  "compositionTail": "at the composition.",
+  "onePreparation": "Find in 1 preparation",
+  "pageEvidence": "These proprietary Ayurvedic formulations combine ingredients with distinct roles. The descriptions explain ingredient properties and research on specific preparations. Follow the current pack’s directions and your physician’s advice."
 };
