@@ -48,7 +48,7 @@ for (const node of initialView.querySelectorAll('main > :not(#top),.site-footer'
 
 function initialRule(rule, document) {
   // Include interactive states and runtime-inserted controls as a conservative fallback.
-  if (/spotlight-|store-launcher|store-count|store-header-link|madhav-range|menu-|site-nav|\[lang/.test(rule.selectorText)) return true;
+  if (/spotlight-|store-launcher|store-count|store-header-link|madhav-range|mm-action-|menu-|site-nav|\[lang/.test(rule.selectorText)) return true;
   const selector = rule.selectorText.replace(/::[\w-]+(?:\([^)]*\))?/g, '').replace(/:(?:hover|focus(?:-within|-visible)?|active|visited|checked|disabled|enabled|target)\b/g, '');
   try { return !!document.querySelector(selector); }
   catch { return true; } // Unknown selectors stay; do not guess that they are unused.

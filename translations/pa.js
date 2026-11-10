@@ -864,3 +864,14 @@ window.madhavTranslations.pa = {
   "Jagdamba Agency, Motijheel, Muzaffarpur, Bihar – 842001, India.": "ਜਗਦੰਬਾ ਏਜੰਸੀ, ਮੋਤੀਝੀਲ, ਮੁਜ਼ੱਫਰਪੁਰ, ਬਿਹਾਰ – 842001, ਭਾਰਤ।",
   "Jagdamba Agency Motijheel, Muzaffarpur Bihar 842001, India": "ਜਗਦੰਬਾ ਏਜੰਸੀ\nਮੋਤੀਝੀਲ, ਮੁਜ਼ੱਫਰਪੁਰ\nਬਿਹਾਰ 842001, ਭਾਰਤ"
 };
+
+// mm-polish additions: English source strings use the existing dictionary.
+Object.assign(window.madhavTranslations.pa, {
+  "Quick contact actions": "ਤੁਰੰਤ ਸੰਪਰਕ ਵਿਕਲਪ",
+  "WhatsApp": "ਵਟਸਐਪ",
+  "Amazon": "Amazon",
+  "Compare Value and Premium": "ਵੈਲਿਊ ਅਤੇ ਪ੍ਰੀਮੀਅਮ ਦੀ ਤੁਲਨਾ ਕਰੋ",
+  "Label composition comparison": "ਲੇਬਲ ਉੱਤੇ ਦਿੱਤੀ ਸਮੱਗਰੀ ਦੀ ਤੁਲਨਾ",
+  "Not listed on this panel": "ਇਸ ਲੇਬਲ ਉੱਤੇ ਦਰਜ ਨਹੀਂ ਹੈ",
+  "Enter a 10-digit Indian mobile number, with optional +91.": "10 ਅੰਕਾਂ ਦਾ ਭਾਰਤੀ ਮੋਬਾਈਲ ਨੰਬਰ ਭਰੋ; ਚਾਹੋ ਤਾਂ +91 ਜੋੜੋ।"
+});
