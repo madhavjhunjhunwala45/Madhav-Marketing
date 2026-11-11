@@ -21,7 +21,7 @@ window.madhavSearchSettings = {
   // Without an override, the existing product name and description are used.
   products: {
     'dard-capsule': { title: 'Dard Haran Capsule for Joint & Muscle Care | Madhav Marketing', description: 'Explore Dard Haran Capsule, a 30-capsule Ayurvedic joint and muscle care formulation. Read the ingredients, label directions and precautions.' },
-    'dard-oil': { title: 'Dard Haran Oil for Joint & Muscle Massage | Madhav Marketing', description: 'Dard Haran Oil is an external massage oil in 50 ml and 100 ml packs. Compare pack compositions, gentle-massage directions and label precautions.' },
+    'dard-oil': { title: 'Dard Haran Oil for Joint & Muscle Massage | Madhav Marketing', description: 'Explore Dard Haran Oil in 50 ml and 100 ml packs with the same formulation. Read the shared composition, external-use directions and label precautions.' },
     'kabi-haran': { title: 'Kabj Haran Granules for Digestive Wellbeing | Madhav Marketing', description: 'Explore Kabj Haran Granules, a 100 g Ayurvedic digestive-wellbeing formulation. Read its ingredients, pack directions and pregnancy precaution.' },
     'madhumeh-value': { title: 'Madhumeh Haran Value Karela Jamun Churan | Madhav Marketing', description: 'Explore the 200 g Madhumeh Haran Value Karela Jamun Churan, its ingredients and label guidance. Compare its composition with the Premium formula.' },
     'madhumeh-premium': { title: 'Madhumeh Haran Premium with Vasant Kusumakar | Madhav Marketing', description: 'Explore the 200 g Madhumeh Haran Premium formulation with Karela, Jamun and Vasant Kusumakar Ras. Compare supplied composition panels and directions.' },

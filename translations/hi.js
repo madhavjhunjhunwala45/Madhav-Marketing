@@ -1080,3 +1080,11 @@ Object.assign(window.madhavTranslations.hi,{
   "Ingredient information is available above. Interactive search and filters require JavaScript.": "घटकों की जानकारी ऊपर उपलब्ध है। इंटरैक्टिव खोज और फ़िल्टर के लिए JavaScript चाहिए।",
   "The composition and directions are available above. Image zoom and pack switching require JavaScript.": "संरचना और निर्देश ऊपर उपलब्ध हैं। छवि ज़ूम और पैक बदलने के लिए JavaScript चाहिए।"
 });
+
+/* Brand-confirmed shared oil composition and neutral reference profiles. */
+Object.assign(window.madhavTranslations.hi,{
+  "Each 100 ml contains.": "प्रत्येक 100 मिली में शामिल हैं।",
+  "Both pack sizes contain the same formulation. Only the pack size differs. The composition shown uses the brand-confirmed 100 ml basis; older printed label text is being corrected.": "दोनों पैक आकारों में एक ही योग है। केवल पैक का आकार अलग है। दिखाई गई संरचना ब्रांड द्वारा पुष्टि किए गए 100 मिली के आधार पर है; पुराने छपे लेबल का पाठ सुधारा जा रहा है।",
+  "Vishnu Tail is an oil-blend preparation for external massage.": "विष्णु तैल बाहरी मालिश के लिए एक तेल-मिश्रण की तैयारी है।",
+  "Mahanarayan Tail is a named multi-ingredient Ayurvedic oil preparation, rather than a single herb.": "महानारायण तैल एक नामित बहुघटक आयुर्वेदिक तेल की तैयारी है, कोई अकेली जड़ी-बूटी नहीं।"
+});

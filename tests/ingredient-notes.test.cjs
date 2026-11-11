@@ -5,7 +5,7 @@ for(const file of ['product-data.js','ingredient-data.js','ingredient-shared.js'
 const {ingredientGuide:guide,ingredientAliases:aliases,productCatalogue:products,MadhavIngredientNotes:notes,mmIngredientNoteCopy:copy}=context.window;
 assert(notes);const covered=new Set;let rows=0;
 for(const [id,product]of Object.entries(products))for(const format of product.formats||[product])for(const row of format.ingredients){const n=notes.get(id,row[0]);assert(n&&n.benefit&&n.explanation&&n.paragraph,id+':'+row[0]);covered.add(n.id);rows++;const details=notes.details(id,row[0]);assert.equal(details.localName,'details');assert.equal(details.querySelector('summary').textContent,'Why it is used');assert.equal(details.querySelectorAll('p').length,2);}
-for(const [id,item]of Object.entries(guide))if(!item.guideHidden)assert(covered.has(id),'No product context for '+id);
+const legacyReferenceIds=new Set(['mahanarayan','mahavishgarbha','mahamash','vishnu','shatparni','mala','shree-gopal']);for(const [id,item]of Object.entries(guide))if(!item.guideHidden)assert(covered.has(id)||legacyReferenceIds.has(id),'No product or retained reference context for '+id);for(const id of legacyReferenceIds)assert(!covered.has(id),'Earlier oil-label reference must not be assigned to the corrected current formula: '+id);
 assert.equal(notes.get('missing','missing'),null);assert.equal(notes.details('missing','missing'),null);
 assert(notes.get('dard-oil','Ashwagandha').benefit===copy.externalBenefit);
 assert.equal(notes.get('dard-oil','Castor oil').explanation,copy.base);

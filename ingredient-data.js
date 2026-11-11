@@ -1227,7 +1227,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "oil",
     "shortBenefit": "Provides an oil-blend component for external massage.",
-    "paragraph": "Mahanarayan Tail is a named multi-ingredient Ayurvedic oil preparation, rather than a single herb. In the supplied product it contributes an oil-blend component for external massage.",
+    "paragraph": "Mahanarayan Tail is a named multi-ingredient Ayurvedic oil preparation, rather than a single herb.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -1268,7 +1268,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "oil",
     "shortBenefit": "Provides a named oil-blend component for external massage.",
-    "paragraph": "Vishnu Tail is listed as an oil-blend component in the supplied external massage preparation. Its role is as part of the complete oil formula.",
+    "paragraph": "Vishnu Tail is an oil-blend preparation for external massage.",
     "evidenceLabel": "Formulation role",
     "sources": [],
     "featured": false,

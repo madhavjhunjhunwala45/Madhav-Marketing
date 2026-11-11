@@ -8,6 +8,7 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
   function page(file, intro) {
     const { document: d } = parseHTML(read('ingredients.html'));
     const entry = settings.pages[file]; d.documentElement.dataset.searchPage = entry.kind;
+    d.body.classList.add('mm-refined-page');
     d.querySelector('a[aria-current]')?.removeAttribute('aria-current');
     for (const s of d.querySelectorAll('script[src]')) if (/^(ingredient-data|ingredient-shared|ingredients)\.js/.test(s.getAttribute('src'))) s.remove();
     const main = d.getElementById('main'); main.replaceChildren();
@@ -21,42 +22,43 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
     return { d, main, node, link, section, file };
   }
   function nav(p, section) {
-    const n = p.node('nav', '', 'mm-seo-links'); n.setAttribute('aria-label', 'Product categories');
-    for (const c of Object.values(settings.categories)) n.append(p.link(capture(c.label), c.path));
+    const n = p.node('nav', '', 'mm-seo-links mm-seo-nav-grid'); n.setAttribute('aria-label', 'Product categories');
+    for (const c of Object.values(settings.categories)) { const a = p.link(capture(c.label), c.path); if(c.path === p.file) a.setAttribute('aria-current', 'page'); n.append(a); }
     n.append(p.link(capture('Ayurvedic product guides'), 'ayurveda-guides.html'), p.link(capture('Contact and retailer enquiries'), 'contact.html'));
     section.append(n);
   }
   function enquiry(p) {
-    const s = p.section('Availability and retailer enquiries');
+    const s = p.section('Availability and retailer enquiries'); s.classList.add('mm-seo-enquiry');
     s.append(p.node('p', 'For product availability, pack information or retailer enquiries, get in touch with Madhav Marketing.'));
-    const n = p.node('div', '', 'mm-seo-links');
+    const n = p.node('div', '', 'mm-seo-links mm-seo-enquiry-actions');
     n.append(p.link('Call +91 94316 55050 ↗', 'tel:+919431655050'), p.link(capture('Contact and retailer enquiries'), 'contact.html'), p.link('Connect with us', 'index.html#connect')); s.append(n);
     nav(p, p.section('Explore the Madhav range'));
   }
   function finish(p) { p.d.title = settings.pages[p.file].title; p.d.querySelector('meta[name="description"]').content = settings.pages[p.file].description; fs.writeFileSync(path.join(root, p.file), '<!doctype html>\n' + p.d.documentElement.outerHTML + '\n'); }
   function faq(p, questions) {
-    const s = p.section('Questions about this range'); s.classList.add('faq');
-    for (const [q, answer] of questions) { const detail = p.node('details'); detail.setAttribute('data-seo-faq', ''); detail.append(p.node('summary', capture(q)), p.node('p', answer)); s.append(detail); }
+    const s = p.section('Questions about this range'); s.classList.add('faq', 'mm-seo-faq');
+    const list = p.node('div', '', 'mm-seo-faq-list');
+    for (const [q, answer] of questions) { const detail = p.node('details'); detail.setAttribute('data-seo-faq', ''); detail.append(p.node('summary', capture(q)), p.node('p', answer)); list.append(detail); } s.append(list);
   }
   for (const [group, c] of Object.entries(settings.categories)) {
     const entries = Object.entries(products).filter(([, p]) => p.group === group);
     settings.pages[c.path].products = entries.map(([id]) => id);
     const p = page(c.path, c.intro), s = p.section('Explore our Ayurvedic product range');
-    const grid = p.node('div', '', 'product-grid');
+    const grid = p.node('div', '', 'product-grid mm-seo-products'); grid.dataset.mmCount = String(entries.length);
     const context = { window: { productCatalogue: products, matchMedia: () => ({ matches: true, addEventListener() {} }) }, document: p.d }; vm.createContext(context); vm.runInContext(helpers, context);
     for (const [id] of entries) grid.append(vm.runInContext('makeProductCard(' + JSON.stringify(id) + ',catalogue[' + JSON.stringify(id) + '])', context)); s.append(grid);
     const list = p.section('Ingredients used in these formulations');
-    const stack = p.node('div', '', 'mm-seo-stack');
+    const stack = p.node('div', '', 'mm-seo-stack mm-seo-ingredients');
     for (const id of c.ingredients) {
       const item = ingredients[id]; if (!item || item.guideHidden) throw Error('Unknown category ingredient: ' + id);
       const used = entries.filter(([, product]) => (product.formats || [product]).some(f => f.ingredients.some(row => aliases[row[0]] === id)));
       if (!used.length) throw Error('Ingredient not in category: ' + group + '/' + id);
-      const a = p.node('article'); const h = p.node('h3'); h.append(p.link(item.title, 'ingredients.html?ingredient=' + id)); a.append(h);
+      const a = p.node('article', '', 'mm-seo-ingredient-card'); const h = p.node('h3'); h.append(p.link(item.title, 'ingredients.html?ingredient=' + id)); a.append(h, p.node('p', item.shortBenefit));
       const l = p.node('div', '', 'mm-seo-links'); for (const [pid, product] of used) l.append(p.link(product.title, 'product.html?product=' + pid + '#composition')); a.append(l); stack.append(a);
     }
     list.append(stack);
-    const care = p.section('Directions and safety information'); const careStack = p.node('div', '', 'mm-seo-stack');
-    for (const [id, product] of entries) { const a = p.node('article'); a.append(p.node('h3', product.title), p.node('p', product.benefits), p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + id + '#directions')); careStack.append(a); } care.append(careStack);
+    const care = p.section('Directions and safety information'); const careStack = p.node('div', '', 'mm-seo-stack mm-seo-care-grid');
+    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits), p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + id + '#directions')); careStack.append(a); } care.append(careStack);
     const common = ['How should I use a product?', "Follow the current product label and your physician's directions. This catalogue provides product information and does not replace individual medical advice."];
     const availability = ['How do I check availability?', 'Call +91 94316 55050 for product availability and retailer enquiries. This catalogue does not currently offer online checkout.'];
     const unique = group === 'metabolic' ? ['Are Value and Premium the same formulation?', 'No. Madhumeh Haran Value is the plain Karela Jamun Churan; the Premium formula includes Vasant Kusumakar Ras. The compositions are shown on separate pages.']

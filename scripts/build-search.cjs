@@ -62,6 +62,13 @@ function render(template, query, kind, id, format) {
     const source = image.getAttribute('src');
     const role = image.id === 'spotlight-image' ? 'spotlight' : image.id === 'product-image' ? 'gallery' : image.classList.contains('brand-logo') ? 'logo' : 'card';
     context.window.MadhavImages.apply(image, source, role);
+    // Category cards have a larger layout than the homepage's four-column grid.
+    // Match their contain-fit height so the browser chooses a sharp candidate.
+    if (kind === 'category' && image.closest('.mm-seo-products')) {
+      const ratio = context.window.MadhavImages.entries[source]?.ratio || 1;
+      const single = image.closest('.mm-seo-products').dataset.mmCount === '1';
+      image.setAttribute('sizes', '(max-width:767px) min(calc(100vw - 80px), ' + Math.ceil(220 * ratio) + 'px), min(' + (single ? '38vw' : '50vw') + ', ' + Math.ceil((single ? 280 : 240) * ratio) + 'px)');
+    }
   }
   const mainImage = kind === 'home' ? document.getElementById('spotlight-image') : product && document.getElementById('product-image');
   if (mainImage) {

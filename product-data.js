@@ -124,68 +124,134 @@ window.productCatalogue = {
     "directions": "For external use only. Follow the directions on your product label.",
     "ingredients": [
       [
-        "Mahanarayan Tail",
-        "Classical oil",
-        "11.80%",
+        "Nirgundi",
+        "Vitex negundo · leaf",
+        "120 mg",
         ""
       ],
       [
-        "Maha Vishgarbha Tail",
-        "Classical oil",
-        "11.80%",
+        "Rasna",
+        "Pluchea lanceolata · leaf",
+        "120 mg",
         ""
       ],
       [
-        "Mahamash Tail",
-        "Classical oil",
-        "8.44%",
+        "Erand",
+        "Ricinus communis · root bark",
+        "80 mg",
         ""
       ],
       [
-        "Vishnu Tail",
-        "Classical oil",
-        "8.44%",
+        "Ashwagandha",
+        "Withania somnifera · stem",
+        "80 mg",
         ""
       ],
       [
-        "Shatparni Oil",
-        "Oil component as printed",
-        "8.00%",
+        "Sonth",
+        "Zingiber officinale · rhizome",
+        "60 mg",
         ""
       ],
       [
-        "Nirgundi Tail",
-        "Oil component as printed",
-        "6.00%",
+        "Bala",
+        "Sida cordifolia · whole plant",
+        "60 mg",
         ""
       ],
       [
-        "Karpura",
+        "Amma haldi",
+        "Curcuma amada · rhizome",
+        "60 mg",
+        ""
+      ],
+      [
+        "Pippali",
+        "Piper longum · fruit",
+        "60 mg",
+        ""
+      ],
+      [
+        "Prasnarni",
+        "Uria prieta · whole plant, as printed",
+        "60 mg",
+        ""
+      ],
+      [
+        "Gandhpura Oil",
+        "Gaultheria fragrantissima · leaf",
+        "20%",
+        ""
+      ],
+      [
+        "Tarpin oil",
+        "Pinus longifolia · oleoresin",
+        "10%",
+        ""
+      ],
+      [
         "Camphor",
-        "6.00%",
+        "Cinnamomum camphora · wood extract",
+        "3%",
         ""
       ],
       [
-        "Sarson Tail",
-        "Mustard oil",
-        "6.00%",
+        "Castor oil",
+        "Ricinus communis · seed",
+        "5%",
         ""
       ],
       [
-        "Mala Tail",
-        "Oil component as printed",
-        "6.00%",
+        "Peppermint",
+        "Mentha × piperita · leaf",
+        "5%",
         ""
       ],
       [
-        "Shree Gopal Tail",
-        "Classical oil",
-        "5.00%",
+        "Eucalyptus oil",
+        "Globulus Labill · leaf, as printed",
+        "5%",
+        ""
+      ],
+      [
+        "Ajwain oil",
+        "Trachyspermum ammi · seed",
+        "3%",
+        ""
+      ],
+      [
+        "Clove oil",
+        "Syzygium aromaticum · fruit",
+        "2%",
+        ""
+      ],
+      [
+        "Cotton seed oil",
+        "Gossypium herbaceum · seed",
+        "2%",
+        ""
+      ],
+      [
+        "Olive Oil",
+        "Olea europaea · fruit",
+        "0.05%",
+        ""
+      ],
+      [
+        "Toontubh oil",
+        "Brassica campestris · seed, as printed",
+        "10 ml",
+        ""
+      ],
+      [
+        "Till oil",
+        "Sesamum indicum · seed",
+        "40 ml",
         ""
       ]
     ],
     "group": "pain",
-    "basis": "Each 10 ml contains, as printed on the earlier supplied 50 ml carton.",
+    "basis": "Each 100 ml contains.",
     "gallery": [
       {
         "src": "assets/cutouts/dard-oil-50-pack-display.webp",
@@ -209,66 +275,132 @@ window.productCatalogue = {
       {
         "label": "50 ml",
         "pack": "50 ml",
-        "basis": "Each 10 ml contains, as printed on the earlier supplied 50 ml carton.",
+        "basis": "Each 100 ml contains.",
         "ingredients": [
           [
-            "Mahanarayan Tail",
-            "Classical oil",
-            "11.80%",
+            "Nirgundi",
+            "Vitex negundo · leaf",
+            "120 mg",
             ""
           ],
           [
-            "Maha Vishgarbha Tail",
-            "Classical oil",
-            "11.80%",
+            "Rasna",
+            "Pluchea lanceolata · leaf",
+            "120 mg",
             ""
           ],
           [
-            "Mahamash Tail",
-            "Classical oil",
-            "8.44%",
+            "Erand",
+            "Ricinus communis · root bark",
+            "80 mg",
             ""
           ],
           [
-            "Vishnu Tail",
-            "Classical oil",
-            "8.44%",
+            "Ashwagandha",
+            "Withania somnifera · stem",
+            "80 mg",
             ""
           ],
           [
-            "Shatparni Oil",
-            "Oil component as printed",
-            "8.00%",
+            "Sonth",
+            "Zingiber officinale · rhizome",
+            "60 mg",
             ""
           ],
           [
-            "Nirgundi Tail",
-            "Oil component as printed",
-            "6.00%",
+            "Bala",
+            "Sida cordifolia · whole plant",
+            "60 mg",
             ""
           ],
           [
-            "Karpura",
+            "Amma haldi",
+            "Curcuma amada · rhizome",
+            "60 mg",
+            ""
+          ],
+          [
+            "Pippali",
+            "Piper longum · fruit",
+            "60 mg",
+            ""
+          ],
+          [
+            "Prasnarni",
+            "Uria prieta · whole plant, as printed",
+            "60 mg",
+            ""
+          ],
+          [
+            "Gandhpura Oil",
+            "Gaultheria fragrantissima · leaf",
+            "20%",
+            ""
+          ],
+          [
+            "Tarpin oil",
+            "Pinus longifolia · oleoresin",
+            "10%",
+            ""
+          ],
+          [
             "Camphor",
-            "6.00%",
+            "Cinnamomum camphora · wood extract",
+            "3%",
             ""
           ],
           [
-            "Sarson Tail",
-            "Mustard oil",
-            "6.00%",
+            "Castor oil",
+            "Ricinus communis · seed",
+            "5%",
             ""
           ],
           [
-            "Mala Tail",
-            "Oil component as printed",
-            "6.00%",
+            "Peppermint",
+            "Mentha × piperita · leaf",
+            "5%",
             ""
           ],
           [
-            "Shree Gopal Tail",
-            "Classical oil",
-            "5.00%",
+            "Eucalyptus oil",
+            "Globulus Labill · leaf, as printed",
+            "5%",
+            ""
+          ],
+          [
+            "Ajwain oil",
+            "Trachyspermum ammi · seed",
+            "3%",
+            ""
+          ],
+          [
+            "Clove oil",
+            "Syzygium aromaticum · fruit",
+            "2%",
+            ""
+          ],
+          [
+            "Cotton seed oil",
+            "Gossypium herbaceum · seed",
+            "2%",
+            ""
+          ],
+          [
+            "Olive Oil",
+            "Olea europaea · fruit",
+            "0.05%",
+            ""
+          ],
+          [
+            "Toontubh oil",
+            "Brassica campestris · seed, as printed",
+            "10 ml",
+            ""
+          ],
+          [
+            "Till oil",
+            "Sesamum indicum · seed",
+            "40 ml",
             ""
           ]
         ],
@@ -293,7 +425,7 @@ window.productCatalogue = {
       {
         "label": "100 ml",
         "pack": "100 ml",
-        "basis": "Each 100 ml contains, as printed on the newly supplied 100 ml carton.",
+        "basis": "Each 100 ml contains.",
         "ingredients": [
           [
             "Nirgundi",
@@ -442,9 +574,10 @@ window.productCatalogue = {
         "directions": "As printed on the supplied 100 ml label: take 3–5 ml and gently massage the affected area. For external use only."
       }
     ],
-    "formulaNote": "The supplied 50 ml and 100 ml panels list different compositions. Select the pack above and match the information to the label on your product.",
+    "formulaNote": "Both pack sizes contain the same formulation. Only the pack size differs. The composition shown uses the brand-confirmed 100 ml basis; older printed label text is being corrected.",
     "packOverview": "50 ml / 100 ml"
   },
+
   "kabi-haran": {
     "benefits": "Traditionally used for occasional constipation and digestive discomfort such as gas and acidity, as described on the pack. Follow the label directions and seek medical advice before prolonged use.",
     "amazonUrl": "https://amzn.in/d/0eE7lHxG",

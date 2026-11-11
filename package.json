@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build-images.cjs && node scripts/build-search.cjs && node scripts/optimize-output.cjs && npm test",
-    "test": "node scripts/check-search.cjs && node tests/performance.test.cjs && node tests/project.test.cjs && node tests/interaction.test.cjs && node tests/connect.test.cjs && node tests/cart-enquiry.test.cjs && node tests/range-loading.test.cjs && node tests/output-optimization.test.cjs && node tests/location-seo.test.cjs && node tests/palette-contrast.test.cjs && node tests/mm-polish.test.cjs && node tests/ingredient-notes.test.cjs && node tests/seo.test.cjs",
+    "test": "node scripts/check-search.cjs && node tests/performance.test.cjs && node tests/project.test.cjs && node tests/interaction.test.cjs && node tests/connect.test.cjs && node tests/cart-enquiry.test.cjs && node tests/range-loading.test.cjs && node tests/output-optimization.test.cjs && node tests/location-seo.test.cjs && node tests/palette-contrast.test.cjs && node tests/mm-polish.test.cjs && node tests/ingredient-notes.test.cjs && node tests/seo.test.cjs && node tests/refinement.test.cjs",
     "preview": "node scripts/preview.cjs"
   },
   "engines": {
