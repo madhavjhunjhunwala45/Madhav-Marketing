@@ -52,15 +52,159 @@
         {
           "type": "query",
           "key": "product",
-          "value": "(?<searchProduct>[a-z0-9-]+)"
+          "value": "dard-capsule"
         },
         {
           "type": "query",
           "key": "format",
-          "value": "(?<searchFormat>[0-9]+)"
+          "value": "0"
         }
       ],
-      "destination": "/_search/product-:searchProduct-format-:searchFormat.html"
+      "destination": "/_search/product-dard-capsule-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "dard-oil"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-dard-oil-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "dard-oil"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "1"
+        }
+      ],
+      "destination": "/_search/product-dard-oil-format-1.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "kabi-haran"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-kabi-haran-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "madhumeh-value"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-madhumeh-value-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "madhumeh-premium"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-madhumeh-premium-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "madhumeh-premium"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "1"
+        }
+      ],
+      "destination": "/_search/product-madhumeh-premium-format-1.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "hriday-rakshak"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-hriday-rakshak-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "arshharan"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-arshharan-format-0.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "arshharan-capsules"
+        },
+        {
+          "type": "query",
+          "key": "format",
+          "value": "0"
+        }
+      ],
+      "destination": "/_search/product-arshharan-capsules-format-0.html"
     },
     {
       "source": "/product.html",
@@ -94,6 +238,17 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "madhavmarketing.store"
+        }
+      ],
+      "destination": "https://www.madhavmarketing.store/:path*",
+      "permanent": true
+    },
     {
       "source": "/:path*",
       "has": [

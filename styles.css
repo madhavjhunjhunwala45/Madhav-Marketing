@@ -219,3 +219,7 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 
 /* mm- ingredient notes reuse native disclosures and existing type/colour tokens. */
 .mm-formula-note{margin-top:8px;font-size:.76rem}.mm-formula-note p,.mm-ingredient-product-note{margin-top:8px;overflow-wrap:anywhere}.mm-ingredient-product-note strong{font-weight:600}.mm-established{white-space:nowrap}
+
+/* SEO content uses the existing palette, fonts and cards; no added motion. */
+.mm-seo-heading{font-size:clamp(2.2rem,4.5vw,4rem);overflow-wrap:anywhere}
+.mm-seo-hero{align-items:start}.mm-seo-section{padding-block:40px}.mm-seo-section>h2{font-size:clamp(1.8rem,3vw,2.7rem);margin-bottom:24px}.mm-seo-section>p{max-width:78ch;margin-block:16px}.mm-seo-stack{display:grid;gap:24px}.mm-seo-stack article{min-width:0}.mm-seo-stack p{margin-block:10px;max-width:80ch}.mm-seo-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin-block:16px}.mm-seo-links a{overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:4px}.mm-seo-footer{padding-block:16px}.mm-seo-footer summary{cursor:pointer}.mm-seo-hero h1{min-width:0}.breadcrumb{flex-wrap:wrap}

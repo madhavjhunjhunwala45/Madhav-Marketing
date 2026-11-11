@@ -31,7 +31,7 @@ function resolveURL(value) {
 const all = [{ url: search.origin + '/', file: 'index.html' },
   { url: search.absolute('ingredients.html'), file: '_search/ingredients-default.html' }, ...manifest.expected];
 const urls = new Set(all.map(item => item.url));
-assert.equal(urls.size, 2 + Object.keys(products).length + Object.values(ingredients).filter(item => !item.guideHidden).length);
+assert.equal(urls.size, 2 + Object.keys(products).length + Object.values(ingredients).filter(item => !item.guideHidden).length + Object.keys(context.window.madhavSearchSettings.pages || {}).length);
 assert(!fs.existsSync(path.join(output, 'product.html')), 'filesystem must not override product query rewrites');
 assert(!fs.existsSync(path.join(output, 'ingredients.html')), 'filesystem must not override ingredient query rewrites');
 assert.equal(config.buildCommand, 'npm run build');
@@ -104,15 +104,15 @@ const invalid = parseHTML(fs.readFileSync(path.join(output, '_search/product-def
 assert(invalid.querySelector('meta[name="robots"]').content.startsWith('noindex,follow'));
 assert.equal(search.metadata({ kind: 'product', id: 'x', product: null }).index, false);
 const hindi = search.metadata({ kind: 'product', id: 'dard-oil', product: products['dard-oil'], language: 'hi' });
-assert.equal(hindi.canonical, search.origin + '/product.html?product=dard-oil&lang=hi');
+assert.equal(hindi.canonical, search.origin + '/product.html?product=dard-oil');
 assert(!search.json({ text: '</script><script>alert(1)</script>' }).includes('<'));
 const sitemap = fs.readFileSync(path.join(output, 'sitemap.xml'), 'utf8');
 const listed = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1].replace(/&amp;/g, '&'));
 assert.deepEqual(listed, manifest.sitemapUrls); assert.equal(new Set(listed).size, listed.length);
-assert.equal(listed.length, Object.keys(products).length + 2, 'simple sitemap contains only home, ingredient guide and products');
-assert(!listed.some(url => url.includes('ingredient=')), 'ingredient profiles stay on the site but outside the simplified sitemap');
+assert.equal(listed.length, all.length, 'sitemap includes every canonical product, ingredient, category and guide');
+assert(listed.some(url => url.includes('ingredient=')), 'crawlable ingredient profiles are included');
 assert(!listed.some(url => /cart|vercel\.app|_search|format=/.test(url)));
 assert(fs.readFileSync(path.join(output, 'robots.txt'), 'utf8').includes('Sitemap: ' + search.origin + '/sitemap.xml'));
-const oldHost = config.redirects.find(rule => rule.has?.some(condition => condition.type === 'host'));
+const oldHost = config.redirects.find(rule => rule.has?.some(condition => condition.type === 'host' && condition.value === 'madhav-marketing.vercel.app'));
 assert.equal(oldHost.has[0].value, 'madhav-marketing.vercel.app'); assert.equal(oldHost.permanent, true);
 console.log('Passed: ' + all.length + ' canonical pages, ' + jsonGraphs + ' structured-data graphs, ' + internalReferences + ' internal asset/link references, exact product/ingredient wording, pack versions, sitemap, safe metadata and routing.');

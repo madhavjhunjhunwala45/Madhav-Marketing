@@ -16,6 +16,7 @@ for (const name of ['product-data.js', 'ingredient-data.js']) vm.runInContext(re
 const products = dataContext.window.productCatalogue;
 const ingredients = dataContext.window.ingredientGuide;
 const ingredientIds = Object.keys(ingredients).filter(id => !ingredients[id].guideHidden);
+require('./seo-pages.cjs')({ root, settings, products, ingredients, aliases: dataContext.window.ingredientAliases, helpers });
 
 if (fs.existsSync(output)) fs.rmSync(output, { recursive: true });
 fs.mkdirSync(output, { recursive: true });
@@ -54,6 +55,9 @@ function render(template, query, kind, id, format) {
   const ingredient = kind === 'ingredient' && ingredients[id];
   const meta = search.metadata({ kind, id, product, ingredient });
   search.apply(document, meta, products);
+  for (const link of document.querySelectorAll('a[href^="index.html"]')) {
+    link.setAttribute('href', link.getAttribute('href').replace(/^index\.html(?=[?#]|$)/, './'));
+  }
   for (const image of document.querySelectorAll('img[src]')) {
     const source = image.getAttribute('src');
     const role = image.id === 'spotlight-image' ? 'spotlight' : image.id === 'product-image' ? 'gallery' : image.classList.contains('brand-logo') ? 'logo' : 'card';
@@ -87,7 +91,7 @@ write('_search/product-default.html', render('product.html', '', 'product'));
 write('_search/ingredients-default.html', render('ingredients.html', '', 'ingredients'));
 const expected = [];
 const rewrites = [
-  { source: '/product.html', has: [{ type: 'query', key: 'product', value: '(?<searchProduct>[a-z0-9-]+)' }, { type: 'query', key: 'format', value: '(?<searchFormat>[0-9]+)' }], destination: '/_search/product-:searchProduct-format-:searchFormat.html' },
+  ...Object.entries(products).flatMap(([id, product]) => (product.formats || [product]).map((_, i) => ({ source: '/product.html', has: [{ type: 'query', key: 'product', value: id }, { type: 'query', key: 'format', value: String(i) }], destination: '/_search/product-' + id + '-format-' + i + '.html' }))),
   { source: '/product.html', has: [{ type: 'query', key: 'product', value: '(?<searchProduct>[a-z0-9-]+)' }], destination: '/_search/product-:searchProduct.html' },
   { source: '/ingredients.html', has: [{ type: 'query', key: 'ingredient', value: '(?<searchIngredient>[a-z0-9-]+)' }], destination: '/_search/ingredient-:searchIngredient.html' },
   { source: '/product.html', destination: '/_search/product-default.html' },
@@ -95,7 +99,7 @@ const rewrites = [
 ];
 for (const [id, product] of Object.entries(products)) {
   if (!/^[a-z0-9-]+$/.test(id)) throw new Error('Unsafe product key: ' + id);
-  (product.formats || [product, product]).forEach((format, i) => {
+  (product.formats || [product]).forEach((format, i) => {
     const destination = '/_search/product-' + id + '-format-' + i + '.html';
     write(destination.slice(1), render('product.html', 'product=' + encodeURIComponent(id) + '&format=' + i, 'product', id, i));
   });
@@ -109,17 +113,21 @@ for (const id of ingredientIds) {
   write(destination.slice(1), render('ingredients.html', 'ingredient=' + encodeURIComponent(id), 'ingredient', id));
   expected.push({ url: search.absolute('ingredients.html?ingredient=' + encodeURIComponent(id)), file: destination.slice(1), kind: 'ingredient', id });
 }
-// Keep one small sitemap: home, the ingredient guide and the product pages.
-// Individual ingredient profiles are still built and linked from the website.
-const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.filter(item => item.kind === 'product').map(item => item.url)];
+for (const [file, page] of Object.entries(settings.pages || {})) {
+  write(file, render(file, '', page.kind, file));
+  expected.push({ url: search.absolute(file), file, kind: page.kind, id: file });
+}
+// List every useful canonical page, without cart, pack or preference duplicates.
+const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.map(item => item.url)];
 const escapeXML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc></url>').join('\n') + '\n</urlset>\n');
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>2026-11-11</lastmod></url>').join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\nDisallow: /_search/\n\nSitemap: ' + search.origin + '/sitemap.xml\n');
 
 const deployment = JSON.parse(read('vercel.json'));
 // Security headers are copied unchanged; routing is generated from the actual data keys.
 deployment.rewrites = rewrites;
 deployment.redirects = [
+  { source: '/:path*', has: [{ type: 'host', value: 'madhavmarketing.store' }], destination: search.origin + '/:path*', permanent: true },
   ...(settings.previousHost ? [{ source: '/:path*', has: [{ type: 'host', value: settings.previousHost }], destination: search.origin + '/:path*', permanent: true }] : []),
   { source: '/index.html', destination: '/', permanent: true }
 ];

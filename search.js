@@ -30,18 +30,22 @@
       description = 'Explore the current Madhav Marketing product range.'; index = false;
     } else if (kind === 'ingredient' && ingredient) {
       path = 'ingredients.html?ingredient=' + encodeURIComponent(id);
-      title = ingredient.title + ' | ' + settings.businessName;
-      description = ingredient.shortBenefit + ' ' + ingredient.evidenceLabel + '. Explore the ingredient profile, source photograph and references.';
+      title = ingredient.title + ' in Ayurvedic Formulations | ' + settings.businessName;
+      description = 'Explore ' + ingredient.title + ', its role in listed Madhav Marketing formulations, source identity, composition links and research references.';
       image = ingredient.photo?.remoteThumbnailUrl || ingredient.photo?.remoteUrl || image;
     } else if (kind === 'ingredients') {
       path = 'ingredients.html'; ({ title, description } = settings.ingredients);
     } else if (kind === 'cart') {
       path = 'cart.html'; ({ title, description } = settings.cart); index = false;
+    } else if (settings.pages && own(settings.pages, id)) {
+      const entry = settings.pages[id];
+      kind = entry.kind; path = id; title = entry.title; description = entry.description;
     } else {
       kind = 'home'; ({ title, description } = settings.home);
     }
     const canonical = new URL(path || '/', origin + '/');
-    if (locale !== 'en') canonical.searchParams.set('lang', locale);
+    // The switcher is a display preference, not a server-rendered language route.
+    // Keep one canonical until independently crawlable translations exist.
     return { kind, id, title: translate(title), description: translate(description), canonical: canonical.href,
       image: absolute(image), language: locale, index, product, ingredient };
   }
@@ -62,7 +66,7 @@
       description: settings.organization.description,
       address: addresses.length === 1 ? addresses[0] : addresses };
     const website = { '@type': 'WebSite', '@id': siteId, name: settings.businessName, url: origin + '/', publisher: { '@id': orgId } };
-    const page = { '@type': meta.kind === 'ingredients' ? 'CollectionPage' : 'WebPage', '@id': meta.canonical + '#webpage',
+    const page = { '@type': ['ingredients', 'category', 'guides'].includes(meta.kind) ? 'CollectionPage' : meta.kind === 'contact' ? 'ContactPage' : 'WebPage', '@id': meta.canonical + '#webpage',
       url: meta.canonical, name: meta.title, description: meta.description, inLanguage: meta.language,
       isPartOf: { '@id': siteId }, publisher: { '@id': orgId } };
     const graph = [organization, website, page];
@@ -82,10 +86,30 @@
         url: absolute('product.html?product=' + encodeURIComponent(id))
       })) };
     }
-    if (meta.product || meta.ingredient) {
+    const entry = settings.pages?.[meta.id];
+    const categoryIds = entry?.group ? Object.keys(catalogue).filter(id => catalogue[id].group === entry.group) : null;
+    if (categoryIds) page.mainEntity = { '@type': 'ItemList', itemListElement: categoryIds.map((id, i) => ({
+      '@type': 'ListItem', position: i + 1, name: catalogue[id].title, url: absolute('product.html?product=' + encodeURIComponent(id))
+    })) };
+    if (meta.kind === 'article') {
+      const article = { '@type': 'Article', '@id': meta.canonical + '#article', headline: meta.title,
+        description: meta.description, mainEntityOfPage: { '@id': page['@id'] }, inLanguage: meta.language,
+        publisher: { '@id': orgId } };
+      graph.push(article); page.mainEntity = { '@id': article['@id'] };
+      // No invented expert, reviewer, publication date or clinical review date.
+    }
+    if (meta.faq?.length) graph.push({ '@type': 'FAQPage', '@id': meta.canonical + '#faq',
+      mainEntity: meta.faq.map(item => ({ '@type': 'Question', name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer } })) });
+    if (meta.product || meta.ingredient || entry) {
       const items = [{ '@type': 'ListItem', position: 1, name: settings.businessName, item: origin + '/' }];
       if (meta.ingredient) items.push({ '@type': 'ListItem', position: 2, name: 'Ingredient Guide', item: absolute('ingredients.html') });
-      items.push({ '@type': 'ListItem', position: items.length + 1, name: meta.product?.title || meta.ingredient.title, item: meta.canonical });
+      if (meta.product && settings.categories?.[meta.product.group]) {
+        const category = settings.categories[meta.product.group];
+        items.push({ '@type': 'ListItem', position: 2, name: category.label, item: absolute(category.path) });
+      }
+      if (meta.kind === 'article') items.push({ '@type': 'ListItem', position: 2, name: 'Ayurvedic product guides', item: absolute('ayurveda-guides.html') });
+      items.push({ '@type': 'ListItem', position: items.length + 1, name: meta.product?.title || meta.ingredient?.title || entry.heading, item: meta.canonical });
       graph.push({ '@type': 'BreadcrumbList', '@id': meta.canonical + '#breadcrumb', itemListElement: items });
       page.breadcrumb = { '@id': meta.canonical + '#breadcrumb' };
     }
@@ -94,6 +118,10 @@
 
   function apply(document, meta, catalogue = {}) {
     const head = document.head;
+    meta.faq = [...document.querySelectorAll('details[data-seo-faq],.faq details')].map(detail => ({
+      question: detail.querySelector('summary')?.textContent.trim(),
+      answer: [...detail.querySelectorAll('p')].map(p => p.textContent.trim()).join(' ')
+    })).filter(item => item.question && item.answer);
     function tag(selector, name, attributes, value) {
       const matches = [...head.querySelectorAll(selector)];
       const element = matches.shift() || document.createElement(name);
@@ -108,7 +136,7 @@
     tag('meta[name="description"]', 'meta', { name: 'description', content: meta.description });
     tag('meta[name="robots"]', 'meta', { name: 'robots', content: (meta.index ? 'index,follow' : 'noindex,follow') + ',max-image-preview:large' });
     tag('link[rel="canonical"]', 'link', { rel: 'canonical', href: meta.canonical });
-    const og = { title: meta.title, description: meta.description, url: meta.canonical, image: meta.image, type: 'website', site_name: settings.businessName };
+    const og = { title: meta.title, description: meta.description, url: meta.canonical, image: meta.image, type: meta.kind === 'article' ? 'article' : 'website', site_name: settings.businessName, locale: meta.language + '_IN' };
     for (const [key, content] of Object.entries(og)) tag('meta[property="og:' + key + '"]', 'meta', { property: 'og:' + key, content });
     for (const [key, content] of Object.entries({ card: 'summary_large_image', title: meta.title, description: meta.description, image: meta.image })) {
       tag('meta[name="twitter:' + key + '"]', 'meta', { name: 'twitter:' + key, content });
@@ -124,7 +152,7 @@
       const params = new URLSearchParams(root.location.search);
       const products = root.productCatalogue || {}, ingredients = root.ingredientGuide || {};
       const kind = document.documentElement.dataset.searchPage || 'home';
-      let id = params.get(kind === 'product' ? 'product' : 'ingredient');
+      let id = ['category', 'contact', 'guides', 'article'].includes(kind) ? root.location.pathname.split('/').pop() : params.get(kind === 'product' ? 'product' : 'ingredient');
       const product = kind === 'product' && own(products, id) ? products[id] : null;
       const ingredient = kind === 'ingredients' && own(ingredients, id) && !ingredients[id].guideHidden ? ingredients[id] : null;
       const language = root.MadhavI18n?.language || 'en';
