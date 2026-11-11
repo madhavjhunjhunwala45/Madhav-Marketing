@@ -227,7 +227,7 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 /* Refined native disclosures and category/guide layouts. */
 .mm-formula-note{padding-top:0;margin-top:12px;border-top:1px solid var(--line)}
 .mm-formula-note>summary{padding:12px 0;min-height:44px;line-height:1.45;font-size:.82rem;font-weight:500;color:var(--forest)}
-.mm-formula-note>summary::after,.mm-seo-faq-list summary::after{display:grid;place-items:center;flex:0 0 26px;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;font:400 1.1rem/1 var(--sans);color:var(--forest);content:"+"}
+.mm-formula-note>summary::after,.mm-seo-faq-list summary::after{display:grid;place-items:center;flex:0 0 26px;width:26px;height:26px;font:400 1.1rem/1 var(--sans);color:var(--forest);content:"+"}
 .mm-formula-note[open]>summary::after,.mm-seo-faq-list details[open]>summary::after{content:"−"}
 .mm-formula-note p{font-size:.8rem;line-height:1.7;margin:0 0 12px;max-width:70ch}
 .mm-composition .mm-accordion-mark,.mm-composition[open]>summary .mm-accordion-mark{transform:none;font-size:0;transition:none}
@@ -289,7 +289,7 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
  .mm-seo-enquiry-actions a:hover{transform:translateY(-2px)}
  .mm-seo-nav-grid a::after{transition:transform 180ms ease}
  .mm-seo-nav-grid a:hover::after{transform:translate(2px,-2px)}
- .mm-formula-note>summary:hover::after,.mm-seo-faq-list>details>summary:hover::after{background:var(--surface-soft,var(--cream))}
+ .mm-formula-note>summary:hover::after,.mm-seo-faq-list>details>summary:hover::after{opacity:.7}
 }
 .mm-seo-nav-grid a:focus-visible,.mm-seo-enquiry-actions a:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 .mm-seo-ingredient-card:focus-within,.mm-seo-care-card:focus-within{border-color:var(--forest)}
@@ -316,3 +316,38 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 }
 
 .mm-composition .mm-accordion-mark{display:inline-grid;place-items:center;flex:0 0 26px;width:26px;height:26px}
+
+/* mm- Compact catalogue previews; detailed copy lives on individual profiles. */
+.mm-ingredient-preview{position:relative}
+.mm-ingredient-card-link{color:inherit;text-decoration:none}
+.mm-ingredient-card-link::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
+.mm-ingredient-card-link:focus-visible::after{outline:2px solid var(--forest);outline-offset:4px}
+.mm-ingredient-preview .ingredient-photo-button,.mm-ingredient-preview .ingredient-photo-credit,.mm-ingredient-preview .mm-ingredient-key-products a,.mm-ingredient-preview .ingredient-profile-link{position:relative;z-index:2}
+.mm-ingredient-preview .mm-ingredient-image-link{position:relative;z-index:2;display:block}
+.mm-ingredient-preview .ingredient-photo-button.mm-ingredient-preview-zoom{position:absolute;top:12px;right:12px;width:40px;height:40px;min-height:0;padding:0;background:transparent}
+.mm-ingredient-preview-zoom .ingredient-photo-expand{inset:0;width:40px;height:40px}
+.mm-ingredient-label{font:600 .72rem/1.5 var(--sans);margin:16px 0 6px;color:var(--forest)}
+.mm-ingredient-key-products{list-style:disc;padding-left:18px;margin:0;font-size:.76rem;line-height:1.7}
+.mm-ingredient-key-products a{text-decoration:underline;text-underline-offset:3px}
+.mm-ingredient-why{font-size:.8rem;line-height:1.75;color:var(--muted);margin:0 0 16px}
+.mm-ingredient-preview .ingredient-profile-link{margin-top:auto;padding-top:16px;align-self:flex-start}
+.mm-ingredient-subtitle{font-family:var(--serif);font-style:italic;color:var(--muted);margin:12px 0}
+.mm-ingredient-section{border-top:1px solid var(--line);padding-top:22px;margin-top:22px;min-width:0}
+.mm-ingredient-section h3,.mm-ingredient-range-heading{font:600 1.05rem/1.5 var(--sans);letter-spacing:0;color:var(--forest);margin:0 0 12px}
+.mm-ingredient-section h4{font:600 .8rem/1.6 var(--sans);margin:16px 0 6px;color:var(--forest)}
+.mm-ingredient-section p,.mm-ingredient-section li{font-size:.85rem;line-height:1.8;color:var(--muted);overflow-wrap:anywhere}
+.mm-ingredient-section p{margin:0 0 12px}.mm-ingredient-section ul{padding-left:20px;margin:0 0 16px}
+.mm-ingredient-section .mm-ingredient-care{color:var(--forest)}
+.mm-ingredient-range-heading{margin-top:24px}
+.ingredient-selected .ingredient-products{margin-top:0}.ingredient-selected .ingredient-picture{align-self:start;height:auto;min-height:0}
+.ingredient-selected .ingredient-image-frame{height:clamp(220px,27vw,390px);width:100%}
+.ingredient-selected .ingredient-picture img{height:100%;min-height:0;max-height:none;width:100%;object-fit:cover}
+@media(hover:hover){.mm-ingredient-card-link:hover{text-decoration:underline;text-underline-offset:5px}}
+@media(max-width:767px){.mm-ingredient-section h3,.mm-ingredient-range-heading{font-size:1rem}.ingredient-selected .ingredient-picture img{max-height:300px}}
+
+.mm-ingredient-rich.ingredient-selected{display:block}
+.mm-ingredient-profile-hero{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:30px;background:var(--paper)}
+.mm-ingredient-profile-intro{padding:30px;min-width:0}.mm-ingredient-profile-intro h2{font-size:clamp(1.8rem,3vw,2.5rem)}
+.mm-ingredient-rich .ingredient-card-body{max-width:100ch;margin-inline:auto;width:100%;padding:0 32px 32px}
+.mm-ingredient-rich .ingredient-products{font-size:.8rem;line-height:1.8}
+@media(max-width:767px){.mm-ingredient-profile-hero{grid-template-columns:1fr;gap:0}.mm-ingredient-profile-intro{padding:22px}.mm-ingredient-rich .ingredient-card-body{padding:0 22px 24px}.ingredient-selected .ingredient-image-frame{height:230px}}

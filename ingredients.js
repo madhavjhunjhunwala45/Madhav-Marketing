@@ -1,1 +1,168 @@
-const ingredientGrid=document.getElementById("ingredient-grid");const ingredientSearch=document.getElementById("ingredient-search");const ingredientCount=document.getElementById("ingredient-count");const ingredientEntries=Object.entries(window.ingredientGuide).filter(([,item])=>!item.guideHidden);let ingredientSearchIndex;function rebuildIngredientSearchIndex(){ingredientSearchIndex=new Map(ingredientEntries.map(([id,item])=>{const names=[item.title,item.latin,...Object.keys(window.ingredientAliases).filter(name=>window.ingredientAliases[name]===id)];const translated=Object.values(window.madhavTranslations||{}).flatMap(dictionary=>names.map(name=>dictionary[name]||""));return[id,[...names,...translated].join(" ").normalize("NFKC").toLocaleLowerCase()]}))}rebuildIngredientSearchIndex();const selectedIngredient=new URLSearchParams(location.search).get("ingredient");let exactIngredient=selectedIngredient&&window.ingredientGuide[selectedIngredient]&&!window.ingredientGuide[selectedIngredient].guideHidden?selectedIngredient:null;let ingredientFilter="featured";function makeIngredientCard(id,item){const card=document.createElement("article");card.className="ingredient-card";card.id="ingredient-"+id;card.dataset.id=id;card.append(ingredientPicture(item));const body=document.createElement("div");body.className="ingredient-card-body";const eyebrow=document.createElement("p");eyebrow.className="ingredient-group";eyebrow.textContent=item.group==="familiar"?"FAMILIAR BOTANICAL":item.group==="rare"?"LESSER-KNOWN BOTANICAL":item.group==="oil"?"OIL / PREPARATION":item.group==="mineral"?"MINERAL / MATERIAL":"FORMULATION COMPONENT";const heading=document.createElement("h2");heading.textContent=item.title;const latin=document.createElement("p");latin.className="ingredient-latin";latin.textContent=item.latin||"Identity as stated on the product label";const benefit=document.createElement("p");benefit.className="ingredient-benefit";benefit.textContent=item.shortBenefit;const paragraph=document.createElement("p");paragraph.className="ingredient-description";paragraph.textContent=item.paragraph;const evidence=document.createElement("span");evidence.className="evidence-label";evidence.textContent=item.evidenceLabel;body.append(eyebrow,heading,latin,benefit,paragraph,evidence);if(item.note){const note=document.createElement("p");note.className="ingredient-part-note";note.textContent=item.note;body.append(note)}const products=Object.entries(catalogue).filter(([,p])=>(p.formats||[p]).some(f=>f.ingredients.some(r=>window.ingredientAliases[r[0]]===id)));if(products.length){const details=document.createElement("details");details.className="ingredient-products";const summary=document.createElement("summary");summary.textContent="Find in "+products.length+(products.length===1?" preparation":" preparations");details.append(summary);products.forEach(([key,p])=>{const a=document.createElement("a");a.href="product.html?product="+key+"#composition";a.textContent=p.title+" ↗";details.append(a);const mmRows=new Set;for(const format of p.formats||[p]){for(const row of format.ingredients){if(window.ingredientAliases[row[0]]!==id)continue;const note=window.MadhavIngredientNotes?.get(key,row[0]);if(!note)continue;const signature=(format.label||'')+'|'+note.benefit+'|'+note.explanation;if(mmRows.has(signature))continue;mmRows.add(signature);const role=document.createElement('p');const lead=document.createElement('strong');lead.textContent=note.benefit;const detail=document.createElement('span');detail.textContent=note.explanation;role.className='mm-ingredient-product-note';const basis=document.createElement('small');basis.className='component-evidence';if(format.label){const version=document.createElement('span');version.textContent=format.label;basis.append(version,document.createTextNode(' · '))}const basisText=document.createElement('span');basisText.textContent=format.basis||'';basis.append(basisText);role.append(basis,lead,document.createElement('br'),detail);details.append(role)}}});body.append(details)}const profile=document.createElement("a");profile.className="ingredient-profile-link";profile.href="ingredients.html?ingredient="+encodeURIComponent(id)+"#ingredient-"+id;profile.textContent="View ingredient profile ↗";body.append(profile);body.append(ingredientSources(item));card.append(body);window.MadhavIngredientSwipe?.(card,id);return card}const ingredientCards=new Map;function filterIngredients(){const mmHeading=document.querySelector(".ingredient-hero h1");if(mmHeading)mmHeading.textContent=exactIngredient?window.ingredientGuide[exactIngredient].title:"Ayurvedic ingredient guide";const query=ingredientSearch.value.trim().normalize("NFKC").toLocaleLowerCase();const results=ingredientEntries.filter(([id,item])=>{if(exactIngredient)return id===exactIngredient;const matchesQuery=ingredientSearchIndex.get(id).includes(query);const matchesGroup=ingredientFilter==="all"||(ingredientFilter==="featured"?query||item.featured:item.group===ingredientFilter);return matchesQuery&&matchesGroup});const fragment=document.createDocumentFragment();for(const[id,item]of results){let card=ingredientCards.get(id);if(!card){card=makeIngredientCard(id,item);ingredientCards.set(id,card)}card.classList.toggle("ingredient-selected",exactIngredient===id);fragment.append(card)}ingredientGrid.replaceChildren(fragment);const count=results.length;ingredientCount.textContent=count+(count===1?" ingredient":" ingredients");document.getElementById("ingredient-empty").hidden=count!==0}function clearIngredientSelection(){if(!exactIngredient)return;exactIngredient=null;const url=new URL(location.href);url.searchParams.delete("ingredient");url.hash="";history.replaceState(null,"",url.href)}document.querySelectorAll("[data-ingredient-filter]").forEach(button=>button.addEventListener("click",()=>{clearIngredientSelection();ingredientFilter=button.dataset.ingredientFilter;document.querySelectorAll("[data-ingredient-filter]").forEach(other=>other.setAttribute("aria-pressed",String(other===button)));changeGrid(ingredientGrid,filterIngredients)}));ingredientSearch.addEventListener("input",()=>{clearIngredientSelection();filterIngredients()});document.addEventListener("madhav:languagechange",()=>{rebuildIngredientSearchIndex();filterIngredients()});document.getElementById("ingredient-reset").addEventListener("click",()=>{ingredientSearch.value="";exactIngredient=null;ingredientFilter="featured";document.querySelectorAll("[data-ingredient-filter]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.ingredientFilter==="featured")));history.replaceState(null,"","ingredients.html?lang="+window.MadhavI18n.language);changeGrid(ingredientGrid,filterIngredients);ingredientSearch.focus()});if(selectedIngredient&&window.ingredientGuide[selectedIngredient]&&!window.ingredientGuide[selectedIngredient].guideHidden){ingredientSearch.value=window.ingredientGuide[selectedIngredient].title;ingredientFilter="all";document.querySelectorAll("[data-ingredient-filter]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.ingredientFilter==="all")))}filterIngredients();if(exactIngredient&&location.hash==="#ingredient-"+exactIngredient)requestAnimationFrame(()=>document.getElementById("ingredient-"+exactIngredient)?.scrollIntoView({behavior:"instant",block:"start"}));
+/* mm- Catalogue previews and complete ingredient profiles share the same data. */
+(() => {
+  'use strict';
+  const grid = document.getElementById('ingredient-grid');
+  const search = document.getElementById('ingredient-search');
+  const count = document.getElementById('ingredient-count');
+  if (!grid || !search || !count || window.MadhavIngredientView) return;
+  window.MadhavIngredientView = {version:'20261113-profiles'};
+  const guide = window.ingredientGuide || {}, aliases = window.ingredientAliases || {};
+  const products = window.productCatalogue || {}, editorial = window.mmIngredientEditorial || {};
+  const entries = Object.entries(guide).filter(([, item]) => !item.guideHidden);
+  const selected = new URLSearchParams(location.search).get('ingredient');
+  let exact = selected && guide[selected] && !guide[selected].guideHidden ? selected : null;
+  let filter = 'featured', index;
+  const cards = new Map();
+  const node = (tag, text, className) => {
+    const element = document.createElement(tag);
+    if (text) element.textContent = text;
+    if (className) element.className = className;
+    return element;
+  };
+  const matches = (product, id) => (product.formats || [product]).some(format => (format.ingredients || []).some(row => aliases[row[0]] === id));
+  const profileURL = id => 'ingredients.html?ingredient=' + encodeURIComponent(id) + '#ingredient-' + id;
+  function rebuildIndex() {
+    index = new Map(entries.map(([id, item]) => {
+      const names = [item.title, item.latin || '', ...Object.keys(aliases).filter(name => aliases[name] === id)];
+      const translated = Object.values(window.madhavTranslations || {}).flatMap(dictionary => names.map(name => dictionary[name] || ''));
+      return [id, [...names, ...translated].join(' ').normalize('NFKC').toLocaleLowerCase()];
+    }));
+  }
+  function productList(id, used, full) {
+    const details = node('details', '', 'ingredient-products');
+    if (full) details.setAttribute('open', '');
+    details.append(node('summary', 'Find in ' + used.length + (used.length === 1 ? ' preparation' : ' preparations')));
+    for (const [key, product] of used) {
+      const link = node('a', product.title + ' ↗');
+      link.href = 'product.html?product=' + key + '#composition'; details.append(link);
+      const seen = new Set();
+      for (const format of product.formats || [product]) for (const row of format.ingredients || []) {
+        if (aliases[row[0]] !== id) continue;
+        const note = window.MadhavIngredientNotes?.get(key, row[0]); if (!note) continue;
+        const signature = (format.label || '') + '|' + note.benefit + '|' + note.explanation;
+        if (seen.has(signature)) continue; seen.add(signature);
+        const role = node('p', '', 'mm-ingredient-product-note');
+        const basis = node('small', '', 'component-evidence');
+        if (format.label) basis.append(node('span', format.label), document.createTextNode(' · '));
+        basis.append(node('span', format.basis || ''));
+        role.append(basis, node('strong', note.benefit), node('br'), node('span', note.explanation));
+        details.append(role);
+      }
+    }
+    return details;
+  }
+  function section(body, title) {
+    const element = node('section', '', 'mm-ingredient-section');
+    element.append(node('h3', title)); body.append(element); return element;
+  }
+  function makeCard(id, item, full) {
+    const copy = editorial[id];
+    const card = node('article', '', 'ingredient-card' + (full ? ' ingredient-selected' : ' mm-ingredient-preview'));
+    card.id = 'ingredient-' + id; card.dataset.id = id;
+    const picture = ingredientPicture(item);
+    if (!full) {
+      const zoom = picture.querySelector('.ingredient-photo-button');
+      const image = zoom?.querySelector('img');
+      if (zoom && image) {
+        const imageLink = node('a', '', 'ingredient-image-frame mm-ingredient-image-link');
+        imageLink.href = profileURL(id); imageLink.setAttribute('aria-label', item.title);
+        imageLink.append(image); picture.insertBefore(imageLink, zoom);
+        zoom.classList.add('mm-ingredient-preview-zoom');
+      }
+    }
+    card.append(picture);
+    const body = node('div', '', 'ingredient-card-body');
+    const group = item.group === 'familiar' ? 'FAMILIAR BOTANICAL' : item.group === 'rare' ? 'LESSER-KNOWN BOTANICAL' : item.group === 'oil' ? 'OIL / PREPARATION' : item.group === 'mineral' ? 'MINERAL / MATERIAL' : 'FORMULATION COMPONENT';
+    body.append(node('p', copy?.badge || group, 'ingredient-group'));
+    const heading = node('h2');
+    if (full) heading.textContent = item.title;
+    else {
+      const link = node('a', item.title, 'mm-ingredient-card-link'); link.href = profileURL(id); heading.append(link);
+    }
+    body.append(heading, node('p', item.latin || 'Identity as stated on the product label', 'ingredient-latin'));
+    if (full && copy) body.append(node('p', copy.subtitle, 'mm-ingredient-subtitle'));
+    const used = Object.entries(products).filter(([, product]) => matches(product, id));
+    const firstProduct = used[0];
+    const firstRow = firstProduct && (firstProduct[1].formats || [firstProduct[1]]).flatMap(format => format.ingredients || []).find(row => aliases[row[0]] === id);
+    const previewBenefit = firstRow && window.MadhavIngredientNotes?.get(firstProduct[0], firstRow[0])?.benefit;
+    body.append(node('p', copy?.hook || (!full && previewBenefit) || item.shortBenefit, 'ingredient-benefit'));
+    if (!full) {
+      if (used.length) {
+        body.append(node('h3', 'Key Formulations', 'mm-ingredient-label'));
+        const list = node('ul', '', 'mm-ingredient-key-products');
+        for (const [key, product] of used) {
+          const row = node('li'), link = node('a', product.title); link.href = 'product.html?product=' + key + '#composition'; row.append(link); list.append(row);
+        }
+        body.append(list);
+      }
+      if (copy) body.append(node('h3', 'Why It’s In Our Blend', 'mm-ingredient-label'), node('p', copy.why, 'mm-ingredient-why'));
+    } else {
+      if (copy) {
+        section(body, '1. The Classical Essence').append(node('p', copy.essence));
+        const research = section(body, '2. Standalone Benefits & Modern Validation');
+        research.append(node('h4', 'Primary Bioactives'), node('p', copy.bioactives), node('h4', 'Systemic Advantages'));
+        const list = node('ul'); for (const text of copy.advantages) list.append(node('li', text)); research.append(list);
+        research.append(node('p', item.paragraph, 'ingredient-description'), node('span', item.evidenceLabel, 'evidence-label'));
+        section(body, '3. The Challenge of Raw / Isolated Use').append(node('p', copy.raw));
+        const blend = section(body, '4. The Formulation Solution');
+        blend.append(node('p', 'Samyoga means combining ingredients; Samskara means processing. These Ayurvedic principles guide formulation choices, while the actual plant part, method, quantity and route remain important.'), node('h4', 'Bioavailability & Absorption'), node('p', copy.absorption), node('h4', 'Balance & Safety'), node('p', 'Complementary ingredients bring different roles to a recipe. Combining herbs does not automatically remove adverse effects or interactions; follow the complete product directions and individual professional advice.'), node('p', copy.care, 'mm-ingredient-care'));
+        body.append(node('h3', '5. Role Across the Madhav Range', 'mm-ingredient-range-heading'));
+      } else body.append(node('p', item.paragraph, 'ingredient-description'), node('span', item.evidenceLabel, 'evidence-label'));
+      if (item.note) body.append(node('p', item.note, 'ingredient-part-note'));
+      if (used.length) body.append(productList(id, used, true));
+      body.append(ingredientSources({...item, sources:[...(item.sources || []), ...(window.mmIngredientReferences?.[id] || [])]}));
+    }
+    if (!full) {
+      const link = node('a', 'View ingredient profile ↗', 'ingredient-profile-link'); link.href = profileURL(id); body.append(link);
+    }
+    if (full && copy) {
+      card.classList.add('mm-ingredient-rich');
+      const hero = node('div', '', 'mm-ingredient-profile-hero');
+      const intro = node('div', '', 'mm-ingredient-profile-intro');
+      while (body.firstElementChild && !body.firstElementChild.classList.contains('mm-ingredient-section')) intro.append(body.firstElementChild);
+      hero.append(picture, intro); card.append(hero, body);
+    } else card.append(body);
+    if (!full) window.MadhavIngredientSwipe?.(card, id);
+    return card;
+  }
+  function render() {
+    const heading = document.querySelector('.ingredient-hero h1');
+    if (heading) heading.textContent = exact ? guide[exact].title : 'Ayurvedic ingredient guide';
+    const query = search.value.trim().normalize('NFKC').toLocaleLowerCase();
+    const results = entries.filter(([id, item]) => exact ? id === exact : index.get(id).includes(query) && (filter === 'all' || (filter === 'featured' ? query || item.featured : item.group === filter)));
+    const fragment = document.createDocumentFragment();
+    for (const [id, item] of results) {
+      const key = (exact === id ? 'profile:' : 'preview:') + id;
+      let card = cards.get(key);
+      if (!card) { card = makeCard(id, item, exact === id); cards.set(key, card); }
+      fragment.append(card);
+    }
+    grid.replaceChildren(fragment);
+    count.textContent = results.length + (results.length === 1 ? ' ingredient' : ' ingredients');
+    const empty = document.getElementById('ingredient-empty'); if (empty) empty.hidden = results.length !== 0;
+  }
+  function clearSelection() {
+    if (!exact) return; exact = null;
+    const url = new URL(location.href); url.searchParams.delete('ingredient'); url.hash = ''; history.replaceState(null, '', url.href);
+  }
+  const filters = document.querySelectorAll('[data-ingredient-filter]');
+  filters.forEach(button => button.addEventListener('click', () => {
+    clearSelection(); filter = button.dataset.ingredientFilter;
+    filters.forEach(other => other.setAttribute('aria-pressed', String(other === button)));
+    if (typeof changeGrid === 'function') changeGrid(grid, render); else render();
+  }));
+  search.addEventListener('input', () => { clearSelection(); render(); });
+  document.addEventListener('madhav:languagechange', () => { rebuildIndex(); render(); });
+  document.getElementById('ingredient-reset')?.addEventListener('click', () => {
+    search.value = ''; exact = null; filter = 'featured';
+    filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.ingredientFilter === 'featured')));
+    history.replaceState(null, '', 'ingredients.html?lang=' + (window.MadhavI18n?.language || 'en'));
+    if (typeof changeGrid === 'function') changeGrid(grid, render); else render(); search.focus();
+  });
+  if (exact) {
+    search.value = guide[exact].title; filter = 'all';
+    filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.ingredientFilter === 'all')));
+  }
+  rebuildIndex(); render();
+  if (exact && location.hash === '#ingredient-' + exact) requestAnimationFrame(() => document.getElementById('ingredient-' + exact)?.scrollIntoView({ behavior: 'instant', block: 'start' }));
+})();

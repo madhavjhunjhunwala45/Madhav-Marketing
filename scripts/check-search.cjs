@@ -77,7 +77,7 @@ for (const item of all) {
     assert.equal(document.querySelectorAll('#ingredient-grid .ingredient-card').length, 1);
     assert.equal(card.querySelector('h2').textContent, ingredient.title);
     assert.equal(card.querySelector('.ingredient-description').textContent, ingredient.paragraph);
-    assert.equal(card.querySelector('.ingredient-benefit').textContent, ingredient.shortBenefit);
+    assert.equal(card.querySelector('.ingredient-benefit').textContent, (context.window.mmIngredientEditorial?.[item.id]?.hook || ingredient.shortBenefit));
     assert.equal(card.querySelector('.evidence-label').textContent, ingredient.evidenceLabel);
     for (const source of ingredient.sources || []) assert([...card.querySelectorAll('a')].some(a => new URL(a.getAttribute('href'), search.origin).href === new URL(source.url).href), item.id + ' source: ' + source.url);
   }

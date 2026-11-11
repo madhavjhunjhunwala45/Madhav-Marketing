@@ -16,7 +16,7 @@ for (const name of ['product-data.js', 'ingredient-data.js']) vm.runInContext(re
 const products = dataContext.window.productCatalogue;
 const ingredients = dataContext.window.ingredientGuide;
 const ingredientIds = Object.keys(ingredients).filter(id => !ingredients[id].guideHidden);
-require('./seo-pages.cjs')({ root, settings, products, ingredients, aliases: dataContext.window.ingredientAliases, helpers });
+require('./seo-pages.cjs')({ root, settings, products, ingredients, aliases: dataContext.window.ingredientAliases, helpers, editorial: dataContext.window.mmIngredientEditorial });
 
 if (fs.existsSync(output)) fs.rmSync(output, { recursive: true });
 fs.mkdirSync(output, { recursive: true });

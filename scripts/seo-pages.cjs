@@ -1,7 +1,7 @@
 /* Build-only landing pages. No new browser dependency or network resource. */
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
 const { parseHTML } = require('linkedom');
-module.exports = function buildSeoPages({ root, settings, products, ingredients, aliases, helpers }) {
+module.exports = function buildSeoPages({ root, settings, products, ingredients, aliases, helpers, editorial }) {
   const read = f => fs.readFileSync(path.join(root, f), 'utf8');
   const ui = new Set();
   const capture = value => (ui.add(value), value);
@@ -45,7 +45,7 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
     settings.pages[c.path].products = entries.map(([id]) => id);
     const p = page(c.path, c.intro), s = p.section('Explore our Ayurvedic product range');
     const grid = p.node('div', '', 'product-grid mm-seo-products'); grid.dataset.mmCount = String(entries.length);
-    const context = { window: { productCatalogue: products, matchMedia: () => ({ matches: true, addEventListener() {} }) }, document: p.d }; vm.createContext(context); vm.runInContext(helpers, context);
+    const context = { window: { productCatalogue: products, mmIngredientEditorial: editorial, matchMedia: () => ({ matches: true, addEventListener() {} }) }, document: p.d }; vm.createContext(context); vm.runInContext(helpers, context);
     for (const [id] of entries) grid.append(vm.runInContext('makeProductCard(' + JSON.stringify(id) + ',catalogue[' + JSON.stringify(id) + '])', context)); s.append(grid);
     const list = p.section('Ingredients used in these formulations');
     const stack = p.node('div', '', 'mm-seo-stack mm-seo-ingredients');
@@ -53,7 +53,9 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
       const item = ingredients[id]; if (!item || item.guideHidden) throw Error('Unknown category ingredient: ' + id);
       const used = entries.filter(([, product]) => (product.formats || [product]).some(f => f.ingredients.some(row => aliases[row[0]] === id)));
       if (!used.length) throw Error('Ingredient not in category: ' + group + '/' + id);
-      const a = p.node('article', '', 'mm-seo-ingredient-card'); const h = p.node('h3'); h.append(p.link(item.title, 'ingredients.html?ingredient=' + id)); a.append(h, p.node('p', item.shortBenefit));
+      const a = p.node('article', '', 'mm-seo-ingredient-card'); const h = p.node('h3'); h.append(p.link(item.title, 'ingredients.html?ingredient=' + id)); const roles = ingredients[id] && context.window.mmIngredientEditorial?.[id]?.roles;
+      const role = roles?.[group === 'metabolic' ? 'metabolic' : used[0][0]];
+      a.append(h, p.node('p', role?.[0] || item.shortBenefit));
       const l = p.node('div', '', 'mm-seo-links'); for (const [pid, product] of used) l.append(p.link(product.title, 'product.html?product=' + pid + '#composition')); a.append(l); stack.append(a);
     }
     list.append(stack);
