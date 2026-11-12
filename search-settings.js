@@ -6,8 +6,8 @@ window.madhavSearchSettings = {
   previousHost: 'madhav-marketing.vercel.app',
   businessName: 'Madhav Marketing',
   home: {
-    title: 'Ayurvedic Wellness Products from Haridwar | Madhav Marketing',
-    description: 'Ayurvedic products manufactured in Haridwar and supplied from Muzaffarpur, Bihar. Explore Madhav Marketing’s Dard Haran, Kabj Haran and Madhumeh Haran range.'
+    title: 'Ayurvedic Wellness Products | Madhav Marketing',
+    description: 'Explore Madhav Marketing’s Ayurvedic wellness range, including Dard Haran, Kabj Haran and Madhumeh Haran. View ingredients, pack details and directions.'
   },
   ingredients: {
     title: 'Ayurvedic Ingredient Guide | Madhav Marketing',
@@ -34,7 +34,7 @@ window.madhavSearchSettings = {
   organization: {
     telephone: '+919431655050',
     email: 'madhavmarketing999@gmail.com',
-    description: 'Our products are manufactured in Haridwar, Uttarakhand. Our main supply and distribution operations are based in Muzaffarpur, Bihar.',
+    description: 'Madhav Marketing is a proprietorship Ayurvedic brand based in Muzaffarpur, Bihar.',
     // Store/supply address and PIN confirmed by the owner. Manufacturing remains in Haridwar.
     // Keep the existing Haridwar contact address separate from distribution.
     addresses: [
@@ -170,7 +170,7 @@ Object.assign(window.madhavSearchSettings, {
       "kind": "contact",
       "heading": "Contact Madhav Marketing",
       "title": "Contact Madhav Marketing | Madhav Marketing",
-      "description": "Haridwar and Muzaffarpur contact details, product availability and retailer enquiries for Madhav Marketing. Call or use the existing enquiry form."
+      "description": "Contact Madhav Marketing, a proprietorship brand based in Muzaffarpur, Bihar, for product availability and retailer enquiries. Call or use the enquiry form."
     },
     "ayurveda-guides.html": {
       "kind": "guides",

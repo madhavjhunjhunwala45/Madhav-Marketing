@@ -351,3 +351,8 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 .mm-ingredient-rich .ingredient-card-body{max-width:100ch;margin-inline:auto;width:100%;padding:0 32px 32px}
 .mm-ingredient-rich .ingredient-products{font-size:.8rem;line-height:1.8}
 @media(max-width:767px){.mm-ingredient-profile-hero{grid-template-columns:1fr;gap:0}.mm-ingredient-profile-intro{padding:22px}.mm-ingredient-rich .ingredient-card-body{padding:0 22px 24px}.ingredient-selected .ingredient-image-frame{height:230px}}
+
+/* mm- Follow desktop drags without changing mobile gestures or image quality. */
+#spotlight-image{transition:translate 160ms ease-out}
+.madhav-range-dragging #spotlight-image{transition:none!important;will-change:translate}
+@media(prefers-reduced-motion:reduce){#spotlight-image{transition:none!important}}

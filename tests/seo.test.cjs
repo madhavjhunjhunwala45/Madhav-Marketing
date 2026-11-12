@@ -35,7 +35,7 @@ for (const [file, entry] of Object.entries(settings.pages)) {
   if(entry.kind==='contact') assert(graph.some(x=>x['@type']==='ContactPage'));
   assert(d.querySelector('footer a[href="contact.html"]'));
 }
-const home=load('index.html');assert(home.querySelector('h1').textContent.includes('Haridwar'));
+const home=load('index.html');assert(home.querySelector('h1').textContent.includes('everyday care.'));assert(!home.title.includes('Haridwar'));
 assert(home.querySelector('.site-footer').textContent.includes('Traditional roots. Everyday care.'));
 for(const cat of Object.values(settings.categories)) assert(home.querySelector('a[href="'+cat.path+'"]'));
 const contact=load('contact.html');assert(contact.getElementById('distribution-location').textContent.includes('Jagdamba Agency'));
