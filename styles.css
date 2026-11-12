@@ -356,3 +356,29 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--madhav-scroll-offset,100px)
 #spotlight-image{transition:translate 160ms ease-out}
 .madhav-range-dragging #spotlight-image{transition:none!important;will-change:translate}
 @media(prefers-reduced-motion:reduce){#spotlight-image{transition:none!important}}
+
+/* mm- Compact desktop hero; content determines showcase height. */
+@media(min-width:901px){
+.hero{min-height:0;gap:clamp(28px,4vw,56px);padding-block:32px 40px;align-items:center}
+.hero-copy{padding-block:12px}
+.hero h1{font-size:clamp(2.8rem,4.2vw,4rem);line-height:1.08;max-width:640px}
+html:not([lang=en]) .hero h1{font-size:clamp(2.4rem,3.5vw,3.4rem);line-height:1.35}
+.hero-copy .eyebrow{margin-bottom:20px}
+.hero-intro{margin-top:20px}
+.hero-actions{margin-top:24px}
+.hero-foot{margin-top:26px;padding-top:22px}
+.herbal-showcase{align-self:center;justify-content:flex-start;min-height:0;padding:24px 24px 20px;border-radius:64px 64px 16px 16px}
+.spotlight-image-stage{height:280px;margin-block:12px 6px;padding:14px 22px}
+}
+/* Only the Premium title in this carousel gets a smaller size. */
+.herbal-showcase[data-mm-product="madhumeh-premium"] #spotlight-title{font-size:clamp(.9rem,1.45vw,1.24rem);letter-spacing:-.025em;white-space:nowrap}
+.spotlight-info>div{min-width:0}
+@media(max-width:900px){.herbal-showcase[data-mm-product="madhumeh-premium"] #spotlight-title{font-size:clamp(.83rem,2.75vw,1.1rem)}}
+
+@media(min-width:651px) and (max-width:900px){
+.hero{min-height:0;padding-block:28px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,4.7vw,3rem)}
+html:not([lang=en]) .hero h1{font-size:2.3rem}
+.herbal-showcase{align-self:center;justify-content:flex-start;min-height:0}
+.spotlight-image-stage{height:250px}
+}

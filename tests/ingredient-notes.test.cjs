@@ -15,7 +15,7 @@ assert.equal(notes.get('arshharan-capsules','Bel ext.').explanation,copy.part);
 assert.equal(notes.get('arshharan','Bhilava').explanation,copy.oral);
 assert.equal(notes.get('arshharan-capsules','Giloy Satva').explanation,copy.oral);
 assert.equal(notes.get('madhumeh-value','Kali jeera').explanation,copy.identity);
-assert.equal(notes.get('madhumeh-premium','Jamun').explanation,copy.metabolic);
+assert.equal(notes.get('madhumeh-premium','Jamun').explanation,context.window.mmIngredientEditorial.jamun.roles.metabolic[1]);
 assert.equal(notes.get('madhumeh-premium','Daruhaldi').explanation,copy.berberis);
 assert.equal(notes.get('madhumeh-premium','Basant kusumakar').benefit,copy.vasantShort);
 assert.equal(guide['vasant-kusumakar'].title,'Vasant Kusumakar Ras');assert(guide['vasant-kusumakar'].paragraph.includes('classical Ayurvedic'));assert(guide['vasant-kusumakar'].paragraph.includes('Madhumeh Haran Premium'));assert(!guide['vasant-kusumakar'].paragraph.includes('do not establish'));assert(copy.pageEvidence.includes('proprietary Ayurvedic'));assert(!copy.vasantRole.includes('not'));assert(!Object.values(guide).some(p=>p.shortBenefit.includes('may support')));
