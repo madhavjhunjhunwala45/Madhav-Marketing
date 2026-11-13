@@ -3,7 +3,7 @@
 // Keep the origin without a trailing slash; change it when moving domains.
 window.madhavSearchSettings = {
   origin: 'https://www.madhavmarketingayurveda.in',
-  previousHost: 'madhavmarketing.store',
+  previousHost: 'www.madhavmarketing.store',
   businessName: 'Madhav Marketing',
   home: {
     title: 'Ayurvedic Wellness Products | Madhav Marketing',
