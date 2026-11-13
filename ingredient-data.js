@@ -1,11 +1,11 @@
-/* Reviewed ingredient properties and preparation-specific benefits; exact label formulas remain in product-data.js. */
+/* Reviewed ingredient data; original identities, images and mappings retained. */
 window.ingredientGuide = {
   "turmeric": {
     "title": "Turmeric · Haldi",
     "latin": "Curcuma longa",
     "group": "familiar",
     "shortBenefit": "Oral turmeric extracts studied for knee comfort and stiffness.",
-    "paragraph": "Turmeric contains curcuminoids, including curcumin, which gives the rhizome its yellow colour. Preliminary human research suggests that certain oral turmeric or curcumin preparations may improve knee osteoarthritis pain and stiffness.",
+    "paragraph": "Turmeric contains curcuminoids, including curcumin, which give its underground stem the yellow colour. Early human research suggests that some oral turmeric or curcumin preparations can improve knee pain and stiffness from osteoarthritis. This research describes those preparations, not every product containing Haldi.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -42,7 +42,7 @@ window.ingredientGuide = {
     "latin": "Zingiber officinale",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestive comfort.",
-    "paragraph": "Ginger is an aromatic rhizome traditionally used for indigestion and digestive discomfort. Human research suggests that ginger supplements may help pregnancy-related nausea and vomiting; evidence for other forms of nausea is less consistent.",
+    "paragraph": "Ginger is the aromatic underground stem used fresh as Adrak or dried as Sonth. It has traditional uses for indigestion and digestive discomfort. Some supplements have been studied for nausea and vomiting during pregnancy; findings for other kinds of nausea are less consistent.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -79,7 +79,7 @@ window.ingredientGuide = {
     "latin": "Withania somnifera",
     "group": "familiar",
     "shortBenefit": "Some preparations may help with stress and sleep.",
-    "paragraph": "Ashwagandha contains withanolides and has a traditional rejuvenating role in Ayurveda. Human studies suggest that certain root or leaf extracts may help with stress and sleep; the strength of evidence and the effects vary with the preparation studied.",
+    "paragraph": "Ashwagandha contains natural compounds called withanolides. It is traditionally used for vitality. Human studies suggest some root or leaf extracts can help with stress and sleep; effects vary with the material and amount studied.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -116,7 +116,7 @@ window.ingredientGuide = {
     "latin": "Ocimum tenuiflorum",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestive comfort.",
-    "paragraph": "Tulsi is an aromatic herb with traditional stomachic and digestive properties. Herbal preparations use it for digestive comfort and related stomach complaints.",
+    "paragraph": "Tulsi leaves are fragrant and have traditional uses in digestive and respiratory preparations. Small human studies have explored effects on blood glucose, stress and other wellness measures using different extracts; those findings do not all describe the same preparation.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -153,7 +153,7 @@ window.ingredientGuide = {
     "latin": "Phyllanthus emblica",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestion and general vitality.",
-    "paragraph": "Amla fruit has traditional digestive and carminative properties, meaning it is used to support digestion and ease gas.",
+    "paragraph": "Amla fruit is traditionally used for digestion, general vitality and easing gas. Carminative is the technical word for an ingredient used to ease gas.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -190,7 +190,7 @@ window.ingredientGuide = {
     "latin": "Azadirachta indica",
     "group": "familiar",
     "shortBenefit": "Traditionally used in external skin-care preparations.",
-    "paragraph": "Neem leaves have bitter properties and are traditionally used in external preparations for skin complaints. Leaf decoctions have a historical role in skin care, while the bark has traditional astringent uses.",
+    "paragraph": "Different parts of Neem have different traditional uses. Leaf preparations have been used on the skin, while bark has a bitter and astringent character. Astringent describes a drying, puckering quality. These uses are separate from the Neem ingredient in our oral Madhumeh blends.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -227,7 +227,7 @@ window.ingredientGuide = {
     "latin": "Syzygium cumini",
     "group": "familiar",
     "shortBenefit": "Metabolic-wellness botanical with a digestive role.",
-    "paragraph": "Jamun is a key botanical in both Madhumeh Haran formulas. It is valued for its astringent and digestive properties and its place in Ayurvedic metabolic care, alongside Karela and the other listed botanicals. Leaves, bark, fruit and seeds have different properties; the pack identifies the preparation used.",
+    "paragraph": "Jamun is part of both Madhumeh Haran formulas alongside Karela. It has traditional digestive and metabolic-wellness uses. Leaves, bark, fruits and seeds are different materials; the product labels do not specify the part used.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -264,7 +264,7 @@ window.ingredientGuide = {
     "latin": "Momordica charantia",
     "group": "familiar",
     "shortBenefit": "Metabolic-wellness botanical with a digestive role.",
-    "paragraph": "Karela brings its distinctive bitter botanical character to both Madhumeh Haran formulas. It contributes to their Ayurvedic metabolic focus and also has a role in digestive and bowel-care preparations. Alongside Jamun, it forms part of the blends' botanical foundation.",
+    "paragraph": "Karela adds a familiar bitter character to both Madhumeh Haran formulas alongside Jamun. It also has traditional uses in digestive and bowel-care preparations. These are general ingredient uses, not a reason to add Karela to a product where it is not listed.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -301,7 +301,7 @@ window.ingredientGuide = {
     "latin": "Trigonella foenum-graecum",
     "group": "familiar",
     "shortBenefit": "Studied for blood glucose; evidence remains limited.",
-    "paragraph": "Fenugreek seeds are an aromatic culinary ingredient with a long history of traditional use. Studies have explored their possible effect on blood glucose in people with type 2 diabetes, but the quality of evidence is insufficient for a firm conclusion.",
+    "paragraph": "Fenugreek seeds are familiar in cooking and traditional care. Research has explored their effects on blood glucose, especially in people with type 2 diabetes. Many studies were small or of limited quality, so the exact preparation and amount matter.",
     "evidenceLabel": "Limited evidence",
     "sources": [
       {
@@ -338,7 +338,7 @@ window.ingredientGuide = {
     "latin": "Cinnamomum verum / Cinnamomum cassia",
     "group": "familiar",
     "shortBenefit": "Provides a warm aroma and flavour.",
-    "paragraph": "Cinnamon is an aromatic bark spice that contributes warm flavour to foods and herbal preparations. Ceylon and cassia cinnamon are different species.",
+    "paragraph": "Cinnamon is an aromatic bark spice used in food and herbal preparations. Ceylon and cassia are different kinds of cinnamon; our product labels do not specify which species is used.",
     "evidenceLabel": "Formulation role",
     "sources": [
       {
@@ -368,7 +368,7 @@ window.ingredientGuide = {
     "latin": "Foeniculum vulgare",
     "group": "familiar",
     "shortBenefit": "Traditionally used for mild bloating and digestive spasms.",
-    "paragraph": "Fennel fruits, commonly called seeds, are aromatic and traditionally used to ease mild digestive spasms, bloating and flatulence. European herbal medicine assessments recognise these uses on the basis of longstanding experience rather than conclusive clinical trials.",
+    "paragraph": "Fennel fruits are commonly called seeds. They have traditional uses for mild digestive cramps, bloating and gas. European herbal assessments recognise these uses mainly from long experience; the evidence is not the same as a large clinical trial.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -398,7 +398,7 @@ window.ingredientGuide = {
     "latin": "Cuminum cyminum",
     "group": "familiar",
     "shortBenefit": "Traditionally used for digestive comfort.",
-    "paragraph": "Cumin is an aromatic spice traditionally valued for digestive comfort. A small uncontrolled study of a specific cumin extract reported improvements in bloating and abdominal discomfort in adults with irritable bowel symptoms.",
+    "paragraph": "Cumin is a familiar aromatic spice traditionally used for digestive comfort. A small study of one extract reported less bloating and abdominal discomfort in adults with irritable bowel symptoms. The study had no comparison group, so it cannot show that every cumin preparation has the same effect.",
     "evidenceLabel": "Limited evidence",
     "sources": [
       {
@@ -435,7 +435,7 @@ window.ingredientGuide = {
     "latin": "Allium sativum",
     "group": "familiar",
     "shortBenefit": "Some supplements may modestly lower elevated cholesterol.",
-    "paragraph": "Garlic provides a pungent flavour, and some garlic supplements have been studied in people with elevated cholesterol. Research suggests a small reduction in total and LDL cholesterol.",
+    "paragraph": "Garlic has a pungent flavour. Studies of some garlic supplements suggest small reductions in total and LDL cholesterol in people whose levels are high. LDL is often called bad cholesterol. These findings do not establish the effect of the complete Hriday Rakshak Yog recipe.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -472,7 +472,7 @@ window.ingredientGuide = {
     "latin": "Aloe vera",
     "group": "familiar",
     "shortBenefit": "Topical inner-leaf gel studied for burn healing.",
-    "paragraph": "Aloe inner-leaf gel has been studied for skin applications. Human research suggests that topical gel may help burns heal and reduce related pain. These findings concern the gel; latex, whole-leaf preparations and unspecified extracts have different properties.",
+    "paragraph": "Some aloe inner-leaf gels have been studied on the skin for burn healing and related pain. Gel, latex and whole-leaf extracts are different preparations. Research on gel applied to skin does not describe the aloe ingredients in our oral products.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -522,7 +522,7 @@ window.ingredientGuide = {
     "latin": "Mentha × piperita",
     "group": "familiar",
     "shortBenefit": "Certain oil capsules may ease irritable bowel symptoms.",
-    "paragraph": "Peppermint is an aromatic botanical with naturally occurring menthol and a fresh mint scent. In Dard Haran Oil, it forms part of the aromatic massage blend, complementing the botanical extracts and carrier oils.",
+    "paragraph": "Peppermint has a fresh mint smell and naturally occurring menthol. In Dard Haran Oil it is part of the external massage blend with other ingredients and carrier oils. Studies of peppermint capsules taken by mouth describe a different use.",
     "evidenceLabel": "Human research",
     "sources": [
       {
@@ -559,7 +559,7 @@ window.ingredientGuide = {
     "latin": "Syzygium aromaticum",
     "group": "familiar",
     "shortBenefit": "Specified clove oil preparations traditionally provide temporary toothache relief.",
-    "paragraph": "Clove buds contain an aromatic essential oil. Specified medicinal clove oil preparations have a traditional use for temporary toothache relief. This use concerns clove oil applied locally in an appropriate preparation, rather than ordinary whole cloves or every product containing clove.",
+    "paragraph": "Clove buds contain aromatic oil. Some specified medicinal clove-oil preparations have a traditional use for temporary toothache relief when applied locally as directed. That does not make every clove-containing capsule or massage oil a dental treatment.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2607,8 +2607,8 @@ window.ingredientGuide = {
         "url": "https://portal.pcimh.gov.in/products?page=283"
       },
       {
-        "title": "Original clinical study defining Yavakshara as barley-ash alkali",
-        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6639817/"
+        "title": "Source reference",
+        "url": "https://doi.org/10.4103/asl.ASL_58_18"
       }
     ],
     "featured": false,
@@ -2628,6 +2628,7 @@ window.ingredientGuide = {
     "note": ""
   }
 };
+
 window.ingredientAliases = {
   "Suranjan": "suranjan",
   "Chobchini": "chobchini",
@@ -2751,8 +2752,9 @@ window.ingredientAliases = {
   "Yavkshar": "yavkshar",
   "Bol Parpati": "bol-parpati"
 };
+
 window.componentBenefits = {
-  "Neem": "A bitter botanical ingredient with traditional skin-care uses; an oral benefit is not established.",
+  "Neem": "A traditional bitter botanical in the Madhumeh blends.",
   "Aloe vera": "Aloe properties depend on whether gel, latex or an extract is used.",
   "Ghritkumari": "Aloe properties depend on whether gel, latex or an extract is used.",
   "Aloe ext.": "An aloe extract; a specific benefit depends on the extract used.",
@@ -2767,16 +2769,16 @@ window.componentBenefits = {
   "Ajwain oil": "Adds an aromatic botanical oil component.",
   "Clove oil": "Adds an aromatic essential-oil component to the external preparation.",
   "Rasont": "A concentrated Berberis preparation traditionally used for digestive complaints.",
-  "Sanay": "The stated root-bark ingredient is unverified; senna leaf and fruit laxative benefits cannot be assigned to it.",
+  "Sanay": "A labelled senna component; check the pack for the plant part.",
   "Bel patra": "Leaves traditionally valued for digestive properties.",
   "Bel giri": "Fruit traditionally valued for digestive and astringent properties.",
-  "Bel ext.": "A root extract component; fruit benefits do not apply automatically.",
-  "Pippalimool ext.": "A long-pepper component; the labelled plant part needs confirmation.",
+  "Bel ext.": "A bael-root extract component of Arshharan Capsules.",
+  "Pippalimool ext.": "A labelled long-pepper component of the digestive formula.",
   "Surana Purified Powder": "Prepared corm traditionally valued for carminative and digestive uses.",
   "Pipal patta": "Leaves traditionally described as purgative, supporting bowel evacuation.",
   "Hingu Sudha Powder": "An aromatic component; the seed part needs confirmation before assigning resin properties.",
-  "Triphala ext.": "A fruit-blend digestive ingredient; the stated stem part needs confirmation.",
-  "Nagkeshar": "A labelled seed component; a specific benefit for this preparation is unverified.",
+  "Triphala ext.": "A classical Triphala component listed on this panel.",
+  "Nagkeshar": "A labelled Nagkesar seed component in the capsule blend.",
   "Ashwagandha": "Some preparations may help with stress and sleep.",
   "Methi dana": "Studied for blood glucose; evidence remains limited.",
   "Methi": "Studied for blood glucose; evidence remains limited.",
@@ -2805,11 +2807,12 @@ window.componentBenefits = {
   "Akik Bhasma or Pishti": "A processed agate-based mineral component.",
   "Sajjikshar": "Provides an alkaline mineral-salt component.",
   "Sarapunkha": "Specific extracts have shown preliminary antioxidant activity in animals.",
-  "Rasanjan": "A bitter concentrated classical preparation; exact identity needs confirmation.",
+  "Rasanjan": "A concentrated classical component of the capsule blend.",
   "Dhania": "Adds a pleasant aroma and flavour; traditionally used for digestion.",
   "Giloy Satva": "A starch-rich classical preparation from giloy stems.",
-  "Mochras DE": "A plant-gum component with no verified specific clinical benefit here."
+  "Mochras DE": "A plant-gum component in the capsule formula."
 };
+
 window.componentEvidence = {
   "Neem": "Preparation dependent",
   "Aloe vera": "Preparation dependent",
@@ -2870,66 +2873,6 @@ window.componentEvidence = {
   "Mochras DE": "Formulation role"
 };
 
-/* Product-aware ingredient roles, with concise page-level evidence context. */
-Object.assign(window.componentBenefits,{
-  "Neem": "A traditional bitter botanical in the Madhumeh blends.",
-  "Aloe vera": "Aloe properties depend on whether gel, latex or an extract is used.",
-  "Ghritkumari": "Aloe properties depend on whether gel, latex or an extract is used.",
-  "Aloe ext.": "An aloe extract; a specific benefit depends on the extract used.",
-  "Nirgundi Tail": "A nirgundi oil component used in external massage preparations.",
-  "Castor oil": "Provides an oil base that helps an external preparation spread during massage.",
-  "Gandhpura Oil": "An aromatic wintergreen oil component; methyl salicylate has a topical counterirritant role.",
-  "Tarpin oil": "Provides a characteristic aromatic component in the external preparation.",
-  "Camphor": "Provides a characteristic aroma in an external preparation.",
-  "Karpura": "Provides a characteristic aroma in an external preparation.",
-  "Peppermint": "Provides an aromatic component in the external oil.",
-  "Eucalyptus oil": "Adds an aromatic essential-oil component to the external preparation.",
-  "Ajwain oil": "Adds an aromatic botanical oil component.",
-  "Clove oil": "Adds an aromatic essential-oil component to the external preparation.",
-  "Rasont": "A concentrated Berberis preparation traditionally used for digestive complaints.",
-  "Sanay": "A labelled senna component; check the pack for the plant part.",
-  "Bel patra": "Leaves traditionally valued for digestive properties.",
-  "Bel giri": "Fruit traditionally valued for digestive and astringent properties.",
-  "Bel ext.": "A bael-root extract component of Arshharan Capsules.",
-  "Pippalimool ext.": "A labelled long-pepper component of the digestive formula.",
-  "Surana Purified Powder": "Prepared corm traditionally valued for carminative and digestive uses.",
-  "Pipal patta": "Leaves traditionally described as purgative, supporting bowel evacuation.",
-  "Hingu Sudha Powder": "An aromatic component; the seed part needs confirmation before assigning resin properties.",
-  "Triphala ext.": "A classical Triphala component listed on this panel.",
-  "Nagkeshar": "A labelled Nagkesar seed component in the capsule blend.",
-  "Ashwagandha": "Some preparations may help with stress and sleep.",
-  "Methi dana": "Studied for blood glucose; evidence remains limited.",
-  "Methi": "Studied for blood glucose; evidence remains limited.",
-  "Jeera": "Traditionally used for digestive comfort.",
-  "Safed jeera": "Traditionally used for digestive comfort.",
-  "Harrar": "Traditionally used as a mild laxative and digestive aid.",
-  "Haritaki": "Traditionally used as a mild laxative and digestive aid.",
-  "Badi Haritaki ext.": "Traditionally used as a mild laxative and digestive aid.",
-  "Rasna": "Traditionally used in preparations for joint discomfort.",
-  "Brahmi": "Traditionally valued in preparations for memory.",
-  "Vidang": "Traditionally used as an appetite and digestive ingredient.",
-  "Kurchi": "Traditionally used for diarrhoeal complaints.",
-  "Ajwain": "An aromatic spice traditionally used for digestive comfort.",
-  "Yavani": "An aromatic spice traditionally used for digestive comfort.",
-  "Sudhguggal": "Traditionally valued in joint-care preparations; supplied label identifies Boswellia serrata.",
-  "Mahamash Tail": "An oil-based classical component for external massage.",
-  "Shree Gopal Tail": "An oil-based classical component for external massage.",
-  "Amma haldi": "Rhizome traditionally used for digestive comfort.",
-  "Olive Oil": "Provides an oil base that helps a preparation spread during massage.",
-  "Black salt": "Adds a distinctive salty flavour and sulphurous aroma.",
-  "Rock salt": "Provides a salty mineral component in the formula.",
-  "Nausadar": "Provides a soluble mineral-salt component.",
-  "Shuddh Shilajit": "Traditionally valued as a rejuvenating Rasayana ingredient.",
-  "Basant kusumakar": "A classical compound component rather than a single ingredient.",
-  "Vasant Kusumakar Ras": "A classical compound component rather than a single ingredient.",
-  "Akik Bhasma or Pishti": "A processed agate-based mineral component.",
-  "Sajjikshar": "Provides an alkaline mineral-salt component.",
-  "Sarapunkha": "Specific extracts have shown preliminary antioxidant activity in animals.",
-  "Rasanjan": "A concentrated classical component of the capsule blend.",
-  "Dhania": "Adds a pleasant aroma and flavour; traditionally used for digestion.",
-  "Giloy Satva": "A starch-rich classical preparation from giloy stems.",
-  "Mochras DE": "A plant-gum component in the capsule formula."
-});
 window.mmIngredientNoteCopy = {
   "metabolicShort": "Metabolic-wellness botanical with a digestive role.",
   "vasantShort": "Rasayana component for metabolic care and general vitality.",
@@ -2959,26 +2902,561 @@ window.mmIngredientNoteCopy = {
   "ingredientsTail": "at the ingredients.",
   "compositionTail": "at the composition.",
   "onePreparation": "Find in 1 preparation",
-  "pageEvidence": "These proprietary Ayurvedic formulations combine ingredients with distinct roles. The descriptions explain ingredient properties and research on specific preparations. Follow the current pack’s directions and your physician’s advice."
+  "pageEvidence": "This guide explains what each ingredient is and why it is included. Research on one herb or extract does not automatically show what a finished blend will do. Follow the product label and your physician’s advice.",
+  "formulaContext": "Read this component with the identity, plant part and quantity on this product’s composition panel. General ingredient research is explained separately in its profile.",
+  "aromaticRole": "An aromatic botanical component of the oral blend."
 };
 
-/* mm- Two-layer ingredient editorial, with route-specific formulation roles. */
-window.mmIngredientEditorial={"turmeric":{"badge":"Golden Botanical","subtitle":"The golden rhizome of Ayurvedic vitality","hook":"A golden rhizome valued in Ayurveda, with curcuminoids that continue to attract modern research interest.","why":"In our oral blends, Haldi brings its distinctive curcuminoid-containing rhizome alongside complementary botanicals. Its role follows each recipe: a botanical contribution to joint-care or heart-wellness formulations, rather than one interchangeable benefit.","essence":"Haridra is turmeric rhizome, a familiar spice and Ayurvedic botanical. Its classical role spans several kinds of preparations; the intended use depends on the complete formula.","bioactives":"Curcuminoids, including curcumin; the rhizome also contains aromatic oils.","advantages":["A longstanding place in Ayurvedic wellness preparations.","Certain oral extracts have been studied for joint comfort; those findings belong to the preparation tested."],"raw":"Culinary turmeric, raw powder and concentrated curcumin extracts differ. Curcumin has limited oral absorption, so their amounts and effects cannot be compared directly.","absorption":"Haldi is combined with other botanicals in our oral recipes. Their composition alone does not establish enhanced curcumin absorption.","roles":{"dard-capsule":["A curcuminoid-containing botanical in the joint-care blend.","Haridra accompanies Sonth and the other listed components in Dard Haran Capsule, contributing turmeric rhizome to the complete joint-care recipe."],"hriday-rakshak":["A turmeric-rhizome component of the heart-wellness blend.","Haldi accompanies Arjuna, garlic and the other listed components in Hriday Rakshak Yog, contributing turmeric rhizome to the complete heart-wellness recipe."]},"care":"Use supplements with professional advice during pregnancy or breastfeeding and when taking medicines. Highly bioavailable curcumin preparations have been associated with liver injury in some people."},"ginger":{"badge":"Digestive Warmth","subtitle":"An aromatic rhizome with a warming Ayurvedic character","hook":"Fresh Adrak and dried Sunthi bring aromatic warmth and a longstanding digestive role to Ayurvedic preparations.","why":"Ginger contributes warming aromatic character across our range. We distinguish fresh Adrak, dried Sunthi and extracts, and explain its digestive role in oral blends separately from its place in external massage oil.","essence":"Adrak is fresh ginger; Sunthi or Sonth denotes dried ginger. Ayurveda values ginger in Deepana-Pachana preparations associated with appetite and digestion, with the form and recipe guiding its use.","bioactives":"Gingerols and shogaols; their proportions vary with drying and preparation.","advantages":["Traditionally used for digestive comfort and appetite.","Some oral supplements have been studied for nausea; food, extracts and topical oil are different preparations."],"raw":"Fresh rhizome, dried powder and extracts have different strengths and flavour. Strong raw preparations can feel pungent or cause heartburn in some people.","absorption":"Ginger supplies aromatic character alongside the listed partners. It is not automatically an absorption enhancer for every other ingredient.","roles":{"dard-capsule":["A warming rhizome in the joint-care recipe.","Sonth accompanies Haridra and the other capsule components, bringing its traditional digestive character to this oral botanical combination."],"dard-oil":["An aromatic rhizome component of the external massage blend.","Sonth is listed in the oil recipe with carrier oils and aromatic components. This is an external-use role; massage gently as directed on the product."],"metabolic":["A warming digestive botanical alongside Karela and Jamun.","Sonth adds a traditional digestive dimension to the Madhumeh Haran botanical combination. Read the individual Value or Premium composition for its quantity basis."],"hriday-rakshak":["An aromatic ginger component alongside Arjuna and garlic.","Adrak contributes aromatic ginger rhizome to Hriday Rakshak Yog, alongside Arjuna, garlic and the other listed heart-wellness ingredients."],"arshharan":["A dried-ginger component of the oral digestive-care recipe.","Sunthi appears in Arshharan syrup and Sunthi extract in Arshharan Capsules. Each has its own composition basis and directions; they are not interchangeable doses."]},"care":"Oral ginger can cause heartburn or digestive discomfort. Ask a clinician about supplement use during pregnancy or with medicines; external oil must not be swallowed."},"ashwagandha":{"badge":"Rasayana & Vitality","subtitle":"An Ayurvedic Rasayana associated with resilience and renewal","hook":"A renowned Ayurvedic Rasayana, with research on selected oral preparations for stress and sleep.","why":"Ashwagandha adds a Rasayana dimension to our oral botanical combinations. In Dard Haran Oil, the label instead lists stem for external use, so root-extract research is kept separate from the massage formulation.","essence":"Ashwagandha is Withania somnifera, a shrub with a longstanding Rasayana role in Ayurveda. Rasayana describes a rejuvenative approach to vitality and wellbeing, not a single standardised extract.","bioactives":"Withanolides; the constituent profile varies between plant parts and extracts.","advantages":["Traditionally valued for vitality and resilience.","Some oral preparations have shown benefits for stress and sleep in human studies."],"raw":"Root powder, leaf extracts and stem ingredients differ. Results from a measured oral extract should not be transferred to another plant part or an external oil.","absorption":"Our oral recipes combine Ashwagandha with other botanicals; the oil uses a carrier base. These are different routes, not equivalent delivery systems.","roles":{"dard-oil":["A stem component of the external massage formulation.","The confirmed Dard Haran Oil panel lists Ashwagandha stem. Its role is as a botanical component of the massage blend, separate from research on oral root or leaf extracts."],"metabolic":["A Rasayana botanical alongside the metabolic-wellness ingredients.","Ashwagandha contributes its traditional rejuvenative character alongside Karela, Jamun and the other botanicals in Madhumeh Haran Value and Premium."],"hriday-rakshak":["A Rasayana botanical in the heart-wellness combination.","Ashwagandha accompanies Arjuna and garlic in Hriday Rakshak Yog, adding a traditional vitality-oriented component to the whole recipe."]},"care":"Avoid Ashwagandha during pregnancy or breastfeeding. Seek medical advice for thyroid, autoimmune or liver conditions, before surgery, and when taking medicines; rare liver injury has been reported with supplements."},"tulsi":{"badge":"Aromatic Wellness","subtitle":"The aromatic leaf at the heart of Indian herbal tradition","hook":"An aromatic Ayurvedic leaf with traditional digestive uses and emerging research on selected wellness preparations.","why":"Tulsi adds an aromatic botanical dimension to Madhumeh Haran Value and Premium, alongside Karela, Jamun and the other listed ingredients. Its traditional digestive character complements the purpose of the whole metabolic-wellness recipe.","essence":"Tulsi is Ocimum tenuiflorum, also known as Ocimum sanctum. Its aromatic leaves have a longstanding place in Indian household and Ayurvedic preparations, including traditional digestive uses.","bioactives":"Eugenol, rosmarinic acid and ursolic acid occur in studied Tulsi material; amounts vary with source and preparation.","advantages":["Aromatic character and traditional digestive use.","Small human studies have explored metabolic and stress-related outcomes with varied preparations."],"raw":"Fresh leaves, teas, powders and extracts deliver different constituent amounts. An extract study cannot specify the effect of a household tea or a mixed formula.","absorption":"Tulsi is combined with Karela, Jamun and other botanicals in the listed recipes. A balanced composition is a formulation principle, not a measured absorption result.","roles":{"metabolic":["An aromatic Tulsi component alongside Karela and Jamun.","Tulsi contributes its aromatic character and traditional digestive role alongside Karela, Jamun and the other botanicals in Madhumeh Haran Value and Premium."]},"care":"Seek professional advice during pregnancy or breastfeeding and with blood-glucose medicines. Limited human studies do not establish suitability for every person or preparation."}};
+window.mmIngredientEditorial = {
+  "turmeric": {
+    "badge": "Golden Botanical",
+    "subtitle": "Haldi, the golden spice used in Ayurvedic care",
+    "hook": "Haldi is valued in Ayurveda, and some turmeric extracts have been studied for joint comfort.",
+    "why": "Haldi is one part of our oral herbal blends. In Dard Haran Capsule it joins the joint-care ingredients; in Hriday Rakshak Yog it joins the heart-wellness ingredients, with a different role in each recipe.",
+    "essence": "Haldi, also called Haridra, is the underground stem of Curcuma longa. It is used as a spice and in Ayurvedic preparations. Its role depends on the whole recipe, not its yellow colour alone.",
+    "bioactives": "Curcuminoids, including curcumin, are natural yellow compounds in turmeric. It also contains aromatic oils, which give it part of its smell.",
+    "advantages": [
+      "A long history in Ayurvedic wellness preparations.",
+      "Some oral turmeric extracts have been studied for joint comfort. The results apply to the extract and amount studied."
+    ],
+    "raw": "Kitchen turmeric, turmeric powder and concentrated curcumin extracts are not the same. The body absorbs plain curcumin poorly, so equal weights do not mean equal effects.",
+    "absorption": "Our recipes combine Haldi with other named ingredients. This explains its place in the blend; how much curcumin the body absorbs would need to be measured in the finished product.",
+    "roles": {
+      "dard-capsule": [
+        "Haldi in the joint-care blend.",
+        "Haldi is combined with Sonth and the other listed ingredients in Dard Haran Capsule. Here it is part of the complete oral joint-care recipe."
+      ],
+      "hriday-rakshak": [
+        "Haldi in the heart-wellness blend.",
+        "In Hriday Rakshak Yog, Haldi is combined with Arjuna, garlic and other ingredients. Here it is part of the complete heart-wellness recipe."
+      ]
+    },
+    "care": "Use supplements with professional advice during pregnancy or breastfeeding and when taking medicines. Highly bioavailable curcumin preparations have been associated with liver injury in some people."
+  },
+  "ginger": {
+    "badge": "Digestive Warmth",
+    "subtitle": "Adrak and Sonth, ginger in fresh and dried forms",
+    "hook": "Ginger adds a warm aroma and has a long history of use for digestive comfort.",
+    "why": "Ginger adds a warm aroma to several Madhav recipes. Fresh Adrak, dried Sonth and extracts are different forms; its place in an oral blend is explained separately from its use in massage oil.",
+    "essence": "Adrak is fresh ginger; Sonth or Sunthi is dried ginger. Both come from the underground stem of Zingiber officinale. Ayurveda uses ginger in preparations for appetite and digestion.",
+    "bioactives": "Gingerols and shogaols are natural ginger compounds. Their amounts change when ginger is dried or processed.",
+    "advantages": [
+      "Traditionally used for appetite and digestive comfort.",
+      "Some oral ginger supplements have been studied for nausea. This research does not describe an external massage oil."
+    ],
+    "raw": "Fresh ginger, dried powder and extracts differ in strength and taste. Strong raw ginger can cause heartburn in some people; more is not always more suitable.",
+    "absorption": "Ginger brings its own aroma and traditional digestive role to the oral blends. In Dard Haran Oil, it is part of an external recipe with carrier oils. These are different uses.",
+    "roles": {
+      "dard-capsule": [
+        "Dried ginger in the oral joint-care recipe.",
+        "Sonth joins Haldi and the other capsule ingredients. It adds ginger’s traditional digestive character to the complete oral recipe."
+      ],
+      "dard-oil": [
+        "Ginger in the external massage blend.",
+        "Sonth is listed with the carrier oils and other ingredients in Dard Haran Oil. This is for external use: massage gently as directed on the pack."
+      ],
+      "metabolic": [
+        "Dried ginger alongside Karela and Jamun.",
+        "Sonth adds a traditional digestive ingredient to Madhumeh Haran Value and Premium. Use the amount and directions shown for the complete product."
+      ],
+      "hriday-rakshak": [
+        "Fresh ginger alongside Arjuna and garlic.",
+        "Adrak adds ginger to Hriday Rakshak Yog, alongside Arjuna, garlic and the other heart-wellness ingredients."
+      ],
+      "arshharan": [
+        "Dried ginger in the oral digestive-care recipes.",
+        "Arshharan Syrup lists Sunthi, while Arshharan Capsules lists Sunthi extract. Their amounts and directions differ, so follow the label for the product you use."
+      ]
+    },
+    "care": "Oral ginger can cause heartburn or digestive discomfort. Ask a clinician about supplement use during pregnancy or with medicines; external oil must not be swallowed."
+  },
+  "ashwagandha": {
+    "badge": "Vitality Tradition",
+    "subtitle": "Ashwagandha, a familiar herb in Ayurvedic care",
+    "hook": "Ashwagandha has a traditional role in vitality, with studies on some oral extracts for stress and sleep.",
+    "why": "Ashwagandha adds a traditional vitality ingredient to our oral blends. Dard Haran Oil instead lists the stem for external use, so studies of swallowed root extracts are kept separate from its massage role.",
+    "essence": "Ashwagandha is Withania somnifera. Ayurveda describes it as a Rasayana, meaning an ingredient used in a traditional approach to vitality and wellbeing. Different plant parts are not the same material.",
+    "bioactives": "Withanolides are natural compounds in Ashwagandha. Their amounts differ between roots, leaves, stems and extracts.",
+    "advantages": [
+      "Traditionally valued for vitality and coping with everyday demands.",
+      "Some oral preparations have shown benefits for stress and sleep in human studies; the form and amount used matter."
+    ],
+    "raw": "Root powder, leaf extract and stem material are different. A study on a swallowed root extract does not tell us the effect of stem in an external oil.",
+    "absorption": "Our oral recipes combine Ashwagandha with other herbs. The massage oil contains it in an oil base. Each use needs its own directions and evidence.",
+    "roles": {
+      "dard-oil": [
+        "Ashwagandha stem in the external oil.",
+        "The confirmed Dard Haran Oil composition lists Ashwagandha stem. It is part of the massage blend; it is not the oral root or leaf extract used in stress-and-sleep studies."
+      ],
+      "metabolic": [
+        "A traditional vitality ingredient in the Madhumeh blends.",
+        "Ashwagandha joins Karela, Jamun and the other ingredients in Madhumeh Haran Value and Premium as part of their complete wellness recipes."
+      ],
+      "hriday-rakshak": [
+        "A traditional vitality ingredient alongside Arjuna and garlic.",
+        "Ashwagandha adds its Ayurvedic vitality role to Hriday Rakshak Yog, alongside Arjuna, garlic and the other listed ingredients."
+      ]
+    },
+    "care": "Avoid Ashwagandha during pregnancy or breastfeeding. Seek medical advice for thyroid, autoimmune or liver conditions, before surgery, and when taking medicines; rare liver injury has been reported with supplements."
+  },
+  "tulsi": {
+    "badge": "Aromatic Wellness",
+    "subtitle": "Tulsi, the fragrant leaf of Indian herbal tradition",
+    "hook": "Tulsi is a fragrant herb with traditional digestive uses and research on selected wellness preparations.",
+    "why": "Tulsi adds a fragrant herbal ingredient to Madhumeh Haran Value and Premium. Alongside Karela, Jamun and the other listed herbs, its traditional digestive role contributes to the character of each complete wellness recipe.",
+    "essence": "Tulsi is Ocimum tenuiflorum, also called Ocimum sanctum. Its fragrant leaves are familiar in Indian homes and Ayurvedic preparations, including traditional preparations for digestion.",
+    "bioactives": "Eugenol, rosmarinic acid and ursolic acid are natural compounds found in studied Tulsi material. Their amounts vary between sources and preparations.",
+    "advantages": [
+      "A fragrant herb with traditional digestive uses.",
+      "Small human studies have explored stress and metabolic outcomes using different Tulsi preparations."
+    ],
+    "raw": "Fresh leaves, tea, powder and extracts provide different amounts of plant compounds. A study of an extract does not tell us the result of drinking a homemade tea.",
+    "absorption": "Tulsi is combined with Karela, Jamun and other ingredients in the Madhumeh recipes. Each herb has its own place; any claim of increased absorption needs evidence from the finished blend.",
+    "roles": {
+      "metabolic": [
+        "Tulsi alongside Karela and Jamun.",
+        "Tulsi adds its fragrant character and traditional digestive role to Madhumeh Haran Value and Premium, alongside the other ingredients listed on each product."
+      ]
+    },
+    "care": "Seek professional advice during pregnancy or breastfeeding and with blood-glucose medicines. Limited human studies do not establish suitability for every person or preparation."
+  },
+  "amla": {
+    "badge": "Digestive Vitality",
+    "subtitle": "Amalaki, the fruit valued in Ayurvedic care",
+    "hook": "Amla has a long history of use for digestion and general vitality.",
+    "why": "Amla joins Haritaki, Bibhitaki, fennel and cumin in Kabj Haran Granules. It adds a traditional digestive and vitality role to the complete bowel-care recipe, with its amount clearly shown in the composition.",
+    "essence": "Amla is Phyllanthus emblica, also named Emblica officinalis on our label. Ayurveda calls it Amalaki and values the fruit as a Rasayana, part of a traditional approach to vitality and wellbeing.",
+    "bioactives": "Amla fruit contains polyphenols, a group of natural plant compounds. These include tannins and compounds related to gallic and ellagic acids; processing changes their amounts.",
+    "advantages": [
+      "Traditionally valued for digestion and general vitality.",
+      "Its fruit compounds are studied for antioxidant activity, which means effects on oxidation in laboratory tests. This is different from a proven benefit in a person."
+    ],
+    "raw": "Fresh fruit, dried powder and extracts differ in taste and strength. Taking Amla alone is different from using a complete bowel-care recipe.",
+    "absorption": "In Kabj Haran Granules, Amla is combined with Haritaki, Bibhitaki, fennel and cumin. The recipe brings fruit ingredients and aromatic seeds together; better absorption has not been measured for this blend.",
+    "roles": {
+      "kabi-haran": [
+        "Amla alongside Haritaki and Bibhitaki.",
+        "Kabj Haran Granules contains Amla at 10.00% w/w. It adds its traditional digestive character alongside the other fruits and aromatic ingredients. Follow the directions for the whole product."
+      ]
+    },
+    "care": "Follow the granules’ directions and seek individual advice during pregnancy, breastfeeding or regular medicine use; a mixed bowel-care product is different from eating Amla fruit."
+  },
+  "neem": {
+    "badge": "Bitter Herbal Ingredient",
+    "subtitle": "Nimba, a well-known bitter herb in Ayurveda",
+    "hook": "Neem adds its familiar bitter character to both Madhumeh Haran formulas.",
+    "why": "Neem joins Karela, Jamun and the other listed herbs in both Madhumeh Haran formulas. It adds a distinct bitter ingredient to these wellness recipes; the label does not identify which plant part is used.",
+    "essence": "Neem is Azadirachta indica, called Nimba in Ayurveda. Its bitter taste is known as Tikta. Leaves, bark and seeds have different uses; our product labels name Neem without specifying the part.",
+    "bioactives": "Neem materials contain natural compounds called limonoids and polyphenols. The types and amounts depend on the plant part and how the material is prepared.",
+    "advantages": [
+      "A long history as a bitter herb in Ayurvedic preparations.",
+      "Some leaf-and-twig extracts have shown promising glucose-related results in small human trials. Those results belong to the tested extract, not to every Neem product."
+    ],
+    "raw": "Neem leaves, bark extracts and seed oil are different materials. Knowing the actual preparation is more useful than comparing products by the name Neem alone.",
+    "absorption": "Neem joins Karela and Jamun in our oral recipes. This explains its place in the formula. Studies of a skin preparation or seed oil should not be used to describe these oral blends.",
+    "roles": {
+      "metabolic": [
+        "Neem in the oral Madhumeh blends.",
+        "Madhumeh Haran Value and Premium list Neem alongside Karela and Jamun. The labels do not say leaf, bark or extract, so the guide does not guess the part."
+      ]
+    },
+    "care": "Use the approved oral product as directed; do not substitute neem seed oil. Seek professional advice during pregnancy, breastfeeding or use of blood-glucose medicines."
+  },
+  "jamun": {
+    "badge": "Metabolic Tradition",
+    "subtitle": "Jambu, a familiar tree in Ayurvedic wellness",
+    "hook": "Jamun has a traditional place in metabolic wellness and digestive preparations.",
+    "why": "Jamun is paired with Karela in Madhumeh Haran Value and Premium. It adds its traditional digestive and metabolic-wellness identity to these complete recipes, while the exact plant part remains important when interpreting ingredient research.",
+    "essence": "Jamun is Syzygium cumini, known as Jambu in Ayurveda. Some preparations have a Kashaya, or astringent, character: the drying, puckering taste familiar in certain fruits. Fruit, seed and bark are different materials.",
+    "bioactives": "The fruit’s pigments include anthocyanins. Seeds contain tannins and compounds related to ellagic acid. These natural compounds are not present in the same amounts in every part of the tree.",
+    "advantages": [
+      "Traditional use in metabolic-wellness and digestive preparations.",
+      "Plant compounds from different parts are studied in laboratory antioxidant tests; this does not prove the effect of a finished product."
+    ],
+    "raw": "Eating the fruit, taking seed powder and using an extract are different. The fruit photo shows the plant’s produce; our product label does not specify which part of Jamun is used.",
+    "absorption": "Jamun joins Karela, Sonth and other listed herbs in the Madhumeh recipes. Each ingredient has its place, but a study of seed powder cannot automatically describe another preparation or the whole blend.",
+    "roles": {
+      "metabolic": [
+        "Jamun paired with Karela.",
+        "Both Madhumeh Haran Value and Premium contain Jamun in their herbal blends. The quantities are given per gram. Follow the directions for the complete product."
+      ]
+    },
+    "care": "Follow the current pack and coordinate use with a clinician when taking blood-glucose medicines. Keep prescribed care and monitoring in place."
+  },
+  "karela": {
+    "badge": "Bitter Wellness Ingredient",
+    "subtitle": "Karavellaka, the familiar bitter-gourd vine",
+    "hook": "Karela brings its bitter character and traditional metabolic-wellness role to both Madhumeh Haran formulas.",
+    "why": "Karela joins Jamun, Sonth, Tulsi and the other listed ingredients in Madhumeh Haran Value and Premium. Its traditional bitter-herb role is part of each complete wellness recipe, rather than a separate single-herb dose.",
+    "essence": "Karela is Momordica charantia, called Karavellaka in Ayurveda. Tikta means bitter, an important part of its traditional identity. Different plant parts are used in preparations; our labels do not specify the part.",
+    "bioactives": "Studied Karela material contains natural compounds called cucurbitane-type triterpenoids and charantin. Their amounts change with the material used and how it is prepared.",
+    "advantages": [
+      "A long history in traditional metabolic-wellness preparations.",
+      "Human studies explore effects on glucose levels, with different results across preparations and study quality."
+    ],
+    "raw": "Cooked bitter gourd, juice, powder and extracts differ in strength and content. A more bitter taste does not tell you how well a preparation will suit you.",
+    "absorption": "Karela provides a bitter ingredient alongside Jamun and fragrant herbs such as Sonth and Tulsi. This describes the recipe; better absorption or stronger results would need testing in the finished blend.",
+    "roles": {
+      "metabolic": [
+        "Karela paired with Jamun in the Madhumeh blends.",
+        "Value and Premium contain Karela with Jamun and other herbs. The labels do not state a plant part or a measured extract strength; the guide keeps that distinction clear."
+      ]
+    },
+    "care": "Seek professional advice with blood-glucose medicines and during pregnancy or breastfeeding. Herbal preparations complement an individual care plan rather than replace prescribed care."
+  },
+  "fenugreek": {
+    "badge": "Seed & Wellness Tradition",
+    "subtitle": "Methi, the familiar aromatic seed",
+    "hook": "Methi adds its familiar seed character to our metabolic and heart-wellness recipes.",
+    "why": "Methi adds an aromatic seed ingredient to Madhumeh Haran Value, Premium and Hriday Rakshak Yog. Its traditional digestive role sits alongside the other herbs; the product quantities are different from high-dose standalone seed supplements.",
+    "essence": "Methi is Trigonella foenum-graecum, also called Methika. Its seeds are used in food and traditional digestive preparations. The Madhumeh labels say Methi dana; Hriday Rakshak Yog lists Methi, described as seed in this guide.",
+    "bioactives": "Fenugreek seeds contain fibre called galactomannan, plus natural compounds such as trigonelline, saponins and 4-hydroxyisoleucine. Their amounts vary between preparations.",
+    "advantages": [
+      "Traditional value for digestion and its familiar aroma.",
+      "Human studies suggest possible glucose-related benefits, but the quality of studies and the preparations used differ."
+    ],
+    "raw": "Whole seeds, soaked seeds and concentrated extracts give different amounts of plant compounds. A small amount in a mixed recipe is not the same as the larger seed or fibre doses used in some studies.",
+    "absorption": "Methi is combined with bitter and aromatic herbs in our recipes. This brings different ingredients together. It does not mean the blend supplies a high fibre dose or works like a tested single-seed supplement.",
+    "roles": {
+      "metabolic": [
+        "Methi dana alongside Karela and Jamun.",
+        "Madhumeh Haran Value and Premium both list Methi dana. The ingredient amounts are per gram; follow the directions for the complete product."
+      ],
+      "hriday-rakshak": [
+        "Methi alongside Arjuna and garlic.",
+        "Hriday Rakshak Yog contains Methi at 75 mg per gram. It adds fenugreek seed alongside Arjuna, garlic and the other ingredients in this heart-wellness recipe."
+      ]
+    },
+    "care": "Use supplemental fenugreek with professional advice, especially with blood-glucose medicines or seed allergies. During pregnancy, avoid amounts above ordinary food use unless advised by your clinician."
+  },
+  "cinnamon": {
+    "badge": "Aromatic Warmth",
+    "subtitle": "Dalchini, a warm aroma in the Madhav range",
+    "hook": "Dalchini adds a warm bark aroma to our metabolic and heart-wellness recipes.",
+    "why": "Dalchini adds aromatic bark to Madhumeh Haran Value, Premium and Hriday Rakshak Yog. It has its own place alongside the other herbs; we keep the species unspecified because the product label does not name it.",
+    "essence": "Dalchini is bark from a Cinnamomum tree. Different cinnamon species have different properties. Our labels say Cinnamomum species, so we do not assign the exact Ayurvedic qualities of one species to the product ingredient.",
+    "bioactives": "Cinnamon contains cinnamaldehyde, an aroma compound, and polyphenols such as procyanidins. The mix of these natural compounds depends on the species and preparation.",
+    "advantages": [
+      "A warm aroma and long use in traditional preparations.",
+      "Modern studies explore metabolic effects, but have not shown the same clear benefit for all cinnamon products."
+    ],
+    "raw": "Ceylon and cassia cinnamon are different. Bark powder, concentrated oil and extracts are also different. A photo of Ceylon cinnamon does not confirm which species is in the product.",
+    "absorption": "Dalchini joins Sonth and other listed herbs, adding its bark aroma. A warm taste does not prove better absorption or a particular effect on glucose levels.",
+    "roles": {
+      "metabolic": [
+        "Dalchini alongside Jamun and Karela.",
+        "Madhumeh Haran Value and Premium list Dalchini as Cinnamomum species. It adds its warm aroma to each recipe; the species is not specified."
+      ],
+      "hriday-rakshak": [
+        "Dalchini in the heart-wellness blend.",
+        "Hriday Rakshak Yog contains Dalchini at 75 mg per gram, alongside Arjuna, ginger and garlic. Its role is described in this recipe, separately from studies on other cinnamon products."
+      ]
+    },
+    "care": "Follow the approved pack and seek advice for supplement use with medicines or liver conditions. Concentrated cinnamon oil is not a substitute for the listed bark ingredient."
+  },
+  "fennel": {
+    "badge": "Digestive Comfort",
+    "subtitle": "Saunf, the sweet-smelling fruit used after meals",
+    "hook": "Saunf is traditionally used for digestive comfort, including mild bloating and gas.",
+    "why": "Saunf joins Jeera, Amla, Haritaki and other ingredients in Kabj Haran Granules. It adds a sweet aroma and traditional digestive role, alongside the ingredients selected for the complete bowel-care recipe.",
+    "essence": "Saunf is Foeniculum vulgare, called Mishreya in the Ayurvedic Pharmacopoeia. What we commonly call fennel seeds are botanically fruits. They have a long use as an aromatic digestive ingredient.",
+    "bioactives": "Fennel’s aromatic oil contains anethole and fenchone. These natural compounds help explain its characteristic smell; their amounts differ between fennel varieties and preparations.",
+    "advantages": [
+      "Traditionally used for mild digestive cramps, bloating and gas.",
+      "These uses are recognised in European herbal assessments mainly from long experience, rather than conclusive clinical trials."
+    ],
+    "raw": "Whole fruits, ground fennel, tea and concentrated oil are different. Ground fennel gradually loses some aroma during storage; concentrated oil is not a spoon-for-spoon replacement for the whole spice.",
+    "absorption": "Kabj Haran Granules brings fennel together with cumin and the listed fruit ingredients. This combines aromatic and bowel-care roles in one recipe; it is not proof that fennel increases absorption of the other ingredients.",
+    "roles": {
+      "kabi-haran": [
+        "Saunf in the digestive and bowel-care recipe.",
+        "Kabj Haran Granules contains Saunf at 7.00% w/w, alongside Jeera, Amla, Haritaki and other ingredients. It adds fennel’s aroma and traditional digestive character to the whole blend."
+      ]
+    },
+    "care": "Follow the product directions. Ask for advice if you have a fennel or related-spice allergy, or are pregnant or breastfeeding. Fennel oil should not be used as a substitute for the labelled product."
+  },
+  "cumin": {
+    "badge": "Digestive Spice",
+    "subtitle": "Jeera, the familiar spice with a digestive tradition",
+    "hook": "Jeera adds its familiar aroma and traditional digestive role to two Madhav recipes.",
+    "why": "Jeera adds an aromatic digestive ingredient to Kabj Haran Granules and Arshharan Capsules. The granules list Jeera, while the capsules specify Safed jeera fruit; each recipe has its own amount and directions.",
+    "essence": "Jeera is Cuminum cyminum, commonly called cumin. The spice often called a seed is botanically a fruit. It has longstanding use in food and traditional preparations for digestive comfort.",
+    "bioactives": "Cuminaldehyde is a key aroma compound in cumin’s volatile oil. Volatile means it can evaporate, which helps explain the spice’s smell and why storage matters.",
+    "advantages": [
+      "Traditionally valued for digestive comfort and its aroma.",
+      "A small uncontrolled study of one cumin extract reported less bloating and abdominal discomfort. Larger controlled studies are needed to confirm the finding."
+    ],
+    "raw": "Whole cumin, ground spice and extracts differ. Grinding releases aroma, while storage changes the volatile oils. A studied extract is not the same preparation as ordinary spice or a mixed capsule.",
+    "absorption": "Cumin joins fennel and fruit ingredients in the granules, and other named extracts in the capsules. Its value here is its place in each complete recipe, not an assumed ability to increase every ingredient’s absorption.",
+    "roles": {
+      "kabi-haran": [
+        "Jeera alongside fennel and fruit ingredients.",
+        "Kabj Haran Granules contains Jeera at 4.00% w/w. It adds an aromatic digestive ingredient alongside Saunf, Amla and the other components of the bowel-care recipe."
+      ],
+      "arshharan-capsules": [
+        "Safed jeera fruit in the oral capsule recipe.",
+        "Arshharan Capsules lists Safed jeera fruit at 15 mg per capsule. It is part of the complete oral formula, not the cumin extract tested in the separate digestive study."
+      ]
+    },
+    "care": "Use the whole product as directed, and seek advice during pregnancy, breastfeeding or regular medicine use. Tell your clinician about any known spice allergy."
+  },
+  "garlic": {
+    "badge": "Heart-Wellness Tradition",
+    "subtitle": "Lahsun, the pungent bulb used in food and herbal care",
+    "hook": "Garlic has a long food-and-wellness history, with research on selected supplements for cholesterol levels.",
+    "why": "Lahsun joins Arjuna, Adrak, Haldi and the other ingredients in Hriday Rakshak Yog. It adds garlic’s distinctive bulb material to the heart-wellness recipe, with the printed amount kept separate from doses used in supplement studies.",
+    "essence": "Lahsun, also called Lashuna, is Allium sativum. Its bulb is familiar in Indian food and traditional preparations. Different garlic preparations can contain very different mixtures of natural compounds.",
+    "bioactives": "Alliin is a natural sulphur compound in garlic. Crushing the bulb lets an enzyme turn some of it into allicin, which contributes to the fresh garlic smell. Processing changes this chemistry.",
+    "advantages": [
+      "A familiar food ingredient with longstanding traditional wellness uses.",
+      "Some garlic supplements can modestly lower raised total and LDL cholesterol. The results depend on the preparation and do not establish the effect of a mixed product."
+    ],
+    "raw": "Fresh crushed garlic, cooked garlic, powders and aged extracts differ. Their smells and sulphur compounds change with processing, so they are not interchangeable doses.",
+    "absorption": "Hriday Rakshak Yog combines garlic with Arjuna, ginger and other listed ingredients. This brings several ingredients into one heart-wellness recipe; its exact absorption and effects depend on the finished preparation.",
+    "roles": {
+      "hriday-rakshak": [
+        "Lahsun alongside Arjuna in the heart-wellness blend.",
+        "Hriday Rakshak Yog contains Lahsun at 100 mg per gram. It adds garlic bulb to the complete recipe. This amount should not be presented as equal to a particular garlic supplement used in research."
+      ]
+    },
+    "care": "Ask your clinician before using garlic supplements with aspirin, blood-thinning medicines or before surgery, because they can increase bleeding risk. Continue prescribed heart and blood-pressure care."
+  },
+  "aloe": {
+    "badge": "Know the Preparation",
+    "subtitle": "Ghritkumari, one leaf with different useful materials",
+    "hook": "Ghritkumari has traditional uses, and the exact aloe preparation matters when reading an oral formula.",
+    "why": "Aloe is listed in Dard Haran Capsule, Arshharan Syrup and Arshharan Capsules in different forms. The guide keeps these oral ingredients separate from skin-gel research, so customers can understand what each label actually says.",
+    "essence": "Ghritkumari, or Kumari, is Aloe vera; our labels also use the name Aloe barbadensis. The inner gel, latex near the leaf skin and whole-leaf preparations are different materials with different uses.",
+    "bioactives": "Inner gel contains water-holding sugars, including the polysaccharide acemannan. Latex contains compounds such as aloin. These belong to different leaf materials; their amounts are not stated for the branded extracts.",
+    "advantages": [
+      "A longstanding place in traditional preparations, including digestive and bowel-care uses of specified materials.",
+      "Some skin-gel preparations have been studied for burn healing. This is research on gel applied to the skin, not a benefit claimed for our oral products."
+    ],
+    "raw": "A cut leaf, inner gel, latex and an extract are not the same. Homemade leaf preparations cannot be matched to a labelled oral ingredient just by their appearance.",
+    "absorption": "Our recipes use the aloe material named on each label alongside other ingredients. Knowing the form, amount and route is more useful than assuming a skin gel and an oral extract act in the same way.",
+    "roles": {
+      "dard-capsule": [
+        "Aloe in the oral joint-care formula.",
+        "Dard Haran Capsule lists Aloe vera, identified as Aloe barbadensis, at 25 mg per capsule. The panel does not say inner-leaf gel; skin-gel studies are not used to claim a capsule benefit."
+      ],
+      "arshharan": [
+        "Ghritkumari in the syrup’s extract list.",
+        "Arshharan Syrup states that each 10 ml contains extracts derived from 10 g Ghritkumari. This is the listed starting-material amount, not 10 g of aloe gel in each 10 ml of syrup."
+      ],
+      "arshharan-capsules": [
+        "The labelled Aloe extract in the capsule recipe.",
+        "Arshharan Capsules lists Aloe ext., described as Kastha Satva, at 20 mg per capsule. We preserve that name without relabelling it as inner-leaf gel or guessing its extract strength."
+      ]
+    },
+    "care": "Oral aloe may be unsuitable during pregnancy or breastfeeding. Seek professional advice with medicines or if you develop cramps or diarrhoea. Do not replace a labelled product with raw aloe latex or a homemade leaf preparation."
+  },
+  "peppermint": {
+    "badge": "Fresh Massage Aroma",
+    "subtitle": "Peppermint, the fresh mint note in our external oil",
+    "hook": "Peppermint adds its fresh aroma and a possible cooling sensation to the external massage blend.",
+    "why": "Peppermint joins the other aromatic ingredients and carrier oils in Dard Haran Oil. Its role is freshness during external massage; research on swallowed peppermint capsules is kept separate from this leaf ingredient in the oil.",
+    "essence": "This guide’s Peppermint is Mentha × piperita, a hybrid of water mint and spearmint. Pudina is a common name used for several mints, so the stated botanical identity matters. Our oil panel specifies leaf.",
+    "bioactives": "Peppermint’s aromatic oil contains menthol and menthone. The amounts vary with the plant material and preparation; leaf material is not the same as a measured dose of concentrated essential oil.",
+    "advantages": [
+      "A fresh mint aroma; menthol-containing preparations can give a cooling sensation on skin.",
+      "Some enteric-coated peppermint-oil capsules, designed to release in the bowel, have been studied for irritable bowel symptoms. That is a separate oral use."
+    ],
+    "raw": "Mint leaves, tea, concentrated oil and coated capsules are different preparations. A household mint remedy or concentrated oil should not be used as a replacement for a labelled massage blend.",
+    "absorption": "In Dard Haran Oil, peppermint is combined with carrier oils and other aromatic ingredients for external application. The carrier base helps the blend spread during massage; it does not turn the oil into an oral digestive preparation.",
+    "roles": {
+      "dard-oil": [
+        "Peppermint leaf in the external massage blend.",
+        "Both Dard Haran Oil sizes list Peppermint leaf at 5% on the same composition basis. It adds its mint character alongside the carrier oils and other ingredients. Massage gently; for external use only."
+      ]
+    },
+    "care": "Massage gently as directed. Keep away from eyes, broken skin and children’s faces; do not swallow the massage oil. Stop use and seek advice if skin irritation occurs."
+  },
+  "clove": {
+    "badge": "Aromatic Spice",
+    "subtitle": "Laung, the small spice with a distinctive warm scent",
+    "hook": "Clove brings a familiar spice aroma, with different roles in our oral capsule and external oil.",
+    "why": "Clove appears in Dard Haran Capsule and as clove oil in Dard Haran Oil. The guide explains these two uses separately, keeping the capsule ingredient, the oil’s printed plant part and dental-oil research distinct.",
+    "essence": "Laung, or Lavanga, is Syzygium aromaticum. The familiar culinary spice is the dried flower bud, used in traditional digestive preparations. Our oil panel separately labels its clove-oil material as fruit; that printed detail is preserved.",
+    "bioactives": "Eugenol is a major aroma compound in studied clove-bud oils, alongside eugenyl acetate and beta-caryophyllene. This describes those oils, not a measured composition for every clove ingredient.",
+    "advantages": [
+      "A long culinary and traditional digestive use for the aromatic bud.",
+      "Specified clove-oil preparations have a traditional local dental use for temporary toothache relief. This does not describe swallowing clove or using a muscle-massage oil on teeth."
+    ],
+    "raw": "Whole buds, bud oil and other clove materials are different. Concentrated essential oil needs an appropriate preparation and directions; it is not interchangeable with a spice dose.",
+    "absorption": "The oral recipe uses the named clove ingredient alongside other herbs. The massage recipe uses clove oil with carrier oils. Each role follows its own route and composition, without borrowing dental claims for either product.",
+    "roles": {
+      "dard-capsule": [
+        "Clove in the oral joint-care capsule.",
+        "Dard Haran Capsule lists Long, identified as Caryophyllus aromaticus, at 15 mg per capsule. Here it is the clove spice ingredient, not Pippali or a dental clove-oil treatment."
+      ],
+      "dard-oil": [
+        "Clove oil in the external massage blend.",
+        "Both Dard Haran Oil sizes list Clove oil at 2%, with fruit printed as the plant part. It adds its aromatic character to the massage recipe; it is not presented as a dental product."
+      ]
+    },
+    "care": "Use each product only by its stated route. Massage the oil gently; do not apply it to teeth or swallow it. Avoid eyes and broken skin, and seek advice if irritation occurs."
+  }
+};
 
-window.mmIngredientReferences={"turmeric":[{"title":"Traditional use","url":"https://www.who.int/publications/i/item/9789240064935"}],"ginger":[{"title":"Human research","url":"https://pubmed.ncbi.nlm.nih.gov/35337584/"},{"title":"Traditional use","url":"https://www.who.int/publications/i/item/9789240064935"}],"ashwagandha":[{"title":"Traditional use","url":"https://www.who.int/publications/i/item/9789240064935"}],"tulsi":[{"title":"Human research","url":"https://pubmed.ncbi.nlm.nih.gov/28400848/"},{"title":"Source reference","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11521583/"},{"title":"Human research","url":"https://www.mskcc.org/cancer-care/integrative-medicine/herbs/holy-basil-01"},{"title":"Traditional use","url":"https://www.who.int/publications/i/item/9789240064935"}]};
-
-Object.assign(window.mmIngredientNoteCopy,{"formulaContext": "Read this component with the identity, plant part and quantity on this product’s composition panel. General ingredient research is explained separately in its profile.", "aromaticRole": "An aromatic botanical component of the oral blend."});
-
-window.ingredientGuide.yavkshar.sources=window.ingredientGuide.yavkshar.sources.map(source=>source.url.includes("PMC6639817")?{title:"Source reference",url:"https://doi.org/10.4103/asl.ASL_58_18"}:source);
-
-window.mmIngredientReferences.turmeric.push({title:"Traditional use",url:"https://smpbkerala.in/herbal-data/curcuma-longa.asp"});
-
-window.mmIngredientReferences.ginger.push({title:"Traditional use",url:"https://smpbkerala.in/herbal-data/zingiber-officinale.asp"});
-
-window.mmIngredientReferences.ashwagandha.push({title:"Traditional use",url:"https://smpbkerala.in/herbal-data/withania-somnifera.asp"});
-
-/* mm- Batch 1: verified against the existing product panels; no composition rows altered. */
-Object.assign(window.mmIngredientEditorial,{"amla":{"badge":"Digestive Vitality","subtitle":"Amalaki, the rejuvenating fruit of Ayurvedic tradition","hook":"Amla brings a longstanding digestive and Rasayana tradition to our bowel-care blend.","why":"Amla accompanies Haritaki, Bibhitaki and aromatic seeds in Kabj Haran Granules. It adds a traditional digestive and rejuvenative dimension to this multi-ingredient bowel-care recipe, with its amount clearly listed on the composition panel.","essence":"Amalaki is Phyllanthus emblica, also called Emblica officinalis on our panel. Its fruit has a Rasayana, or rejuvenative, role in Ayurveda and a longstanding digestive use.","bioactives":"Fruit polyphenols include hydrolysable tannins and gallic- and ellagic-acid derivatives; processing changes their proportions.","advantages":["Traditionally valued for digestion and general vitality.","Fruit polyphenols are studied for antioxidant activity; laboratory findings differ from clinical benefits."],"raw":"Fresh fruit, dried powder and extracts differ in taste and constituent strength. A single fruit preparation does not reproduce a complete bowel-care recipe.","absorption":"Our blend combines Amla with Haritaki, Bibhitaki, fennel and cumin, giving fruit botanicals and aromatic seeds complementary places in one formula. Enhanced absorption has not been measured for this combination.","roles":{"kabi-haran":["A digestive fruit botanical alongside Haritaki and Bibhitaki.","Kabj Haran Granules lists Amla at 10.00% w/w. It contributes its traditional digestive character alongside the other fruit botanicals and aromatic ingredients; follow the complete product directions."]},"care":"Follow the granules’ directions and seek individual advice during pregnancy, breastfeeding or regular medicine use; a mixed bowel-care product is different from eating Amla fruit."},"neem":{"badge":"Bitter Botanical","subtitle":"Nimba, a distinctive bitter note in Ayurvedic formulation","hook":"Neem contributes its characteristic bitter botanical identity to both Madhumeh Haran formulas.","why":"Neem sits alongside Karela, Jamun and aromatic botanicals in both Madhumeh Haran formulas. It contributes a distinct bitter botanical component to their metabolic-wellness identity, with the printed preparation guiding any more specific interpretation.","essence":"Nimba is Azadirachta indica. Its bitter, or Tikta, character is familiar in Ayurvedic practice; leaves, bark and seeds are separate materials with different uses. Our panels identify Neem without specifying the part.","bioactives":"Neem materials contain limonoids and polyphenols; their profiles depend on the plant part and extraction method.","advantages":["A longstanding Ayurvedic bitter-botanical tradition.","Selected leaf-and-twig extracts have shown promising glucose-related results in small human trials; these are preparation-specific findings."],"raw":"Leaf preparations, bark extracts and seed oil are not interchangeable. Confirming the exact material is more useful than comparing products only by the word Neem.","absorption":"Neem complements Karela and Jamun within the listed oral recipes. Their combination expresses a formulation choice, without establishing a specific absorption advantage or converting external-use research into an oral benefit.","roles":{"metabolic":["A bitter botanical in the oral metabolic-wellness combination.","Madhumeh Haran Value and Premium each list Neem alongside Jamun and Karela. The panel does not specify leaf, bark or extract, so this guide does not assign one."]},"care":"Use the approved oral product as directed; do not substitute neem seed oil. Seek professional advice during pregnancy, breastfeeding or use of blood-glucose medicines."},"jamun":{"badge":"Metabolic Tradition","subtitle":"Jambu, the astringent botanical of Ayurvedic metabolic care","hook":"Jamun pairs a longstanding metabolic-wellness tradition with an important digestive and astringent identity.","why":"Jamun forms a central botanical pairing with Karela in Madhumeh Haran Value and Premium. Its traditional metabolic and digestive identity complements the other listed ingredients, while the exact preparation remains important to understanding its contribution.","essence":"Jambu is Syzygium cumini. Ayurveda recognises its astringent, or Kashaya, character in part-specific preparations. Fruit, seed and bark have different profiles; our composition panels name Jamun without specifying the plant part.","bioactives":"Fruit pigments include anthocyanins; seeds contain tannins and ellagic-acid derivatives. Their presence and amounts cannot be assumed across all Jamun preparations.","advantages":["Traditionally valued in metabolic-wellness and digestive preparations.","Different parts provide polyphenols studied for antioxidant activity; this does not establish a finished-product effect."],"raw":"Eating the fruit, taking seed powder and using an extract deliver different materials. The fruit photograph identifies the tree’s produce, not the plant part in the formula.","absorption":"Jamun combines with Karela, Sonth and the other labelled botanicals to bring several formulation roles together. The ingredient list does not demonstrate enhanced absorption or make a seed study applicable to every preparation.","roles":{"metabolic":["A central Jamun component alongside Karela.","Madhumeh Haran Value and Premium list Jamun in their botanical base. Its role belongs to each complete metabolic-wellness formula; consult the current panel for the quantity basis."]},"care":"Follow the current pack and coordinate use with a clinician when taking blood-glucose medicines. Keep prescribed care and monitoring in place."},"karela":{"badge":"Bitter Metabolic Botanical","subtitle":"Karavellaka, the distinctive bitter vine of Indian wellness","hook":"Karela brings a recognisable bitter character and traditional metabolic focus to the Madhumeh Haran blends.","why":"Karela pairs with Jamun in Madhumeh Haran Value and Premium, alongside Sonth, Tulsi and other listed botanicals. Its bitter character anchors the recipes’ metabolic-wellness focus within a complete, labelled multi-ingredient preparation.","essence":"Karavellaka is Momordica charantia, the bitter-gourd vine. Its bitter, or Tikta, character is central to its Ayurvedic identity. Different plant parts are used in traditional practice; our panels do not specify the part.","bioactives":"Studied materials contain cucurbitane-type triterpenoids and charantin; composition varies with material and processing.","advantages":["A longstanding place in traditional metabolic-wellness preparations.","Human research explores glucose metabolism, with results varying across preparations and study quality."],"raw":"Cooked fruit, fresh juice, powder and extracts differ in strength and composition. More bitterness is not a reliable measure of a preparation’s suitability or effect.","absorption":"Karela provides the bitter botanical dimension alongside Jamun and aromatic partners such as Sonth and Tulsi. This combination explains the recipe’s character; it does not establish higher absorption or superior clinical effects.","roles":{"metabolic":["A bitter botanical paired with Jamun in metabolic-wellness care.","Both Madhumeh Haran formulas list Karela with Jamun and complementary botanicals. The supplied panels do not identify a plant part or standardised extract strength, which this guide preserves."]},"care":"Seek professional advice with blood-glucose medicines and during pregnancy or breastfeeding. Herbal preparations complement an individual care plan rather than replace prescribed care."},"fenugreek":{"badge":"Seed & Metabolic Wellness","subtitle":"Methika, the aromatic seed with a place in metabolic traditions","hook":"Methi brings its familiar aromatic-seed character to metabolic and heart-wellness combinations.","why":"Methi contributes an aromatic seed component to both Madhumeh Haran formulas and Hriday Rakshak Yog. Its traditional digestive identity complements their botanical partners, while the listed amounts distinguish these recipes from high-dose seed supplements.","essence":"Methika is Trigonella foenum-graecum. Its aromatic seeds have longstanding culinary and traditional digestive uses. Our Madhumeh panels say Methi dana; Hriday Rakshak Yog lists Methi, described as fenugreek seed in the guide.","bioactives":"Seeds contain galactomannan fibre, trigonelline, saponins and 4-hydroxyisoleucine; their amounts vary with preparation.","advantages":["Traditional digestive and aromatic value.","Human studies suggest potential glucose-related benefits, although study quality and preparations vary."],"raw":"Whole seeds, soaked seeds and concentrated extracts deliver different amounts. Fibre-rich study doses should not be inferred from the small ingredient quantities printed in a mixed formula.","absorption":"Methi sits alongside bitter and aromatic botanicals in our recipes. This brings different ingredient roles together, without assuming a fibre dose, improved absorption or the same effect as a tested single-seed preparation.","roles":{"metabolic":["An aromatic Methi dana component alongside Karela and Jamun.","Value and Premium list Methi dana in their oral botanical combinations. Read each panel’s quantity basis rather than equating it with a standalone fenugreek supplement."],"hriday-rakshak":["A fenugreek component alongside Arjuna and garlic.","Hriday Rakshak Yog lists Methi at 75 mg per gram. It contributes its aromatic seed identity to this heart-wellness recipe, without implying that glucose studies establish a heart benefit."]},"care":"Use supplemental fenugreek with professional advice, especially with blood-glucose medicines or seed allergies. During pregnancy, avoid amounts above ordinary food use unless advised by your clinician."},"cinnamon":{"badge":"Aromatic Warmth","subtitle":"Dalchini, a warming aromatic thread through the Madhav range","hook":"Dalchini brings warm bark aroma to our metabolic and heart-wellness formulations.","why":"Dalchini adds a warm aromatic bark component to Madhumeh Haran Value, Premium and Hriday Rakshak Yog. It sits alongside the recipes’ principal botanicals, contributing a distinct formulation role without assuming an unlisted cinnamon species.","essence":"Dalchini is an aromatic Cinnamomum bark material used in culinary and traditional preparations. Our labels state Cinnamomum species, so this guide does not assign species-specific Rasa, Guna, Virya or Vipaka to the branded ingredient.","bioactives":"Cinnamon materials contain cinnamaldehyde and polyphenols, including procyanidins; the profile differs by species and preparation.","advantages":["Warm aroma and a longstanding place in traditional preparations.","Modern research explores metabolic outcomes, but it does not establish a consistent clinical benefit across cinnamon products."],"raw":"Ceylon and cassia cinnamon differ. Bark powder, essential oil and extracts are also distinct; a Ceylon photograph cannot confirm the species used in a product.","absorption":"Dalchini complements Sonth and the other listed botanicals with aromatic bark character. Neither this pairing nor its warm taste demonstrates enhanced absorption, a guaranteed glucose effect or equivalence to concentrated cinnamon oil.","roles":{"metabolic":["An aromatic bark component alongside Jamun and Karela.","Madhumeh Haran Value and Premium list Dalchini as Cinnamomum species. It adds warm aromatic character to their complete metabolic-wellness recipes; the species remains unspecified."],"hriday-rakshak":["An aromatic Dalchini component in the heart-wellness combination.","Hriday Rakshak Yog lists Dalchini at 75 mg per gram, alongside Arjuna, ginger and garlic. Its role is described within this recipe rather than borrowed from unrelated cinnamon trials."]},"care":"Follow the approved pack and seek advice for supplement use with medicines or liver conditions. Concentrated cinnamon oil is not a substitute for the listed bark ingredient."}});
-Object.assign(window.mmIngredientReferences,{"amla":[{"title":"Source reference","url":"https://pubmed.ncbi.nlm.nih.gov/24369850/"}],"neem":[{"title":"Human research","url":"https://pubmed.ncbi.nlm.nih.gov/33244247/"}],"jamun":[{"title":"Source reference","url":"https://pubmed.ncbi.nlm.nih.gov/22420901/"}],"karela":[{"title":"Human research","url":"https://www.cochrane.org/evidence/CD007845_drman-dyabt-nw-2-ba-mwmwrdyka-karantya-momordica-charantia"},{"title":"Source reference","url":"https://www.ncbi.nlm.nih.gov/books/NBK590483/"}],"fenugreek":[{"title":"Source reference","url":"https://epubs.icar.org.in/index.php/IJSS/article/download/160649/61500/478232"},{"title":"Human research","url":"https://pubmed.ncbi.nlm.nih.gov/36837450/"}],"cinnamon":[{"title":"Source reference","url":"https://pubmed.ncbi.nlm.nih.gov/42169286/"}]});
-
-window.mmIngredientReferences.karela.push({title:"Source reference",url:"https://pubmed.ncbi.nlm.nih.gov/25115074/"});
+window.mmIngredientReferences = {
+  "turmeric": [
+    {
+      "title": "Traditional use",
+      "url": "https://www.who.int/publications/i/item/9789240064935"
+    },
+    {
+      "title": "Traditional use",
+      "url": "https://smpbkerala.in/herbal-data/curcuma-longa.asp"
+    }
+  ],
+  "ginger": [
+    {
+      "title": "Human research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35337584/"
+    },
+    {
+      "title": "Traditional use",
+      "url": "https://www.who.int/publications/i/item/9789240064935"
+    },
+    {
+      "title": "Traditional use",
+      "url": "https://smpbkerala.in/herbal-data/zingiber-officinale.asp"
+    }
+  ],
+  "ashwagandha": [
+    {
+      "title": "Traditional use",
+      "url": "https://www.who.int/publications/i/item/9789240064935"
+    },
+    {
+      "title": "Traditional use",
+      "url": "https://smpbkerala.in/herbal-data/withania-somnifera.asp"
+    }
+  ],
+  "tulsi": [
+    {
+      "title": "Human research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28400848/"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11521583/"
+    },
+    {
+      "title": "Human research",
+      "url": "https://www.mskcc.org/cancer-care/integrative-medicine/herbs/holy-basil-01"
+    },
+    {
+      "title": "Traditional use",
+      "url": "https://www.who.int/publications/i/item/9789240064935"
+    }
+  ],
+  "amla": [
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24369850/"
+    }
+  ],
+  "neem": [
+    {
+      "title": "Human research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33244247/"
+    }
+  ],
+  "jamun": [
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22420901/"
+    }
+  ],
+  "karela": [
+    {
+      "title": "Human research",
+      "url": "https://www.cochrane.org/evidence/CD007845_drman-dyabt-nw-2-ba-mwmwrdyka-karantya-momordica-charantia"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK590483/"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25115074/"
+    }
+  ],
+  "fenugreek": [
+    {
+      "title": "Source reference",
+      "url": "https://epubs.icar.org.in/index.php/IJSS/article/download/160649/61500/478232"
+    },
+    {
+      "title": "Human research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36837450/"
+    }
+  ],
+  "cinnamon": [
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42169286/"
+    }
+  ],
+  "fennel": [
+    {
+      "title": "Traditional use",
+      "url": "https://www.portal.pcimh.gov.in/product_details/991db3f0-43e4-43bd-9d47-acf7baec32e1"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://www.ema.europa.eu/en/documents/herbal-report/superseded-assessment-report-foeniculum-vulgare-miller_en.pdf"
+    }
+  ],
+  "cumin": [
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23035918/"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33893678/"
+    }
+  ],
+  "garlic": [
+    {
+      "title": "Source reference",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6016953/"
+    },
+    {
+      "title": "Traditional use",
+      "url": "https://ccras.nic.in/wp-content/uploads/2024/07/05112021_Nutritional_Advocacy_in_Ayurveda.pdf"
+    }
+  ],
+  "aloe": [
+    {
+      "title": "Traditional use",
+      "url": "https://smpbkerala.in/herbal-data/aloe-vera.asp"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK350484/"
+    }
+  ],
+  "peppermint": [
+    {
+      "title": "Source reference",
+      "url": "https://www.ema.europa.eu/en/documents/herbal-report/assessment-report-mentha-x-piperita-l-folium-and-aetheroleum-revision-1_en.pdf"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11893340/"
+    }
+  ],
+  "clove": [
+    {
+      "title": "Traditional use",
+      "url": "https://smpbkerala.in/herbal-data/syzygium-aromaticum.asp"
+    },
+    {
+      "title": "Source reference",
+      "url": "https://www.ema.europa.eu/en/documents/herbal-report/final-assessment-report-syzygium-aromaticum-l-merill-et-lm-perry-flos-and-syzygium-aromaticum-l-merill-et-lm-perry-floris-aetheroleum_en.pdf"
+    }
+  ]
+};

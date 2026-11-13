@@ -34,9 +34,9 @@ const ingredientLocalPreviews={"https://upload.wikimedia.org/wikipedia/commons/2
   else if (id==='fenugreek') key='fenugreek';
   else if (minerals.has(id)) key='compound';
   const editorial = window.mmIngredientEditorial?.[id];
-  const roleKey = metabolic ? 'metabolic' : productId==='arshharan-capsules' ? 'arshharan' : productId;
+  const roleKey = metabolic ? 'metabolic' : editorial?.roles?.[productId] ? productId : productId==='arshharan-capsules' ? 'arshharan' : productId;
   const role = editorial?.roles?.[roleKey];
-  if (role) return {id,benefit:role[0],evidence:'Formulation role',explanation:role[1],paragraph:editorial.essence};
+  if (role) return {id,benefit:role[0],evidence:'Formulation role',explanation:role[1],paragraph:external ? copy.topical : editorial.essence};
   const contextOnly = ['aloe','neem','pippali','clove','rose','nagkesar'].includes(id);
   if (!external && !parts.has(name) && ['clove','rose','pippali'].includes(id)) { benefit=copy.aromaticRole; evidence='Formulation role'; }
   return {id,benefit,evidence,explanation:copy[key],paragraph:contextOnly ? copy.formulaContext : item.paragraph};

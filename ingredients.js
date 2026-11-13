@@ -98,15 +98,15 @@
       if (copy) body.append(node('h3', 'Why It’s In Our Blend', 'mm-ingredient-label'), node('p', copy.why, 'mm-ingredient-why'));
     } else {
       if (copy) {
-        section(body, '1. The Classical Essence').append(node('p', copy.essence));
-        const research = section(body, '2. Standalone Benefits & Modern Validation');
-        research.append(node('h4', 'Primary Bioactives'), node('p', copy.bioactives), node('h4', 'Systemic Advantages'));
+        section(body, '1. About this ingredient').append(node('p', copy.essence));
+        const research = section(body, '2. Traditional uses and research');
+        research.append(node('h4', 'Key natural compounds'), node('p', copy.bioactives), node('h4', 'What it is known for'));
         const list = node('ul'); for (const text of copy.advantages) list.append(node('li', text)); research.append(list);
         research.append(node('p', item.paragraph, 'ingredient-description'), node('span', item.evidenceLabel, 'evidence-label'));
-        section(body, '3. The Challenge of Raw / Isolated Use').append(node('p', copy.raw));
-        const blend = section(body, '4. The Formulation Solution');
-        blend.append(node('p', 'Samyoga means combining ingredients; Samskara means processing. These Ayurvedic principles guide formulation choices, while the actual plant part, method, quantity and route remain important.'), node('h4', 'Bioavailability & Absorption'), node('p', copy.absorption), node('h4', 'Balance & Safety'), node('p', 'Complementary ingredients bring different roles to a recipe. Combining herbs does not automatically remove adverse effects or interactions; follow the complete product directions and individual professional advice.'), node('p', copy.care, 'mm-ingredient-care'));
-        body.append(node('h3', '5. Role Across the Madhav Range', 'mm-ingredient-range-heading'));
+        section(body, '3. Using it on its own').append(node('p', copy.raw));
+        const blend = section(body, '4. Why we combine ingredients');
+        blend.append(node('p', 'Samyoga means combining ingredients; Samskara means preparing or processing them. These Ayurvedic ideas help explain how a recipe is built. The plant part, amount and way it is used still matter.'), node('h4', 'How the ingredients fit together'), node('p', copy.absorption), node('h4', 'Directions and care'), node('p', 'Different ingredients have different jobs in a recipe. Mixing them does not automatically remove side effects or interactions with medicines. Follow the product directions and ask a qualified professional about your own needs.'), node('p', copy.care, 'mm-ingredient-care'));
+        body.append(node('h3', '5. Where we use it', 'mm-ingredient-range-heading'));
       } else body.append(node('p', item.paragraph, 'ingredient-description'), node('span', item.evidenceLabel, 'evidence-label'));
       if (item.note) body.append(node('p', item.note, 'ingredient-part-note'));
       if (used.length) body.append(productList(id, used, true));

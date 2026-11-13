@@ -265,7 +265,7 @@ window.productCatalogue = {
       },
       {
         "src": "assets/cutouts/dard-haran-oil-50ml.webp",
-        "label": "Earlier label"
+        "label": "Label detail"
       }
     ],
     "precautions": "Read the complete product label. Use under the guidance of a qualified physician. Keep out of reach of children.",
@@ -417,7 +417,7 @@ window.productCatalogue = {
           },
           {
             "src": "assets/cutouts/dard-haran-oil-50ml.webp",
-            "label": "Earlier label"
+            "label": "Label detail"
           }
         ],
         "directions": "For external use only. Follow the directions on your product label."
@@ -577,7 +577,6 @@ window.productCatalogue = {
     "formulaNote": "Both pack sizes contain the same formulation. Only the pack size differs. The composition shown uses the brand-confirmed 100 ml basis; older printed label text is being corrected.",
     "packOverview": "50 ml / 100 ml"
   },
-
   "kabi-haran": {
     "benefits": "Traditionally used for occasional constipation and digestive discomfort such as gas and acidity, as described on the pack. Follow the label directions and seek medical advice before prolonged use.",
     "amazonUrl": "https://amzn.in/d/0eE7lHxG",
@@ -812,7 +811,7 @@ window.productCatalogue = {
       ]
     ],
     "group": "metabolic",
-    "basis": "Each gram contains, as printed on the supplied Value pack.",
+    "basis": "Each gram contains.",
     "gallery": [
       {
         "src": "assets/cutouts/madhumeh-value-front-display.webp",
@@ -908,7 +907,7 @@ window.productCatalogue = {
       ],
       [
         "Brahmi",
-        "As printed on the newly supplied panel",
+        "As printed on the product label",
         "75 mg",
         ""
       ],
@@ -926,7 +925,7 @@ window.productCatalogue = {
       ],
       [
         "Basant kusumakar",
-        "As printed on the newly supplied panel",
+        "As printed on the product label",
         "10 mg",
         ""
       ],
@@ -938,7 +937,7 @@ window.productCatalogue = {
       ]
     ],
     "group": "metabolic",
-    "basis": "Each gram contains, as printed on the newly supplied Premium composition panel.",
+    "basis": "Each gram contains.",
     "gallery": [
       {
         "src": "assets/cutouts/madhumeh-premium-pack-display.webp",
@@ -968,252 +967,7 @@ window.productCatalogue = {
     ],
     "precautions": "Read the complete product label. Use under the guidance of a qualified physician. Keep out of reach of children.",
     "displayTitle": "Madhumeh Haran Premium",
-    "blurb": "Karela Jamun Yog with Vasant Kusumakar Ras.",
-    "formats": [
-      {
-        "label": "New composition panel",
-        "pack": "200 g",
-        "basis": "Each gram contains, as printed on the newly supplied Premium composition panel.",
-        "ingredients": [
-          [
-            "Jamun",
-            "Syzygium cumini",
-            "250 mg",
-            "A dark-purple Indian fruit traditionally included in wellness formulations."
-          ],
-          [
-            "Karela",
-            "Momordica charantia",
-            "250 mg",
-            "Bitter gourd, a distinctive bitter vegetable used in food and Ayurvedic preparations."
-          ],
-          [
-            "Daruhaldi",
-            "Berberis aristata",
-            "50 mg",
-            "A yellow-stemmed botanical used in traditional formulas."
-          ],
-          [
-            "Neem",
-            "Azadirachta indica",
-            "50 mg",
-            "An evergreen tree whose leaves are familiar in Indian botanical traditions."
-          ],
-          [
-            "Sonth",
-            "Zingiber officinale",
-            "30 mg",
-            "Dried ginger, a warming aromatic rhizome."
-          ],
-          [
-            "Tulsi",
-            "Ocimum sanctum",
-            "30 mg",
-            "Holy basil, an aromatic leaf used in Indian households and traditional preparations."
-          ],
-          [
-            "Methi dana",
-            "Trigonella foenum-graecum",
-            "20 mg",
-            "Fenugreek seed, a warm, nutty culinary seed."
-          ],
-          [
-            "Ashwagandha",
-            "Withania somnifera",
-            "30 mg",
-            "A root botanical with a long history in Ayurveda."
-          ],
-          [
-            "Shatavari",
-            "Asparagus racemosus",
-            "30 mg",
-            "A climbing plant root traditionally used in Ayurvedic preparations."
-          ],
-          [
-            "Dalchini",
-            "Cinnamomum species",
-            "20 mg",
-            "Cinnamon, an aromatic bark spice."
-          ],
-          [
-            "Safed musli",
-            "Chlorophytum borivilianum",
-            "50 mg",
-            "A root botanical valued in traditional Indian formulations."
-          ],
-          [
-            "Brahmi",
-            "As printed on the newly supplied panel",
-            "75 mg",
-            ""
-          ],
-          [
-            "Bel patra",
-            "Aegle marmelos",
-            "50 mg",
-            "Leaves of the bael tree, a plant used in traditional Ayurveda."
-          ],
-          [
-            "Krishan jirak",
-            "As printed on the pack",
-            "30 mg",
-            "A spice-seed ingredient identified on the product label."
-          ],
-          [
-            "Basant kusumakar",
-            "As printed on the newly supplied panel",
-            "10 mg",
-            ""
-          ],
-          [
-            "Preservative",
-            "As stated",
-            "0.02 g",
-            "A listed preservative used to help maintain product stability."
-          ]
-        ],
-        "gallery": [
-          {
-            "src": "assets/cutouts/madhumeh-premium-pack-display.webp",
-            "original": "assets/cutouts/madhumeh-premium-pack.webp",
-            "label": "Pack & jar"
-          },
-          {
-            "src": "assets/cutouts/madhumeh-premium-jar-display.webp",
-            "original": "assets/cutouts/madhumeh-premium-jar.webp",
-            "label": "Jar"
-          },
-          {
-            "src": "assets/cutouts/madhumeh-premium-carton-display.webp",
-            "original": "assets/cutouts/madhumeh-premium-carton.webp",
-            "label": "Carton"
-          },
-          {
-            "src": "assets/cutouts/madhumeh-premium-composition-display.webp",
-            "original": "assets/cutouts/madhumeh-premium-composition.webp",
-            "label": "Composition"
-          },
-          {
-            "src": "assets/cutouts/madhumeh-premium-side-display.webp",
-            "original": "assets/cutouts/madhumeh-premium-side.webp",
-            "label": "Side panel"
-          }
-        ],
-        "directions": "Use only according to the complete product label or guidance from a qualified physician."
-      },
-      {
-        "pack": "200 g",
-        "basis": "Each 10 g contains, as printed on the supplied Premium pack.",
-        "ingredients": [
-          [
-            "Jamun",
-            "Syzygium cumini",
-            "250 mg",
-            "A dark-purple Indian fruit traditionally included in wellness formulations."
-          ],
-          [
-            "Karela",
-            "Momordica charantia",
-            "250 mg",
-            "Bitter gourd, a distinctive bitter vegetable used in food and Ayurvedic preparations."
-          ],
-          [
-            "Daruhaldi",
-            "Berberis aristata",
-            "50 mg",
-            "A yellow-stemmed botanical used in traditional formulas."
-          ],
-          [
-            "Neem",
-            "Azadirachta indica",
-            "50 mg",
-            "An evergreen tree whose leaves are familiar in Indian botanical traditions."
-          ],
-          [
-            "Sonth",
-            "Zingiber officinale",
-            "30 mg",
-            "Dried ginger, a warming aromatic rhizome."
-          ],
-          [
-            "Tulsi",
-            "Ocimum sanctum",
-            "30 mg",
-            "Holy basil, an aromatic leaf used in Indian households and traditional preparations."
-          ],
-          [
-            "Methi dana",
-            "Trigonella foenum-graecum",
-            "20 mg",
-            "Fenugreek seed, a warm, nutty culinary seed."
-          ],
-          [
-            "Ashwagandha",
-            "Withania somnifera",
-            "30 mg",
-            "A root botanical with a long history in Ayurveda."
-          ],
-          [
-            "Shatavari",
-            "Asparagus racemosus",
-            "30 mg",
-            "A climbing plant root traditionally used in Ayurvedic preparations."
-          ],
-          [
-            "Dalchini",
-            "Cinnamomum species",
-            "20 mg",
-            "Cinnamon, an aromatic bark spice."
-          ],
-          [
-            "Safed musli",
-            "Chlorophytum borivilianum",
-            "50 mg",
-            "A root botanical valued in traditional Indian formulations."
-          ],
-          [
-            "Shuddh Shilajit",
-            "Purified mineral resin",
-            "100 mg",
-            "A purified resinous mineral ingredient used in traditional preparations."
-          ],
-          [
-            "Bel patra",
-            "Aegle marmelos",
-            "50 mg",
-            "Leaves of the bael tree, a plant used in traditional Ayurveda."
-          ],
-          [
-            "Krishan jirak",
-            "As printed on the pack",
-            "30 mg",
-            "A spice-seed ingredient identified on the product label."
-          ],
-          [
-            "Vasant Kusumakar Ras",
-            "Classical Ayurvedic preparation",
-            "10 mg",
-            "The premium-formula ingredient that differentiates this pack from the value formula."
-          ],
-          [
-            "Preservative",
-            "As stated",
-            "0.02 g",
-            "A listed preservative used to help maintain product stability."
-          ]
-        ],
-        "gallery": [
-          {
-            "src": "assets/cutouts/madhumeh-haran-premium.webp",
-            "label": "Product pack"
-          }
-        ],
-        "directions": "Use only according to the complete product label or guidance from a qualified physician.",
-        "label": "Earlier pack panel"
-      }
-    ],
-    "formatLabel": "Select Premium composition panel",
-    "formulaNote": "The supplied Premium panels differ: the new composition panel lists Brahmi and a per-gram basis; the earlier pack lists Shuddh Shilajit and a per-10-g basis. Choose a panel to view its details, and match it to the current label on your pack."
+    "blurb": "Karela Jamun Yog with Vasant Kusumakar Ras."
   },
   "hriday-rakshak": {
     "benefits": "A traditional heart-wellness formulation with Arjuna bark, garlic and Ashwagandha. Use within a physician-guided care plan; it does not replace prescribed heart or blood-pressure medicines.",
@@ -1300,7 +1054,7 @@ window.productCatalogue = {
       ]
     ],
     "group": "heart",
-    "basis": "Each gram contains, as printed on the newly supplied Hriday Rakshak panel.",
+    "basis": "Each gram contains.",
     "gallery": [
       {
         "src": "assets/cutouts/hriday-pack-display.webp",

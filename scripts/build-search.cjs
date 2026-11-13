@@ -144,4 +144,4 @@ const committed = JSON.parse(read('vercel.json'));
 if (JSON.stringify(committed.rewrites) !== JSON.stringify(rewrites) || JSON.stringify(committed.redirects) !== JSON.stringify(deployment.redirects)) {
   throw new Error('Vercel routes differ from scripts/build-search.cjs. Keep the supplied routing configuration.');
 }
-console.log('Built ' + (expected.length + 2) + ' searchable pages and one simplified sitemap with ' + sitemapUrls.length + ' URLs. All ' + ingredientIds.length + ' ingredient profiles and existing pack/formula versions remain available.');
+console.log('Built ' + (expected.length + 2) + ' searchable pages and one simplified sitemap with ' + sitemapUrls.length + ' URLs. All ' + ingredientIds.length + ' ingredient profiles and actual product pack sizes remain available.');
