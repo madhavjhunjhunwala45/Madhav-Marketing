@@ -36,14 +36,16 @@
       const link = node('a', product.title + ' ↗');
       link.href = 'product.html?product=' + key + '#composition'; details.append(link);
       const seen = new Set();
+      const formats = product.formats || [product];
+      const unifiedOil = key === 'dard-oil' && formats.every(format => JSON.stringify(format.ingredients) === JSON.stringify(formats[0].ingredients));
       for (const format of product.formats || [product]) for (const row of format.ingredients || []) {
         if (aliases[row[0]] !== id) continue;
         const note = window.MadhavIngredientNotes?.get(key, row[0]); if (!note) continue;
-        const signature = (format.label || '') + '|' + note.benefit + '|' + note.explanation;
+        const signature = (unifiedOil ? '' : format.label || '') + '|' + (format.basis || '') + '|' + note.benefit + '|' + note.explanation;
         if (seen.has(signature)) continue; seen.add(signature);
         const role = node('p', '', 'mm-ingredient-product-note');
         const basis = node('small', '', 'component-evidence');
-        if (format.label) basis.append(node('span', format.label), document.createTextNode(' · '));
+        if (format.label && !unifiedOil) basis.append(node('span', format.label), document.createTextNode(' · '));
         basis.append(node('span', format.basis || ''));
         role.append(basis, node('strong', note.benefit), node('br'), node('span', note.explanation));
         details.append(role);
@@ -54,6 +56,15 @@
   function section(body, title) {
     const element = node('section', '', 'mm-ingredient-section');
     element.append(node('h3', title)); body.append(element); return element;
+  }
+  function benefitList(uses) {
+    const list = node('ul', '', 'mm-ingredient-uses');
+    for (const [label, text] of uses || []) {
+      const row = node('li');
+      row.append(node('strong', label), document.createTextNode(': '), node('span', text));
+      list.append(row);
+    }
+    return list;
   }
   function makeCard(id, item, full) {
     const copy = editorial[id];
@@ -80,13 +91,14 @@
       const link = node('a', item.title, 'mm-ingredient-card-link'); link.href = profileURL(id); heading.append(link);
     }
     body.append(heading, node('p', item.latin || 'Identity as stated on the product label', 'ingredient-latin'));
-    if (full && copy) body.append(node('p', copy.subtitle, 'mm-ingredient-subtitle'));
+    if (full && copy && !copy.summary) body.append(node('p', copy.subtitle, 'mm-ingredient-subtitle'));
     const used = Object.entries(products).filter(([, product]) => matches(product, id));
     const firstProduct = used[0];
     const firstRow = firstProduct && (firstProduct[1].formats || [firstProduct[1]]).flatMap(format => format.ingredients || []).find(row => aliases[row[0]] === id);
     const previewBenefit = firstRow && window.MadhavIngredientNotes?.get(firstProduct[0], firstRow[0])?.benefit;
     body.append(node('p', copy?.hook || (!full && previewBenefit) || item.shortBenefit, 'ingredient-benefit'));
     if (!full) {
+      if (copy?.summary) body.append(node('h3', 'Key Uses', 'mm-ingredient-label'), benefitList(copy.uses.slice(0, 2)));
       if (used.length) {
         body.append(node('h3', 'Key Formulations', 'mm-ingredient-label'));
         const list = node('ul', '', 'mm-ingredient-key-products');
@@ -97,7 +109,14 @@
       }
       if (copy) body.append(node('h3', 'Why It’s In Our Blend', 'mm-ingredient-label'), node('p', copy.why, 'mm-ingredient-why'));
     } else {
-      if (copy) {
+      if (copy?.summary) {
+        section(body, 'Medicinal & Wellness Uses').append(benefitList(copy.uses));
+        const standalone = section(body, 'Standalone Use vs. Formulated Use');
+        standalone.append(node('h4', 'Using the Herb Alone'), node('p', copy.raw), node('h4', 'How Our Formulation Combines Ingredients'), node('p', copy.absorption));
+        const purpose = section(body, 'Purpose in Our Products');
+        if (used.length) purpose.append(productList(id, used, true));
+        section(body, 'Directions and care').append(node('p', copy.care, 'mm-ingredient-care'));
+      } else if (copy) {
         section(body, '1. About this ingredient').append(node('p', copy.essence));
         const research = section(body, '2. Traditional uses and research');
         research.append(node('h4', 'Key natural compounds'), node('p', copy.bioactives), node('h4', 'What it is known for'));
@@ -109,7 +128,7 @@
         body.append(node('h3', '5. Where we use it', 'mm-ingredient-range-heading'));
       } else body.append(node('p', item.paragraph, 'ingredient-description'), node('span', item.evidenceLabel, 'evidence-label'));
       if (item.note) body.append(node('p', item.note, 'ingredient-part-note'));
-      if (used.length) body.append(productList(id, used, true));
+      if (used.length && !copy?.summary) body.append(productList(id, used, true));
       body.append(ingredientSources({...item, sources:[...(item.sources || []), ...(window.mmIngredientReferences?.[id] || [])]}));
     }
     if (!full) {

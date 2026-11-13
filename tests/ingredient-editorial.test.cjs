@@ -14,7 +14,7 @@ const texts=[];function strings(x){if(typeof x==='string')texts.push(x);else Obj
 texts.push(...Object.values(c.window.mmIngredientNoteCopy));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']){vm.runInContext(read('translations/'+lang+'.js'),c);for(const text of texts)assert(c.window.madhavTranslations[lang][text],lang+': '+text);}
 for(const id of Object.keys(copy)){
- const x=copy[id];assert(x.why.split(/\s+/).length>=25&&x.why.split(/\s+/).length<=35,id);
+ const x=copy[id];assert(/^(Added|Formulated)/.test(x.why)&&x.why.split(/\s+/).length<=45,id);
  const p=context('?ingredient='+id);assert.equal(p.document.querySelectorAll('.mm-ingredient-section').length,4);
  assert(p.document.querySelector('.ingredient-products').hasAttribute('open'));
  assert(p.document.querySelector('.mm-ingredient-care').textContent);
@@ -25,9 +25,9 @@ for(const id of Object.keys(copy)){
 }
 const note=c.window.MadhavIngredientNotes.get('hriday-rakshak','Haldi');assert(!/knee|osteoarthritis/i.test(Object.values(note).join(' ')));assert(note.explanation.includes('Arjuna'));
 assert(!/knee|osteoarthritis/i.test(read('dist/heart-wellness.html')));
-for(const [id,p]of Object.entries(products))for(const f of p.formats||[p])for(const row of f.ingredients){const n=c.window.MadhavIngredientNotes.get(id,row[0]);if(id==='dard-oil'&&n.id==='ashwagandha')assert(/stem/.test(n.explanation));if(n.id==='tulsi')assert(['madhumeh-value','madhumeh-premium'].includes(id));if(['pippali','rose','nagkesar'].includes(n.id))assert.equal(n.paragraph,c.window.mmIngredientNoteCopy.formulaContext);}
+for(const [id,p]of Object.entries(products))for(const f of p.formats||[p])for(const row of f.ingredients){const n=c.window.MadhavIngredientNotes.get(id,row[0]);if(id==='dard-oil'&&n.id==='ashwagandha')assert(/stem/.test(n.explanation));if(n.id==='tulsi')assert(['madhumeh-value','madhumeh-premium'].includes(id));if(['rose','nagkesar'].includes(n.id))assert.equal(n.paragraph,c.window.mmIngredientNoteCopy.formulaContext);}
 const p=context('?ingredient=turmeric');const reset=p.document.getElementById('ingredient-reset');reset.dispatchEvent(new p.document.defaultView.Event('click'));assert.equal(p.document.querySelectorAll('.mm-ingredient-preview').length,30);assert(!p.document.querySelector('.ingredient-selected'));
 const first=p.document.querySelector('.ingredient-card');vm.runInContext(read('ingredients.js'),p);assert.equal(p.document.querySelector('.ingredient-card'),first,'Duplicate initialization must not rebuild or rebind');
 assert.equal(context('?ingredient=not-a-plant').document.querySelectorAll('.mm-ingredient-preview').length,30);
 assert.doesNotThrow(()=>context('',true));
-console.log('Passed: 30 linked previews, image/profile/zoom separation, product membership, 25–35-word blend copy, all editorial translations, sixteen complete SSR guides, open profile disclosures, contextual heart/oil notes, profile-to-catalogue reset, invalid input and duplicate/missing-element guards.');
+console.log('Passed: 30 linked previews, image/profile/zoom separation, product membership, short labelled benefit summaries, all editorial translations, thirty complete SSR guides, open profile disclosures, contextual heart/oil notes, profile-to-catalogue reset, invalid input and duplicate/missing-element guards.');

@@ -16,9 +16,9 @@ assert.equal(notes.get('arshharan','Bhilava').explanation,copy.oral);
 assert.equal(notes.get('arshharan-capsules','Giloy Satva').explanation,copy.oral);
 assert.equal(notes.get('madhumeh-value','Kali jeera').explanation,copy.identity);
 assert.equal(notes.get('madhumeh-premium','Jamun').explanation,context.window.mmIngredientEditorial.jamun.roles.metabolic[1]);
-assert.equal(notes.get('madhumeh-premium','Daruhaldi').explanation,copy.berberis);
+assert.equal(notes.get('madhumeh-premium','Daruhaldi').explanation,context.window.mmIngredientEditorial.daruhaldi.roles.metabolic[1]);
 assert.equal(notes.get('madhumeh-premium','Basant kusumakar').benefit,copy.vasantShort);
-assert.equal(guide['vasant-kusumakar'].title,'Vasant Kusumakar Ras');assert(guide['vasant-kusumakar'].paragraph.includes('classical Ayurvedic'));assert(guide['vasant-kusumakar'].paragraph.includes('Madhumeh Haran Premium'));assert(!guide['vasant-kusumakar'].paragraph.includes('do not establish'));assert(copy.pageEvidence.includes('Research on one herb or extract'));assert(!copy.vasantRole.includes('not'));assert(!Object.values(guide).some(p=>p.shortBenefit.includes('may support')));
+assert.equal(guide['vasant-kusumakar'].title,'Vasant Kusumakar Ras');assert(guide['vasant-kusumakar'].paragraph.includes('classical Ayurvedic'));assert(guide['vasant-kusumakar'].paragraph.includes('Madhumeh Haran Premium'));assert(!guide['vasant-kusumakar'].paragraph.includes('do not establish'));assert(copy.pageEvidence.includes('Ayurvedic uses'));assert(!copy.vasantRole.includes('not'));assert(!Object.values(guide).some(p=>p.shortBenefit.includes('may support')));
 const dictionaryContext={window:{madhavTranslations:{}}};vm.createContext(dictionaryContext);
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']){vm.runInContext(fs.readFileSync(path.join(root,'translations',lang+'.js'),'utf8'),dictionaryContext);const dictionary=dictionaryContext.window.madhavTranslations[lang];for(const text of [...Object.values(copy),'Why it is used','Vasant Kusumakar Ras','Castor · Erand'])assert(dictionary[text],lang+':'+text);assert(dictionary['Massage gently.']);}
 for(const page of ['index.html','product.html','ingredients.html','cart.html'])assert(fs.readFileSync(path.join(root,page),'utf8').includes('mm-established'),page+' founding date');

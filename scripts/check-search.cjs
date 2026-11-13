@@ -76,9 +76,11 @@ for (const item of all) {
     const ingredient = ingredients[item.id], card = document.querySelector('#ingredient-grid .ingredient-card');
     assert.equal(document.querySelectorAll('#ingredient-grid .ingredient-card').length, 1);
     assert.equal(card.querySelector('h2').textContent, ingredient.title);
-    assert.equal(card.querySelector('.ingredient-description').textContent, ingredient.paragraph);
+    const summary = context.window.mmIngredientEditorial?.[item.id]?.summary;
+    assert.equal(card.querySelector(summary ? '.ingredient-benefit' : '.ingredient-description').textContent, ingredient.paragraph);
     assert.equal(card.querySelector('.ingredient-benefit').textContent, (context.window.mmIngredientEditorial?.[item.id]?.hook || ingredient.shortBenefit));
-    assert.equal(card.querySelector('.evidence-label').textContent, ingredient.evidenceLabel);
+    if (summary) assert(!card.querySelector('.evidence-label'), item.id + ': summary uses visible purpose labels');
+    else assert.equal(card.querySelector('.evidence-label').textContent, ingredient.evidenceLabel);
     for (const source of ingredient.sources || []) assert([...card.querySelectorAll('a')].some(a => new URL(a.getAttribute('href'), search.origin).href === new URL(source.url).href), item.id + ' source: ' + source.url);
   }
   for (const element of document.querySelectorAll('[src],link[href],a[href]')) {

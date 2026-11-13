@@ -382,3 +382,21 @@ html:not([lang=en]) .hero h1{font-size:2.3rem}
 .herbal-showcase{align-self:center;justify-content:flex-start;min-height:0}
 .spotlight-image-stage{height:250px}
 }
+
+/* mm- Fixed caption space keeps every carousel slide the same size. */
+.herbal-showcase .spotlight-info{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;block-size:132px;min-block-size:132px;gap:12px;padding-block:14px;flex-wrap:nowrap}
+.herbal-showcase .spotlight-info>div{min-width:0}
+.herbal-showcase .spotlight-info h3{max-width:none;overflow-wrap:anywhere}
+html:not([lang=en]) .herbal-showcase .spotlight-info{block-size:176px;min-block-size:176px}
+html:not([lang=en]) .herbal-showcase[data-mm-product="madhumeh-premium"] #spotlight-title{white-space:normal}
+.product-grid{grid-auto-rows:1fr}
+.product-grid>.product-card{height:100%;min-width:0}
+.mm-ingredient-uses{padding-left:1.15em;margin:12px 0 18px}
+.mm-ingredient-uses li{padding-left:2px;margin-block:8px;line-height:1.6;overflow-wrap:anywhere}
+.mm-ingredient-uses strong{color:var(--forest)}
+.mm-ingredient-preview .mm-ingredient-uses{font-size:.9rem;margin-block:8px 16px}
+@media(max-width:650px){
+ .herbal-showcase .spotlight-info{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 44px;align-items:start;block-size:176px;min-block-size:176px;gap:10px}
+ .herbal-showcase .spotlight-link{justify-self:start;align-self:end}
+ html:not([lang=en]) .herbal-showcase .spotlight-info{block-size:224px;min-block-size:224px}
+}
