@@ -2,8 +2,8 @@
 // Vercel rebuilds the sitemap and searchable HTML automatically.
 // Keep the origin without a trailing slash; change it when moving domains.
 window.madhavSearchSettings = {
-  origin: 'https://www.madhavmarketing.store',
-  previousHost: 'madhav-marketing.vercel.app',
+  origin: 'https://www.madhavmarketingayurveda.in',
+  previousHost: 'madhavmarketing.store',
   businessName: 'Madhav Marketing',
   home: {
     title: 'Ayurvedic Wellness Products | Madhav Marketing',
