@@ -134,9 +134,22 @@ const deployment = JSON.parse(read('vercel.json'));
 // Security headers are copied unchanged; routing is generated from the actual data keys.
 deployment.rewrites = rewrites;
 deployment.redirects = [
-  { source: '/:path*', has: [{ type: 'host', value: 'madhavmarketing.store' }], destination: search.origin + '/:path*', permanent: true },
-  ...(settings.previousHost ? [{ source: '/:path*', has: [{ type: 'host', value: settings.previousHost }], destination: search.origin + '/:path*', permanent: true }] : []),
-  { source: '/index.html', destination: '/', permanent: true }
+  ...[
+    'madhavmarketing.store',
+    'www.madhavmarketing.store',
+    'madhavmarketingayurveda.in',
+    'madhav-marketing.vercel.app'
+  ].map(host => ({
+    source: '/:path*',
+    has: [{ type: 'host', value: host }],
+    destination: search.origin + '/:path*',
+    permanent: true
+  })),
+  {
+    source: '/index.html',
+    destination: '/',
+    permanent: true
+  }
 ];
 fs.writeFileSync(path.join(root, '.search-build.json'), JSON.stringify({ sitemapUrls, expected, rewrites, deployment }, null, 2));
 // Build Output API is not needed: Vercel reads the generated configuration via the committed root file.
