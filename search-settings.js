@@ -29,6 +29,18 @@ window.madhavSearchSettings = {
     'arshharan': { title: 'Arshharan Syrup for Piles Care | Madhav Marketing', description: 'Explore Arshharan Syrup in a 300 ml pack. Read the supplied Ayurvedic composition, intended-use information, label directions and precautions.' },
     'arshharan-capsules': { title: 'Arshharan Capsules for Piles Care | Madhav Marketing', description: 'Explore Arshharan Capsules in a 30-capsule pack. Read the supplied composition, label directions, precautions and related Arshharan Syrup information.' }
   },
+  // Prices displayed on the product pages. Keep these in sync with store-config.mjs.
+  // Do not add availability, ratings, or reviews unless those facts are published and current.
+  productOffers: {
+    'dard-capsule': { price: 225, priceCurrency: 'INR' },
+    'dard-oil': { price: 120, priceCurrency: 'INR' },
+    'kabi-haran': { price: 105, priceCurrency: 'INR' },
+    'madhumeh-value': { price: 298, priceCurrency: 'INR' },
+    'madhumeh-premium': { price: 775, priceCurrency: 'INR' },
+    'hriday-rakshak': { price: 349, priceCurrency: 'INR' },
+    'arshharan': { price: 210, priceCurrency: 'INR' },
+    'arshharan-capsules': { price: 212, priceCurrency: 'INR' }
+  },
   categories: {},
   pages: {},
   organization: {

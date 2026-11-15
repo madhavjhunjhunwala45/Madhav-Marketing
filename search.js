@@ -74,9 +74,13 @@
       const product = { '@type': 'Product', '@id': meta.canonical + '#product', name: meta.product.title,
         description: meta.product.description, image: absolute(meta.product.image), url: meta.canonical,
         brand: { '@type': 'Brand', name: settings.businessName }, category: meta.product.category };
+      const offer = settings.productOffers?.[meta.id];
+      if (offer && Number.isFinite(offer.price) && offer.price >= 0 && typeof offer.priceCurrency === 'string' && /^[A-Z]{3}$/.test(offer.priceCurrency)) {
+        product.offers = { '@type': 'Offer', url: meta.canonical, price: offer.price, priceCurrency: offer.priceCurrency };
+      }
       graph.push(product);
       page.mainEntity = { '@id': product['@id'] };
-      // No invented stock, checkout availability, reviews, ratings or medical claims.
+      // No invented stock, availability, reviews, ratings or medical claims.
     } else if (meta.ingredient) {
       page.about = { '@type': 'Thing', name: meta.ingredient.title, alternateName: meta.ingredient.latin,
         description: meta.ingredient.paragraph };
