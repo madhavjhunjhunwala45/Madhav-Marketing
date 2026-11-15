@@ -70,7 +70,13 @@ for (const item of all) {
     assert.equal(document.querySelectorAll('#related-grid .product-card').length, 3);
     assert.equal(document.querySelectorAll('#format-options button').length, product.formats?.length || 0);
     const markup = data['@graph'].find(node => node['@type'] === 'Product');
-    assert.equal(markup.name, product.title); assert.deepEqual(markup.offers, { '@type': 'Offer', url: search.metadata({kind:'product', id:item.id, product}).canonical, ...settings.productOffers[item.id] }); assert(!markup.aggregateRating); assert(!markup.review);
+    const expectedOffer = context.window.madhavSearchSettings.productOffers[item.id];
+    assert.equal(markup.name, product.title);
+    assert.equal(markup.offers?.['@type'], 'Offer');
+    assert.equal(markup.offers?.url, search.metadata({kind:'product', id:item.id, product}).canonical);
+    assert.equal(markup.offers?.price, expectedOffer.price);
+    assert.equal(markup.offers?.priceCurrency, expectedOffer.priceCurrency);
+    assert(!markup.aggregateRating); assert(!markup.review);
   }
   if (item.kind === 'ingredient') {
     const ingredient = ingredients[item.id], card = document.querySelector('#ingredient-grid .ingredient-card');
