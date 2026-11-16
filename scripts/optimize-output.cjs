@@ -11,6 +11,9 @@ const { document: home } = parseHTML(fs.readFileSync(homePath, 'utf8'));
 // These components belong to the separate product, ingredient and cart pages.
 // Keep shared, stateful and unknown selectors; never prune based only on the first viewport.
 const otherPageComponent = /^\.(?:gallery-[\w-]+|composition-[\w-]+|component-[\w-]+|directions-[\w-]+|cart-[\w-]+|detail-nav|product-(?:page|hero[\w-]*|gallery|summary|blurb|benefits|section-nav|extra-actions|shopping-actions|help)|ingredients-page|ingredient-(?:card[\w-]*|guide-notes|reading-note|photo-[\w-]+|image-frame|selected|picture[\w-]*|profile-link|sources|products|search-[\w-]+|hero[\w-]*|grid|description|part-note|disclaimer|benefit|empty|group|latin|library|toolbar))(?=[\s.#[:>+~]|$)/;
+// These prefixes describe page-specific content, not controls inserted on the
+// homepage. Still retain any selector that actually matches the complete home.
+const secondaryPageComponent = /^\.(?:mm-(?:ingredient-[\w-]+|composition[\w-]*|seo-[\w-]+|refined-page)|ingredient-[\w-]+|store-(?:shop-[\w-]+|remove|pack|product-[\w-]+))(?=[\s.#[:>+~]|$)/;
 function splitSelectors(value) {
   const parts = []; let start = 0, depth = 0, quote = '';
   for (let i = 0; i < value.length; i++) {
@@ -30,7 +33,7 @@ function homeRules(list) {
         // Keep runtime controls, language/state selectors and unfamiliar syntax.
         // All other selectors must match somewhere on the complete homepage,
         // including content below the fold, before they are sent to this page.
-        if (!otherPageComponent.test(selector) && (/\[|:(?:is|where|not|has)\(|\.(?:store-|madhav-|mm-|menu-|language-|ingredient-(?:swipe|is-swiping))/.test(selector) || !selector.includes('.'))) return true;
+        if (!otherPageComponent.test(selector) && !secondaryPageComponent.test(selector) && (/\[|:(?:is|where|not|has)\(|\.(?:store-|madhav-|mm-|menu-|language-|ingredient-(?:swipe|is-swiping))/.test(selector) || !selector.includes('.'))) return true;
         const base = selector.replace(/::[\w-]+(?:\([^)]*\))?/g, '').replace(/:(?:hover|focus(?:-within|-visible)?|active|visited|checked|disabled|enabled|target)\b/g, '');
         try { return !!home.querySelector(base); } catch { return true; }
       });
@@ -98,6 +101,17 @@ function walk(folder) {
       for (const script of document.querySelectorAll('script[type="module"][src^="shop.js"]')) script.setAttribute('async', '');
       for (const hint of document.querySelectorAll('link[rel="modulepreload"]')) {
         if (['store-config.mjs', 'site-settings.js'].includes(hint.getAttribute('href'))) hint.remove();
+      }
+      const shop = document.querySelector('script[type="module"][src^="shop.js"]');
+      if (shop) {
+        // Discover the bundled module before the HTML body arrives. Low
+        // priority keeps the hero image first; the URL matches the script so
+        // modulepreload and execution share one request and one module instance.
+        const hint = document.createElement('link');
+        hint.setAttribute('rel', 'modulepreload');
+        hint.setAttribute('href', shop.getAttribute('src'));
+        hint.setAttribute('fetchpriority', 'low');
+        document.head.insertBefore(hint, document.head.querySelector('style,link[rel="stylesheet"]'));
       }
       fs.writeFileSync(file, '<!doctype html>\n' + document.documentElement.outerHTML + '\n');
     } else if (/\.(?:js|mjs)$/.test(entry.name)) {

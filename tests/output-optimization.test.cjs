@@ -7,10 +7,24 @@ const full = home.querySelector('link[data-madhav-full-styles]'); assert.equal(f
 assert(home.querySelector('noscript link[rel="stylesheet"]'), 'full styles work without JavaScript');
 const runtime = fs.readFileSync(path.join(output, 'website.js'), 'utf8'); assert(runtime.includes('data-madhav-full-styles'));
 assert(home.querySelector('script[type="module"][src^="shop.js"][async]'), 'cart module does not delay DOMContentLoaded');
+const shopScript = home.querySelector('script[type="module"][src^="shop.js"]');
+const shopHints = [...home.querySelectorAll('link[rel="modulepreload"]')].filter(link => link.getAttribute('href') === shopScript.getAttribute('src'));
+assert.equal(shopHints.length, 1, 'the exact versioned cart URL is discovered once in the head');
+assert.equal(shopHints[0].getAttribute('fetchpriority'), 'low', 'the cart hint does not compete with the high-priority hero image');
+assert.equal(shopHints[0].parentNode, home.head);
+assert(home.head.innerHTML.indexOf(shopHints[0].outerHTML) < home.head.innerHTML.indexOf(initial.outerHTML), 'the scanner finds cart code before the large initial CSS block');
 const builtShop = fs.readFileSync(path.join(output, 'shop.js'), 'utf8');
 assert(!/\bfrom\s*["']\.\/(?:store-config\.mjs|site-settings\.js)["']/.test(builtShop), 'cart configuration is bundled without a network import waterfall');
 for (const href of ['store-config.mjs', 'site-settings.js']) assert(!home.querySelector('link[rel="modulepreload"][href="' + href + '"]'), 'bundled modules are not downloaded again');
 assert(home.querySelector('.site-header .brand-logo').getAttribute('sizes').includes('112px'));
+const homeCss = fs.readFileSync(path.join(output, 'home.css'), 'utf8');
+for (const selector of ['.mm-ingredient-section{', '.mm-ingredient-profile-hero{', '.mm-seo-care-card{', '.store-shop-grid{']) {
+  assert(!homeCss.includes(selector), 'homepage does not download other pages\' component rules: ' + selector);
+  assert(fs.readFileSync(path.join(output, 'styles.css'), 'utf8').includes(selector), 'other pages retain their complete styles: ' + selector);
+}
+for (const selector of ['.store-launcher{', '.store-toast{', '.store-card-buy{', '.contact{', '.connect-fields', '.faq-list', '.mm-action-bar']) {
+  assert(homeCss.includes(selector), 'homepage keeps offscreen and interactive states: ' + selector);
+}
 
 function cursors(css) {
   const document = parseHTML('<html><head><style>' + css + '</style></head></html>').document;

@@ -26,6 +26,12 @@ function check(document) {
     assert.equal(link.getAttribute('imagesizes'), image.getAttribute('sizes'));
     assert.equal(image.getAttribute('fetchpriority'), 'high'); assert(!image.getAttribute('loading'));
   }
+  const shop = document.querySelector('script[type="module"][src^="shop.js"]');
+  if (shop) {
+    const hint = [...document.head.querySelectorAll('link[rel="modulepreload"]')].find(link => link.getAttribute('href') === shop.getAttribute('src'));
+    assert(hint, 'product, ingredient and home documents all discover the existing cart early');
+    assert.equal(hint.getAttribute('fetchpriority'), 'low');
+  }
 }
 for (const file of ['index.html', 'cart.html', ...fs.readdirSync(path.join(root, 'dist/_search')).map(file => '_search/' + file)]) {
   const document = parseHTML(fs.readFileSync(path.join(root, 'dist', file), 'utf8')).document;
@@ -40,6 +46,10 @@ for (const source of sources) {
   api.apply(image, source, 'spotlight');
   assert.equal(image.getAttribute('src'), source);
   assert.equal(image.getAttribute('srcset'), api.entries[source].srcset);
+}
+for (const [source, entry] of Object.entries(api.entries)) {
+  if (!source.includes('cutouts/')) continue;
+  assert(entry.srcset.includes('192.webp 192w'), 'small product slots have a sharp intermediate candidate');
 }
 api.apply(image, 'assets/original-composition.jpg', 'gallery');
 assert.equal(image.getAttribute('src'), 'assets/original-composition.jpg');
