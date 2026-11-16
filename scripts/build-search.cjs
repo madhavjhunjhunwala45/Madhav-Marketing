@@ -2,6 +2,8 @@
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
 const { parseHTML } = require('linkedom');
 const createSearch = require('../search.js');
+const { storeConfig } = require('../store-config.mjs');
+const renderStoreDisplay = require('./store-display.cjs');
 const root = path.resolve(__dirname, '..'), output = path.join(root, 'dist');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const sourceWebsite = read('website.js');
@@ -10,7 +12,7 @@ if (start < 0 || end < 0) throw new Error('Product renderer boundaries changed; 
 const helpers = sourceWebsite.slice(start, end);
 const configContext = { window: {} }; vm.createContext(configContext);
 vm.runInContext(read('search-settings.js'), configContext);
-const settings = configContext.window.madhavSearchSettings, search = createSearch(settings);
+const settings = configContext.window.madhavSearchSettings, search = createSearch(settings, storeConfig);
 const dataContext = { window: {} }; vm.createContext(dataContext);
 for (const name of ['product-data.js', 'ingredient-data.js']) vm.runInContext(read(name), dataContext, { timeout: 3000 });
 const products = dataContext.window.productCatalogue;
@@ -54,6 +56,7 @@ function render(template, query, kind, id, format) {
   const product = kind === 'product' && products[id];
   const ingredient = kind === 'ingredient' && ingredients[id];
   const meta = search.metadata({ kind, id, product, ingredient });
+  renderStoreDisplay({ document, products, store: storeConfig, selectedId: product && id, formatIndex: format || 0, json: search.json });
   search.apply(document, meta, products);
   for (const link of document.querySelectorAll('a[href^="index.html"]')) {
     link.setAttribute('href', link.getAttribute('href').replace(/^index\.html(?=[?#]|$)/, './'));
@@ -127,7 +130,7 @@ for (const [file, page] of Object.entries(settings.pages || {})) {
 // List every useful canonical page, without cart, pack or preference duplicates.
 const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.map(item => item.url)];
 const escapeXML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>2026-11-11</lastmod></url>').join('\n') + '\n</urlset>\n');
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>2026-11-16</lastmod></url>').join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\nDisallow: /_search/\n\nSitemap: ' + search.origin + '/sitemap.xml\n');
 
 const deployment = JSON.parse(read('vercel.json'));
@@ -139,12 +142,10 @@ deployment.redirects = [
     'www.madhavmarketing.store',
     'madhavmarketingayurveda.in',
     'madhav-marketing.vercel.app'
-  ].map(host => ({
-    source: '/:path*',
-    has: [{ type: 'host', value: host }],
-    destination: search.origin + '/:path*',
-    permanent: true
-  })),
+  ].flatMap(host => [
+    { source: '/', has: [{ type: 'host', value: host }], destination: search.origin + '/', permanent: true },
+    { source: '/:path*', has: [{ type: 'host', value: host }], destination: search.origin + '/:path*', permanent: true }
+  ]),
   {
     source: '/index.html',
     destination: '/',

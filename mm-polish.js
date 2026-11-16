@@ -16,19 +16,30 @@
   // could compete with a form, footer, keyboard or existing modal.
   const bar = document.querySelector('.mm-action-bar');
   if (bar) {
+    const mobile = window.matchMedia('(max-width:767px)');
     const overlaps = new Set();
     let queued = 0;
+    let keyboard = false;
     const updateBar = () => {
       queued = 0;
+      if (mobile.matches === false) {
+        root.classList.remove('mm-action-hidden', 'mm-action-editing');
+        return;
+      }
       const active = document.activeElement;
       const editing = active?.matches?.('input,textarea,select,[contenteditable="true"]');
-      const viewport = window.visualViewport;
-      const keyboard = viewport && window.innerHeight - viewport.height > 150;
       const modal = !!document.querySelector('dialog[open]');
       root.classList.toggle('mm-action-hidden', !!(overlaps.size || editing || keyboard || modal));
       root.classList.toggle('mm-action-editing', !!(editing || keyboard));
     };
     const queueBar = () => { if (!queued) queued = requestAnimationFrame(updateBar); };
+    // Measure only on viewport changes, before class writes. Root mutations must
+    // never force a new layout just to check a desktop-hidden action bar.
+    const viewportChanged = () => {
+      keyboard = mobile.matches !== false && !!window.visualViewport &&
+        window.innerHeight - window.visualViewport.height > 150;
+      queueBar();
+    };
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver(entries => {
         for (const entry of entries) {
@@ -41,12 +52,18 @@
     } else bar.classList.add('mm-action-static');
     document.addEventListener('focusin', queueBar);
     document.addEventListener('focusout', queueBar);
-    window.visualViewport?.addEventListener('resize', queueBar, { passive: true });
-    window.matchMedia('(max-width:767px)').addEventListener?.('change', queueBar);
+    window.visualViewport?.addEventListener('resize', viewportChanged, { passive: true });
+    mobile.addEventListener?.('change', viewportChanged);
     document.addEventListener('close', queueBar, true);
     document.addEventListener('cancel', queueBar, true);
     // Native dialog opening is already reflected in this existing root class.
-    if ('MutationObserver' in window) new MutationObserver(queueBar).observe(root, { attributes: true, attributeFilter: ['class'] });
+    if ('MutationObserver' in window) {
+      let modalOpen = root.classList.contains('madhav-modal-open');
+      new MutationObserver(() => {
+        const next = root.classList.contains('madhav-modal-open');
+        if (next !== modalOpen) { modalOpen = next; queueBar(); }
+      }).observe(root, { attributes: true, attributeFilter: ['class'] });
+    }
     updateBar();
   }
 
@@ -189,5 +206,5 @@
     });
     document.addEventListener('madhav:languagechange', () => fields.filter(field => touched.has(field)).forEach(validate));
   }
-  applyLanguage();
+  if (window.MadhavI18n?.language !== 'en') applyLanguage();
 })();

@@ -1,6 +1,7 @@
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), assert = require('node:assert/strict');
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..'), dist = path.join(root, 'dist');
+const { storeConfig } = require('../store-config.mjs');
 const c = { window: { madhavTranslations: {} } }; vm.createContext(c);
 for (const f of ['product-data.js', 'ingredient-data.js', 'search-settings.js', ...['hi','mr','te','ta','bn','pa','gu'].map(l => 'translations/' + l + '.js')]) vm.runInContext(fs.readFileSync(path.join(root, f), 'utf8'), c);
 const settings = c.window.madhavSearchSettings, manifest = JSON.parse(fs.readFileSync(path.join(root, '.search-build.json'))), config = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json')));
@@ -18,7 +19,20 @@ for (const item of [{ file:'index.html', url:settings.origin+'/' },{ file:'_sear
   const visible=[...d.querySelectorAll('details[data-seo-faq],.faq details')];
   assert.equal(faq?.mainEntity.length||0,visible.length,item.file+' FAQ matches visible content');
   visible.forEach((detail,i)=>{assert.equal(faq.mainEntity[i].name,detail.querySelector('summary').textContent.trim());assert.equal(faq.mainEntity[i].acceptedAnswer.text,[...detail.querySelectorAll('p')].map(p=>p.textContent.trim()).join(' '));});
-  for(const node of graph) { assert(!node.review && !node.aggregateRating); if(node['@type']==='Product') { assert(node.offers && node.offers['@type']==='Offer'); assert.equal(node.offers.priceCurrency,'INR'); assert.equal(node.offers.url,node.url); assert(!node.manufacturer); } }
+  for (const node of graph) {
+    assert(!node.review && !node.aggregateRating);
+    if (node['@type'] === 'Product') {
+      assert(!node.manufacturer);
+      const offers = Array.isArray(node.offers) ? node.offers : [node.offers];
+      const prices = storeConfig.products.filter(entry => entry.productId === item.id);
+      assert.equal(offers.length, prices.length, item.file + ': offers match retail packs');
+      offers.forEach((offer, i) => {
+        assert.equal(offer['@type'], 'Offer'); assert.equal(offer.price, prices[i].unitPrice.toFixed(2));
+        assert.equal(offer.priceCurrency, 'INR'); assert.equal(offer.url, item.url);
+        assert(!offer.availability && !offer.priceValidUntil);
+      });
+    }
+  }
 }
 for (const [file, entry] of Object.entries(settings.pages)) {
   const d=load(file); assert.equal(d.documentElement.dataset.searchPage,entry.kind);
@@ -48,4 +62,4 @@ assert(!fs.existsSync(path.join(dist,resolve('product.html?product=unknown-slug'
 const search=require('../search.js')(settings);assert.equal(search.metadata({kind:'product',id:'dard-oil',product:c.window.productCatalogue['dard-oil'],language:'hi'}).canonical,settings.origin+'/product.html?product=dard-oil');
 const ui=JSON.parse(fs.readFileSync(path.join(root,'scripts/seo-translation-keys.json')));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']) for(const key of ui) assert(c.window.madhavTranslations[lang][key],lang+': '+key);
-console.log('Passed: unique metadata and H1s, all canonical routes, category membership, visible FAQ/schema agreement, verified product offers, no invented authors, host/pack fallbacks, contact facts and seven translated UI dictionaries.');
+console.log('Passed: unique metadata and H1s, canonical routes, category membership, visible FAQ/schema agreement, real INR offers without invented ratings/stock/authors, host/pack fallbacks, contact facts and seven translated dictionaries.');

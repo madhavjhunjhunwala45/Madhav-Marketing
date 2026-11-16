@@ -44,11 +44,13 @@ function homeRules(list) {
   }).join('');
 }
 const { document: initialView } = parseHTML(home.documentElement.outerHTML);
-for (const node of initialView.querySelectorAll('main > :not(#top),.site-footer')) node.remove();
+// On a short desktop viewport the catalogue starts in the first screen. Keep
+// its geometry in the initial CSS so the deferred stylesheet cannot reflow it.
+for (const node of initialView.querySelectorAll('main > :not(#top):not(#products):not(.principle-band),.site-footer')) node.remove();
 
 function initialRule(rule, document) {
   // Include interactive states and runtime-inserted controls as a conservative fallback.
-  if (/spotlight-|store-launcher|store-count|store-header-link|madhav-range|mm-action-|menu-|site-nav|\[lang/.test(rule.selectorText)) return true;
+  if (/spotlight-|store-launcher|store-count|store-header-link|store-badge|store-cart-symbol|madhav-range|mm-action-|menu-|site-nav|\[lang/.test(rule.selectorText)) return true;
   const selector = rule.selectorText.replace(/::[\w-]+(?:\([^)]*\))?/g, '').replace(/:(?:hover|focus(?:-within|-visible)?|active|visited|checked|disabled|enabled|target)\b/g, '');
   try { return !!document.querySelector(selector); }
   catch { return true; } // Unknown selectors stay; do not guess that they are unused.

@@ -223,6 +223,17 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "madhavmarketing.store"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -231,6 +242,17 @@
         }
       ],
       "destination": "https://www.madhavmarketingayurveda.in/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.madhavmarketing.store"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/",
       "permanent": true
     },
     {
@@ -245,6 +267,17 @@
       "permanent": true
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "madhavmarketingayurveda.in"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -253,6 +286,17 @@
         }
       ],
       "destination": "https://www.madhavmarketingayurveda.in/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "madhav-marketing.vercel.app"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/",
       "permanent": true
     },
     {

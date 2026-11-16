@@ -2,18 +2,43 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory;
   else {
-    const api = factory(root.madhavSearchSettings);
+    let store = root.madhavStoreConfig;
+    if (!store) {
+      try { store = JSON.parse(root.document?.getElementById('mm-store-data')?.textContent || '{}'); }
+      catch { store = {}; }
+    }
+    const api = factory(root.madhavSearchSettings, store);
     root.MadhavSearch = api;
     api.install(root);
   }
-})(typeof window !== 'undefined' ? window : this, function createMadhavSearch(settings) {
+})(typeof window !== 'undefined' ? window : this, function createMadhavSearch(settings, store) {
   'use strict';
+  store = store || {};
   const supported = new Set(['en', 'hi', 'mr', 'te', 'ta', 'bn', 'pa', 'gu']);
   const configured = new URL(settings.origin);
   if (configured.protocol !== 'https:' || configured.username || configured.password || configured.pathname !== '/') throw new Error('Use a root HTTPS origin in search-settings.js');
   const origin = configured.origin;
   const absolute = value => new URL(value, origin + '/').href;
   const own = (object, key) => Boolean(object && Object.prototype.hasOwnProperty.call(object, key));
+  let refreshInstalled = null;
+  function setStoreConfig(config) {
+    if (!config || !Array.isArray(config.products)) return;
+    store = config;
+    refreshInstalled?.();
+  }
+  function offersFor(meta) {
+    if (store.currency !== 'INR' || !meta.product) return [];
+    return (store.products || []).filter(item => item.productId === meta.id &&
+      typeof item.unitPrice === 'number' && Number.isFinite(item.unitPrice) && item.unitPrice > 0)
+      .map(item => ({
+        '@type': 'Offer',
+        price: item.unitPrice.toFixed(2),
+        priceCurrency: 'INR',
+        url: meta.canonical,
+        sku: item.sku,
+        ...(item.pack ? { name: meta.product.title + ' — ' + item.pack } : {})
+      }));
+  }
   const json = value => JSON.stringify(value).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 
   function metadata({ kind, id, product, ingredient, language = 'en', translate = value => value }) {
@@ -74,13 +99,11 @@
       const product = { '@type': 'Product', '@id': meta.canonical + '#product', name: meta.product.title,
         description: meta.product.description, image: absolute(meta.product.image), url: meta.canonical,
         brand: { '@type': 'Brand', name: settings.businessName }, category: meta.product.category };
-      const offer = settings.productOffers?.[meta.id];
-      if (offer && Number.isFinite(offer.price) && offer.price >= 0 && typeof offer.priceCurrency === 'string' && /^[A-Z]{3}$/.test(offer.priceCurrency)) {
-        product.offers = { '@type': 'Offer', url: meta.canonical, price: offer.price, priceCurrency: offer.priceCurrency };
-      }
+      const offers = offersFor(meta);
+      if (offers.length) product.offers = offers.length === 1 ? offers[0] : offers;
       graph.push(product);
       page.mainEntity = { '@id': product['@id'] };
-      // No invented stock, availability, reviews, ratings or medical claims.
+      // No invented stock, checkout availability, reviews, ratings or medical claims.
     } else if (meta.ingredient) {
       page.about = { '@type': 'Thing', name: meta.ingredient.title, alternateName: meta.ingredient.latin,
         description: meta.ingredient.paragraph };
@@ -164,6 +187,7 @@
       const meta = metadata({ kind: ingredient ? 'ingredient' : kind, id, product, ingredient, language, translate });
       apply(document, meta, products);
     }
+    refreshInstalled = refresh;
     refresh();
     document.addEventListener('madhav:languagechange', refresh);
     root.addEventListener('popstate', refresh);
@@ -172,5 +196,5 @@
       if (event.target?.closest?.('[data-ingredient-filter],#ingredient-reset')) queueMicrotask(refresh);
     });
   }
-  return { metadata, structuredData, apply, install, absolute, origin, json };
+  return { metadata, structuredData, apply, install, absolute, origin, json, offersFor, setStoreConfig };
 });

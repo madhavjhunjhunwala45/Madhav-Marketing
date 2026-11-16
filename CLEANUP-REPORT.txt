@@ -1,3 +1,6 @@
+HISTORICAL REPORT — NOT CURRENT DEPLOYMENT INSTRUCTIONS
+The report below is dated 1 November 2026. Its no-build/Coming-soon instructions are superseded by README.md and AUDIT-REPORT.md. The current project requires Node.js 24.x and npm run build, and the cart prepares WhatsApp/email enquiries.
+
 MADHAV MARKETING — CLEANUP REPORT
 1 November 2026
 

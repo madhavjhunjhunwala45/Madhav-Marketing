@@ -1,12 +1,13 @@
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), assert = require('node:assert/strict');
 const { parseHTML } = require('linkedom');
 const createSearch = require('../search.js');
+const { storeConfig } = require('../store-config.mjs');
 const root = path.resolve(__dirname, '..'), output = path.join(root, 'dist');
 const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const context = { window: {} }; vm.createContext(context);
 for (const name of ['product-data.js', 'ingredient-data.js', 'search-settings.js']) vm.runInContext(read(name), context);
 const products = context.window.productCatalogue, ingredients = context.window.ingredientGuide;
-const search = createSearch(context.window.madhavSearchSettings);
+const search = createSearch(context.window.madhavSearchSettings, storeConfig);
 const manifest = JSON.parse(read('.search-build.json'));
 const config = JSON.parse(read('vercel.json'));
 
@@ -70,13 +71,17 @@ for (const item of all) {
     assert.equal(document.querySelectorAll('#related-grid .product-card').length, 3);
     assert.equal(document.querySelectorAll('#format-options button').length, product.formats?.length || 0);
     const markup = data['@graph'].find(node => node['@type'] === 'Product');
-    const expectedOffer = context.window.madhavSearchSettings.productOffers[item.id];
-    assert.equal(markup.name, product.title);
-    assert.equal(markup.offers?.['@type'], 'Offer');
-    assert.equal(markup.offers?.url, search.metadata({kind:'product', id:item.id, product}).canonical);
-    assert.equal(markup.offers?.price, expectedOffer.price);
-    assert.equal(markup.offers?.priceCurrency, expectedOffer.priceCurrency);
-    assert(!markup.aggregateRating); assert(!markup.review);
+    assert.equal(markup.name, product.title); assert(!markup.aggregateRating); assert(!markup.review);
+    const offers = Array.isArray(markup.offers) ? markup.offers : [markup.offers];
+    const prices = storeConfig.products.filter(entry => entry.productId === item.id);
+    assert.equal(offers.length, prices.length, item.id + ': all real retail packs have offers');
+    offers.forEach((offer, i) => {
+      assert.equal(offer['@type'], 'Offer'); assert.equal(offer.priceCurrency, 'INR');
+      assert.equal(offer.price, prices[i].unitPrice.toFixed(2)); assert.equal(offer.url, item.url);
+      assert.equal(offer.sku, prices[i].sku); assert(!offer.availability && !offer.priceValidUntil);
+    });
+    assert.equal(document.querySelector('.store-product-price').textContent,
+      new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(prices[0].unitPrice));
   }
   if (item.kind === 'ingredient') {
     const ingredient = ingredients[item.id], card = document.querySelector('#ingredient-grid .ingredient-card');
