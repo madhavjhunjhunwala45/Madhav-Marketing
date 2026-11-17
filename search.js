@@ -83,6 +83,11 @@
         for (const key of ['name', 'streetAddress', 'addressLocality', 'addressRegion', 'postalCode', 'addressCountry']) {
           if (typeof address[key] === 'string' && address[key].trim()) result[key] = address[key].trim();
         }
+        // Preserve the confirmed ISO identifier while giving address readers
+        // a full country name. Country is a supported PostalAddress value.
+        if (result.addressCountry === 'IN') result.addressCountry = {
+          '@type': 'Country', name: 'India', identifier: 'IN'
+        };
         return result;
       });
     const organization = { '@type': 'Organization', '@id': orgId, name: settings.businessName, url: origin + '/',

@@ -8,6 +8,9 @@ const data = { window: {} }; vm.createContext(data);
 for (const file of ['search-settings.js', 'product-data.js']) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), data);
 const settings = data.window.madhavSearchSettings, products = data.window.productCatalogue;
 const api = createSearch(settings, storeConfig);
+const capsules = storeConfig.products.find(item => item.sku === 'arshharan-capsules');
+assert.equal(capsules.mrp, 225, 'brand-confirmed Arshharan Capsules MRP is rupees');
+assert.equal(capsules.unitPrice, 225, 'brand-confirmed selling price matches the MRP');
 let count = 0;
 for (const [id, product] of Object.entries(products)) {
   const expected = storeConfig.products.filter(item => item.productId === id);
@@ -16,6 +19,7 @@ for (const [id, product] of Object.entries(products)) {
     const d = parseHTML(fs.readFileSync(path.join(root, 'dist/_search', file), 'utf8')).document;
     const graph = JSON.parse(d.getElementById('madhav-structured-data').textContent)['@graph'];
     const item = graph.find(node => node['@type'] === 'Product');
+    assert.equal(graph.filter(node => node['@type'] === 'Product').length, 1, file + ': no duplicate incomplete Product');
     const offers = Array.isArray(item.offers) ? item.offers : [item.offers];
     assert.equal(offers.length, expected.length);
     for (let i = 0; i < expected.length; i++) {

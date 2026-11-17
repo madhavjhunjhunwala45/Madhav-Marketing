@@ -15,10 +15,10 @@ async function main(){
  check('empty and invalid carts produce no enquiry',()=>{assert.equal(api.createCartEnquiry([],storeConfig,catalogue,contacts),null);assert.equal(api.createCartEnquiry([{sku:'unknown',quantity:9}],storeConfig,catalogue,contacts),null);});
  check('full cart includes every SKU, correct pack, quantity and subtotal',()=>{
   const cart=storeConfig.products.map(p=>({sku:p.sku,quantity:2}));const result=api.createCartEnquiry(cart,storeConfig,catalogue,contacts);
-  assert.equal(result.quote.lines.length,9);assert.equal(result.quote.subtotalPaise,502800);
+  assert.equal(result.quote.lines.length,9);assert.equal(result.quote.subtotalPaise,505400);
   assert(result.message.includes('Dard Haran Oil — 50 ml'));assert(result.message.includes('Dard Haran Oil — 100 ml'));
   for(const item of storeConfig.products)assert(result.message.includes(catalogue[item.productId].title));
-  assert.equal((result.message.match(/Quantity: 2/g)||[]).length,9);assert(result.message.includes('INR 5028.00'));
+  assert.equal((result.message.match(/Quantity: 2/g)||[]).length,9);assert(result.message.includes('INR 5054.00'));
   assert(!result.message.includes('private=ignored'));assert(!result.message.includes('#cart'));
  });
  check('WhatsApp and email decode to the complete same cart',()=>{
@@ -27,6 +27,13 @@ async function main(){
   assert.equal(wa.origin,'https://wa.me');assert.equal(wa.pathname,'/919431655050');assert.equal(wa.searchParams.get('text'),result.message);
   assert.equal(mail.pathname,'madhavmarketing999@gmail.com');assert.equal(mail.searchParams.get('body').replace(/\r\n/g,'\n'),result.message);
   assert.equal(mail.searchParams.get('subject'),'Madhav Marketing — cart enquiry');assert(result.message.includes('INR 660.00'));
+ });
+ check('brand-confirmed capsule price converts from rupees to paise once',()=>{
+  const result=api.createCartEnquiry([{sku:'arshharan-capsules',quantity:3}],storeConfig,catalogue,contacts);
+  assert.equal(result.quote.lines[0].unitPricePaise,22500);
+  assert.equal(result.quote.lines[0].lineTotalPaise,67500);
+  assert(result.message.includes('Unit price: INR 225.00'));
+  assert(result.message.includes('Product subtotal (excluding delivery): INR 675.00'));
  });
  check('stored prices are ignored and quantities stay within the existing limit',()=>{
   const result=api.createCartEnquiry([{sku:'kabj-haran',quantity:999,unitPrice:1,lineTotalPaise:1},{sku:'kabj-haran',quantity:2}],storeConfig,catalogue,contacts);

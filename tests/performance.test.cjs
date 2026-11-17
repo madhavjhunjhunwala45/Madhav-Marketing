@@ -1,5 +1,6 @@
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), assert = require('node:assert/strict');
 const { parseHTML } = require('linkedom');
+const { createHash } = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 const context = { window: {} }; vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, 'responsive-images.js'), 'utf8'), context);
@@ -7,6 +8,13 @@ const api = context.window.MadhavImages;
 assert(Object.keys(api.entries).length >= 9);
 let references = 0;
 function check(document) {
+  for (const script of document.querySelectorAll('script[src]')) {
+    const value = script.getAttribute('src'), [name] = value.split('?');
+    if (!['search.js', 'shop.js'].includes(name)) continue;
+    const expected = createHash('sha256').update(fs.readFileSync(path.join(root, 'dist', name))).digest('hex').slice(0, 12);
+    assert.equal(new URL(value, 'https://example.invalid/').searchParams.get('v'), expected,
+      'every generated page uses the current metadata/cart code, including bundled prices');
+  }
   for (const image of document.querySelectorAll(".product-card-image img")) {
     assert.equal(image.getAttribute("loading"), "lazy", "server-rendered product cards defer offscreen image requests");
     assert.equal(image.getAttribute("decoding"), "async");

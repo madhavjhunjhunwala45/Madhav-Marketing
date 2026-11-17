@@ -32,6 +32,9 @@ for (const file of files) {
   const haridwar = org.address.find(item => item.addressLocality === 'Haridwar');
   assert.equal(supply.addressRegion, 'Bihar'); assert.equal(supply.name, 'Store and supply address');
   assert.equal(supply.streetAddress, 'Jagdamba Agency, Motijheel'); assert.equal(supply.postalCode, '842001');
+  for (const address of [supply, haridwar]) assert.deepEqual(address.addressCountry, {
+    '@type': 'Country', name: 'India', identifier: 'IN'
+  }, 'human-readable country name retains the confirmed ISO identifier');
   assert.equal(document.querySelector('footer .footer-location span').textContent, 'Jagdamba Agency\nMotijheel, Muzaffarpur\nBihar 842001, India');
   assert.equal(haridwar.streetAddress, 'Bhalla Road, Opp. Main Post Office'); assert.equal(haridwar.addressRegion, 'Uttarakhand');
   assert(!graph.some(item => item['@type'] === 'LocalBusiness'), 'keep the existing organization type and avoid inventing a separate store entity');

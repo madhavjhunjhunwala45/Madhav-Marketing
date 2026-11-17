@@ -2,6 +2,7 @@
 const fs = require('node:fs'), path = require('node:path');
 const { parseHTML } = require('linkedom');
 const esbuild = require('esbuild');
+const { createHash } = require('node:crypto');
 const root = path.resolve(__dirname, '..'), output = path.join(root, 'dist');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const { document: cssDocument } = parseHTML('<html><head><style>' + read('styles.css') + '</style></head></html>');
@@ -121,5 +122,28 @@ function walk(folder) {
   }
 }
 walk(output);
+// Metadata and the bundled price configuration must not reuse a historical
+// version URL after their contents change. Keep the editable filenames intact.
+const runtimeVersions = new Map(['search.js', 'shop.js'].map(file => [file,
+  createHash('sha256').update(fs.readFileSync(path.join(output, file))).digest('hex').slice(0, 12)
+]));
+function versionRuntimeReferences(folder) {
+  for (const entry of fs.readdirSync(folder, { withFileTypes: true })) {
+    const file = path.join(folder, entry.name);
+    if (entry.isDirectory()) { if (entry.name !== 'assets') versionRuntimeReferences(file); continue; }
+    if (!entry.name.endsWith('.html')) continue;
+    const { document } = parseHTML(fs.readFileSync(file, 'utf8'));
+    for (const node of document.querySelectorAll('script[src],link[rel="modulepreload"][href]')) {
+      const attribute = node.localName === 'script' ? 'src' : 'href';
+      const value = node.getAttribute(attribute), [name] = value.split('?');
+      if (!runtimeVersions.has(name)) continue;
+      const params = new URLSearchParams(value.includes('?') ? value.slice(value.indexOf('?') + 1) : '');
+      params.set('v', runtimeVersions.get(name));
+      node.setAttribute(attribute, name + '?' + params.toString());
+    }
+    fs.writeFileSync(file, '<!doctype html>\n' + document.documentElement.outerHTML + '\n');
+  }
+}
+versionRuntimeReferences(output);
 fs.writeFileSync(path.join(root, '.performance-build.json'), JSON.stringify({ initialStylesBytes: Buffer.byteLength(critical), homeStylesBytes: Buffer.byteLength(homeCss), fullStylesBytes: fs.statSync(path.join(output, 'styles.css')).size }, null, 2));
 console.log('Inlined conservative initial homepage styles; full stylesheet retained with a no-JavaScript fallback. Minified deployment CSS/JS.');
