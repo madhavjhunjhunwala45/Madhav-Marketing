@@ -30,8 +30,8 @@ for (const file of files) {
   assert.equal(org.address.length, 2);
   const supply = org.address.find(item => item.addressLocality === 'Muzaffarpur');
   const haridwar = org.address.find(item => item.addressLocality === 'Haridwar');
-  assert.equal(supply.addressRegion, 'Bihar'); assert.equal(supply.name, 'Store and supply address');
-  assert.equal(supply.streetAddress, 'Jagdamba Agency, Motijheel'); assert.equal(supply.postalCode, '842001');
+  assert.equal(supply.addressRegion, 'Bihar'); assert.equal(supply.name, 'Jagdamba Agency');
+  assert.equal(supply.streetAddress, 'Motijheel'); assert.equal(supply.postalCode, '842001');
   for (const address of [supply, haridwar]) assert.deepEqual(address.addressCountry, {
     '@type': 'Country', name: 'India', identifier: 'IN'
   }, 'human-readable country name retains the confirmed ISO identifier');

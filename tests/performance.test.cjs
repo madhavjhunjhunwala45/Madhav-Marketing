@@ -10,7 +10,7 @@ let references = 0;
 function check(document) {
   for (const script of document.querySelectorAll('script[src]')) {
     const value = script.getAttribute('src'), [name] = value.split('?');
-    if (!['search.js', 'shop.js'].includes(name)) continue;
+    if (!['search.js', 'search-settings.js', 'shop.js'].includes(name)) continue;
     const expected = createHash('sha256').update(fs.readFileSync(path.join(root, 'dist', name))).digest('hex').slice(0, 12);
     assert.equal(new URL(value, 'https://example.invalid/').searchParams.get('v'), expected,
       'every generated page uses the current metadata/cart code, including bundled prices');

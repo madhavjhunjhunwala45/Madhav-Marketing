@@ -124,7 +124,7 @@ function walk(folder) {
 walk(output);
 // Metadata and the bundled price configuration must not reuse a historical
 // version URL after their contents change. Keep the editable filenames intact.
-const runtimeVersions = new Map(['search.js', 'shop.js'].map(file => [file,
+const runtimeVersions = new Map(['search.js', 'search-settings.js', 'shop.js'].map(file => [file,
   createHash('sha256').update(fs.readFileSync(path.join(output, file))).digest('hex').slice(0, 12)
 ]));
 function versionRuntimeReferences(folder) {
