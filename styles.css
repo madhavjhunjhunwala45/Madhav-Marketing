@@ -448,14 +448,28 @@ html:not([lang=en]) .herbal-showcase[data-mm-product="madhumeh-premium"] #spotli
 /* Independent links: the pack opens the product; the circle opens Amazon. */
 .product-card-media{position:relative;min-width:0}
 .product-card-media .pack-chip,#product-grid .product-card-media .pack-chip{max-width:calc(100% - 72px);white-space:normal;overflow-wrap:anywhere}
+.pack-chip-compact{display:none}
 .product-card-media>.amazon-link,#product-grid .product-card-media>.amazon-link{
   position:absolute;right:8px;bottom:8px;z-index:1;
   display:flex;align-items:center;justify-content:center;
   width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;
   background:var(--paper,#fffdf8);border:1px solid #cabb94;
 }
-.product-card-media>.amazon-link img{display:block;width:24px;height:24px;object-fit:contain}
+.product-card-media>.amazon-link img{position:relative;display:block;width:24px;height:24px;object-fit:contain}
 .product-card-media>.amazon-link:hover{background:#f4ecd9;border-color:#ac8a48}
 .product-card-media>.amazon-link:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
-.product-card-content>.store-purchase-price,#product-grid .product-card-content>.store-purchase-price{margin-top:auto;padding-top:10px}
-@media(max-width:650px){#product-grid .product-card-image{padding-bottom:50px}}
+.product-card-content>.product-blurb,.mm-refined-page .mm-seo-products .product-card-content>.product-blurb{margin-bottom:12px}
+.product-card-content>.store-purchase-price,#product-grid .product-card-content>.store-purchase-price{margin-top:0;padding-top:0}
+@media(max-width:650px){
+  #product-grid .product-card-image{padding-bottom:42px}
+  .product-card-media .pack-chip,#product-grid .product-card-media .pack-chip{max-width:calc(100% - 64px)}
+  .pack-chip-full{display:none}
+  .pack-chip-compact{display:inline}
+  .product-card-media .pack-chip-oil,#product-grid .product-card-media .pack-chip-oil{font-size:11px;padding-inline:3px;white-space:nowrap;overflow-wrap:normal}
+  .product-card-media>.amazon-link,#product-grid .product-card-media>.amazon-link{background:transparent;border:0}
+  .product-card-media>.amazon-link::before{content:"";position:absolute;inset:6px;border:1px solid #cabb94;border-radius:50%;background:var(--paper,#fffdf8)}
+  .product-card-media>.amazon-link img{width:20px;height:20px}
+  .product-card-media>.amazon-link:hover::before{background:#f4ecd9;border-color:#ac8a48}
+  .product-card-content>.store-purchase-price,#product-grid .product-card-content>.store-purchase-price{margin-top:auto;padding-top:10px}
+}
+@media(max-width:360px){.product-card-media .pack-chip-oil,#product-grid .product-card-media .pack-chip-oil{font-size:10px}}
