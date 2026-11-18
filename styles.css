@@ -403,3 +403,44 @@ html:not([lang=en]) .herbal-showcase[data-mm-product="madhumeh-premium"] #spotli
  .herbal-showcase .spotlight-link{justify-self:start;align-self:end}
  html:not([lang=en]) .herbal-showcase .spotlight-info{block-size:224px;min-block-size:224px}
 }
+
+/* Compact phone catalogues. Complete descriptions remain on linked profiles. */
+@media(max-width:650px){
+  #product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+  #product-grid .product-card-image{padding:12px 10px 34px}
+  #product-grid .product-card-image img{height:140px}
+  #product-grid .pack-chip{left:8px;bottom:8px;max-width:calc(100% - 16px);font-size:12px;padding:2px 5px;overflow-wrap:anywhere}
+  #product-grid .product-card-content{padding:12px 0 0;min-width:0}
+  #product-grid .product-type{font-size:12px;line-height:1.5;margin-bottom:6px}
+  #product-grid h3{font-size:clamp(16px,4.5vw,20px);line-height:1.25;margin-bottom:8px;overflow-wrap:anywhere}
+  #product-grid .product-blurb{display:none}
+  #product-grid .product-card-actions{display:flex;flex-direction:column;align-items:stretch;gap:4px;margin-top:auto;padding-top:0}
+  #product-grid .product-link,#product-grid .amazon-link{min-height:44px;font-size:13px;line-height:1.4;padding:6px;justify-content:center;text-align:center;overflow-wrap:anywhere}
+  #product-grid .store-purchase-price{font-size:15px;line-height:1.5;margin-top:10px}
+  #product-grid .store-card-buy{width:100%;min-height:44px;padding:8px 6px;margin-top:8px;font-size:13px;line-height:1.4;white-space:normal;overflow-wrap:anywhere}
+
+  #ingredient-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px;align-items:stretch}
+  #ingredient-grid:has(.ingredient-selected){grid-template-columns:minmax(0,1fr)}
+  .mm-ingredient-preview{min-width:0}
+  .mm-ingredient-preview .ingredient-picture .ingredient-image-frame{aspect-ratio:auto;height:112px!important}
+  .mm-ingredient-preview .ingredient-picture figcaption{display:none}
+  .mm-ingredient-preview .ingredient-photo-button.mm-ingredient-preview-zoom{top:4px;right:4px;width:44px;height:44px!important}
+  .mm-ingredient-preview .ingredient-photo-expand{width:44px;height:44px}
+  .mm-ingredient-preview .ingredient-card-body{padding:12px;min-width:0}
+  .mm-ingredient-preview .ingredient-group{font-size:11px;line-height:1.5;letter-spacing:.02em;margin-bottom:8px;overflow-wrap:anywhere}
+  html .mm-ingredient-preview h2,html:not([lang=en]) .mm-ingredient-preview h2{font-size:18px;line-height:1.25;overflow-wrap:anywhere}
+  .mm-ingredient-preview .ingredient-latin{font-size:12px;line-height:1.5;margin-top:6px;overflow-wrap:anywhere}
+  .mm-ingredient-preview .ingredient-benefit{font-size:14px;line-height:1.5;margin-top:10px;overflow-wrap:anywhere}
+  .mm-ingredient-preview .mm-ingredient-label,.mm-ingredient-preview .mm-ingredient-uses,.mm-ingredient-preview .mm-ingredient-key-products,.mm-ingredient-preview .mm-ingredient-why{display:none}
+  .mm-ingredient-preview .ingredient-profile-link{min-height:44px;display:flex;align-items:center;padding-top:8px;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+
+  .herbal-showcase{min-height:0;padding:18px 16px;border-radius:24px 24px 12px 12px}
+  .herbal-showcase .spotlight-image-stage{height:200px;margin-block:10px 6px;padding:10px 12px}
+  .herbal-showcase .spotlight-info{block-size:144px;min-block-size:144px;padding-block:10px;gap:6px}
+  html:not([lang=en]) .herbal-showcase .spotlight-info{block-size:180px;min-block-size:180px}
+  .herbal-showcase .spotlight-link{min-height:44px}
+  .herbal-showcase .spotlight-info h3{font-size:21px;line-height:1.25}
+  .herbal-showcase .spotlight-category{font-size:12px;line-height:1.5}
+  .herbal-showcase .spotlight-swipe-hint{margin-block:8px;font-size:12px;line-height:1.5}
+  .herbal-showcase .spotlight-controls{margin-top:8px}
+}
