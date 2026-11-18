@@ -70,7 +70,7 @@
     const copy = editorial[id];
     const card = node('article', '', 'ingredient-card' + (full ? ' ingredient-selected' : ' mm-ingredient-preview'));
     card.id = 'ingredient-' + id; card.dataset.id = id;
-    const picture = ingredientPicture(item);
+    const picture = ingredientPicture(item, false, full ? 'ingredient-profile' : 'ingredient');
     if (!full) {
       const zoom = picture.querySelector('.ingredient-photo-button');
       const image = zoom?.querySelector('img');

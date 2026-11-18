@@ -11,7 +11,11 @@ http.createServer((req,res)=>{
   let pathname=u.pathname==='/'?'/index.html':u.pathname;
   for(const r of config.rewrites){if(r.source!==u.pathname)continue;let params={};const matches=(r.has||[]).every(h=>{const value=u.searchParams.get(h.key);if(value===null)return false;const m=new RegExp('^(?:'+h.value+')$').exec(value);if(!m)return false;Object.assign(params,m.groups||{});return true;});if(matches){pathname=r.destination.replace(/:([a-zA-Z]+)/g,(_,key)=>params[key]);break;}}
   const file=path.resolve(dist,'.'+decodeURIComponent(pathname));
-  if(!file.startsWith(dist+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404,{'Content-Type':'text/plain; charset=utf-8'});res.end('Page not found.');return;}
+  if(!file.startsWith(dist+path.sep)||!fs.existsSync(file)||!fs.statSync(file).isFile()){
+    res.writeHead(404,{'Content-Type':'text/html; charset=utf-8','X-Robots-Tag':'noindex'});
+    if(req.method==='HEAD')res.end();else fs.createReadStream(path.join(dist,'404.html')).pipe(res);
+    return;
+  }
   res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});
   if(req.method==='HEAD')res.end();else fs.createReadStream(file).pipe(res);
  } catch {res.writeHead(400,{'Content-Type':'text/plain; charset=utf-8'});res.end('Invalid request.');}

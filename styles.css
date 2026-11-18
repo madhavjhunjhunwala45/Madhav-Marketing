@@ -473,3 +473,20 @@ html:not([lang=en]) .herbal-showcase[data-mm-product="madhumeh-premium"] #spotli
   .product-card-content>.store-purchase-price,#product-grid .product-card-content>.store-purchase-price{margin-top:auto;padding-top:10px}
 }
 @media(max-width:360px){.product-card-media .pack-chip-oil,#product-grid .product-card-media .pack-chip-oil{font-size:10px}}
+
+/* Shared tracks keep prices and purchase controls aligned within each row. */
+@supports(grid-template-rows:subgrid){
+  :is(#product-grid,.product-grid,.mm-seo-products){grid-auto-rows:auto;align-items:stretch}
+  :is(#product-grid,.product-grid,.mm-seo-products)>.product-card{display:grid;grid-template-rows:subgrid;grid-row:span 6;row-gap:0;height:auto}
+  :is(#product-grid,.product-grid,.mm-seo-products) .product-card-content{display:contents}
+  :is(#product-grid,.product-grid,.mm-seo-products) .product-card-media{grid-row:1}
+  :is(#product-grid,.product-grid,.mm-seo-products) .product-type{grid-row:2;margin-top:14px}
+  :is(#product-grid,.product-grid,.mm-seo-products) h3{grid-row:3}
+  :is(#product-grid,.product-grid,.mm-seo-products) .product-blurb{grid-row:4;margin-bottom:12px}
+  :is(#product-grid,.product-grid,.mm-seo-products) .product-card-content>.store-purchase-price{grid-row:5;margin-top:0;padding-top:0}
+  :is(#product-grid,.product-grid,.mm-seo-products) .store-card-buy{grid-row:6;justify-self:start;align-self:stretch;margin-top:8px}
+}
+
+/* Keep small botanical and composition labels readable on both row surfaces. */
+.component-evidence,.component-identity,.ingredient-latin,.component-picture figcaption{color:var(--muted)}
+.component-picture figcaption{font-size:10px;line-height:1.4}

@@ -6,6 +6,10 @@ const context = { window: {} }; vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(root, 'responsive-images.js'), 'utf8'), context);
 const api = context.window.MadhavImages;
 assert(Object.keys(api.entries).length >= 9);
+const productManifestCount = Object.keys(api.entries).length;
+vm.runInContext(fs.readFileSync(path.join(root, 'ingredient-image-candidates.js'), 'utf8'), context);
+assert(Object.keys(api.entries).length > productManifestCount + 50, 'botanical pages have their own responsive image map');
+assert(!parseHTML(fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8')).document.querySelector('script[src^="ingredient-image-candidates.js"]'), 'homepage does not download the botanical map');
 let references = 0;
 function check(document) {
   for (const script of document.querySelectorAll('script[src]')) {
@@ -49,6 +53,20 @@ for (const file of ['index.html', 'cart.html', ...fs.readdirSync(path.join(root,
 }
 const { document } = parseHTML('<html><body><img></body></html>');
 const image = document.querySelector('img');
+for (const role of ['ingredient', 'ingredient-profile', 'ingredient-component']) {
+  const source = Object.keys(api.entries).find(source => source.startsWith('assets/ingredient-photos/'));
+  api.apply(image, source, role);
+  assert.equal(image.getAttribute('src'), source, 'original botanical photograph stays as the fallback');
+  assert(image.getAttribute('srcset').includes('192.webp 192w'));
+  assert(image.getAttribute('sizes').includes(role === 'ingredient-component' ? '52px' : role === 'ingredient-profile' ? '767px' : '50vw'));
+}
+const fallbackContext = { document, window: { MadhavImages: api } }; vm.createContext(fallbackContext);
+for (const file of ['ingredient-data.js', 'ingredient-shared.js']) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), fallbackContext);
+const picture = vm.runInContext('ingredientPicture(window.ingredientGuide.turmeric, true)', fallbackContext);
+const botanicalImage = picture.querySelector('img');
+assert(botanicalImage.hasAttribute('srcset'));
+botanicalImage.dispatchEvent(new document.defaultView.Event('error'));
+assert(!botanicalImage.hasAttribute('srcset') && !botanicalImage.hasAttribute('sizes'), 'photo fallback clears a failed responsive candidate set');
 const sources = Object.keys(api.entries).filter(source => source.includes('cutouts/'));
 for (const source of sources) {
   api.apply(image, source, 'spotlight');

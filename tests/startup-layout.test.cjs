@@ -19,6 +19,7 @@ const home = parseHTML(fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8
 const initial = home.getElementById('madhav-initial-styles').textContent;
 assert(initial.includes('.product-card-content') && initial.includes('.product-grid'), 'initial styles include first-screen catalogue geometry');
 assert(initial.includes('.store-card-buy') && initial.includes('.store-purchase-price'), 'initial styles include server cart placeholder geometry');
+assert(initial.includes('grid-template-rows:subgrid') && initial.includes('grid-row:span 6'), 'shared purchase-row alignment exists before the deferred stylesheet loads');
 assert(initial.includes('.principle-band') && initial.includes('.store-badge'), 'initial styles reserve the band and floating-cart badge before deferred CSS');
 
 const data = { window: {} }; vm.createContext(data); vm.runInContext(fs.readFileSync(path.join(root, 'product-data.js'), 'utf8'), data);

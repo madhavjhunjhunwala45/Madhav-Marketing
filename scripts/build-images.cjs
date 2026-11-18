@@ -11,26 +11,36 @@ for (const product of Object.values(context.window.productCatalogue)) {
   sources.add(product.image);
   for (const format of product.formats || []) if (format.gallery?.[0]?.src) sources.add(format.gallery[0].src);
 }
+// Reuse the existing local botanical photographs; never replace their originals.
+vm.runInContext(read('ingredient-shared.js'), context);
+const botanicalSources = new Set(vm.runInContext('Object.values(ingredientLocalPreviews)', context));
 (async () => {
-  const entries = {};
+  const entries = {}, botanicalEntries = {};
   fs.mkdirSync(path.join(root, 'assets/performance'), { recursive: true });
-  for (const source of [...sources].sort()) {
+  for (const source of [...new Set([...sources, ...botanicalSources])].sort()) {
     const input = fs.readFileSync(path.join(root, source)), metadata = await sharp(input).metadata();
     const logo = source.endsWith('madhav-logo-transparent.png');
+    const botanical = botanicalSources.has(source);
     const hash = crypto.createHash('sha256').update(input).update('responsive-v1-quality92').digest('hex').slice(0, 12);
     const stem = path.basename(source, path.extname(source));
     const variants = [];
-    for (const width of (logo ? [112, 160, 196, 224, 264, 296, 320, 392, 448, 480, 720] : [160, 192, 224, 256, 288, 320, 384, 480, 560, 640, 768, 960]).filter(width => width <= metadata.width)) {
+    const widths = logo ? [112, 160, 196, 224, 264, 296, 320, 392, 448, 480, 720]
+      : botanical ? [192, 320, 480, 640, 960] : [160, 192, 224, 256, 288, 320, 384, 480, 560, 640, 768, 960];
+    for (const width of widths.filter(width => width <= metadata.width)) {
       const target = 'assets/performance/' + stem + '-' + hash + '-' + width + '.webp';
       if (!fs.existsSync(path.join(root, target))) await sharp(input).resize({ width, withoutEnlargement: true }).webp(logo ? { lossless: true, effort: 6 } : { quality: 92, alphaQuality: 100, smartSubsample: true, effort: 6 }).toFile(path.join(root, target));
       variants.push(target + ' ' + width + 'w');
     }
     // Include the full-resolution source for large/high-density views.
-    variants.push(source + ' ' + metadata.width + 'w');
-    entries[source] = { ratio: metadata.width / metadata.height, srcset: variants.join(', ') };
+    if (!variants.some(value => value.endsWith(' ' + metadata.width + 'w'))) variants.push(source + ' ' + metadata.width + 'w');
+    (botanical ? botanicalEntries : entries)[source] = { ratio: metadata.width / metadata.height, srcset: variants.join(', ') };
   }
   const runtime = read('scripts/image-runtime.js').replace('__MADHAV_IMAGE_MANIFEST__', JSON.stringify(entries));
   fs.writeFileSync(path.join(root, 'responsive-images.js'), runtime);
+  // Only product/ingredient pages need this map; keep it off the homepage.
+  fs.writeFileSync(path.join(root, 'ingredient-image-candidates.js'),
+    '/* Generated responsive botanical candidates; original zoom photos are unchanged. */\n' +
+    'if(window.MadhavImages?.entries)Object.assign(window.MadhavImages.entries,' + JSON.stringify(botanicalEntries) + ');\n');
   const imageContext = { window: {} }; vm.createContext(imageContext); vm.runInContext(runtime, imageContext);
   // Put responsive candidates in source HTML too, so the preload scanner sees them immediately.
   for (const file of ['index.html', 'product.html', 'ingredients.html', 'cart.html']) {
@@ -46,5 +56,5 @@ for (const product of Object.values(context.window.productCatalogue)) {
     });
     fs.writeFileSync(path.join(root, file), html);
   }
-  console.log('Prepared responsive images for ' + sources.size + ' original photos/logos; originals retained.');
+  console.log('Prepared responsive images for ' + sources.size + ' product photos/logos and ' + botanicalSources.size + ' botanical photos; originals retained.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

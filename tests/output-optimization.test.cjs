@@ -2,6 +2,11 @@ const fs = require('node:fs'), path = require('node:path'), vm = require('node:v
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..'), output = path.join(root, 'dist');
 const home = parseHTML(fs.readFileSync(path.join(output, 'index.html'), 'utf8')).document;
+const notFound = parseHTML(fs.readFileSync(path.join(output, '404.html'), 'utf8')).document;
+assert.equal(notFound.querySelectorAll('h1').length, 1);
+assert(notFound.querySelector('meta[name="robots"]').getAttribute('content').includes('noindex'));
+assert(notFound.querySelector('main a[href$="#products"]'), 'missing URLs retain a path back to the catalogue');
+assert(!notFound.querySelector('#product-title'), '404 view never pretends to be a purchasable product');
 const initial = home.getElementById('madhav-initial-styles'); assert(initial?.textContent.length > 1000);
 const full = home.querySelector('link[data-madhav-full-styles]'); assert.equal(full.getAttribute('media'), 'print');
 assert(home.querySelector('noscript link[rel="stylesheet"]'), 'full styles work without JavaScript');
@@ -76,6 +81,7 @@ for (const name of fs.readdirSync(path.join(output, '_search')).filter(name => n
   if (!amazon) continue;
   assert(/^(View|Search) on Amazon ↗$/.test(amazon.textContent), 'every generated product and pack page retains the full Amazon label');
   assert(!amazon.querySelector('img'), 'logo-only controls are restricted to catalogue cards');
+  assert(!amazon.hasAttribute('aria-label'), 'visible translated Amazon text is also its accessible name');
 }
 for (const name of ['joint-muscle-care.html', 'digestive-wellness.html', 'karela-jamun-metabolic-wellness.html', 'heart-wellness.html', 'piles-fissure-care.html']) {
   checkCardLinks(parseHTML(fs.readFileSync(path.join(output, name), 'utf8')).document);

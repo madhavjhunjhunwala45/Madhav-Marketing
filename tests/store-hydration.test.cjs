@@ -20,6 +20,9 @@ function mount(file, query, language, built) {
   assert.equal(document.querySelector('[data-store-price]'), price, 'reuse server price node');
   assert.equal(document.querySelector('[data-store-buy]'), button, 'reuse server action node');
   assert.equal(document.querySelectorAll('#madhav-store').length, 1);
+  assert.equal(document.querySelector('.store-badge').getAttribute('aria-hidden'), 'true', 'cart count stays in the link label without conflicting with visible text');
+  const launcher = document.querySelector('.store-launcher');
+  assert.equal(launcher.getAttribute('aria-label'), launcher.textContent.replace(/\s+/g, ' ').trim(), 'cart accessible label exactly matches the visible wording and count in every language');
   return { document, c, get stored() { return JSON.parse(stored); } };
 }
 let cases = 0;

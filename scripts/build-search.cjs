@@ -43,6 +43,7 @@ function render(template, query, kind, id, format) {
   };
   vm.createContext(context);
   vm.runInContext(read("responsive-images.js"), context);
+  if (kind !== 'home') vm.runInContext(read('ingredient-image-candidates.js'), context);
   for (const name of ['product-data.js', 'ingredient-data.js']) vm.runInContext(read(name), context, { timeout: 3000 });
   vm.runInContext(helpers, context, { timeout: 3000 });
   vm.runInContext(read('ingredient-shared.js'), context, { timeout: 3000 });
@@ -98,6 +99,9 @@ function write(name, html) { const target = path.join(output, name); fs.mkdirSyn
 write('index.html', render('index.html', '', 'home'));
 write('cart.html', render('cart.html', '', 'cart'));
 write('_search/product-default.html', render('product.html', '', 'product'));
+// Reuse the existing translated unavailable-product view for missing URLs.
+// Vercel serves this document with an actual 404 status; keep its noindex state.
+write('404.html', fs.readFileSync(path.join(output, '_search/product-default.html'), 'utf8'));
 write('_search/ingredients-default.html', render('ingredients.html', '', 'ingredients'));
 const expected = [];
 const rewrites = [

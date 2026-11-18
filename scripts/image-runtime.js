@@ -10,6 +10,9 @@
     if (role === 'logo-header') return '(max-width:360px) 98px, (max-width:650px) 112px, (max-width:900px) 184px, 132px';
     if (role === 'logo') return '(max-width:650px) 132px, 148px';
     if (role === 'thumbnail') return '120px';
+    if (role === 'ingredient-component') return '(max-width:650px) 52px, 72px';
+    if (role === 'ingredient-profile') return '(max-width:767px) calc(100vw - 36px), calc((min(100vw - 96px, 1280px) - 30px) * .4)';
+    if (role === 'ingredient') return '(max-width:650px) calc(50vw - 30px), (max-width:900px) calc(50vw - 40px), calc((min(100vw - 96px, 1280px) - 50px) / 3)';
     // Match the compact stage's inner height: 250 - 40px on tablets and
     // 280 - 28px on desktop. The image uses object-fit:contain.
     if (role === 'spotlight') return '(max-width:650px) min(calc(100vw - 106px), ' + cap(180) + '), (max-width:900px) min(calc(50vw - 114px), ' + cap(210) + '), (max-width:1150px) min(calc((100vw - 99px) / 2.07 - 92px), ' + cap(252) + '), min(calc((min(100vw - 96px, 1280px) - 56px) / 2.07 - 118px), ' + cap(252) + ')';

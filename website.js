@@ -33,7 +33,7 @@ listen(stage,"wheel",event=>{if(destroyed||options.wheel===false||event.ctrlKey|
   }else{
     link.textContent=(destination.direct?"View on Amazon":"Search on Amazon")+" ↗";
   }
-  link.setAttribute("aria-label",(destination.direct?"View ":"Search for ")+product.title+", "+format.pack+" on Amazon (opens in a new tab)");
+  if(iconOnly)link.setAttribute("aria-label",(destination.direct?"View ":"Search for ")+product.title+", "+format.pack+" on Amazon (opens in a new tab)");
   return link;
 }function makeProductCard(id,product){const card=document.createElement("article");card.className="product-card";card.dataset.group=product.group;const imageLink=document.createElement("a");imageLink.className="product-card-image";imageLink.href="product.html?product="+encodeURIComponent(id);const image=document.createElement("img");if(window.MadhavImages)window.MadhavImages.apply(image,product.image,"card");else image.src=product.image;image.alt=product.title+", "+product.pack;image.setAttribute("loading","lazy");image.setAttribute("decoding","async");image.width=500;image.height=550;const chip=document.createElement("span");chip.className="pack-chip";const fullPack=product.packOverview||product.pack;chip.textContent=fullPack;
 const compactPack=fullPack.replace(/\s+(?:syrup|granules)$/i,"");
