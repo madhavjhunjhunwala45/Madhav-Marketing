@@ -49,6 +49,26 @@ const sourceWebsite = fs.readFileSync(path.join(root, 'website.js'), 'utf8');
 const helperStart = sourceWebsite.indexOf('const catalogue='), gridStart = sourceWebsite.indexOf('const grid='), gridEnd = sourceWebsite.indexOf('const menu=', gridStart);
 assert(helperStart >= 0 && gridEnd > gridStart);
 const markup = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
+function checkCardLinks(document) {
+  for (const card of document.querySelectorAll('.product-card')) {
+    assert(!card.querySelector('.product-link,.product-card-actions'), 'no redundant explore-product action');
+    const photo = card.querySelector('a.product-card-image');
+    const amazon = card.querySelector('.product-card-media > a.amazon-link');
+    assert(photo && amazon, 'pack and Amazon retain separate links');
+    assert.equal(photo.getAttribute('href'), card.querySelector('h3 a').getAttribute('href'));
+    assert(!photo.contains(amazon), 'never nest the Amazon anchor inside the product anchor');
+    assert(amazon.getAttribute('aria-label')?.includes('Amazon'), 'icon has an accessible product-specific label');
+    assert.equal(amazon.getAttribute('target'), '_blank');
+    assert(amazon.getAttribute('rel').includes('noopener'));
+    assert.equal(amazon.querySelector('img').getAttribute('src'), 'assets/amazon-mark.svg');
+    assert.equal(amazon.querySelector('img').getAttribute('alt'), '');
+  }
+}
+checkCardLinks(home);
+for (const name of ['joint-muscle-care.html', 'digestive-wellness.html', 'karela-jamun-metabolic-wellness.html', 'heart-wellness.html', 'piles-fissure-care.html']) {
+  checkCardLinks(parseHTML(fs.readFileSync(path.join(output, name), 'utf8')).document);
+}
+assert(fs.existsSync(path.join(output, 'assets/amazon-mark.svg')), 'local vector logo is deployed');
 for (const stale of [false, true]) {
   const document = parseHTML(markup).document, first = document.querySelector('#product-grid .product-card');
   if (stale) document.getElementById('product-grid').dataset.madhavCatalogueStamp = 'old';
@@ -57,5 +77,6 @@ for (const stale of [false, true]) {
   vm.runInContext(sourceWebsite.slice(helperStart, gridEnd), context);
   assert.equal(document.querySelectorAll('#product-grid .product-card').length, 8);
   assert.equal(document.querySelector('#product-grid .product-card') === first, !stale);
+  checkCardLinks(document);
 }
 console.log('Passed: initial CSS, nonblocking full-style activation/fallback, module preloads, header logo sizing, cursor preservation, identical catalogue/translations after minification and small-label contrast.');

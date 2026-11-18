@@ -444,3 +444,18 @@ html:not([lang=en]) .herbal-showcase[data-mm-product="madhumeh-premium"] #spotli
   .herbal-showcase .spotlight-swipe-hint{margin-block:8px;font-size:12px;line-height:1.5}
   .herbal-showcase .spotlight-controls{margin-top:8px}
 }
+
+/* Independent links: the pack opens the product; the circle opens Amazon. */
+.product-card-media{position:relative;min-width:0}
+.product-card-media .pack-chip,#product-grid .product-card-media .pack-chip{max-width:calc(100% - 72px);white-space:normal;overflow-wrap:anywhere}
+.product-card-media>.amazon-link,#product-grid .product-card-media>.amazon-link{
+  position:absolute;right:8px;bottom:8px;z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;
+  background:var(--paper,#fffdf8);border:1px solid #cabb94;
+}
+.product-card-media>.amazon-link img{display:block;width:24px;height:24px;object-fit:contain}
+.product-card-media>.amazon-link:hover{background:#f4ecd9;border-color:#ac8a48}
+.product-card-media>.amazon-link:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.product-card-content>.store-purchase-price,#product-grid .product-card-content>.store-purchase-price{margin-top:auto;padding-top:10px}
+@media(max-width:650px){#product-grid .product-card-image{padding-bottom:50px}}
