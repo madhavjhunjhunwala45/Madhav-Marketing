@@ -34,7 +34,7 @@
     details.append(node('summary', 'Find in ' + used.length + (used.length === 1 ? ' preparation' : ' preparations')));
     for (const [key, product] of used) {
       const link = node('a', product.title + ' ↗');
-      link.href = 'product.html?product=' + key + '#composition'; details.append(link);
+      link.href = 'product.html?product=' + (product.slug || key) + '#composition'; details.append(link);
       const seen = new Map();
       const formats = product.formats || [product];
       const unifiedOil = key === 'dard-oil' && formats.every(format => JSON.stringify(format.ingredients) === JSON.stringify(formats[0].ingredients));
@@ -113,7 +113,7 @@
         body.append(node('h3', 'Key Formulations', 'mm-ingredient-label'));
         const list = node('ul', '', 'mm-ingredient-key-products');
         for (const [key, product] of used) {
-          const row = node('li'), link = node('a', product.title); link.href = 'product.html?product=' + key + '#composition'; row.append(link); list.append(row);
+          const row = node('li'), link = node('a', product.title); link.href = 'product.html?product=' + (product.slug || key) + '#composition'; row.append(link); list.append(row);
         }
         body.append(list);
       }

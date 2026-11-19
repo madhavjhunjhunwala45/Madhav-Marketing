@@ -116,7 +116,7 @@
         {
           "type": "query",
           "key": "product",
-          "value": "madhumeh-value"
+          "value": "madhumeh-haran"
         },
         {
           "type": "query",
@@ -132,7 +132,7 @@
         {
           "type": "query",
           "key": "product",
-          "value": "madhumeh-premium"
+          "value": "madhumeh-haran-bkr"
         },
         {
           "type": "query",
@@ -196,6 +196,28 @@
         {
           "type": "query",
           "key": "product",
+          "value": "madhumeh-haran"
+        }
+      ],
+      "destination": "/_search/product-madhumeh-value.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "madhumeh-haran-bkr"
+        }
+      ],
+      "destination": "/_search/product-madhumeh-premium.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
           "value": "(?<searchProduct>[a-z0-9-]+)"
         }
       ],
@@ -222,6 +244,30 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "madhumeh-value"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/product.html?product=madhumeh-haran",
+      "permanent": true
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "madhumeh-premium"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/product.html?product=madhumeh-haran-bkr",
+      "permanent": true
+    },
     {
       "source": "/",
       "has": [

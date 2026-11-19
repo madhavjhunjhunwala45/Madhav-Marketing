@@ -102,7 +102,7 @@ for (const item of all) {
   }
 }
 for (const [id, product] of Object.entries(products)) for (const [i, format] of (product.formats || [product, product]).entries()) {
-  const target = resolveURL(search.absolute('product.html?product=' + id + '&format=' + i + '&lang=hi&utm_source=test'));
+  const target = resolveURL(search.absolute('product.html?product=' + (product.slug || id) + '&format=' + i + '&lang=hi&utm_source=test'));
   assert(fs.existsSync(target), target);
   const { document } = parseHTML(fs.readFileSync(target, 'utf8'));
   assert.equal(document.getElementById('product-pack').textContent, format.pack);

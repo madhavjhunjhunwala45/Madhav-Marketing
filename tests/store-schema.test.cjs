@@ -26,7 +26,7 @@ for (const [id, product] of Object.entries(products)) {
       const offer = offers[i], price = expected[i];
       assert.equal(offer.price, price.unitPrice.toFixed(2), file + ': rupees, never paise');
       assert.equal(offer.priceCurrency, 'INR'); assert.equal(offer.sku, price.sku);
-      assert.equal(offer.url, settings.origin + '/product.html?product=' + id);
+      assert.equal(offer.url, settings.origin + '/product.html?product=' + (products[id].slug || id));
       for (const key of ['availability', 'priceValidUntil', 'review', 'aggregateRating']) assert(!(key in offer));
       if (expected.length > 1) assert(d.querySelector('.mm-pack-prices').textContent.includes('₹' + price.unitPrice.toFixed(2)));
     }
@@ -38,7 +38,7 @@ for (const [id, product] of Object.entries(products)) {
     const embedded = JSON.parse(d.getElementById('mm-store-data').textContent);
     assert.deepEqual(embedded.products, expected, 'browser data generated from sole price source');
     // The browser must retain offers even when the async cart module has not loaded.
-    const c = { window: { document: d, location: new URL(settings.origin + '/product.html?product=' + id),
+    const c = { window: { document: d, location: new URL(settings.origin + '/product.html?product=' + (products[id].slug || id)),
       madhavSearchSettings: settings, productCatalogue: products, addEventListener() {} }, URL, URLSearchParams };
     vm.createContext(c); vm.runInContext(fs.readFileSync(path.join(root, 'search.js'), 'utf8'), c);
     assert.deepEqual(JSON.parse(d.getElementById('madhav-structured-data').textContent)['@graph'].find(n => n['@type'] === 'Product').offers, item.offers);

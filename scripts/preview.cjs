@@ -7,6 +7,13 @@ if(!fs.existsSync(path.join(dist,'index.html'))) throw Error('Run npm run build 
 http.createServer((req,res)=>{
  try {
   const u=new URL(req.url,'http://127.0.0.1');
+  const migration=config.redirects.find(rule=>rule.source===u.pathname&&rule.has?.length&&rule.has.every(h=>h.type==='query'&&u.searchParams.get(h.key)===h.value));
+  if(migration){
+    const target=new URL(migration.destination,u);
+    const query=new URLSearchParams(u.search);
+    for(const [key,value] of target.searchParams)query.set(key,value);
+    res.writeHead(migration.permanent?308:307,{Location:target.pathname+'?'+query.toString()});res.end();return;
+  }
   if(u.pathname==='/index.html'){res.writeHead(308,{Location:'/'+u.search});res.end();return;}
   let pathname=u.pathname==='/'?'/index.html':u.pathname;
   for(const r of config.rewrites){if(r.source!==u.pathname)continue;let params={};const matches=(r.has||[]).every(h=>{const value=u.searchParams.get(h.key);if(value===null)return false;const m=new RegExp('^(?:'+h.value+')$').exec(value);if(!m)return false;Object.assign(params,m.groups||{});return true;});if(matches){pathname=r.destination.replace(/:([a-zA-Z]+)/g,(_,key)=>params[key]);break;}}

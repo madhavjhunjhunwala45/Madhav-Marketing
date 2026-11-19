@@ -33,13 +33,17 @@ for (const item of [{ file:'index.html', url:settings.origin+'/' },{ file:'_sear
       });
     }
   }
+  for(const link of d.querySelectorAll('a[href]')){
+    const u=new URL(link.getAttribute('href'),item.url);
+    if(u.origin===settings.origin&&u.pathname==='/product.html')assert(!['madhumeh-value','madhumeh-premium'].includes(u.searchParams.get('product')),'no internal link uses a redirecting product URL: '+item.file);
+  }
 }
 for (const [file, entry] of Object.entries(settings.pages)) {
   const d=load(file); assert.equal(d.documentElement.dataset.searchPage,entry.kind);
   if(entry.kind==='category') {
     const ids=Object.keys(c.window.productCatalogue).filter(id=>c.window.productCatalogue[id].group===entry.group);
     const cards=[...d.querySelectorAll('.product-card')];assert.equal(cards.length,ids.length);
-    for(const id of ids) assert(d.querySelector('a[href="product.html?product='+id+'"]'));
+    for(const id of ids) assert(d.querySelector('a[href="product.html?product='+(c.window.productCatalogue[id].slug||id)+'"]'));
     assert(d.querySelectorAll('a[href^="ingredients.html?ingredient="]').length>=3);
     assert.equal(d.querySelectorAll('details[data-seo-faq]').length,3);
     for(const card of cards) {const img=card.querySelector('img');assert(img.width>0&&img.height>0);assert.equal(img.getAttribute('loading'),'lazy');}
@@ -116,7 +120,7 @@ for(const id of ['clove','mochras','surana','bibhitaki']){
     assert(facts.includes('As printed on the product label'));
     for(const value of row.slice(0,3))if(value)assert(facts.includes(value),id+': exact printed name/detail/quantity retained');
     assert(notes[i].querySelector('.component-evidence').textContent.includes(basis));
-    assert(d.querySelector('.ingredient-products a[href="product.html?product='+pid+'#composition"]'));
+    assert(d.querySelector('.ingredient-products a[href="product.html?product='+(c.window.productCatalogue[pid].slug||pid)+'#composition"]'));
   });
 }
 for(const file of issueFiles){
@@ -147,7 +151,7 @@ for(const [id,name,count] of [['madhumeh-value','Madhumeh Haran',14],['madhumeh-
     const d=load('_search/product-'+id+suffix+'.html');
     assert.equal(d.querySelector('h1').textContent,name);
     assert.equal(d.title,entry.title);assert.equal(d.querySelector('meta[name="description"]').content,entry.description);
-    assert.equal(d.querySelector('link[rel="canonical"]').href,settings.origin+'/product.html?product='+id,'existing public URL retained');
+    assert.equal(d.querySelector('link[rel="canonical"]').href,settings.origin+'/product.html?product='+product.slug,'new public canonical URL');
     const graph=JSON.parse(d.getElementById('madhav-structured-data').textContent)['@graph'];
     const structured=graph.find(node=>node['@type']==='Product');assert.equal(structured.name,name);
     assert.equal(structured.offers.price,storeConfig.products.find(p=>p.productId===id).unitPrice.toFixed(2));
@@ -159,7 +163,7 @@ for(const [id,name,count] of [['madhumeh-value','Madhumeh Haran',14],['madhumeh-
   }
   assert([...home.querySelectorAll('.product-card h3')].some(h=>h.textContent===name));
   assert([...metabolic.querySelectorAll('.product-card h3')].some(h=>h.textContent===name));
-  assert([...metabolic.querySelectorAll('a[href="product.html?product='+id+'#composition"]')].some(a=>a.textContent==='Ingredients in '+name));
+  assert([...metabolic.querySelectorAll('a[href="product.html?product='+product.slug+'#composition"]')].some(a=>a.textContent==='Ingredients in '+name));
   assert(metabolic.querySelector('.mm-seo-care-grid').textContent.includes(product.directions));
 }
 assert.equal(metabolic.querySelector('h1').textContent,'Madhumeh Haran and Madhumeh Haran BKR');

@@ -16,6 +16,12 @@ const settings = configContext.window.madhavSearchSettings, search = createSearc
 const dataContext = { window: {} }; vm.createContext(dataContext);
 for (const name of ['product-data.js', 'ingredient-data.js']) vm.runInContext(read(name), dataContext, { timeout: 3000 });
 const products = dataContext.window.productCatalogue;
+const publicSlugs = new Set();
+for (const [id, product] of Object.entries(products)) {
+  const slug = product.slug || id;
+  if (!/^[a-z0-9-]+$/.test(slug) || publicSlugs.has(slug)) throw new Error('Unsafe or duplicate product URL slug: ' + slug);
+  publicSlugs.add(slug);
+}
 const ingredients = dataContext.window.ingredientGuide;
 const ingredientIds = Object.keys(ingredients).filter(id => !ingredients[id].guideHidden);
 require('./seo-pages.cjs')({ root, settings, products, ingredients, aliases: dataContext.window.ingredientAliases, helpers, editorial: dataContext.window.mmIngredientEditorial });
@@ -128,7 +134,8 @@ write('404.html', fs.readFileSync(path.join(output, '_search/product-default.htm
 write('_search/ingredients-default.html', render('ingredients.html', '', 'ingredients'));
 const expected = [];
 const rewrites = [
-  ...Object.entries(products).flatMap(([id, product]) => (product.formats || [product]).map((_, i) => ({ source: '/product.html', has: [{ type: 'query', key: 'product', value: id }, { type: 'query', key: 'format', value: String(i) }], destination: '/_search/product-' + id + '-format-' + i + '.html' }))),
+  ...Object.entries(products).flatMap(([id, product]) => (product.formats || [product]).map((_, i) => ({ source: '/product.html', has: [{ type: 'query', key: 'product', value: product.slug || id }, { type: 'query', key: 'format', value: String(i) }], destination: '/_search/product-' + id + '-format-' + i + '.html' }))),
+  ...Object.entries(products).filter(([, product]) => product.slug).map(([id, product]) => ({ source: '/product.html', has: [{ type: 'query', key: 'product', value: product.slug }], destination: '/_search/product-' + id + '.html' })),
   { source: '/product.html', has: [{ type: 'query', key: 'product', value: '(?<searchProduct>[a-z0-9-]+)' }], destination: '/_search/product-:searchProduct.html' },
   { source: '/ingredients.html', has: [{ type: 'query', key: 'ingredient', value: '(?<searchIngredient>[a-z0-9-]+)' }], destination: '/_search/ingredient-:searchIngredient.html' },
   { source: '/product.html', destination: '/_search/product-default.html' },
@@ -138,11 +145,11 @@ for (const [id, product] of Object.entries(products)) {
   if (!/^[a-z0-9-]+$/.test(id)) throw new Error('Unsafe product key: ' + id);
   (product.formats || [product]).forEach((format, i) => {
     const destination = '/_search/product-' + id + '-format-' + i + '.html';
-    write(destination.slice(1), render('product.html', 'product=' + encodeURIComponent(id) + '&format=' + i, 'product', id, i));
+    write(destination.slice(1), render('product.html', 'product=' + encodeURIComponent(product.slug || id) + '&format=' + i, 'product', id, i));
   });
   const destination = '/_search/product-' + id + '.html';
-  write(destination.slice(1), render('product.html', 'product=' + encodeURIComponent(id), 'product', id));
-  expected.push({ url: search.absolute('product.html?product=' + encodeURIComponent(id)), file: destination.slice(1), kind: 'product', id });
+  write(destination.slice(1), render('product.html', 'product=' + encodeURIComponent(product.slug || id), 'product', id));
+  expected.push({ url: search.absolute('product.html?product=' + encodeURIComponent(product.slug || id)), file: destination.slice(1), kind: 'product', id });
 }
 for (const id of ingredientIds) {
   if (!/^[a-z0-9-]+$/.test(id)) throw new Error('Unsafe ingredient key: ' + id);
@@ -157,13 +164,19 @@ for (const [file, page] of Object.entries(settings.pages || {})) {
 // List every useful canonical page, without cart, pack or preference duplicates.
 const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.map(item => item.url)];
 const escapeXML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>2026-11-16</lastmod></url>').join('\n') + '\n</urlset>\n');
+// Record this URL migration's actual date; do not refresh dates on every build.
+const movedProductUrls = new Set(Object.values(products).filter(product => product.slug).map(product => search.absolute('product.html?product=' + product.slug)));
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>' + (movedProductUrls.has(url) ? '2026-11-20' : '2026-11-16') + '</lastmod></url>').join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\nDisallow: /_search/\n\nSitemap: ' + search.origin + '/sitemap.xml\n');
 
 const deployment = JSON.parse(read('vercel.json'));
 // Security headers are copied unchanged; routing is generated from the actual data keys.
 deployment.rewrites = rewrites;
 deployment.redirects = [
+  ...Object.entries(products).filter(([id, product]) => product.slug && product.slug !== id).map(([id, product]) => ({
+    source: '/product.html', has: [{ type: 'query', key: 'product', value: id }],
+    destination: search.origin + '/product.html?product=' + encodeURIComponent(product.slug), permanent: true
+  })),
   ...[
     'madhavmarketing.store',
     'www.madhavmarketing.store',

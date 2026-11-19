@@ -45,7 +45,7 @@
     const locale = supported.has(language) ? language : 'en';
     let path = '', title, description, image = settings.organization.logo, index = true;
     if (kind === 'product' && product) {
-      path = 'product.html?product=' + encodeURIComponent(id);
+      path = 'product.html?product=' + encodeURIComponent(product.slug || id);
       const custom = own(settings.products, id) ? settings.products[id] : {};
       title = custom.title || product.title + ' | ' + settings.businessName;
       description = custom.description || product.description;
@@ -116,13 +116,13 @@
     } else if (meta.kind === 'home') {
       page.mainEntity = { '@type': 'ItemList', itemListElement: Object.entries(catalogue).map(([id, product], i) => ({
         '@type': 'ListItem', position: i + 1, name: product.displayTitle || product.title,
-        url: absolute('product.html?product=' + encodeURIComponent(id))
+        url: absolute('product.html?product=' + encodeURIComponent(product.slug || id))
       })) };
     }
     const entry = settings.pages?.[meta.id];
     const categoryIds = entry?.group ? Object.keys(catalogue).filter(id => catalogue[id].group === entry.group) : null;
     if (categoryIds) page.mainEntity = { '@type': 'ItemList', itemListElement: categoryIds.map((id, i) => ({
-      '@type': 'ListItem', position: i + 1, name: catalogue[id].title, url: absolute('product.html?product=' + encodeURIComponent(id))
+      '@type': 'ListItem', position: i + 1, name: catalogue[id].title, url: absolute('product.html?product=' + encodeURIComponent(catalogue[id].slug || id))
     })) };
     if (meta.kind === 'article') {
       const article = { '@type': 'Article', '@id': meta.canonical + '#article', headline: meta.title,
@@ -186,6 +186,7 @@
       const products = root.productCatalogue || {}, ingredients = root.ingredientGuide || {};
       const kind = document.documentElement.dataset.searchPage || 'home';
       let id = ['category', 'contact', 'guides', 'article'].includes(kind) ? root.location.pathname.split('/').pop() : params.get(kind === 'product' ? 'product' : 'ingredient');
+      if (kind === 'product') id = Object.keys(products).find(key => (products[key].slug || key) === id) || id;
       const product = kind === 'product' && own(products, id) ? products[id] : null;
       const ingredient = kind === 'ingredients' && own(ingredients, id) && !ingredients[id].guideHidden ? ingredients[id] : null;
       const language = root.MadhavI18n?.language || 'en';

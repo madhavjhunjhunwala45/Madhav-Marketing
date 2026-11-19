@@ -28,14 +28,15 @@ module.exports = function renderStoreDisplay({ document, products, store, select
     const button = node(choose ? 'a' : 'button', detail ? 'store-product-buy' : 'store-card-buy', choose ? 'Choose pack' : 'Add to cart');
     button.dataset.storeBuy = id;
     button.setAttribute('data-no-translate', '');
-    if (choose) button.href = 'product.html?product=' + encodeURIComponent(id);
+    if (choose) button.href = 'product.html?product=' + encodeURIComponent(products[id].slug || id);
     else { button.type = 'button'; button.disabled = true; }
     return button;
   }
   for (const card of document.querySelectorAll('.product-card')) {
     const href = card.querySelector('a[href*="product="]')?.getAttribute('href');
     if (!href) continue;
-    const id = new URL(href, 'https://example.invalid/').searchParams.get('product');
+    const slug = new URL(href, 'https://example.invalid/').searchParams.get('product');
+    const id = Object.keys(products).find(key => (products[key].slug || key) === slug) || slug;
     const items = itemsFor(id), body = card.querySelector('.product-card-content');
     if (items.length && body && !body.querySelector('[data-store-buy]')) body.append(priceNode(id, items), buttonNode(id, items));
   }

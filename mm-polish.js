@@ -107,7 +107,8 @@
 
   // Construct the extra comparison rows only on the first deliberate opening.
   const products = window.productCatalogue;
-  const id = new URLSearchParams(window.location.search).get('product');
+  const queryId = new URLSearchParams(window.location.search).get('product');
+  const id = Object.keys(products || {}).find(key => (products[key].slug || key) === queryId) || queryId;
   const comparisonHost = document.querySelector('.formula-feature') ||
     (['madhumeh-value', 'madhumeh-premium'].includes(id) && document.getElementById('sibling-links'));
   const value = products?.['madhumeh-value'], premium = products?.['madhumeh-premium'];
