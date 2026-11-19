@@ -11,7 +11,21 @@ window.madhavSearchSettings = {
   },
   ingredients: {
     title: 'Ayurvedic Ingredient Guide | Madhav Marketing',
-    description: 'Explore the ingredients in Madhav Marketing’s Ayurvedic preparations, with source photographs, traditional properties, research references and composition guides.'
+    description: 'Explore the ingredients in Madhav Marketing’s Ayurvedic preparations, with source photographs, traditional properties, research references and composition guides.',
+    profiles: {
+      "clove": {
+        "description": "Clove (Laung) in Dard Haran Capsule and Dard Haran Oil. Compare its label names, listed parts, amounts and separate oral and external uses."
+      },
+      "mochras": {
+        "description": "Read about Mochras (Semal gum) in Arshharan Capsules. See its source plant, listed preparation, amount per capsule and full product composition."
+      },
+      "surana": {
+        "description": "Surana in Arshharan Capsules: read the listed purified powder, amount per capsule, source-plant information and complete composition."
+      },
+      "bibhitaki": {
+        "description": "Bibhitaki (Baheda) in Kabj Haran Granules. See its botanical identity, listed amount and composition basis, with links to the full product details."
+      }
+    }
   },
   cart: {
     title: 'Your Cart | Madhav Marketing',
@@ -28,7 +42,7 @@ window.madhavSearchSettings = {
       faqs: [
         { id: 'use', question: 'What is Dard Haran Oil used for?', answerSource: 'benefits' },
         { id: 'packs', question: 'Do the 50 ml and 100 ml oils have the same ingredients?', answer: 'Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.' },
-        { id: 'directions', question: 'How should I use Dard Haran Oil?', answerSource: 'directions' }
+        { id: 'directions', question: 'How should I use Dard Haran Oil?', answerSource: 'application' }
       ]
     },
     'kabi-haran': { title: 'Kabj Haran Granules for Digestive Wellbeing | Madhav Marketing', description: 'Explore Kabj Haran Granules, a 100 g Ayurvedic digestive-wellbeing formulation. Read its ingredients, pack directions and pregnancy precaution.' },
@@ -102,7 +116,7 @@ Object.assign(window.madhavSearchSettings, {
       "path": "karela-jamun-metabolic-wellness.html",
       "label": "Karela and Jamun formulations",
       "heading": "Karela and Jamun metabolic wellness formulations",
-      "intro": "Compare Madhumeh Haran Value and Premium. Both list Karela and Jamun; Premium also lists Vasant Kusumakar Ras. Review the complete panels rather than comparing ingredient names alone.",
+      "intro": "Compare Madhumeh Haran Value and Premium in 200 g packs. Both list Karela and Jamun, with ingredient amounts stated per gram. Premium also lists Vasant Kusumakar Ras (Basant kusumakar on the label) at 10 mg per gram. Read each product’s full composition and directions before choosing a formulation.",
       "ingredients": [
         "karela",
         "jamun",
@@ -155,7 +169,7 @@ Object.assign(window.madhavSearchSettings, {
       "kind": "category",
       "heading": "Karela and Jamun metabolic wellness formulations",
       "title": "Karela and Jamun metabolic wellness formulations | Madhav Marketing",
-      "description": "Compare Madhumeh Haran Value and Premium. Both list Karela and Jamun; Premium also lists Vasant Kusumakar Ras. Review the complete panels rather than comparing ingredient names alone.",
+      "description": "Compare Madhumeh Haran Value and Premium Karela Jamun formulations: 200 g packs, ingredients per gram, Premium’s Vasant Kusumakar Ras and label directions.",
       "group": "metabolic",
       "products": []
     },

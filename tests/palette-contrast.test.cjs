@@ -23,4 +23,9 @@ for (const [foreground, background, minimum] of pairs) {
   const ratio = (high + 0.05) / (low + 0.05);
   assert(ratio >= minimum, foreground + ' on ' + background + ': ' + ratio.toFixed(2) + ', needs ' + minimum);
 }
+const evidenceRule=Array.from(document.querySelector('style').sheet.cssRules).find(rule=>rule.selectorText==='.evidence-label');
+assert(evidenceRule,'ingredient evidence label rule is present');
+const labelColors=['color','background'].map(property=>luminance(evidenceRule.style.getPropertyValue(property).trim())).sort((a,b)=>a-b);
+const labelRatio=(labelColors[1]+0.05)/(labelColors[0]+0.05);
+assert(labelRatio>=4.5,'small ingredient evidence label contrast: '+labelRatio.toFixed(2));
 console.log('Passed: ' + pairs.length + ' text/background palette contrast pairs, including dark contact text, muted footer text and gold labels.');

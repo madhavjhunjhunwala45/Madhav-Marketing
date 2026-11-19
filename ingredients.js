@@ -35,19 +35,29 @@
     for (const [key, product] of used) {
       const link = node('a', product.title + ' ↗');
       link.href = 'product.html?product=' + key + '#composition'; details.append(link);
-      const seen = new Set();
+      const seen = new Map();
       const formats = product.formats || [product];
       const unifiedOil = key === 'dard-oil' && formats.every(format => JSON.stringify(format.ingredients) === JSON.stringify(formats[0].ingredients));
       for (const format of product.formats || [product]) for (const row of format.ingredients || []) {
         if (aliases[row[0]] !== id) continue;
         const note = window.MadhavIngredientNotes?.get(key, row[0]); if (!note) continue;
         const signature = (unifiedOil ? '' : format.label || '') + '|' + (format.basis || '') + '|' + note.benefit + '|' + note.explanation;
-        if (seen.has(signature)) continue; seen.add(signature);
+        const rowKey = JSON.stringify(row.slice(0,3)), existing = seen.get(signature);
+        if (existing?.rows.has(rowKey)) continue;
+        const facts = node('span', '', 'component-identity');
+        facts.append(node('span', 'As printed on the product label'), node('br'), node('span', row[0]));
+        if (row[1]) facts.append(document.createTextNode(' · '), node('span', row[1]));
+        facts.append(document.createTextNode(' · '), node('span', 'Quantity'), document.createTextNode(': '), node('span', row[2]));
+        if (existing) {
+          existing.role.insertBefore(facts, existing.benefit); existing.rows.add(rowKey); continue;
+        }
         const role = node('p', '', 'mm-ingredient-product-note');
         const basis = node('small', '', 'component-evidence');
         if (format.label && !unifiedOil) basis.append(node('span', format.label), document.createTextNode(' · '));
         basis.append(node('span', format.basis || ''));
-        role.append(basis, node('strong', note.benefit), node('br'), node('span', note.explanation));
+        const benefit = node('strong', note.benefit);
+        role.append(basis, facts, benefit, node('br'), node('span', note.explanation));
+        seen.set(signature, {role, benefit, rows:new Set([rowKey])});
         details.append(role);
       }
     }
@@ -145,6 +155,7 @@
     return card;
   }
   function render() {
+    directoryIndex.hidden = Boolean(exact);
     const heading = document.querySelector('.ingredient-hero h1');
     if (heading) heading.textContent = exact ? guide[exact].title : 'Ayurvedic ingredient guide';
     const query = search.value.trim().normalize('NFKC').toLocaleLowerCase();
@@ -182,6 +193,17 @@
     search.value = guide[exact].title; filter = 'all';
     filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.ingredientFilter === 'all')));
   }
+  // Permanent links remain available to readers and crawlers without running filters.
+  const directoryIndex = document.getElementById('ingredient-directory-index') || node('details', '', 'ingredient-sources');
+  directoryIndex.id = 'ingredient-directory-index';
+  directoryIndex.replaceChildren();
+  directoryIndex.append(node('summary', 'All ingredients and formulation components'));
+  directoryIndex.append(node('p', 'Browse profiles by name. Each profile links to the products that list that ingredient or component.'));
+  const directoryLinks = node('nav'); directoryLinks.setAttribute('aria-label', 'Ingredient Guide');
+  for (const [id, item] of [...entries].sort((a,b) => a[1].title.localeCompare(b[1].title,'en'))) {
+    const link = node('a', item.title, 'text-link'); link.href = profileURL(id); directoryLinks.append(link);
+  }
+  directoryIndex.append(directoryLinks); grid.parentNode.append(directoryIndex);
   rebuildIndex(); render();
   if (exact && location.hash === '#ingredient-' + exact) requestAnimationFrame(() => document.getElementById('ingredient-' + exact)?.scrollIntoView({ behavior: 'instant', block: 'start' }));
 })();

@@ -64,7 +64,10 @@ for(const file of ['_search/product-dard-oil.html','_search/product-dard-oil-for
   assert.equal(d.querySelector('link[rel="canonical"]').href,settings.origin+'/product.html?product=dard-oil');
   assert.equal(questions.length,3,'both packs share one set of factual product answers');
   assert.equal(questions[0].querySelector('p').textContent,oil.benefits,'use answer comes from the verified catalogue');
-  assert.equal(questions[2].querySelector('p').textContent,oil.directions,'generic FAQ must not apply a pack-specific dose to both sizes');
+  assert.equal(questions[2].querySelector('p').textContent,oil.application,'both packs share palm-warming and gentle-massage instructions');
+  assert.equal(d.querySelector('#mm-gentle-massage span').textContent,oil.application);
+  const packIndex=file.includes('format-1')?1:0;
+  assert.equal(d.querySelector('#product-directions').textContent,oil.formats[packIndex].directions,'printed pack directions stay separate and unchanged');
   assert(questions[1].textContent.includes('only the pack size differs'));
   assert(questions[1].textContent.includes('per 100 ml'));
   assert(d.querySelector('#mm-category-crumb[href="joint-muscle-care.html"]'));
@@ -78,13 +81,62 @@ const jointQuestions=[...joint.querySelectorAll('details[data-seo-faq]')];
 assert.equal(jointQuestions[0].querySelector('summary').textContent,'How do Dard Haran Oil and Capsule differ?');
 assert(jointQuestions[0].textContent.includes('external massage')&&jointQuestions[0].textContent.includes('oral formulation'));
 assert.equal(jointQuestions[1].querySelector('summary').textContent,oilSearch.faqs.find(f=>f.id==='packs').question);
-assert(joint.querySelector('.mm-seo-care-grid').textContent.includes(oil.directions));
+assert(joint.querySelector('.mm-seo-care-grid').textContent.includes(oil.application));
 assert(joint.querySelector('.mm-seo-care-grid').textContent.includes(c.window.productCatalogue['dard-capsule'].directions));
 assert(config.redirects.some(r=>r.permanent && r.has?.some(h=>h.type==='host'&&h.value==='madhavmarketing.store')&&r.destination===settings.origin+'/:path*'));
 function resolve(query) {const u=new URL(query,settings.origin);for(const r of config.rewrites){if(r.source!==u.pathname)continue;let captures={};if(!(r.has||[]).every(h=>{const value=u.searchParams.get(h.key);if(value===null)return false;const m=new RegExp('^(?:'+h.value+')$').exec(value);if(!m)return false;Object.assign(captures,m.groups||{});return true;}))continue;return r.destination.replace(/:([a-zA-Z]+)/g,(_,key)=>captures[key]);}return u.pathname;}
 for(const query of ['product.html?product=dard-oil&format=999','product.html?product=dard-oil&format=oops']) assert.equal(resolve(query),'/_search/product-dard-oil.html');
 assert(!fs.existsSync(path.join(dist,resolve('product.html?product=unknown-slug'))),'unknown slug resolves to a missing file/404');
 const search=require('../search.js')(settings);assert.equal(search.metadata({kind:'product',id:'dard-oil',product:c.window.productCatalogue['dard-oil'],language:'hi'}).canonical,settings.origin+'/product.html?product=dard-oil');
+// The six reported crawlable pages must retain independent, indexable public URLs.
+const directory=load('_search/ingredients-default.html');
+const directoryIndex=directory.getElementById('ingredient-directory-index');
+assert(directoryIndex&&!directoryIndex.hasAttribute('hidden')&&!directoryIndex.hasAttribute('open'),'compact native index is available in served HTML');
+const guideEntries=Object.entries(c.window.ingredientGuide).filter(([,entry])=>!entry.guideHidden);
+assert.equal(directoryIndex.querySelectorAll('nav a').length,guideEntries.length);
+for(const [id] of guideEntries)assert(directoryIndex.querySelector('a[href="ingredients.html?ingredient='+id+'#ingredient-'+id+'"]'),'every public profile has a permanent directory link: '+id);
+const issueFiles=['_search/ingredients-default.html','karela-jamun-metabolic-wellness.html'];
+for(const id of ['clove','mochras','surana','bibhitaki']){
+  const file='_search/ingredient-'+id+'.html',d=load(file);issueFiles.push(file);
+  assert.equal(d.querySelector('meta[name="description"]').content,settings.ingredients.profiles[id].description);
+  assert(d.querySelector('#ingredient-directory-index[hidden]'),'full directory is kept out of the profile view');
+  const notes=[...d.querySelectorAll('.ingredient-products .mm-ingredient-product-note')];
+  const expected=[];
+  for(const [pid,product] of Object.entries(c.window.productCatalogue)){
+    const rows=new Set();
+    for(const format of product.formats||[product])for(const row of format.ingredients||[]){
+      if(c.window.ingredientAliases[row[0]]!==id)continue;
+      const signature=JSON.stringify(row.slice(0,3))+'|'+format.basis;
+      if(rows.has(signature))continue;rows.add(signature);expected.push({pid,row,basis:format.basis});
+    }
+  }
+  assert.equal(notes.length,expected.length,id+': each unique printed row appears once, including one shared oil formula');
+  expected.forEach(({pid,row,basis},i)=>{
+    const facts=notes[i].querySelector('.component-identity').textContent;
+    assert(facts.includes('As printed on the product label'));
+    for(const value of row.slice(0,3))if(value)assert(facts.includes(value),id+': exact printed name/detail/quantity retained');
+    assert(notes[i].querySelector('.component-evidence').textContent.includes(basis));
+    assert(d.querySelector('.ingredient-products a[href="product.html?product='+pid+'#composition"]'));
+  });
+}
+for(const file of issueFiles){
+  const d=load(file),canonical=d.querySelector('link[rel="canonical"]').href;
+  assert(d.querySelector('meta[name="robots"]').content.startsWith('index,follow'),file+': indexable');
+  assert(fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8').includes(canonical.replaceAll('&','&amp;')),file+': canonical in sitemap');
+  assert(d.querySelector('main').textContent.trim().length>500,file+': content delivered without JavaScript');
+}
+const value=c.window.productCatalogue['madhumeh-value'],premium=c.window.productCatalogue['madhumeh-premium'];
+assert.equal(value.pack,'200 g');assert.equal(premium.pack,'200 g');
+assert.equal(value.basis,'Each gram contains.');assert.equal(premium.basis,'Each gram contains.');
+assert(!value.ingredients.some(row=>c.window.ingredientAliases[row[0]]==='vasant-kusumakar'));
+assert.equal(premium.ingredients.find(row=>c.window.ingredientAliases[row[0]]==='vasant-kusumakar')[2],'10 mg');
+const metabolic=load('karela-jamun-metabolic-wellness.html');
+assert(metabolic.querySelector('main').textContent.includes('at 10 mg per gram'));
+assert(metabolic.querySelector('details[data-seo-faq] p').textContent.includes('the Value panel does not list this ingredient'));
+const daruhaldiNotes=[...load('_search/ingredient-daruhaldi.html').querySelectorAll('.ingredient-products .mm-ingredient-product-note')];
+assert.equal(daruhaldiNotes.length,3,'one role per product even when a label lists two forms');
+assert.equal(daruhaldiNotes[2].querySelectorAll('.component-identity').length,2,'retain both Daruhaldi and Rasont label rows');
+for(const row of c.window.productCatalogue.arshharan.ingredients.filter(row=>c.window.ingredientAliases[row[0]]==='daruhaldi'))for(const value of row.slice(0,3))assert(daruhaldiNotes[2].textContent.includes(value));
 const ui=JSON.parse(fs.readFileSync(path.join(root,'scripts/seo-translation-keys.json')));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']) for(const key of ui) assert(c.window.madhavTranslations[lang][key],lang+': '+key);
 console.log('Passed: unique metadata and H1s, canonical routes, category membership, visible FAQ/schema agreement, real INR offers without invented ratings/stock/authors, host/pack fallbacks, contact facts and seven translated dictionaries.');

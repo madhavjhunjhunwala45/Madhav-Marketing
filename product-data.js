@@ -122,6 +122,7 @@ window.productCatalogue = {
     "accent": "blue",
     "description": "External care, available in 50 ml and 100 ml packs. Explore the product pack, composition and label directions below.",
     "directions": "For external use only. Follow the directions on your product label.",
+    "application": "Take an adequate amount of oil in your palms. Rub your palms together to gently warm the oil, then apply it to the affected area. Massage with light, gentle strokes until the oil is absorbed. For external use only. Follow the directions on your current pack.",
     "ingredients": [
       [
         "Nirgundi",

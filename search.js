@@ -56,7 +56,8 @@
     } else if (kind === 'ingredient' && ingredient) {
       path = 'ingredients.html?ingredient=' + encodeURIComponent(id);
       title = ingredient.title + ' in Ayurvedic Formulations | ' + settings.businessName;
-      description = 'Explore ' + ingredient.title + ', its role in listed Madhav Marketing formulations, source identity, composition links and research references.';
+      const profile = settings.ingredients?.profiles && own(settings.ingredients.profiles, id) ? settings.ingredients.profiles[id] : {};
+      description = profile.description || 'Explore ' + ingredient.title + ', its role in listed Madhav Marketing formulations, source identity, composition links and research references.';
       image = ingredient.photo?.remoteThumbnailUrl || ingredient.photo?.remoteUrl || image;
     } else if (kind === 'ingredients') {
       path = 'ingredients.html'; ({ title, description } = settings.ingredients);

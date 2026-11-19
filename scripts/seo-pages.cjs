@@ -60,10 +60,10 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
     }
     list.append(stack);
     const care = p.section('Directions and safety information'); const careStack = p.node('div', '', 'mm-seo-stack mm-seo-care-grid');
-    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits)); if(group === 'pain') a.append(p.node('p', product.directions)); a.append(p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + id + '#directions')); careStack.append(a); } care.append(careStack);
+    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits)); if(group === 'pain') a.append(p.node('p', product.application || product.directions)); a.append(p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + id + '#directions')); careStack.append(a); } care.append(careStack);
     const common = ['How should I use a product?', "Follow the current product label and your physician's directions. This catalogue provides product information and does not replace individual medical advice."];
     const availability = ['How do I check availability?', 'Call +91 94316 55050 for product availability and retailer enquiries. This catalogue does not currently offer online checkout.'];
-    const unique = group === 'metabolic' ? ['Are Value and Premium the same formulation?', 'No. Madhumeh Haran Value is the plain Karela Jamun Churan; the Premium formula includes Vasant Kusumakar Ras. The compositions are shown on separate pages.']
+    const unique = group === 'metabolic' ? ['Are Value and Premium the same formulation?', 'No. Both are 200 g packs with amounts stated per gram. Premium lists Basant kusumakar at 10 mg per gram; the Value panel does not list this ingredient. Compare both full composition panels and follow the directions for your chosen product.']
       : group === 'digestion' ? ['What precaution is listed for Kabj Haran Granules?', products['kabi-haran'].precautions]
       : group === 'pain' ? ['Is Dard Haran Oil for external use?', products['dard-oil'].formats[1].directions]
       : ['Where can I find product compositions?', 'Select a product in our range to see its composition table and pack images. For products with multiple pack sizes, choose the pack to see its corresponding information.'];
