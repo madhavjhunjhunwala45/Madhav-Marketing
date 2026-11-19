@@ -1398,5 +1398,17 @@ window.madhavTranslations.gu = {
   "Specified oral Aloe materials are used in traditional bowel-care preparations.": "મોં દ્વારા લેવાતી ચોક્કસ Aloe સામગ્રી આંતરડાની સંભાળની પરંપરાગત તૈયારીઓમાં વપરાય છે.",
   "Traditional vitality": "પરંપરાગત સ્ફૂર્તિ",
   "Used in Ayurvedic heart-care recipes for strength and wellbeing.": "શક્તિ અને સ્વાસ્થ્ય માટેનાં આયુર્વેદિક હૃદયની સંભાળનાં સંયોજનોમાં ઉપયોગ થાય છે.",
-  "Used in traditional digestive preparations alongside other botanicals.": "પાચક પરંપરાગત તૈયારીઓમાં અન્ય વનસ્પતિઓ સાથે ઉપયોગ થાય છે."
+  "Used in traditional digestive preparations alongside other botanicals.": "પાચક પરંપરાગત તૈયારીઓમાં અન્ય વનસ્પતિઓ સાથે ઉપયોગ થાય છે.",
+  // Dard Haran Oil and joint-care SEO: verified label-based information.
+  "Dard Haran Oil | Ayurvedic Massage Oil | Madhav Marketing": "દર્દ હરણ ઓઇલ | આયુર્વેદિક માલિશનું તેલ | માધવ માર્કેટિંગ",
+  "Dard Haran Oil is an Ayurvedic oil for joint and muscle massage. Compare 50 ml and 100 ml packs, prices, ingredients and external-use directions.": "દર્દ હરણ ઓઇલ સાંધા અને સ્નાયુઓની માલિશ માટેનું આયુર્વેદિક તેલ છે. 50 મિ.લી. અને 100 મિ.લી. પૅક, કિંમતો, ઘટકો અને બાહ્ય ઉપયોગની સૂચનાઓ સરખાવી જુઓ.",
+  "Questions about Dard Haran Oil": "દર્દ હરણ ઓઇલ વિશેના પ્રશ્નો",
+  "What is Dard Haran Oil used for?": "દર્દ હરણ ઓઇલ શેના માટે વપરાય છે?",
+  "Do the 50 ml and 100 ml oils have the same ingredients?": "શું 50 મિ.લી. અને 100 મિ.લી. તેલમાં સમાન ઘટકો છે?",
+  "Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.": "હા. દર્દ હરણ ઓઇલના બંને પૅકનું મિશ્રણ એકસરખું છે; ફક્ત પૅકનું કદ જુદું છે. કોષ્ટકમાં ઘટકોની માત્રા દર 100 મિ.લી. પ્રમાણે આપેલી છે.",
+  "How should I use Dard Haran Oil?": "દર્દ હરણ ઓઇલનો ઉપયોગ કેવી રીતે કરવો?",
+  "How do Dard Haran Oil and Capsule differ?": "દર્દ હરણ ઓઇલ અને કૅપ્સ્યુલમાં શું તફાવત છે?",
+  "Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.": "દર્દ હરણ ઓઇલ બાહ્ય માલિશ માટે છે. દર્દ હરણ કૅપ્સ્યુલ મોઢેથી લેવાનું મિશ્રણ છે, જેનો ઉપયોગ તબીબી દેખરેખ હેઠળ થાય છે. તમારા માટે કયું સ્વરૂપ યોગ્ય છે તે તમારા તબીબને પૂછો.",
+  "Ingredients in Dard Haran Oil": "દર્દ હરણ ઓઇલના ઘટકો",
+  "Ingredients in Dard Haran Capsule": "દર્દ હરણ કૅપ્સ્યુલના ઘટકો"
 };

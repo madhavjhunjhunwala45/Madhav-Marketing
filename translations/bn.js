@@ -1398,5 +1398,17 @@ window.madhavTranslations.bn = {
   "Specified oral Aloe materials are used in traditional bowel-care preparations.": "মুখে খাওয়ার নির্দিষ্ট Aloe উপাদান মলত্যাগের যত্নের ঐতিহ্যগত প্রস্তুতিতে ব্যবহৃত হয়।",
   "Traditional vitality": "ঐতিহ্যগত প্রাণশক্তি",
   "Used in Ayurvedic heart-care recipes for strength and wellbeing.": "শক্তি ও সুস্থতার জন্য হৃদ্‌যত্নের আয়ুর্বেদিক মিশ্রণে ব্যবহৃত হয়।",
-  "Used in traditional digestive preparations alongside other botanicals.": "অন্য ভেষজের সঙ্গে হজমের ঐতিহ্যগত প্রস্তুতিতে ব্যবহৃত হয়।"
+  "Used in traditional digestive preparations alongside other botanicals.": "অন্য ভেষজের সঙ্গে হজমের ঐতিহ্যগত প্রস্তুতিতে ব্যবহৃত হয়।",
+  // Dard Haran Oil and joint-care SEO: verified label-based information.
+  "Dard Haran Oil | Ayurvedic Massage Oil | Madhav Marketing": "দর্দ হরণ অয়েল | আয়ুর্বেদিক মালিশের তেল | মাধব মার্কেটিং",
+  "Dard Haran Oil is an Ayurvedic oil for joint and muscle massage. Compare 50 ml and 100 ml packs, prices, ingredients and external-use directions.": "দর্দ হরণ অয়েল জয়েন্ট ও পেশি মালিশের আয়ুর্বেদিক তেল। 50 মি.লি. ও 100 মি.লি. প্যাক, দাম, উপাদান এবং বাহ্যিক ব্যবহারের নির্দেশনা তুলনা করে দেখুন।",
+  "Questions about Dard Haran Oil": "দর্দ হরণ অয়েল সম্পর্কে প্রশ্ন",
+  "What is Dard Haran Oil used for?": "দর্দ হরণ অয়েল কী কাজে ব্যবহার করা হয়?",
+  "Do the 50 ml and 100 ml oils have the same ingredients?": "50 মি.লি. ও 100 মি.লি. তেলে কি একই উপাদান আছে?",
+  "Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.": "হ্যাঁ। দর্দ হরণ অয়েলের দুই প্যাকের মিশ্রণ একই; শুধু প্যাকের আকার আলাদা। সারণিতে উপাদানের পরিমাণ প্রতি 100 মি.লি. হিসেবে দেওয়া আছে।",
+  "How should I use Dard Haran Oil?": "দর্দ হরণ অয়েল কীভাবে ব্যবহার করব?",
+  "How do Dard Haran Oil and Capsule differ?": "দর্দ হরণ অয়েল ও ক্যাপসুলের মধ্যে পার্থক্য কী?",
+  "Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.": "দর্দ হরণ অয়েল বাহ্যিক মালিশের জন্য। দর্দ হরণ ক্যাপসুল মুখে খাওয়ার মিশ্রণ, যা চিকিৎসকের তত্ত্বাবধানে ব্যবহার করা হয়। আপনার জন্য কোন ধরন উপযুক্ত, তা আপনার চিকিৎসককে জিজ্ঞাসা করুন।",
+  "Ingredients in Dard Haran Oil": "দর্দ হরণ অয়েলের উপাদান",
+  "Ingredients in Dard Haran Capsule": "দর্দ হরণ ক্যাপসুলের উপাদান"
 };

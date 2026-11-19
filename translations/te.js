@@ -1398,5 +1398,17 @@ window.madhavTranslations.te = {
   "Specified oral Aloe materials are used in traditional bowel-care preparations.": "నోటి ద్వారా తీసుకునే నిర్దిష్ట కలబంద పదార్థాలను సంప్రదాయ మలవిసర్జన సంరక్షణ తయారీల్లో ఉపయోగిస్తారు.",
   "Traditional vitality": "సంప్రదాయ జీవశక్తి",
   "Used in Ayurvedic heart-care recipes for strength and wellbeing.": "బలం, శ్రేయస్సు కోసం ఆయుర్వేద గుండె సంరక్షణ తయారీల్లో ఉపయోగిస్తారు.",
-  "Used in traditional digestive preparations alongside other botanicals.": "ఇతర వృక్ష పదార్థాలతో పాటు సంప్రదాయ జీర్ణ తయారీల్లో ఉపయోగిస్తారు."
+  "Used in traditional digestive preparations alongside other botanicals.": "ఇతర వృక్ష పదార్థాలతో పాటు సంప్రదాయ జీర్ణ తయారీల్లో ఉపయోగిస్తారు.",
+  // Dard Haran Oil and joint-care SEO: verified label-based information.
+  "Dard Haran Oil | Ayurvedic Massage Oil | Madhav Marketing": "దర్ద్ హరన్ ఆయిల్ | ఆయుర్వేద మసాజ్ నూనె | మాధవ్ మార్కెటింగ్",
+  "Dard Haran Oil is an Ayurvedic oil for joint and muscle massage. Compare 50 ml and 100 ml packs, prices, ingredients and external-use directions.": "దర్ద్ హరన్ ఆయిల్ కీళ్లు, కండరాలకు మసాజ్ చేయడానికి ఉపయోగించే ఆయుర్వేద నూనె. 50 మి.లీ., 100 మి.లీ. ప్యాక్‌లు, ధరలు, పదార్థాలు, బాహ్య వినియోగ సూచనలను పోల్చి చూడండి.",
+  "Questions about Dard Haran Oil": "దర్ద్ హరన్ ఆయిల్ గురించి ప్రశ్నలు",
+  "What is Dard Haran Oil used for?": "దర్ద్ హరన్ ఆయిల్‌ను దేనికి ఉపయోగిస్తారు?",
+  "Do the 50 ml and 100 ml oils have the same ingredients?": "50 మి.లీ., 100 మి.లీ. నూనెలో పదార్థాలు ఒకటేనా?",
+  "Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.": "అవును. దర్ద్ హరన్ ఆయిల్ రెండు ప్యాక్‌లలోనూ మిశ్రమం ఒకటే; ప్యాక్ పరిమాణం మాత్రమే వేరు. పట్టికలో పదార్థాల పరిమాణాలు ప్రతి 100 మి.లీ.కి ఇవ్వబడ్డాయి.",
+  "How should I use Dard Haran Oil?": "దర్ద్ హరన్ ఆయిల్‌ను ఎలా ఉపయోగించాలి?",
+  "How do Dard Haran Oil and Capsule differ?": "దర్ద్ హరన్ ఆయిల్, క్యాప్సూల్ మధ్య తేడా ఏమిటి?",
+  "Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.": "దర్ద్ హరన్ ఆయిల్ బాహ్య మసాజ్ కోసం. దర్ద్ హరన్ క్యాప్సూల్ నోటి ద్వారా తీసుకునే మిశ్రమం; వైద్య పర్యవేక్షణలో ఉపయోగించాలి. మీకు ఏ రూపం అనుకూలమో మీ వైద్యుడిని అడగండి.",
+  "Ingredients in Dard Haran Oil": "దర్ద్ హరన్ ఆయిల్‌లోని పదార్థాలు",
+  "Ingredients in Dard Haran Capsule": "దర్ద్ హరన్ క్యాప్సూల్‌లోని పదార్థాలు"
 };

@@ -1398,5 +1398,17 @@ window.madhavTranslations.pa = {
   "Specified oral Aloe materials are used in traditional bowel-care preparations.": "ਮੂੰਹ ਰਾਹੀਂ ਲੈਣ ਵਾਲੀਆਂ ਐਲੋ ਦੀਆਂ ਖਾਸ ਸਮੱਗਰੀਆਂ ਅੰਤੜੀਆਂ ਦੀ ਸੰਭਾਲ ਦੀਆਂ ਰਵਾਇਤੀ ਤਿਆਰੀਆਂ ਵਿੱਚ ਵਰਤੀਆਂ ਜਾਂਦੀਆਂ ਹਨ।",
   "Traditional vitality": "ਰਵਾਇਤੀ ਤਾਜ਼ਗੀ",
   "Used in Ayurvedic heart-care recipes for strength and wellbeing.": "ਤਾਕਤ ਅਤੇ ਤੰਦਰੁਸਤੀ ਲਈ ਆਯੁਰਵੇਦਿਕ ਦਿਲ ਦੀ ਸੰਭਾਲ ਦੇ ਨੁਸਖ਼ਿਆਂ ਵਿੱਚ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।",
-  "Used in traditional digestive preparations alongside other botanicals.": "ਹੋਰ ਬਨਸਪਤੀ ਸਮੱਗਰੀਆਂ ਦੇ ਨਾਲ ਰਵਾਇਤੀ ਪਾਚਕ ਤਿਆਰੀਆਂ ਵਿੱਚ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।"
+  "Used in traditional digestive preparations alongside other botanicals.": "ਹੋਰ ਬਨਸਪਤੀ ਸਮੱਗਰੀਆਂ ਦੇ ਨਾਲ ਰਵਾਇਤੀ ਪਾਚਕ ਤਿਆਰੀਆਂ ਵਿੱਚ ਵਰਤੀ ਜਾਂਦੀ ਹੈ।",
+  // Dard Haran Oil and joint-care SEO: verified label-based information.
+  "Dard Haran Oil | Ayurvedic Massage Oil | Madhav Marketing": "ਦਰਦ ਹਰਣ ਤੇਲ | ਆਯੁਰਵੇਦਿਕ ਮਾਲਿਸ਼ ਦਾ ਤੇਲ | ਮਾਧਵ ਮਾਰਕੀਟਿੰਗ",
+  "Dard Haran Oil is an Ayurvedic oil for joint and muscle massage. Compare 50 ml and 100 ml packs, prices, ingredients and external-use directions.": "ਦਰਦ ਹਰਣ ਤੇਲ ਜੋੜਾਂ ਅਤੇ ਮਾਸਪੇਸ਼ੀਆਂ ਦੀ ਮਾਲਿਸ਼ ਲਈ ਆਯੁਰਵੇਦਿਕ ਤੇਲ ਹੈ। 50 ਮਿ.ਲੀ. ਅਤੇ 100 ਮਿ.ਲੀ. ਪੈਕ, ਕੀਮਤਾਂ, ਸਮੱਗਰੀ ਅਤੇ ਬਾਹਰੀ ਵਰਤੋਂ ਦੀਆਂ ਹਦਾਇਤਾਂ ਦੀ ਤੁਲਨਾ ਕਰੋ।",
+  "Questions about Dard Haran Oil": "ਦਰਦ ਹਰਣ ਤੇਲ ਬਾਰੇ ਸਵਾਲ",
+  "What is Dard Haran Oil used for?": "ਦਰਦ ਹਰਣ ਤੇਲ ਕਿਸ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ?",
+  "Do the 50 ml and 100 ml oils have the same ingredients?": "ਕੀ 50 ਮਿ.ਲੀ. ਅਤੇ 100 ਮਿ.ਲੀ. ਤੇਲ ਵਿੱਚ ਇੱਕੋ ਸਮੱਗਰੀ ਹੈ?",
+  "Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.": "ਹਾਂ। ਦਰਦ ਹਰਣ ਤੇਲ ਦੇ ਦੋਵਾਂ ਪੈਕਾਂ ਦਾ ਮਿਸ਼ਰਣ ਇੱਕੋ ਹੈ; ਸਿਰਫ਼ ਪੈਕ ਦਾ ਆਕਾਰ ਵੱਖਰਾ ਹੈ। ਸਾਰਣੀ ਵਿੱਚ ਸਮੱਗਰੀ ਦੀ ਮਾਤਰਾ ਪ੍ਰਤੀ 100 ਮਿ.ਲੀ. ਦਿੱਤੀ ਗਈ ਹੈ।",
+  "How should I use Dard Haran Oil?": "ਦਰਦ ਹਰਣ ਤੇਲ ਕਿਵੇਂ ਵਰਤਣਾ ਚਾਹੀਦਾ ਹੈ?",
+  "How do Dard Haran Oil and Capsule differ?": "ਦਰਦ ਹਰਣ ਤੇਲ ਅਤੇ ਕੈਪਸੂਲ ਵਿੱਚ ਕੀ ਫ਼ਰਕ ਹੈ?",
+  "Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.": "ਦਰਦ ਹਰਣ ਤੇਲ ਬਾਹਰੀ ਮਾਲਿਸ਼ ਲਈ ਹੈ। ਦਰਦ ਹਰਣ ਕੈਪਸੂਲ ਮੂੰਹ ਰਾਹੀਂ ਲੈਣ ਵਾਲਾ ਮਿਸ਼ਰਣ ਹੈ, ਜਿਸ ਦੀ ਵਰਤੋਂ ਡਾਕਟਰੀ ਨਿਗਰਾਨੀ ਹੇਠ ਹੁੰਦੀ ਹੈ। ਤੁਹਾਡੇ ਲਈ ਕਿਹੜਾ ਰੂਪ ਠੀਕ ਹੈ, ਆਪਣੇ ਡਾਕਟਰ ਤੋਂ ਪੁੱਛੋ।",
+  "Ingredients in Dard Haran Oil": "ਦਰਦ ਹਰਣ ਤੇਲ ਦੀ ਸਮੱਗਰੀ",
+  "Ingredients in Dard Haran Capsule": "ਦਰਦ ਹਰਣ ਕੈਪਸੂਲ ਦੀ ਸਮੱਗਰੀ"
 };

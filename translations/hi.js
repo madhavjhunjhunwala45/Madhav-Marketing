@@ -1398,5 +1398,17 @@ window.madhavTranslations.hi = {
   "Specified oral Aloe materials are used in traditional bowel-care preparations.": "मुंह से लेने वाले एलो के विशिष्ट पदार्थ मलत्याग की देखभाल की पारंपरिक तैयारियों में उपयोग होते हैं।",
   "Traditional vitality": "पारंपरिक स्फूर्ति",
   "Used in Ayurvedic heart-care recipes for strength and wellbeing.": "ताकत और स्वास्थ्य के लिए हृदय की देखभाल के आयुर्वेदिक मिश्रणों में उपयोग।",
-  "Used in traditional digestive preparations alongside other botanicals.": "पाचन की पारंपरिक तैयारियों में दूसरी वनौषधियों के साथ उपयोग।"
+  "Used in traditional digestive preparations alongside other botanicals.": "पाचन की पारंपरिक तैयारियों में दूसरी वनौषधियों के साथ उपयोग।",
+  // Dard Haran Oil and joint-care SEO: verified label-based information.
+  "Dard Haran Oil | Ayurvedic Massage Oil | Madhav Marketing": "दर्द हरण ऑयल | आयुर्वेदिक मालिश तेल | माधव मार्केटिंग",
+  "Dard Haran Oil is an Ayurvedic oil for joint and muscle massage. Compare 50 ml and 100 ml packs, prices, ingredients and external-use directions.": "दर्द हरण ऑयल जोड़ों और मांसपेशियों की मालिश के लिए आयुर्वेदिक तेल है। 50 मिली और 100 मिली पैक, कीमतें, घटक और बाहरी उपयोग के निर्देश देखें।",
+  "Questions about Dard Haran Oil": "दर्द हरण ऑयल के बारे में सवाल",
+  "What is Dard Haran Oil used for?": "दर्द हरण ऑयल का उपयोग किस लिए किया जाता है?",
+  "Do the 50 ml and 100 ml oils have the same ingredients?": "क्या 50 मिली और 100 मिली तेल में समान घटक हैं?",
+  "Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.": "हाँ। दर्द हरण ऑयल के दोनों पैक का मिश्रण समान है; केवल पैक का आकार अलग है। तालिका में घटकों की मात्रा प्रति 100 मिली दी गई है।",
+  "How should I use Dard Haran Oil?": "दर्द हरण ऑयल का उपयोग कैसे करें?",
+  "How do Dard Haran Oil and Capsule differ?": "दर्द हरण ऑयल और कैप्सूल में क्या अंतर है?",
+  "Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.": "दर्द हरण ऑयल बाहरी मालिश के लिए है। दर्द हरण कैप्सूल मुंह से लेने वाला मिश्रण है, जिसका उपयोग चिकित्सकीय देखरेख में होता है। आपके लिए कौन-सा रूप उचित है, यह अपने चिकित्सक से पूछें।",
+  "Ingredients in Dard Haran Oil": "दर्द हरण ऑयल के घटक",
+  "Ingredients in Dard Haran Capsule": "दर्द हरण कैप्सूल के घटक"
 };

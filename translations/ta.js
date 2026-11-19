@@ -1398,5 +1398,17 @@ window.madhavTranslations.ta = {
   "Specified oral Aloe materials are used in traditional bowel-care preparations.": "குறிப்பிட்ட வாய்வழிக் கற்றாழைப் பொருட்கள் பாரம்பரிய குடல் பராமரிப்புத் தயாரிப்புகளில் பயன்படுத்தப்படுகின்றன.",
   "Traditional vitality": "பாரம்பரிய புத்துணர்வு",
   "Used in Ayurvedic heart-care recipes for strength and wellbeing.": "வலிமை மற்றும் நலத்திற்கான ஆயுர்வேத இதயப் பராமரிப்புக் கலவைகளில் பயன்படுத்தப்படுகிறது.",
-  "Used in traditional digestive preparations alongside other botanicals.": "பிற தாவரப் பொருட்களுடன் பாரம்பரிய செரிமானத் தயாரிப்புகளில் பயன்படுத்தப்படுகிறது."
+  "Used in traditional digestive preparations alongside other botanicals.": "பிற தாவரப் பொருட்களுடன் பாரம்பரிய செரிமானத் தயாரிப்புகளில் பயன்படுத்தப்படுகிறது.",
+  // Dard Haran Oil and joint-care SEO: verified label-based information.
+  "Dard Haran Oil | Ayurvedic Massage Oil | Madhav Marketing": "தர்த் ஹரன் எண்ணெய் | ஆயுர்வேத மசாஜ் எண்ணெய் | மாதவ் மார்க்கெட்டிங்",
+  "Dard Haran Oil is an Ayurvedic oil for joint and muscle massage. Compare 50 ml and 100 ml packs, prices, ingredients and external-use directions.": "தர்த் ஹரன் எண்ணெய் மூட்டுகள் மற்றும் தசைகளுக்கு மசாஜ் செய்யப் பயன்படும் ஆயுர்வேத எண்ணெய். 50 மி.லி., 100 மி.லி. பொதிகள், விலைகள், உட்பொருட்கள் மற்றும் வெளிப்புறப் பயன்பாட்டு வழிமுறைகளை ஒப்பிட்டுப் பாருங்கள்.",
+  "Questions about Dard Haran Oil": "தர்த் ஹரன் எண்ணெய் பற்றிய கேள்விகள்",
+  "What is Dard Haran Oil used for?": "தர்த் ஹரன் எண்ணெய் எதற்குப் பயன்படுகிறது?",
+  "Do the 50 ml and 100 ml oils have the same ingredients?": "50 மி.லி., 100 மி.லி. எண்ணெயில் ஒரே உட்பொருட்கள்தானா?",
+  "Yes. Both Dard Haran Oil packs have the same composition; only the pack size differs. Ingredient quantities in the table are stated per 100 ml.": "ஆம். தர்த் ஹரன் எண்ணெயின் இரண்டு பொதிகளிலும் ஒரே கலவை உள்ளது; பொதியின் அளவு மட்டுமே வேறு. அட்டவணையில் உட்பொருட்களின் அளவுகள் 100 மி.லிக்கு கொடுக்கப்பட்டுள்ளன.",
+  "How should I use Dard Haran Oil?": "தர்த் ஹரன் எண்ணெயை எப்படிப் பயன்படுத்த வேண்டும்?",
+  "How do Dard Haran Oil and Capsule differ?": "தர்த் ஹரன் எண்ணெய்க்கும் காப்ஸ்யூலுக்கும் என்ன வேறுபாடு?",
+  "Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.": "தர்த் ஹரன் எண்ணெய் வெளிப்புற மசாஜுக்கானது. தர்த் ஹரன் காப்ஸ்யூல் வாய்வழியாக எடுத்துக்கொள்ளும் கலவை; மருத்துவக் கண்காணிப்பில் பயன்படுத்த வேண்டும். உங்களுக்கு ஏற்ற வடிவம் எது என்று உங்கள் மருத்துவரிடம் கேளுங்கள்.",
+  "Ingredients in Dard Haran Oil": "தர்த் ஹரன் எண்ணெயின் உட்பொருட்கள்",
+  "Ingredients in Dard Haran Capsule": "தர்த் ஹரன் காப்ஸ்யூலின் உட்பொருட்கள்"
 };

@@ -10,7 +10,7 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
     const entry = settings.pages[file]; d.documentElement.dataset.searchPage = entry.kind;
     d.body.classList.add('mm-refined-page');
     d.querySelector('a[aria-current]')?.removeAttribute('aria-current');
-    for (const s of d.querySelectorAll('script[src]')) if (/^(ingredient-data|ingredient-shared|ingredients)\.js/.test(s.getAttribute('src'))) s.remove();
+    for (const s of d.querySelectorAll('script[src]')) if (/^(ingredient-data|ingredient-shared|ingredient-image-candidates|ingredients)\.js/.test(s.getAttribute('src'))) s.remove();
     const main = d.getElementById('main'); main.replaceChildren();
     const node = (tag, text, className) => { const n = d.createElement(tag); if (text) n.textContent = text; if (className) n.className = className; return n; };
     const link = (label, href) => { const a = node('a', label, 'text-link'); a.href = href; return a; };
@@ -56,18 +56,23 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
       const a = p.node('article', '', 'mm-seo-ingredient-card'); const h = p.node('h3'); h.append(p.link(item.title, 'ingredients.html?ingredient=' + id)); const roles = ingredients[id] && context.window.mmIngredientEditorial?.[id]?.roles;
       const role = roles?.[group === 'metabolic' ? 'metabolic' : used[0][0]];
       a.append(h, p.node('p', role?.[0] || item.shortBenefit));
-      const l = p.node('div', '', 'mm-seo-links'); for (const [pid, product] of used) l.append(p.link(product.title, 'product.html?product=' + pid + '#composition')); a.append(l); stack.append(a);
+      const l = p.node('div', '', 'mm-seo-links'); for (const [pid, product] of used) l.append(p.link(group === 'pain' ? capture('Ingredients in ' + product.title) : product.title, 'product.html?product=' + pid + '#composition')); a.append(l); stack.append(a);
     }
     list.append(stack);
     const care = p.section('Directions and safety information'); const careStack = p.node('div', '', 'mm-seo-stack mm-seo-care-grid');
-    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits), p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + id + '#directions')); careStack.append(a); } care.append(careStack);
+    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits)); if(group === 'pain') a.append(p.node('p', product.directions)); a.append(p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + id + '#directions')); careStack.append(a); } care.append(careStack);
     const common = ['How should I use a product?', "Follow the current product label and your physician's directions. This catalogue provides product information and does not replace individual medical advice."];
     const availability = ['How do I check availability?', 'Call +91 94316 55050 for product availability and retailer enquiries. This catalogue does not currently offer online checkout.'];
     const unique = group === 'metabolic' ? ['Are Value and Premium the same formulation?', 'No. Madhumeh Haran Value is the plain Karela Jamun Churan; the Premium formula includes Vasant Kusumakar Ras. The compositions are shown on separate pages.']
       : group === 'digestion' ? ['What precaution is listed for Kabj Haran Granules?', products['kabi-haran'].precautions]
       : group === 'pain' ? ['Is Dard Haran Oil for external use?', products['dard-oil'].formats[1].directions]
       : ['Where can I find product compositions?', 'Select a product in our range to see its composition table and pack images. For products with multiple pack sizes, choose the pack to see its corresponding information.'];
-    faq(p, [unique, common, availability]); enquiry(p); finish(p);
+    if (group === 'pain') {
+      const packs = settings.products['dard-oil'].faqs.find(item => item.id === 'packs');
+      const comparison = ['How do Dard Haran Oil and Capsule differ?', 'Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.'];
+      faq(p, [comparison, [packs.question, packs.answer], availability]);
+    } else faq(p, [unique, common, availability]);
+    enquiry(p); finish(p);
   }
   {
     const p = page('contact.html', 'For product availability, pack information or retailer enquiries, get in touch with Madhav Marketing.');

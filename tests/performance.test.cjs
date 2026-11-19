@@ -53,6 +53,16 @@ for (const file of ['index.html', 'cart.html', ...fs.readdirSync(path.join(root,
 }
 const { document } = parseHTML('<html><body><img></body></html>');
 const image = document.querySelector('img');
+const profileDocument = parseHTML(fs.readFileSync(path.join(root,'dist/_search/ingredient-turmeric.html'),'utf8')).document;
+assert(profileDocument.querySelector('.ingredient-selected img[srcset]').getAttribute('sizes').includes('767px'),'served profile HTML keeps the full-width profile image hint');
+const oilDocument = parseHTML(fs.readFileSync(path.join(root,'dist/_search/product-dard-oil.html'),'utf8')).document;
+const componentImages=[...oilDocument.querySelectorAll('.component-picture img[srcset]')];
+assert(componentImages.length>0);
+for(const componentImage of componentImages)assert(componentImage.getAttribute('sizes').includes('52px'),'served composition thumbnails keep their compact image hint');
+for(const file of ['joint-muscle-care.html','heart-wellness.html','contact.html','ayurveda-guides.html']){
+  const d=parseHTML(fs.readFileSync(path.join(root,'dist',file),'utf8')).document;
+  assert(!d.querySelector('script[src^="ingredient-image-candidates.js"]'),'non-botanical landing pages do not load the botanical map: '+file);
+}
 for (const role of ['ingredient', 'ingredient-profile', 'ingredient-component']) {
   const source = Object.keys(api.entries).find(source => source.startsWith('assets/ingredient-photos/'));
   api.apply(image, source, role);

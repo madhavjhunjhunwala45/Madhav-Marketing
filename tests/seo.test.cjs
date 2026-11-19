@@ -55,6 +55,31 @@ for(const cat of Object.values(settings.categories)) assert(home.querySelector('
 const contact=load('contact.html');assert(contact.getElementById('distribution-location').textContent.includes('Jagdamba Agency'));
 assert(contact.getElementById('contact').textContent.includes('Bhalla Road, Opp. Main Post Office'));
 const bare=load('_search/product-default.html');assert(bare.querySelector('meta[name="robots"]').content.includes('noindex'));
+// Joint-care content must explain the verified formats, not invent new product claims.
+const oil=c.window.productCatalogue['dard-oil'],oilSearch=settings.products['dard-oil'];
+for(const file of ['_search/product-dard-oil.html','_search/product-dard-oil-format-0.html','_search/product-dard-oil-format-1.html']){
+  const d=load(file),questions=[...d.querySelectorAll('#product-questions details[data-seo-faq]')];
+  assert.equal(d.querySelector('h1').textContent,oil.title);
+  assert.equal(d.title,oilSearch.title);
+  assert.equal(d.querySelector('link[rel="canonical"]').href,settings.origin+'/product.html?product=dard-oil');
+  assert.equal(questions.length,3,'both packs share one set of factual product answers');
+  assert.equal(questions[0].querySelector('p').textContent,oil.benefits,'use answer comes from the verified catalogue');
+  assert.equal(questions[2].querySelector('p').textContent,oil.directions,'generic FAQ must not apply a pack-specific dose to both sizes');
+  assert(questions[1].textContent.includes('only the pack size differs'));
+  assert(questions[1].textContent.includes('per 100 ml'));
+  assert(d.querySelector('#mm-category-crumb[href="joint-muscle-care.html"]'));
+}
+assert(!load('_search/product-hriday-rakshak.html').getElementById('product-questions'),'oil-only additions do not appear on unrelated products');
+const joint=load('joint-muscle-care.html');
+for(const [id,name] of [['dard-oil','Dard Haran Oil'],['dard-capsule','Dard Haran Capsule']]){
+  assert([...joint.querySelectorAll('a[href="product.html?product='+id+'#composition"]')].some(a=>a.textContent==='Ingredients in '+name),'descriptive composition links keep the correct product mapping');
+}
+const jointQuestions=[...joint.querySelectorAll('details[data-seo-faq]')];
+assert.equal(jointQuestions[0].querySelector('summary').textContent,'How do Dard Haran Oil and Capsule differ?');
+assert(jointQuestions[0].textContent.includes('external massage')&&jointQuestions[0].textContent.includes('oral formulation'));
+assert.equal(jointQuestions[1].querySelector('summary').textContent,oilSearch.faqs.find(f=>f.id==='packs').question);
+assert(joint.querySelector('.mm-seo-care-grid').textContent.includes(oil.directions));
+assert(joint.querySelector('.mm-seo-care-grid').textContent.includes(c.window.productCatalogue['dard-capsule'].directions));
 assert(config.redirects.some(r=>r.permanent && r.has?.some(h=>h.type==='host'&&h.value==='madhavmarketing.store')&&r.destination===settings.origin+'/:path*'));
 function resolve(query) {const u=new URL(query,settings.origin);for(const r of config.rewrites){if(r.source!==u.pathname)continue;let captures={};if(!(r.has||[]).every(h=>{const value=u.searchParams.get(h.key);if(value===null)return false;const m=new RegExp('^(?:'+h.value+')$').exec(value);if(!m)return false;Object.assign(captures,m.groups||{});return true;}))continue;return r.destination.replace(/:([a-zA-Z]+)/g,(_,key)=>captures[key]);}return u.pathname;}
 for(const query of ['product.html?product=dard-oil&format=999','product.html?product=dard-oil&format=oops']) assert.equal(resolve(query),'/_search/product-dard-oil.html');

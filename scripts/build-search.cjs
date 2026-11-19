@@ -56,6 +56,25 @@ function render(template, query, kind, id, format) {
   }
   const product = kind === 'product' && products[id];
   const ingredient = kind === 'ingredient' && ingredients[id];
+  // Put verified product answers in the served HTML, using the existing care layout.
+  // Native disclosures work without JavaScript and remain intact during pack changes.
+  const productSearch = product && settings.products[id];
+  if (productSearch?.faqs?.length) {
+    const care = document.querySelector('#directions .directions-grid > div:last-child');
+    if (!care) throw new Error('Missing directions container for product FAQs: ' + id);
+    const article = document.createElement('article'); article.id = 'product-questions';
+    const heading = document.createElement('h3'); heading.textContent = productSearch.faqHeading;
+    const list = document.createElement('div'); list.className = 'faq-list';
+    for (const item of productSearch.faqs) {
+      const answer = item.answerSource ? product[item.answerSource] : item.answer;
+      if (typeof answer !== 'string' || !answer.trim()) throw new Error('Missing verified FAQ answer: ' + id + '/' + item.id);
+      const detail = document.createElement('details'); detail.setAttribute('data-seo-faq', '');
+      const summary = document.createElement('summary'); summary.textContent = item.question;
+      const copy = document.createElement('p'); copy.textContent = answer;
+      detail.append(summary, copy); list.append(detail);
+    }
+    article.append(heading, list); care.append(article);
+  }
   const meta = search.metadata({ kind, id, product, ingredient });
   renderStoreDisplay({ document, products, store: storeConfig, selectedId: product && id, formatIndex: format || 0, json: search.json });
   search.apply(document, meta, products);
@@ -64,7 +83,11 @@ function render(template, query, kind, id, format) {
   }
   for (const image of document.querySelectorAll('img[src]')) {
     const source = image.getAttribute('src');
-    const role = image.id === 'spotlight-image' ? 'spotlight' : image.id === 'product-image' ? 'gallery' : image.classList.contains('brand-logo') ? 'logo' : 'card';
+    const role = image.id === 'spotlight-image' ? 'spotlight' : image.id === 'product-image' ? 'gallery'
+      : image.classList.contains('brand-logo') ? 'logo'
+      : image.closest('.component-picture') ? 'ingredient-component'
+      : image.closest('.ingredient-selected') ? 'ingredient-profile'
+      : image.closest('.ingredient-card') ? 'ingredient' : 'card';
     context.window.MadhavImages.apply(image, source, role);
     // Category cards have a larger layout than the homepage's four-column grid.
     // Match their contain-fit height so the browser chooses a sharp candidate.
