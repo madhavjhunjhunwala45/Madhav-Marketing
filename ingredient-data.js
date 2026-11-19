@@ -2022,7 +2022,7 @@ window.ingredientGuide = {
     "latin": "",
     "group": "helper",
     "shortBenefit": "Rasayana component for metabolic care and general vitality.",
-    "paragraph": "Vasant Kusumakar Ras is a classical Ayurvedic herbo-mineral Rasayana, traditionally associated with Madhumeha care and vitality. Rasayana is Ayurveda's rejuvenative approach to strength and wellbeing. Classical versions combine processed metal and mineral preparations with botanical processing liquids. In Madhumeh Haran Premium, it is a distinctive classical component alongside the botanical blend.",
+    "paragraph": "Vasant Kusumakar Ras is a classical Ayurvedic herbo-mineral Rasayana, traditionally associated with Madhumeha care and vitality. Rasayana is Ayurveda's rejuvenative approach to strength and wellbeing. Classical versions combine processed metal and mineral preparations with botanical processing liquids. In Madhumeh Haran BKR, it is a distinctive classical component alongside the botanical blend.",
     "evidenceLabel": "Traditional use",
     "sources": [
       {
@@ -2876,7 +2876,7 @@ window.componentEvidence = {
 window.mmIngredientNoteCopy = {
   "metabolicShort": "Metabolic-wellness botanical with a digestive role.",
   "vasantShort": "Rasayana component for metabolic care and general vitality.",
-  "vasantParagraph": "Vasant Kusumakar Ras is a classical Ayurvedic herbo-mineral Rasayana, traditionally associated with Madhumeha care and vitality. Rasayana is Ayurveda's rejuvenative approach to strength and wellbeing. Classical versions combine processed metal and mineral preparations with botanical processing liquids. In Madhumeh Haran Premium, it is a distinctive classical component alongside the botanical blend.",
+  "vasantParagraph": "Vasant Kusumakar Ras is a classical Ayurvedic herbo-mineral Rasayana, traditionally associated with Madhumeha care and vitality. Rasayana is Ayurveda's rejuvenative approach to strength and wellbeing. Classical versions combine processed metal and mineral preparations with botanical processing liquids. In Madhumeh Haran BKR, it is a distinctive classical component alongside the botanical blend.",
   "metabolic": "A key botanical in the Madhumeh Haran blends, selected for the formula's metabolic-wellness focus and its place alongside the other listed ingredients.",
   "fenugreek": "Methi is included in both Madhumeh Haran formulas and Hriday Rakshak Yog as an ingredient selected for metabolic wellbeing. Fenugreek has been studied for its role in blood-glucose metabolism.",
   "oral": "Contributes the ingredient role highlighted above. The composition panel shows its identity and amount, helping you understand its place alongside the rest of the formula.",
@@ -2897,7 +2897,7 @@ window.mmIngredientNoteCopy = {
   "mintBenefit": "An aromatic component that can provide a cooling sensation during massage.",
   "liquoriceBenefit": "A sweet root component of the digestive formula.",
   "berberis": "Daruhaldi contains berberine, a plant compound studied for glucose and lipid metabolism. It brings a bitter botanical and digestive component to the Madhumeh blends and Arshharan Syrup.",
-  "vasantRole": "This classical Rasayana distinguishes Madhumeh Haran Premium from the Value formula. Premium combines it with Jamun, Karela and the other listed botanicals, giving customers a clear formulation difference to compare.",
+  "vasantRole": "This classical Rasayana distinguishes Madhumeh Haran BKR from the Madhumeh Haran formula. Madhumeh Haran BKR combines it with Jamun, Karela and the other listed botanicals, giving customers a clear formulation difference to compare.",
   "closerLead": "A closer look",
   "ingredientsTail": "at the ingredients.",
   "compositionTail": "at the composition.",
@@ -3051,7 +3051,7 @@ window.mmIngredientEditorial = {
     "roles": {
       "metabolic": [
         "Added for everyday wellness support",
-        "Tulsi accompanies Karela, Jamun and the other ingredients in Madhumeh Haran Value and Premium."
+        "Tulsi accompanies Karela, Jamun and the other ingredients in Madhumeh Haran and Madhumeh Haran BKR."
       ]
     },
     "care": "Seek professional advice during pregnancy or breastfeeding and with blood-glucose medicines. Follow the complete product’s directions."
@@ -3129,7 +3129,7 @@ window.mmIngredientEditorial = {
     "roles": {
       "metabolic": [
         "Added for metabolic-wellness support",
-        "Jamun is paired with Karela and the other botanicals in Madhumeh Haran Value and Premium."
+        "Jamun is paired with Karela and the other botanicals in Madhumeh Haran and Madhumeh Haran BKR."
       ]
     },
     "care": "Follow the current pack and coordinate use with a clinician when taking blood-glucose medicines. Keep prescribed care and monitoring in place."
@@ -3138,7 +3138,7 @@ window.mmIngredientEditorial = {
     "summary": true,
     "badge": "Metabolic & Digestive Care",
     "hook": "Karela is a bitter Ayurvedic botanical used in metabolic-wellness and digestive preparations.",
-    "why": "Added to Madhumeh Haran Value and Premium alongside Jamun for the metabolic-wellness purpose of the complete formulation.",
+    "why": "Added to Madhumeh Haran and Madhumeh Haran BKR alongside Jamun for the metabolic-wellness purpose of the complete formulation.",
     "essence": "Karela is a bitter Ayurvedic botanical used in metabolic-wellness and digestive preparations.",
     "uses": [
       [
@@ -3580,7 +3580,7 @@ window.mmIngredientEditorial = {
     "summary": true,
     "badge": "Memory & Wellbeing",
     "hook": "Brahmi is an Ayurvedic tonic herb valued for memory and mental wellbeing.",
-    "why": "Added to Madhumeh Haran Premium and Hriday Rakshak Yog for its traditional tonic role within each wider wellness recipe.",
+    "why": "Added to Madhumeh Haran BKR and Hriday Rakshak Yog for its traditional tonic role within each wider wellness recipe.",
     "essence": "Brahmi is an Ayurvedic tonic herb valued for memory and mental wellbeing.",
     "uses": [
       [
@@ -3593,11 +3593,11 @@ window.mmIngredientEditorial = {
       ]
     ],
     "raw": "Fresh herb, powder and standardised extracts differ. Brahmi is also a common name for different plants, so botanical identification matters.",
-    "absorption": "Premium combines Brahmi with its metabolic-wellness ingredients, while Hriday Rakshak Yog pairs it with Arjuna and the other botanicals.",
+    "absorption": "Madhumeh Haran BKR combines Brahmi with its metabolic-wellness ingredients, while Hriday Rakshak Yog pairs it with Arjuna and the other botanicals.",
     "roles": {
       "metabolic": [
         "Added for traditional tonic support",
-        "Brahmi appears in Premium alongside Jamun, Karela and the other ingredients. It is not listed in the Value formula."
+        "Brahmi appears in Madhumeh Haran BKR alongside Jamun, Karela and the other ingredients. It is not listed in the Madhumeh Haran formula."
       ],
       "hriday-rakshak": [
         "Added for the formula’s tonic dimension",
@@ -3636,7 +3636,7 @@ window.mmIngredientEditorial = {
     "summary": true,
     "badge": "Strength & Vitality",
     "hook": "Safed musli is a tuberous-root botanical traditionally valued for strength and vitality.",
-    "why": "Added to Madhumeh Haran Value and Premium for their vitality dimension alongside the metabolic-wellness botanicals.",
+    "why": "Added to Madhumeh Haran and Madhumeh Haran BKR for their vitality dimension alongside the metabolic-wellness botanicals.",
     "essence": "Safed musli is a tuberous-root botanical traditionally valued for strength and vitality.",
     "uses": [
       [

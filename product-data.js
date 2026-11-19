@@ -718,13 +718,13 @@ window.productCatalogue = {
   "madhumeh-value": {
     "benefits": "A Karela and Jamun formulation traditionally used for metabolic wellbeing and vitality. If you have diabetes, use with your clinician’s guidance and continue prescribed treatment.",
     "amazonUrl": "https://amzn.in/d/0cIi5Vdn",
-    "title": "Madhumeh Haran Value",
+    "title": "Madhumeh Haran",
     "category": "Metabolic wellness · Plain Karela Jamun Churan",
     "pack": "200 g",
     "image": "assets/cutouts/madhumeh-value-front-display.webp",
     "accent": "gold",
     "description": "The plain Karela Jamun Churan formulation. Explore the product pack, composition and label directions below.",
-    "directions": "As printed on the supplied Value label: 1.5–3 g twice a day before a meal, or as directed by a qualified physician.",
+    "directions": "As printed on the supplied Madhumeh Haran label: 1.5–3 g twice a day before a meal, or as directed by a qualified physician.",
     "ingredients": [
       [
         "Jamun",
@@ -826,13 +826,13 @@ window.productCatalogue = {
       }
     ],
     "precautions": "Read the complete product label. Use under the guidance of a qualified physician. Keep out of reach of children.",
-    "displayTitle": "Madhumeh Haran Value",
+    "displayTitle": "Madhumeh Haran",
     "blurb": "The plain Karela Jamun Churan formulation."
   },
   "madhumeh-premium": {
     "benefits": "A traditional metabolic-wellness formula with Karela, Jamun and Vasant Kusumakar Ras, intended for general wellbeing and vitality. Use under medical supervision and continue prescribed diabetes treatment.",
     "amazonUrl": "https://amzn.in/d/04vIw3Ao",
-    "title": "Madhumeh Haran Premium",
+    "title": "Madhumeh Haran BKR",
     "category": "Metabolic wellness · Vasant Kusumakar Ras formulation",
     "pack": "200 g",
     "image": "assets/cutouts/madhumeh-premium-pack-display.webp",
@@ -967,7 +967,7 @@ window.productCatalogue = {
       }
     ],
     "precautions": "Read the complete product label. Use under the guidance of a qualified physician. Keep out of reach of children.",
-    "displayTitle": "Madhumeh Haran Premium",
+    "displayTitle": "Madhumeh Haran BKR",
     "blurb": "Karela Jamun Yog with Vasant Kusumakar Ras."
   },
   "hriday-rakshak": {

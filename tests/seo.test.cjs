@@ -132,11 +132,39 @@ assert(!value.ingredients.some(row=>c.window.ingredientAliases[row[0]]==='vasant
 assert.equal(premium.ingredients.find(row=>c.window.ingredientAliases[row[0]]==='vasant-kusumakar')[2],'10 mg');
 const metabolic=load('karela-jamun-metabolic-wellness.html');
 assert(metabolic.querySelector('main').textContent.includes('at 10 mg per gram'));
-assert(metabolic.querySelector('details[data-seo-faq] p').textContent.includes('the Value panel does not list this ingredient'));
+assert(metabolic.querySelector('details[data-seo-faq] p').textContent.includes('the Madhumeh Haran panel does not list this ingredient'));
 const daruhaldiNotes=[...load('_search/ingredient-daruhaldi.html').querySelectorAll('.ingredient-products .mm-ingredient-product-note')];
 assert.equal(daruhaldiNotes.length,3,'one role per product even when a label lists two forms');
 assert.equal(daruhaldiNotes[2].querySelectorAll('.component-identity').length,2,'retain both Daruhaldi and Rasont label rows');
 for(const row of c.window.productCatalogue.arshharan.ingredients.filter(row=>c.window.ingredientAliases[row[0]]==='daruhaldi'))for(const value of row.slice(0,3))assert(daruhaldiNotes[2].textContent.includes(value));
+// Product names must agree across the catalogue, server HTML, metadata and Google Product data.
+for(const [id,name,count] of [['madhumeh-value','Madhumeh Haran',14],['madhumeh-premium','Madhumeh Haran BKR',16]]){
+  const product=c.window.productCatalogue[id],entry=settings.products[id];
+  assert.equal(product.title,name);assert.equal(product.displayTitle,name);
+  assert.equal(product.pack,'200 g');assert.equal(product.basis,'Each gram contains.');assert.equal(product.ingredients.length,count);
+  for(const alias of ['karela','jamun'])assert.equal(product.ingredients.find(row=>c.window.ingredientAliases[row[0]]===alias)[2],'250 mg');
+  for(const suffix of ['', '-format-0']){
+    const d=load('_search/product-'+id+suffix+'.html');
+    assert.equal(d.querySelector('h1').textContent,name);
+    assert.equal(d.title,entry.title);assert.equal(d.querySelector('meta[name="description"]').content,entry.description);
+    assert.equal(d.querySelector('link[rel="canonical"]').href,settings.origin+'/product.html?product='+id,'existing public URL retained');
+    const graph=JSON.parse(d.getElementById('madhav-structured-data').textContent)['@graph'];
+    const structured=graph.find(node=>node['@type']==='Product');assert.equal(structured.name,name);
+    assert.equal(structured.offers.price,storeConfig.products.find(p=>p.productId===id).unitPrice.toFixed(2));
+    assert.equal(d.querySelector('#product-directions').textContent,product.directions,'no dose inferred from another formulation');
+    const faqs=[...d.querySelectorAll('#product-questions details[data-seo-faq]')];assert.equal(faqs.length,3);
+    assert.equal(faqs[0].querySelector('p').textContent,product.benefits);
+    assert.equal(faqs[2].querySelector('p').textContent,product.directions);
+    assert(faqs[1].querySelector('p').textContent.includes(count+' component')||faqs[1].querySelector('p').textContent.includes(count+'-component'));
+  }
+  assert([...home.querySelectorAll('.product-card h3')].some(h=>h.textContent===name));
+  assert([...metabolic.querySelectorAll('.product-card h3')].some(h=>h.textContent===name));
+  assert([...metabolic.querySelectorAll('a[href="product.html?product='+id+'#composition"]')].some(a=>a.textContent==='Ingredients in '+name));
+  assert(metabolic.querySelector('.mm-seo-care-grid').textContent.includes(product.directions));
+}
+assert.equal(metabolic.querySelector('h1').textContent,'Madhumeh Haran and Madhumeh Haran BKR');
+function checkNoRetiredNames(folder){for(const item of fs.readdirSync(folder,{withFileTypes:true})){const file=path.join(folder,item.name);if(item.isDirectory())checkNoRetiredNames(file);else if(/\.(html|js|mjs)$/.test(item.name))assert(!/Madhumeh Haran (?:Value|Premium)|\bValue and Premium\b/.test(fs.readFileSync(file,'utf8')),'retired visible names in '+file);}}
+checkNoRetiredNames(dist);
 const ui=JSON.parse(fs.readFileSync(path.join(root,'scripts/seo-translation-keys.json')));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']) for(const key of ui) assert(c.window.madhavTranslations[lang][key],lang+': '+key);
 console.log('Passed: unique metadata and H1s, canonical routes, category membership, visible FAQ/schema agreement, real INR offers without invented ratings/stock/authors, host/pack fallbacks, contact facts and seven translated dictionaries.');

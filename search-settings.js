@@ -46,8 +46,26 @@ window.madhavSearchSettings = {
       ]
     },
     'kabi-haran': { title: 'Kabj Haran Granules for Digestive Wellbeing | Madhav Marketing', description: 'Explore Kabj Haran Granules, a 100 g Ayurvedic digestive-wellbeing formulation. Read its ingredients, pack directions and pregnancy precaution.' },
-    'madhumeh-value': { title: 'Madhumeh Haran Value Karela Jamun Churan | Madhav Marketing', description: 'Explore the 200 g Madhumeh Haran Value Karela Jamun Churan, its ingredients and label guidance. Compare its composition with the Premium formula.' },
-    'madhumeh-premium': { title: 'Madhumeh Haran Premium with Vasant Kusumakar | Madhav Marketing', description: 'Explore the 200 g Madhumeh Haran Premium formulation with Karela, Jamun and Vasant Kusumakar Ras. Compare supplied composition panels and directions.' },
+    'madhumeh-value': {
+      title: 'Madhumeh Haran | Karela Jamun Churan | Madhav Marketing',
+      description: 'Madhumeh Haran is a 200 g Karela Jamun Churan for traditional metabolic wellbeing. See price, composition, label directions and compare Madhumeh Haran BKR.',
+      faqHeading: 'Questions about Madhumeh Haran',
+      faqs: [
+        { id: 'use', question: 'What is Madhumeh Haran?', answerSource: 'benefits' },
+        { id: 'composition', question: 'What ingredients are listed in Madhumeh Haran?', answer: 'The 200 g pack lists Karela and Jamun at 250 mg each per gram. The complete composition table lists all 14 components and their quantities.' },
+        { id: 'directions', question: 'How should I take Madhumeh Haran?', answerSource: 'directions' }
+      ]
+    },
+    'madhumeh-premium': {
+      title: 'Madhumeh Haran BKR | Karela Jamun Yog | Madhav Marketing',
+      description: 'Explore Madhumeh Haran BKR, a 200 g Karela Jamun formulation listing Basant kusumakar at 10 mg per gram. See price, full composition and pack guidance.',
+      faqHeading: 'Questions about Madhumeh Haran BKR',
+      faqs: [
+        { id: 'use', question: 'What is Madhumeh Haran BKR?', answerSource: 'benefits' },
+        { id: 'composition', question: 'How much Basant kusumakar does Madhumeh Haran BKR contain?', answer: 'The composition lists Basant kusumakar at 10 mg per gram. It also lists Karela and Jamun at 250 mg each per gram. Read the complete 16-component panel for the full formula.' },
+        { id: 'directions', question: 'How should I take Madhumeh Haran BKR?', answerSource: 'directions' }
+      ]
+    },
     'hriday-rakshak': { title: 'Hriday Rakshak Yog for Heart Wellness | Madhav Marketing', description: 'Explore Hriday Rakshak Yog, a 200 g Ayurvedic heart-wellness formulation with Arjuna, garlic and Ashwagandha. Read its composition and label guidance.' },
     'arshharan': { title: 'Arshharan Syrup for Piles Care | Madhav Marketing', description: 'Explore Arshharan Syrup in a 300 ml pack. Read the supplied Ayurvedic composition, intended-use information, label directions and precautions.' },
     'arshharan-capsules': { title: 'Arshharan Capsules for Piles Care | Madhav Marketing', description: 'Explore Arshharan Capsules in a 30-capsule pack. Read the supplied composition, label directions, precautions and related Arshharan Syrup information.' }
@@ -115,8 +133,8 @@ Object.assign(window.madhavSearchSettings, {
     "metabolic": {
       "path": "karela-jamun-metabolic-wellness.html",
       "label": "Karela and Jamun formulations",
-      "heading": "Karela and Jamun metabolic wellness formulations",
-      "intro": "Compare Madhumeh Haran Value and Premium in 200 g packs. Both list Karela and Jamun, with ingredient amounts stated per gram. Premium also lists Vasant Kusumakar Ras (Basant kusumakar on the label) at 10 mg per gram. Read each product’s full composition and directions before choosing a formulation.",
+      "heading": "Madhumeh Haran and Madhumeh Haran BKR",
+      "intro": "Compare Madhumeh Haran and Madhumeh Haran BKR in 200 g packs. Both list Karela and Jamun, with ingredient amounts stated per gram. Madhumeh Haran BKR also lists Vasant Kusumakar Ras (Basant kusumakar on the label) at 10 mg per gram. Read each product’s full composition and directions before choosing a formulation.",
       "ingredients": [
         "karela",
         "jamun",
@@ -167,9 +185,9 @@ Object.assign(window.madhavSearchSettings, {
     },
     "karela-jamun-metabolic-wellness.html": {
       "kind": "category",
-      "heading": "Karela and Jamun metabolic wellness formulations",
-      "title": "Karela and Jamun metabolic wellness formulations | Madhav Marketing",
-      "description": "Compare Madhumeh Haran Value and Premium Karela Jamun formulations: 200 g packs, ingredients per gram, Premium’s Vasant Kusumakar Ras and label directions.",
+      "heading": "Madhumeh Haran and Madhumeh Haran BKR",
+      "title": "Madhumeh Haran & BKR | Karela Jamun Range | Madhav Marketing",
+      "description": "Compare Madhumeh Haran and Madhumeh Haran BKR: 200 g packs, ingredients per gram, prices and label directions. Review both Karela Jamun formulations.",
       "group": "metabolic",
       "products": []
     },

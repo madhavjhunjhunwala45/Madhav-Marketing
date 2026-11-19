@@ -7,13 +7,13 @@ Updated 11 October 2026. The short paragraphs describe traditional, label-stated
 | Dard Haran Capsule | `assets/gallery/dard-capsule-side.webp` — joint, knee and back discomfort |
 | Dard Haran Oil | `assets/gallery/dard-oil-100-panel.webp` — external massage for joint/muscle discomfort |
 | Kabi Haran Granules | `assets/gallery/kabi-side.webp` — constipation, gas and acidity |
-| Madhumeh Haran Value | `assets/gallery/madhumeh-value-front.webp` — traditional metabolic wellbeing and vitality |
-| Madhumeh Haran Premium | `assets/gallery/madhumeh-premium-side.webp` — traditional metabolic/general wellbeing and vitality |
+| Madhumeh Haran | `assets/gallery/madhumeh-value-front.webp` — traditional metabolic wellbeing and vitality |
+| Madhumeh Haran BKR | `assets/gallery/madhumeh-premium-side.webp` — traditional metabolic/general wellbeing and vitality |
 | Hriday Rakshak Yog | `assets/gallery/hriday-side.webp` — traditional heart-wellness formula; verified Arjuna, garlic and Ashwagandha components |
 | Arshharan Syrup | `assets/gallery/arsh-syrup-label-clean.webp` — piles care, perianal itching and burning |
 | Arshharan Capsules | `assets/gallery/arsh-capsules-side.webp` — dry and bleeding piles care |
 
-The copy retains relevant clinician guidance. It avoids paralysis treatment, diabetes cure/control, cholesterol or blood-pressure reduction, guaranteed relief, and “no side effects” assertions. Value and Premium remain distinct, and the earlier/new Premium panels remain separate. Ingredient-level studies are not presented as proof for a whole product.
+The copy retains relevant clinician guidance. It avoids paralysis treatment, diabetes cure/control, cholesterol or blood-pressure reduction, guaranteed relief, and “no side effects” assertions. Madhumeh Haran and Madhumeh Haran BKR remain distinct. Madhumeh Haran BKR has one approved composition stated per gram. Ingredient-level studies are not presented as proof for a whole product.
 
 Official guidance consulted to constrain the copy:
 

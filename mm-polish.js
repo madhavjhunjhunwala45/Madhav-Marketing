@@ -113,7 +113,7 @@
   const value = products?.['madhumeh-value'], premium = products?.['madhumeh-premium'];
   if (comparisonHost && value?.ingredients && premium?.ingredients) {
     const details = make('details', '', 'mm-comparison');
-    details.append(make('summary', 'Compare Value and Premium'));
+    details.append(make('summary', 'Compare Madhumeh Haran and Madhumeh Haran BKR'));
     comparisonHost.append(details);
     let built = false;
     details.addEventListener('toggle', () => {
