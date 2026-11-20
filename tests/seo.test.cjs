@@ -213,11 +213,56 @@ for(const [id,name,count] of [['madhumeh-value','Madhumeh Haran',14],['madhumeh-
   assert([...metabolic.querySelectorAll('a[href="product.html?product='+product.slug+'#composition"]')].some(a=>a.textContent==='Ingredients in '+name));
   assert(metabolic.querySelector('.mm-seo-care-grid').textContent.includes(product.directions));
 }
-assert.equal(metabolic.querySelector('h1').textContent,'Madhumeh Haran and Madhumeh Haran BKR');
+assert.equal(metabolic.querySelector('h1').textContent,'Karela Jamun formulations for metabolic wellbeing');
 function checkNoRetiredNames(folder){for(const item of fs.readdirSync(folder,{withFileTypes:true})){const file=path.join(folder,item.name);if(item.isDirectory())checkNoRetiredNames(file);else if(/\.(html|js|mjs)$/.test(item.name))assert(!/Madhumeh Haran (?:Value|Premium)|\bValue and Premium\b/.test(fs.readFileSync(file,'utf8')),'retired visible names in '+file);}}
 checkNoRetiredNames(dist);
 const updatedSeoPaths=[...['dard-capsule','kabi-haran','hriday-rakshak','arshharan','arshharan-capsules'].map(id=>'product.html?product='+id),'digestive-wellness.html','heart-wellness.html','piles-fissure-care.html'];
-for(const url of updatedSeoPaths)assert(fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8').includes('<loc>'+settings.origin+'/'+url+'</loc><lastmod>2026-11-20</lastmod>'),'actual SEO update date: '+url);
+for(const url of updatedSeoPaths)assert(fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8').includes('<loc>'+settings.origin+'/'+url+'</loc><lastmod>'+require('../scripts/seo-updates.json')[url]+'</lastmod>'),'actual SEO update date: '+url);
+// Broad category searches and exact product searches have different page headings.
+assert.equal(home.title, 'Madhav Marketing | Ayurvedic Wellness Products');
+for (const [group, entry] of Object.entries(settings.categories)) {
+  const d = load(entry.path);
+  assert.equal(d.querySelector('h1').textContent, entry.heading);
+  assert.equal(d.querySelector('.mm-seo-products').parentElement.querySelector('h2').textContent, entry.productHeading);
+  assert.notEqual(entry.heading, entry.productHeading, group + ': category purpose differs from product heading');
+  for (const product of Object.values(c.window.productCatalogue).filter(p => p.group === group)) {
+    assert(d.querySelector('main').textContent.includes(product.title), group + ': names remain visible');
+  }
+}
+assert(settings.categories.digestion.heading.includes('occasional constipation'));
+assert(settings.products['kabi-haran'].description.includes('traditionally used for occasional constipation'));
+assert(!home.querySelector('meta[name="keywords"]'), 'no hidden keyword stuffing');
+const siteGraph = JSON.parse(home.getElementById('madhav-structured-data').textContent)['@graph'];
+for (const type of ['Organization', 'WebSite']) assert.equal(siteGraph.find(n => n['@type'] === type).name, 'Madhav Marketing');
+assert.equal(home.querySelector('meta[property="og:site_name"]').content, 'Madhav Marketing');
+// Image extensions add genuine product photographs without adding canonical pages.
+const { DOMParser } = require('linkedom');
+const xml = new DOMParser().parseFromString(fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8'), 'text/xml');
+assert.equal(xml.documentElement.getAttribute('xmlns:image'), 'http://www.google.com/schemas/sitemap-image/1.1');
+const urls = [...xml.getElementsByTagName('url')];
+assert.equal(urls.length, 110);
+assert.equal(xml.getElementsByTagName('image:image').length, 8);
+const updates = require('../scripts/seo-updates.json');
+for (const [relative, date] of Object.entries(updates)) {
+  const entry = urls.find(node => node.querySelector('loc').textContent === settings.origin + '/' + relative);
+  assert(entry, 'content-date key has an actual canonical URL: ' + relative);
+  assert.equal(entry.querySelector('lastmod').textContent, date);
+}
+for (const [id, product] of Object.entries(c.window.productCatalogue)) {
+  const url = settings.origin + '/product.html?product=' + (product.slug || id);
+  const entry = urls.find(node => node.querySelector('loc').textContent === url);
+  const images = [...entry.getElementsByTagName('image:loc')];
+  assert.equal(images.length, 1);
+  assert.equal(images[0].textContent, settings.origin + '/' + product.image);
+  assert(fs.statSync(path.join(dist, product.image)).size > 0, 'advertised photo is deployed: ' + id);
+}
 const ui=JSON.parse(fs.readFileSync(path.join(root,'scripts/seo-translation-keys.json')));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']) for(const key of ui) assert(c.window.madhavTranslations[lang][key],lang+': '+key);
+for (const lang of ['hi','mr','te','ta','bn','pa','gu']) {
+  const dictionary = c.window.madhavTranslations[lang];
+  const texts = [settings.home.title, settings.home.description,
+    ...Object.values(settings.categories).flatMap(entry => [entry.heading, entry.productHeading, entry.intro]),
+    ...Object.values(settings.pages).flatMap(entry => [entry.title, entry.description])];
+  for (const text of texts) assert(dictionary[text] && dictionary[text] !== text, lang + ': translated SEO copy: ' + text);
+}
 console.log('Passed: unique metadata and H1s, canonical routes, category membership, visible FAQ/schema agreement, real INR offers without invented ratings/stock/authors, host/pack fallbacks, contact facts and seven translated dictionaries.');

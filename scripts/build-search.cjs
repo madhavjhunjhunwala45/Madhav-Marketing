@@ -165,12 +165,21 @@ for (const [file, page] of Object.entries(settings.pages || {})) {
 const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.map(item => item.url)];
 const escapeXML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 // Record actual URL/content changes; do not refresh dates on every build.
-const movedProductUrls = new Set(Object.values(products).filter(product => product.slug).map(product => search.absolute('product.html?product=' + product.slug)));
-const updatedSeoUrls = new Set([...movedProductUrls,
-  ...['dard-capsule','kabi-haran','hriday-rakshak','arshharan','arshharan-capsules'].map(id => search.absolute('product.html?product=' + id)),
-  ...['digestive-wellness.html','heart-wellness.html','piles-fissure-care.html'].map(file => search.absolute(file))
-]);
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>' + (updatedSeoUrls.has(url) ? '2026-11-20' : '2026-11-16') + '</lastmod></url>').join('\n') + '\n</urlset>\n');
+const contentUpdates = require('./seo-updates.json');
+const productImages = new Map(Object.entries(products).map(([id, product]) => [
+  search.absolute('product.html?product=' + encodeURIComponent(product.slug || id)),
+  search.absolute(product.image)
+]));
+// Advertise only authentic primary product photos already shown on their pages.
+// Keep this in the existing sitemap; no additional page or image request is added.
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + sitemapUrls.map(url => {
+  const relative = url.slice((search.origin + '/').length);
+  const date = contentUpdates[relative] || '2026-11-16';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Invalid content update date: ' + relative);
+  const image = productImages.get(url);
+  return '  <url><loc>' + escapeXML(url) + '</loc><lastmod>' + date + '</lastmod>' +
+    (image ? '<image:image><image:loc>' + escapeXML(image) + '</image:loc></image:image>' : '') + '</url>';
+}).join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\nDisallow: /_search/\n\nSitemap: ' + search.origin + '/sitemap.xml\n');
 
 const deployment = JSON.parse(read('vercel.json'));

@@ -50,7 +50,7 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
   for (const [group, c] of Object.entries(settings.categories)) {
     const entries = Object.entries(products).filter(([, p]) => p.group === group);
     settings.pages[c.path].products = entries.map(([id]) => id);
-    const p = page(c.path, c.intro), s = p.section('Explore our Ayurvedic product range');
+    const p = page(c.path, c.intro), s = p.section(c.productHeading);
     const grid = p.node('div', '', 'product-grid mm-seo-products'); grid.dataset.mmCount = String(entries.length);
     const context = { window: { productCatalogue: products, mmIngredientEditorial: editorial, matchMedia: () => ({ matches: true, addEventListener() {} }) }, document: p.d }; vm.createContext(context); vm.runInContext(helpers, context);
     for (const [id] of entries) grid.append(vm.runInContext('makeProductCard(' + JSON.stringify(id) + ',catalogue[' + JSON.stringify(id) + '])', context)); s.append(grid);

@@ -11,8 +11,8 @@ export const storeConfig = {
     {sku:'dard-oil-50',productId:'dard-oil',formatIndex:0,pack:'50 ml',mrp:null,unitPrice:120,amazonUrl:'https://amzn.in/d/0ceW3qHD'},
     {sku:'dard-oil-100',productId:'dard-oil',formatIndex:1,pack:'100 ml',mrp:null,unitPrice:220,amazonUrl:'https://amzn.in/d/0ceW3qHD'},
     {sku:'kabj-haran',productId:'kabi-haran',mrp:null,unitPrice:105,amazonUrl:'https://amzn.in/d/0eE7lHxG'},
-    {sku:'madhumeh-value',productId:'madhumeh-value',mrp:null,unitPrice:298,amazonUrl:'https://amzn.in/d/0cIi5Vdn'},
-    {sku:'madhumeh-premium',productId:'madhumeh-premium',mrp:null,unitPrice:775,amazonUrl:'https://amzn.in/d/04vIw3Ao'},
+    {sku:'madhumeh-haran',legacySkus:['madhumeh-value'],productId:'madhumeh-value',mrp:null,unitPrice:298,amazonUrl:'https://amzn.in/d/0cIi5Vdn'},
+    {sku:'madhumeh-haran-bkr',legacySkus:['madhumeh-premium'],productId:'madhumeh-premium',mrp:null,unitPrice:775,amazonUrl:'https://amzn.in/d/04vIw3Ao'},
     {sku:'hriday-rakshak',productId:'hriday-rakshak',mrp:null,unitPrice:349,amazonUrl:'https://amzn.in/d/020JGI9e'},
     {sku:'arshharan',productId:'arshharan',mrp:null,unitPrice:210,amazonUrl:'https://amzn.in/d/0fvwlDOS'},
     {sku:'arshharan-capsules',productId:'arshharan-capsules',mrp:225,unitPrice:225,amazonUrl:'https://amzn.in/d/03D6UjAp'}

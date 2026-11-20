@@ -51,7 +51,7 @@ for(const [legacy,slug] of [['madhumeh-value','madhumeh-haran'],['madhumeh-premi
 }
 const sitemap = fs.readFileSync(path.join(root, 'dist/sitemap.xml'), 'utf8');
 for(const [legacy,slug] of [['madhumeh-value','madhumeh-haran'],['madhumeh-premium','madhumeh-haran-bkr']]){
-  assert(sitemap.includes('<loc>'+origin+'/product.html?product='+slug+'</loc><lastmod>2026-11-20</lastmod>'));
+  assert(sitemap.includes('<loc>'+origin+'/product.html?product='+slug+'</loc><lastmod>'+require('../scripts/seo-updates.json')['product.html?product='+slug]+'</lastmod>'));
   assert(!sitemap.includes('?product='+legacy),'legacy URL is excluded from sitemap');
 }
 assert(!sitemap.includes('madhavmarketing.store'));

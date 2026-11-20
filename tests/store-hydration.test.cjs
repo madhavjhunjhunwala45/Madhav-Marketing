@@ -4,9 +4,9 @@ const root = path.resolve(__dirname, '..'), { storeConfig } = require('../store-
 const data = { window: {} }; vm.createContext(data); vm.runInContext(fs.readFileSync(path.join(root, 'product-data.js'), 'utf8'), data);
 const products = data.window.productCatalogue;
 const stripImports = code => code.replace(/import\s*\{[^}]*\}\s*from\s*["'][^"']+["'];?/g, '');
-function mount(file, query, language, built) {
+function mount(file, query, language, built, initialCart = []) {
   const document = parseHTML(fs.readFileSync(path.join(root, 'dist', file), 'utf8')).document;
-  let stored = '[]';
+  let stored = JSON.stringify(initialCart);
   const location = new URL('https://www.madhavmarketingayurveda.in/' + query);
   const c = { document, location, storeConfig, siteSettings: {}, URL, URLSearchParams, Intl, performance, queueMicrotask,
     setTimeout() { return 1; }, clearTimeout() {},
@@ -47,5 +47,17 @@ for (const built of [false, true]) {
   assert.equal(oil.document.querySelector('.store-product-price').textContent, '₹220.00');
   oil.document.querySelector('.store-product-buy').click();
   assert.equal(oil.stored[0].sku, 'dard-oil-100'); assert.equal(oil.stored[0].quantity, 1); cases += 2;
+}
+for (const built of [false, true]) for (const language of ['en', 'hi']) {
+  for (const [id, sku, price] of [['madhumeh-value','madhumeh-haran',298],['madhumeh-premium','madhumeh-haran-bkr',775]]) {
+    const view = mount('_search/product-' + id + '.html', 'product.html?product=' + products[id].slug, language, built,
+      [{sku:id,quantity:2},{sku,quantity:3}]);
+    assert.equal(view.document.querySelector('.store-product-price').textContent,
+      new Intl.NumberFormat(language + '-IN', {style:'currency',currency:'INR',maximumFractionDigits:2}).format(price));
+    view.document.querySelector('.store-product-buy').click();
+    assert.equal(view.stored.length,1);assert.equal(view.stored[0].sku,sku);assert.equal(view.stored[0].quantity,6);
+    const graph=JSON.parse(view.document.getElementById('madhav-structured-data').textContent)['@graph'];
+    assert.equal(graph.find(n=>n['@type']==='Product').offers.sku,sku);cases++;
+  }
 }
 console.log('Passed: ' + cases + ' source/bundled SSR cart hydration cases, eight languages, single bindings, all homepage actions and correct 100 ml price/SKU.');

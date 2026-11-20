@@ -21,6 +21,24 @@ async function main(){
   assert.equal((result.message.match(/Quantity: 2/g)||[]).length,9);assert(result.message.includes('INR 5054.00'));
   assert(!result.message.includes('private=ignored'));assert(!result.message.includes('#cart'));
  });
+ check('renamed Madhumeh SKUs retain legacy carts and merge quantities at the verified price',()=>{
+  const pairs=[['madhumeh-value','madhumeh-haran',298],['madhumeh-premium','madhumeh-haran-bkr',775]];
+  for(const [legacy,sku,price]of pairs){
+   const retail=storeConfig.products.find(p=>p.sku===sku);assert(retail);assert.equal(retail.productId,legacy);assert.equal(retail.unitPrice,price);
+   assert(!storeConfig.products.some(p=>p.sku===legacy));
+   const result=api.createCartEnquiry([{sku:legacy,quantity:2},{sku,quantity:3}],storeConfig,catalogue,contacts);
+   assert.equal(result.quote.lines.length,1);assert.equal(result.quote.lines[0].sku,sku);assert.equal(result.quote.lines[0].quantity,5);
+   assert.equal(result.quote.subtotalPaise,price*5*100);assert(result.message.includes(catalogue[legacy].title));
+   const maximum=api.quoteCart([{sku:legacy,quantity:999},{sku,quantity:999}],storeConfig);
+   assert.equal(maximum.lines.length,1);assert.equal(maximum.lines[0].quantity,20);
+  }
+  assert.equal(api.quoteCart([{sku:'__proto__',quantity:1},{sku:'unknown',quantity:1},{sku:'madhumeh-value',quantity:-1}],storeConfig).count,0);
+ });
+ check('legacy aliases never override another active SKU',()=>{
+  const config={...storeConfig,products:[{sku:'first',productId:'dard-capsule',legacySkus:['second'],unitPrice:10},{sku:'second',productId:'hriday-rakshak',unitPrice:20}]};
+  const quote=api.quoteCart([{sku:'second',quantity:1}],config);
+  assert.equal(quote.lines[0].sku,'second');assert.equal(quote.subtotalPaise,2000);
+ });
  check('WhatsApp and email decode to the complete same cart',()=>{
   const result=api.createCartEnquiry([{sku:'dard-oil-100',quantity:3}],storeConfig,catalogue,contacts);
   const wa=new URL(result.whatsappHref),mail=new URL(result.emailHref);

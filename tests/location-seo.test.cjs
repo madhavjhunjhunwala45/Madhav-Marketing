@@ -7,7 +7,7 @@ for (const file of ['search-settings.js', 'product-data.js', ...['hi','mr','te',
 const settings = data.window.madhavSearchSettings, api = createSearch(settings);
 const home = parseHTML(fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8')).document;
 assert.equal(home.querySelector('.hero-copy .eyebrow').textContent.trim(), 'AYURVEDA · EVERYDAY CARE');
-assert.equal(home.title, 'Ayurvedic Wellness Products | Madhav Marketing');
+assert.equal(home.title, 'Madhav Marketing | Ayurvedic Wellness Products');
 assert(!home.querySelector('h1').textContent.includes('Haridwar'));
 assert(home.querySelector('.hero-foot').textContent.includes('Based in Muzaffarpur, Bihar.'));
 assert(home.querySelector('.story-copy').textContent.includes('Manufactured in Haridwar.'));
@@ -19,7 +19,8 @@ assert(home.querySelector('.contact-details').textContent.includes('Bhalla Road,
 for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) {
   const description = home.querySelector(selector).getAttribute('content'); assert.equal(description, settings.home.description);
   assert(!description.includes('Haridwar'));
-  assert(description.includes('Ayurvedic wellness range'));
+  assert(description.includes('Ayurvedic products'));
+  for (const topic of ['joint and muscle care','digestion','metabolic wellbeing','heart wellness','piles care']) assert(description.includes(topic));
 }
 const files = ['index.html', 'cart.html', ...fs.readdirSync(path.join(root, 'dist/_search')).map(file => '_search/' + file)];
 for (const file of files) {

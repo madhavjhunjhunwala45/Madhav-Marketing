@@ -6,8 +6,8 @@ window.madhavSearchSettings = {
   previousHost: 'www.madhavmarketing.store',
   businessName: 'Madhav Marketing',
   home: {
-    title: 'Ayurvedic Wellness Products | Madhav Marketing',
-    description: 'Explore Madhav Marketing’s Ayurvedic wellness range, including Dard Haran, Kabj Haran and Madhumeh Haran. View ingredients, pack details and directions.'
+    title: 'Madhav Marketing | Ayurvedic Wellness Products',
+    description: 'Explore Madhav Marketing’s Ayurvedic products for joint and muscle care, digestion, metabolic wellbeing, heart wellness and piles care. View prices and ingredients.'
   },
   ingredients: {
     title: 'Ayurvedic Ingredient Guide | Madhav Marketing',
@@ -67,8 +67,8 @@ window.madhavSearchSettings = {
       ]
     },
     'kabi-haran': {
-      "title": "Kabj Haran Granules | Digestive Care | Madhav Marketing",
-      "description": "Explore Kabj Haran Granules in a 100 g pack for traditional digestive wellbeing. See price, composition, label directions and the pregnancy precaution.",
+      "title": "Kabj Haran Granules | Constipation Care | Madhav Marketing",
+      "description": "Kabj Haran Granules is a 100 g formulation traditionally used for occasional constipation. View price, ingredients, label directions and precautions.",
       "faqHeading": "Questions about Kabj Haran Granules",
       "faqs": [
         {
@@ -109,7 +109,7 @@ window.madhavSearchSettings = {
       ]
     },
     'hriday-rakshak': {
-      "title": "Hriday Rakshak Yog | 200 g Ayurvedic Formula | Madhav Marketing",
+      "title": "Hriday Rakshak Yog | Heart Wellness | Madhav Marketing",
       "description": "Explore Hriday Rakshak Yog, a 200 g heart-wellness formulation with Arjuna bark, garlic and Ashwagandha. See price, composition and label guidance.",
       "faqHeading": "Questions about Hriday Rakshak Yog",
       "faqs": [
@@ -131,7 +131,7 @@ window.madhavSearchSettings = {
       ]
     },
     'arshharan': {
-      "title": "Arshharan Syrup | 300 ml Pack | Madhav Marketing",
+      "title": "Arshharan Syrup | Piles Care | Madhav Marketing",
       "description": "Explore Arshharan Syrup for traditional piles care in a 300 ml pack. See price, full composition, printed directions and the capsule-format comparison.",
       "faqHeading": "Questions about Arshharan Syrup",
       "faqs": [
@@ -153,7 +153,7 @@ window.madhavSearchSettings = {
       ]
     },
     'arshharan-capsules': {
-      "title": "Arshharan Capsules | 30-Capsule Pack | Madhav Marketing",
+      "title": "Arshharan Capsules | Piles Care | Madhav Marketing",
       "description": "Explore Arshharan Capsules for traditional piles care. View the 30-capsule pack, price, composition, label guidance and comparison with Arshharan Syrup.",
       "faqHeading": "Questions about Arshharan Capsules",
       "faqs": [
@@ -212,9 +212,10 @@ window.madhavSearchSettings = {
 Object.assign(window.madhavSearchSettings, {
   "categories": {
     "pain": {
+      "productHeading": "Dard Haran Oil and Capsule",
       "path": "joint-muscle-care.html",
       "label": "Joint and muscle care",
-      "heading": "Ayurvedic joint and muscle care products",
+      "heading": "Ayurvedic joint and muscle care",
       "intro": "Explore Dard Haran Capsule and Dard Haran Oil: an oral formulation and an external massage oil. Compare their ingredients, pack sizes, label directions and precautions.",
       "ingredients": [
         "nirgundi",
@@ -224,9 +225,10 @@ Object.assign(window.madhavSearchSettings, {
       ]
     },
     "digestion": {
+      "productHeading": "Kabj Haran Granules: pack and price",
       "path": "digestive-wellness.html",
       "label": "Digestive wellness",
-      "heading": "Kabj Haran Granules for digestive wellbeing",
+      "heading": "Ayurvedic care for occasional constipation",
       "intro": "Explore Kabj Haran Granules in a 100 g pack. Read the full ingredient panel, label directions and pregnancy precaution, with links to the product and ingredient guides.",
       "ingredients": [
         "haritaki",
@@ -236,9 +238,10 @@ Object.assign(window.madhavSearchSettings, {
       ]
     },
     "metabolic": {
+      "productHeading": "Compare Madhumeh Haran and Madhumeh Haran BKR",
       "path": "karela-jamun-metabolic-wellness.html",
       "label": "Karela and Jamun formulations",
-      "heading": "Madhumeh Haran and Madhumeh Haran BKR",
+      "heading": "Karela Jamun formulations for metabolic wellbeing",
       "intro": "Compare Madhumeh Haran and Madhumeh Haran BKR in 200 g packs. Both list Karela and Jamun, with ingredient amounts stated per gram. Madhumeh Haran BKR also lists Vasant Kusumakar Ras (Basant kusumakar on the label) at 10 mg per gram. Read each product’s full composition and directions before choosing a formulation.",
       "ingredients": [
         "karela",
@@ -248,9 +251,10 @@ Object.assign(window.madhavSearchSettings, {
       ]
     },
     "heart": {
+      "productHeading": "Hriday Rakshak Yog: pack and price",
       "path": "heart-wellness.html",
       "label": "Heart wellness",
-      "heading": "Hriday Rakshak Yog for heart wellness",
+      "heading": "Ayurvedic heart wellness with Hriday Rakshak Yog",
       "intro": "Explore Hriday Rakshak Yog in a 200 g pack. Its per-gram composition lists Arjuna bark, garlic, Ashwagandha and other components. Read the full panel and label directions alongside your physician-guided care plan.",
       "ingredients": [
         "arjuna",
@@ -259,9 +263,10 @@ Object.assign(window.madhavSearchSettings, {
       ]
     },
     "piles": {
+      "productHeading": "Compare Arshharan Syrup and Capsules",
       "path": "piles-fissure-care.html",
       "label": "Piles and fissure care",
-      "heading": "Arshharan Syrup and Arshharan Capsules",
+      "heading": "Ayurvedic piles care: syrup and capsules",
       "intro": "Compare Arshharan Syrup in a 300 ml pack and Arshharan Capsules in a 30-capsule pack. Their ingredient panels and directions differ. Read each complete composition and the current pack before choosing a product.",
       "ingredients": [
         "kutaja",
@@ -274,40 +279,40 @@ Object.assign(window.madhavSearchSettings, {
   "pages": {
     "joint-muscle-care.html": {
       "kind": "category",
-      "heading": "Ayurvedic joint and muscle care products",
-      "title": "Ayurvedic joint and muscle care products | Madhav Marketing",
+      "heading": "Ayurvedic joint and muscle care",
+      "title": "Ayurvedic Joint Massage Oil & Capsules | Madhav Marketing",
       "description": "Explore Dard Haran Capsule and Dard Haran Oil: an oral formulation and an external massage oil. Compare their ingredients, pack sizes, label directions and precautions.",
       "group": "pain",
       "products": []
     },
     "digestive-wellness.html": {
       "kind": "category",
-      "heading": "Kabj Haran Granules for digestive wellbeing",
-      "title": "Kabj Haran Granules | Digestive Wellness Range | Madhav Marketing",
+      "heading": "Ayurvedic care for occasional constipation",
+      "title": "Ayurvedic Constipation Care | Kabj Haran | Madhav Marketing",
       "description": "Read the Kabj Haran Granules guide: 100 g pack, listed ingredients and percentages, price, directions and pregnancy precaution.",
       "group": "digestion",
       "products": []
     },
     "karela-jamun-metabolic-wellness.html": {
       "kind": "category",
-      "heading": "Madhumeh Haran and Madhumeh Haran BKR",
-      "title": "Madhumeh Haran & BKR | Karela Jamun Range | Madhav Marketing",
+      "heading": "Karela Jamun formulations for metabolic wellbeing",
+      "title": "Karela Jamun Churan & Yog | Madhav Marketing",
       "description": "Compare Madhumeh Haran and Madhumeh Haran BKR: 200 g packs, ingredients per gram, prices and label directions. Review both Karela Jamun formulations.",
       "group": "metabolic",
       "products": []
     },
     "heart-wellness.html": {
       "kind": "category",
-      "heading": "Hriday Rakshak Yog for heart wellness",
-      "title": "Hriday Rakshak Yog for Heart Wellness | Madhav Marketing",
+      "heading": "Ayurvedic heart wellness with Hriday Rakshak Yog",
+      "title": "Ayurvedic Heart Wellness | Hriday Rakshak Yog | Madhav Marketing",
       "description": "Read the Hriday Rakshak Yog guide: 200 g pack, per-gram composition, price and label directions. Explore its listed Arjuna bark, garlic and Ashwagandha.",
       "group": "heart",
       "products": []
     },
     "piles-fissure-care.html": {
       "kind": "category",
-      "heading": "Arshharan Syrup and Arshharan Capsules",
-      "title": "Arshharan Syrup & Capsules | Piles Care | Madhav Marketing",
+      "heading": "Ayurvedic piles care: syrup and capsules",
+      "title": "Ayurvedic Piles Care | Arshharan Syrup & Capsules",
       "description": "Compare Arshharan Syrup and Capsules: 300 ml and 30-capsule packs, prices, separate compositions, label directions and ingredient guides.",
       "group": "piles",
       "products": []
