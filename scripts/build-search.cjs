@@ -164,9 +164,13 @@ for (const [file, page] of Object.entries(settings.pages || {})) {
 // List every useful canonical page, without cart, pack or preference duplicates.
 const sitemapUrls = [search.origin + '/', search.absolute('ingredients.html'), ...expected.map(item => item.url)];
 const escapeXML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-// Record this URL migration's actual date; do not refresh dates on every build.
+// Record actual URL/content changes; do not refresh dates on every build.
 const movedProductUrls = new Set(Object.values(products).filter(product => product.slug).map(product => search.absolute('product.html?product=' + product.slug)));
-write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>' + (movedProductUrls.has(url) ? '2026-11-20' : '2026-11-16') + '</lastmod></url>').join('\n') + '\n</urlset>\n');
+const updatedSeoUrls = new Set([...movedProductUrls,
+  ...['dard-capsule','kabi-haran','hriday-rakshak','arshharan','arshharan-capsules'].map(id => search.absolute('product.html?product=' + id)),
+  ...['digestive-wellness.html','heart-wellness.html','piles-fissure-care.html'].map(file => search.absolute(file))
+]);
+write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapUrls.map(url => '  <url><loc>' + escapeXML(url) + '</loc><lastmod>' + (updatedSeoUrls.has(url) ? '2026-11-20' : '2026-11-16') + '</lastmod></url>').join('\n') + '\n</urlset>\n');
 write('robots.txt', 'User-agent: *\nAllow: /\nDisallow: /_search/\n\nSitemap: ' + search.origin + '/sitemap.xml\n');
 
 const deployment = JSON.parse(read('vercel.json'));

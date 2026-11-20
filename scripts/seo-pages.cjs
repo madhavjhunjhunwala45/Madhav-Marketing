@@ -40,6 +40,13 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
     const list = p.node('div', '', 'mm-seo-faq-list');
     for (const [q, answer] of questions) { const detail = p.node('details'); detail.setAttribute('data-seo-faq', ''); detail.append(p.node('summary', capture(q)), p.node('p', answer)); list.append(detail); } s.append(list);
   }
+  // Reuse product answers so category copy stays in step with the same label facts.
+  function productQuestion(id, key) {
+    const item = settings.products[id]?.faqs?.find(item => item.id === key);
+    const answer = item?.answerSource ? products[id][item.answerSource] : item?.answer;
+    if (!item || !answer) throw new Error('Missing category product answer: ' + id + '/' + key);
+    return [item.question, answer];
+  }
   for (const [group, c] of Object.entries(settings.categories)) {
     const entries = Object.entries(products).filter(([, p]) => p.group === group);
     settings.pages[c.path].products = entries.map(([id]) => id);
@@ -56,11 +63,11 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
       const a = p.node('article', '', 'mm-seo-ingredient-card'); const h = p.node('h3'); h.append(p.link(item.title, 'ingredients.html?ingredient=' + id)); const roles = ingredients[id] && context.window.mmIngredientEditorial?.[id]?.roles;
       const role = roles?.[group === 'metabolic' ? 'metabolic' : used[0][0]];
       a.append(h, p.node('p', role?.[0] || item.shortBenefit));
-      const l = p.node('div', '', 'mm-seo-links'); for (const [pid, product] of used) l.append(p.link(['pain','metabolic'].includes(group) ? capture('Ingredients in ' + product.title) : product.title, 'product.html?product=' + (product.slug || pid) + '#composition')); a.append(l); stack.append(a);
+      const l = p.node('div', '', 'mm-seo-links'); for (const [pid, product] of used) l.append(p.link(capture('Ingredients in ' + product.title), 'product.html?product=' + (product.slug || pid) + '#composition')); a.append(l); stack.append(a);
     }
     list.append(stack);
     const care = p.section('Directions and safety information'); const careStack = p.node('div', '', 'mm-seo-stack mm-seo-care-grid');
-    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits)); if(['pain','metabolic'].includes(group)) a.append(p.node('p', product.application || product.directions)); a.append(p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + (products[id].slug || id) + '#directions')); careStack.append(a); } care.append(careStack);
+    for (const [id, product] of entries) { const a = p.node('article', '', 'mm-seo-care-card'); a.append(p.node('h3', product.title), p.node('p', product.benefits), p.node('p', product.application || product.directions)); a.append(p.node('p', product.precautions), p.link('Directions & care', 'product.html?product=' + (products[id].slug || id) + '#directions')); careStack.append(a); } care.append(careStack);
     const common = ['How should I use a product?', "Follow the current product label and your physician's directions. This catalogue provides product information and does not replace individual medical advice."];
     const availability = ['How do I check availability?', 'Call +91 94316 55050 for product availability and retailer enquiries. This catalogue does not currently offer online checkout.'];
     const unique = group === 'metabolic' ? ['Are Madhumeh Haran and Madhumeh Haran BKR the same formulation?', 'No. Both are 200 g packs with amounts stated per gram. Madhumeh Haran BKR lists Basant kusumakar at 10 mg per gram; the Madhumeh Haran panel does not list this ingredient. Compare both full composition panels and follow the directions for your chosen product.']
@@ -71,6 +78,13 @@ module.exports = function buildSeoPages({ root, settings, products, ingredients,
       const packs = settings.products['dard-oil'].faqs.find(item => item.id === 'packs');
       const comparison = ['How do Dard Haran Oil and Capsule differ?', 'Dard Haran Oil is for external massage. Dard Haran Capsule is an oral formulation used under medical supervision. Ask your physician which format is appropriate for you.'];
       faq(p, [comparison, [packs.question, packs.answer], availability]);
+    } else if (group === 'digestion') {
+      faq(p, [productQuestion('kabi-haran','composition'), productQuestion('kabi-haran','precautions'), availability]);
+    } else if (group === 'heart') {
+      faq(p, [productQuestion('hriday-rakshak','use'), productQuestion('hriday-rakshak','composition'), availability]);
+    } else if (group === 'piles') {
+      const comparison = ['Are Arshharan Syrup and Capsules the same formulation?', 'No. Arshharan Syrup and Arshharan Capsules have different composition panels. The syrup panel lists extracts derived from ingredients per 10 ml; the capsule panel lists amounts per 500 mg capsule. Follow the directions for the selected product.'];
+      faq(p, [comparison, common, availability]);
     } else faq(p, [unique, common, availability]);
     enquiry(p); finish(p);
   }

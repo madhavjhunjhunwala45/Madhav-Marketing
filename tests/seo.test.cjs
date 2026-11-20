@@ -76,7 +76,54 @@ for(const file of ['_search/product-dard-oil.html','_search/product-dard-oil-for
   assert(questions[1].textContent.includes('per 100 ml'));
   assert(d.querySelector('#mm-category-crumb[href="joint-muscle-care.html"]'));
 }
-assert(!load('_search/product-hriday-rakshak.html').getElementById('product-questions'),'oil-only additions do not appear on unrelated products');
+// Every actual product now has its own source-backed answers, without inheriting another product's directions.
+for(const [id,product] of Object.entries(c.window.productCatalogue)){
+  const entry=settings.products[id];assert.equal(entry.faqs.length,3,id+': three product-specific answers');
+  for(const suffix of ['', '-format-0']){
+    const d=load('_search/product-'+id+suffix+'.html');
+    assert.equal(d.querySelectorAll('#product-questions').length,1,id+': one FAQ article');
+    assert.equal(d.querySelector('#product-questions h3').textContent,entry.faqHeading);
+    assert.equal(d.querySelector('#product-directions').textContent,(product.formats||[product])[0].directions);
+    assert.equal(d.querySelector('#product-precautions').textContent,product.precautions);
+    const answers=[...d.querySelectorAll('#product-questions details[data-seo-faq]')];
+    entry.faqs.forEach((item,i)=>{
+      assert.equal(answers[i].querySelector('summary').textContent,item.question);
+      assert.equal(answers[i].querySelector('p').textContent,item.answerSource?product[item.answerSource]:item.answer);
+    });
+  }
+}
+const additionalProducts=c.window.productCatalogue;
+assert.equal(additionalProducts['dard-capsule'].ingredients.length,13);
+assert.equal(additionalProducts['dard-capsule'].pack,'30 capsules');
+assert.equal(additionalProducts['dard-capsule'].basis,'Each capsule contains');
+for(const name of ['Nirgundi','Haridra','Sonth','Pippali'])assert(additionalProducts['dard-capsule'].ingredients.some(row=>row[0]===name));
+assert.equal(additionalProducts['hriday-rakshak'].ingredients.length,12);
+assert.equal(additionalProducts['hriday-rakshak'].pack,'200 g');
+assert.equal(additionalProducts['hriday-rakshak'].basis,'Each gram contains.');
+for(const name of ['Arjun chhal','Lahsun','Ashwagandha'])assert(additionalProducts['hriday-rakshak'].ingredients.some(row=>row[0]===name));
+assert.equal(additionalProducts['kabi-haran'].pack,'100 g granules');
+assert.equal(additionalProducts['kabi-haran'].basis,'Each 100 g contains (percentages w/w as printed)');
+for(const name of ['Senna','Haritaki','Amla','Saunf'])assert(additionalProducts['kabi-haran'].ingredients.some(row=>row[0]===name));
+assert.equal(additionalProducts.arshharan.pack,'300 ml syrup');
+assert.equal(additionalProducts.arshharan.basis,'Each 10 ml contains extracts derived from');
+assert.equal(additionalProducts['arshharan-capsules'].pack,'30 capsules');
+assert.equal(additionalProducts['arshharan-capsules'].basis,'Each 500 mg capsule contains, as printed on the supplied panel.');
+assert.notEqual(JSON.stringify(additionalProducts.arshharan.ingredients),JSON.stringify(additionalProducts['arshharan-capsules'].ingredients));
+for(const group of ['digestion','heart','piles']){
+  const entry=settings.categories[group],d=load(entry.path);
+  assert.equal(d.querySelector('h1').textContent,entry.heading);
+  const care=d.querySelector('.mm-seo-care-grid').textContent;
+  for(const [id,p]of Object.entries(additionalProducts).filter(([,p])=>p.group===group)){
+    assert(care.includes(p.directions));assert(care.includes(p.precautions));
+    assert([...d.querySelectorAll('a[href="product.html?product='+id+'#composition"]')].some(a=>a.textContent==='Ingredients in '+p.title));
+  }
+}
+const heartQuestions=[...load('heart-wellness.html').querySelectorAll('details[data-seo-faq] p')];
+assert.equal(heartQuestions[0].textContent,additionalProducts['hriday-rakshak'].benefits);
+assert.equal(heartQuestions[1].textContent,settings.products['hriday-rakshak'].faqs.find(f=>f.id==='composition').answer);
+const digestiveQuestions=[...load('digestive-wellness.html').querySelectorAll('details[data-seo-faq] p')];
+assert.equal(digestiveQuestions[0].textContent,settings.products['kabi-haran'].faqs.find(f=>f.id==='composition').answer);
+assert.equal(digestiveQuestions[1].textContent,additionalProducts['kabi-haran'].precautions);
 const joint=load('joint-muscle-care.html');
 for(const [id,name] of [['dard-oil','Dard Haran Oil'],['dard-capsule','Dard Haran Capsule']]){
   assert([...joint.querySelectorAll('a[href="product.html?product='+id+'#composition"]')].some(a=>a.textContent==='Ingredients in '+name),'descriptive composition links keep the correct product mapping');
@@ -169,6 +216,8 @@ for(const [id,name,count] of [['madhumeh-value','Madhumeh Haran',14],['madhumeh-
 assert.equal(metabolic.querySelector('h1').textContent,'Madhumeh Haran and Madhumeh Haran BKR');
 function checkNoRetiredNames(folder){for(const item of fs.readdirSync(folder,{withFileTypes:true})){const file=path.join(folder,item.name);if(item.isDirectory())checkNoRetiredNames(file);else if(/\.(html|js|mjs)$/.test(item.name))assert(!/Madhumeh Haran (?:Value|Premium)|\bValue and Premium\b/.test(fs.readFileSync(file,'utf8')),'retired visible names in '+file);}}
 checkNoRetiredNames(dist);
+const updatedSeoPaths=[...['dard-capsule','kabi-haran','hriday-rakshak','arshharan','arshharan-capsules'].map(id=>'product.html?product='+id),'digestive-wellness.html','heart-wellness.html','piles-fissure-care.html'];
+for(const url of updatedSeoPaths)assert(fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8').includes('<loc>'+settings.origin+'/'+url+'</loc><lastmod>2026-11-20</lastmod>'),'actual SEO update date: '+url);
 const ui=JSON.parse(fs.readFileSync(path.join(root,'scripts/seo-translation-keys.json')));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']) for(const key of ui) assert(c.window.madhavTranslations[lang][key],lang+': '+key);
 console.log('Passed: unique metadata and H1s, canonical routes, category membership, visible FAQ/schema agreement, real INR offers without invented ratings/stock/authors, host/pack fallbacks, contact facts and seven translated dictionaries.');
