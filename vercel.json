@@ -100,7 +100,7 @@
         {
           "type": "query",
           "key": "product",
-          "value": "kabi-haran"
+          "value": "kabj-haran"
         },
         {
           "type": "query",
@@ -196,6 +196,17 @@
         {
           "type": "query",
           "key": "product",
+          "value": "kabj-haran"
+        }
+      ],
+      "destination": "/_search/product-kabi-haran.html"
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
           "value": "madhumeh-haran"
         }
       ],
@@ -244,6 +255,18 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "kabi-haran"
+        }
+      ],
+      "destination": "https://www.madhavmarketingayurveda.in/product.html?product=kabj-haran",
+      "permanent": true
+    },
     {
       "source": "/product.html",
       "has": [

@@ -24,10 +24,10 @@ for (const host of hosts) {
 }
 const generated = JSON.parse(fs.readFileSync(path.join(root, '.search-build.json'))).deployment;
 assert.deepEqual(config.redirects, generated.redirects);
-// Public URLs change without renaming the retail SKUs or losing saved carts.
+// Public URL slugs resolve to stable internal product IDs.
 vm.runInContext(fs.readFileSync(path.join(root,'product-data.js'),'utf8'),c);
 const products=c.window.productCatalogue;
-for(const [legacy,slug] of [['madhumeh-value','madhumeh-haran'],['madhumeh-premium','madhumeh-haran-bkr']]){
+for(const [legacy,slug] of [['kabi-haran','kabj-haran'],['madhumeh-value','madhumeh-haran'],['madhumeh-premium','madhumeh-haran-bkr']]){
   assert.equal(products[legacy].slug,slug);
   const rules=config.redirects.filter(rule=>rule.source==='/product.html'&&rule.has?.some(h=>h.type==='query'&&h.key==='product'&&h.value===legacy));
   assert.equal(rules.length,1);assert(rules[0].permanent);
@@ -50,7 +50,7 @@ for(const [legacy,slug] of [['madhumeh-value','madhumeh-haran'],['madhumeh-premi
   }
 }
 const sitemap = fs.readFileSync(path.join(root, 'dist/sitemap.xml'), 'utf8');
-for(const [legacy,slug] of [['madhumeh-value','madhumeh-haran'],['madhumeh-premium','madhumeh-haran-bkr']]){
+for(const [legacy,slug] of [['kabi-haran','kabj-haran'],['madhumeh-value','madhumeh-haran'],['madhumeh-premium','madhumeh-haran-bkr']]){
   assert(sitemap.includes('<loc>'+origin+'/product.html?product='+slug+'</loc><lastmod>'+require('../scripts/seo-updates.json')['product.html?product='+slug]+'</lastmod>'));
   assert(!sitemap.includes('?product='+legacy),'legacy URL is excluded from sitemap');
 }

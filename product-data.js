@@ -579,6 +579,7 @@ window.productCatalogue = {
     "packOverview": "50 ml / 100 ml"
   },
   "kabi-haran": {
+    "slug": "kabj-haran",
     "benefits": "Traditionally used for occasional constipation and digestive discomfort such as gas and acidity, as described on the pack. Follow the label directions and seek medical advice before prolonged use.",
     "amazonUrl": "https://amzn.in/d/0eE7lHxG",
     "title": "Kabj Haran Granules",

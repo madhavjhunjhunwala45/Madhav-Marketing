@@ -35,7 +35,7 @@ for (const item of [{ file:'index.html', url:settings.origin+'/' },{ file:'_sear
   }
   for(const link of d.querySelectorAll('a[href]')){
     const u=new URL(link.getAttribute('href'),item.url);
-    if(u.origin===settings.origin&&u.pathname==='/product.html')assert(!['madhumeh-value','madhumeh-premium'].includes(u.searchParams.get('product')),'no internal link uses a redirecting product URL: '+item.file);
+    if(u.origin===settings.origin&&u.pathname==='/product.html')assert(!['kabi-haran','madhumeh-value','madhumeh-premium'].includes(u.searchParams.get('product')),'no internal link uses a redirecting product URL: '+item.file);
   }
 }
 for (const [file, entry] of Object.entries(settings.pages)) {
@@ -115,7 +115,7 @@ for(const group of ['digestion','heart','piles']){
   const care=d.querySelector('.mm-seo-care-grid').textContent;
   for(const [id,p]of Object.entries(additionalProducts).filter(([,p])=>p.group===group)){
     assert(care.includes(p.directions));assert(care.includes(p.precautions));
-    assert([...d.querySelectorAll('a[href="product.html?product='+id+'#composition"]')].some(a=>a.textContent==='Ingredients in '+p.title));
+    assert([...d.querySelectorAll('a[href="product.html?product='+(p.slug||id)+'#composition"]')].some(a=>a.textContent==='Ingredients in '+p.title));
   }
 }
 const heartQuestions=[...load('heart-wellness.html').querySelectorAll('details[data-seo-faq] p')];
@@ -216,7 +216,7 @@ for(const [id,name,count] of [['madhumeh-value','Madhumeh Haran',14],['madhumeh-
 assert.equal(metabolic.querySelector('h1').textContent,'Karela Jamun formulations for metabolic wellbeing');
 function checkNoRetiredNames(folder){for(const item of fs.readdirSync(folder,{withFileTypes:true})){const file=path.join(folder,item.name);if(item.isDirectory())checkNoRetiredNames(file);else if(/\.(html|js|mjs)$/.test(item.name))assert(!/Madhumeh Haran (?:Value|Premium)|\bValue and Premium\b/.test(fs.readFileSync(file,'utf8')),'retired visible names in '+file);}}
 checkNoRetiredNames(dist);
-const updatedSeoPaths=[...['dard-capsule','kabi-haran','hriday-rakshak','arshharan','arshharan-capsules'].map(id=>'product.html?product='+id),'digestive-wellness.html','heart-wellness.html','piles-fissure-care.html'];
+const updatedSeoPaths=[...['dard-capsule','kabi-haran','hriday-rakshak','arshharan','arshharan-capsules'].map(id=>'product.html?product='+(c.window.productCatalogue[id].slug||id)),'digestive-wellness.html','heart-wellness.html','piles-fissure-care.html'];
 for(const url of updatedSeoPaths)assert(fs.readFileSync(path.join(dist,'sitemap.xml'),'utf8').includes('<loc>'+settings.origin+'/'+url+'</loc><lastmod>'+require('../scripts/seo-updates.json')[url]+'</lastmod>'),'actual SEO update date: '+url);
 // Broad category searches and exact product searches have different page headings.
 assert.equal(home.title, 'Madhav Marketing | Ayurvedic Wellness Products');
@@ -255,6 +255,20 @@ for (const [id, product] of Object.entries(c.window.productCatalogue)) {
   assert.equal(images.length, 1);
   assert.equal(images[0].textContent, settings.origin + '/' + product.image);
   assert(fs.statSync(path.join(dist, product.image)).size > 0, 'advertised photo is deployed: ' + id);
+}
+// Corrected Kabj public URL retains the retail SKU and all existing label data.
+assert.equal(additionalProducts['kabi-haran'].slug, 'kabj-haran');
+assert.equal(storeConfig.products.find(item => item.productId === 'kabi-haran').sku, 'kabj-haran');
+for (const suffix of ['', '-format-0']) {
+  const d = load('_search/product-kabi-haran' + suffix + '.html');
+  const canonical = settings.origin + '/product.html?product=kabj-haran';
+  assert.equal(d.querySelector('h1').textContent, 'Kabj Haran Granules');
+  assert.equal(d.querySelector('link[rel="canonical"]').href, canonical);
+  const schema = JSON.parse(d.getElementById('madhav-structured-data').textContent)['@graph'].find(n => n['@type'] === 'Product');
+  assert.equal(schema.url, canonical);assert.equal(schema.offers.url, canonical);
+  assert.equal(schema.offers.sku, 'kabj-haran');assert.equal(schema.offers.price, '105.00');
+  assert.equal(d.querySelector('#product-directions').textContent, additionalProducts['kabi-haran'].directions);
+  assert.equal(d.querySelector('#product-precautions').textContent, additionalProducts['kabi-haran'].precautions);
 }
 const ui=JSON.parse(fs.readFileSync(path.join(root,'scripts/seo-translation-keys.json')));
 for(const lang of ['hi','mr','te','ta','bn','pa','gu']) for(const key of ui) assert(c.window.madhavTranslations[lang][key],lang+': '+key);

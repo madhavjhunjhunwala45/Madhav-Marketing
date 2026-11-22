@@ -73,7 +73,7 @@ checkCardLinks(home);
 const homeCards = [...home.querySelectorAll('#product-grid .product-card')];
 function packFor(id) { const chip = homeCards.find(card => card.querySelector('h3 a').getAttribute('href').endsWith('product=' + id)).querySelector('.pack-chip'); return chip.querySelector('.pack-chip-compact')?.textContent || chip.textContent; }
 assert.equal(packFor('arshharan'), '300 ml');
-assert.equal(packFor('kabi-haran'), '100 g');
+assert.equal(packFor('kabj-haran'), '100 g');
 assert.equal(packFor('dard-oil'), '50ml/100ml');
 for (const name of fs.readdirSync(path.join(output, '_search')).filter(name => name.startsWith('product-'))) {
   const productPage = parseHTML(fs.readFileSync(path.join(output, '_search', name), 'utf8')).document;
