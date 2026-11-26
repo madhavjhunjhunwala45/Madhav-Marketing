@@ -280,3 +280,18 @@ for (const lang of ['hi','mr','te','ta','bn','pa','gu']) {
   for (const text of texts) assert(dictionary[text] && dictionary[text] !== text, lang + ': translated SEO copy: ' + text);
 }
 console.log('Passed: unique metadata and H1s, canonical routes, category membership, visible FAQ/schema agreement, real INR offers without invented ratings/stock/authors, host/pack fallbacks, contact facts and seven translated dictionaries.');
+
+// A missing catalogue must not turn a generated detail page into a generic page.
+for (const page of ['product-madhumeh-value', 'product-madhumeh-premium',
+  'ingredient-black-pepper', 'ingredient-cotton', 'ingredient-vidang']) {
+  const document = load('_search/' + page + '.html');
+  const canonical = document.querySelector('link[rel="canonical"]').href;
+  const title = document.title;
+  const graph = document.getElementById('madhav-structured-data').textContent;
+  const search = require('../search.js')(settings, storeConfig);
+  search.install({ document, location: new URL(canonical), addEventListener() {} });
+  assert.equal(document.title, title);
+  assert.equal(document.querySelector('link[rel="canonical"]').href, canonical);
+  assert.match(document.querySelector('meta[name="robots"]').content, /^index,follow/);
+  assert.equal(document.getElementById('madhav-structured-data').textContent, graph);
+}

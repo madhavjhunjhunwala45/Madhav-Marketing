@@ -189,6 +189,13 @@
       if (kind === 'product') id = Object.keys(products).find(key => (products[key].slug || key) === id) || id;
       const product = kind === 'product' && own(products, id) ? products[id] : null;
       const ingredient = kind === 'ingredients' && own(ingredients, id) && !ingredients[id].guideHidden ? ingredients[id] : null;
+      // Keep the prerendered page when its client catalogue is unavailable or stale.
+      if ((kind === 'product' && !product) || (kind === 'ingredients' && !ingredient)) {
+        const key = kind === 'product' ? 'product' : 'ingredient';
+        const requested = params.get(key);
+        if (requested && document.querySelector('link[rel="canonical"]')?.href ===
+            absolute(root.location.pathname + '?' + key + '=' + encodeURIComponent(requested))) return;
+      }
       const language = root.MadhavI18n?.language || 'en';
       const translate = value => root.MadhavI18n?.translate(value) || value;
       const meta = metadata({ kind: ingredient ? 'ingredient' : kind, id, product, ingredient, language, translate });
